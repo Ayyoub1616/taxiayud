@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowRight,
@@ -81,6 +81,11 @@ type ExactRouteResponse = {
   destinationLabel?: string;
 };
 
+type AddressSuggestion = {
+  label: string;
+  detail?: string;
+};
+
 type WhatsAppOptions = {
   result: Result | null;
   origin: string;
@@ -128,6 +133,21 @@ const featuredDestinations = [
   "PARACUELLOS DE JILOCA",
   "MALUENDA",
 ].filter((item) => TARIFAS[item]);
+
+const localAddressSuggestions = [
+  "Calatayud",
+  "Plaza del Fuerte, Calatayud",
+  "Estación de tren de Calatayud",
+  "Hospital Ernest Lluch, Calatayud",
+  "Monasterio de Piedra, Nuévalos",
+  "Balneario Sicilia, Jaraba",
+  "Balneario Serón, Jaraba",
+  "Balneario Termas Pallarés, Alhama de Aragón",
+  "Estación Zaragoza-Delicias",
+  "Aeropuerto de Zaragoza",
+  "Zaragoza centro",
+  "Madrid",
+];
 
 const tariffEntries = Object.entries(TARIFAS).sort(([a], [b]) =>
   a.localeCompare(b, "es"),
@@ -329,6 +349,27 @@ async function fetchExactRoute(origin: string, destination: string) {
   return data as ExactRouteResponse;
 }
 
+async function fetchAddressSuggestions(query: string) {
+  const response = await fetch(`/api/suggest?q=${encodeURIComponent(query)}`);
+  const data = await response.json().catch(() => null);
+
+  if (!response.ok || !Array.isArray(data?.suggestions)) {
+    return [];
+  }
+
+  return data.suggestions as AddressSuggestion[];
+}
+
+function localAddressMatches(value: string) {
+  const q = normalize(value);
+  if (q.length < 2) return [];
+
+  return localAddressSuggestions
+    .filter((item) => normalize(item).includes(q) && normalize(item) !== q)
+    .slice(0, 5)
+    .map((label) => ({ label, detail: "Sugerencia rápida" }));
+}
+
 function pickupLocationLine(pickupLocation: PickupLocation) {
   if (!pickupLocation) return "";
   return `Ubicación de recogida: https://maps.google.com/?q=${pickupLocation.lat.toFixed(
@@ -407,6 +448,11 @@ function App() {
   const [locationStatus, setLocationStatus] = useState("");
   const [routeLoading, setRouteLoading] = useState(false);
   const [routeError, setRouteError] = useState("");
+  const [activeAddressField, setActiveAddressField] = useState<
+    "origin" | "destination" | null
+  >(null);
+  const [originSuggestions, setOriginSuggestions] = useState<AddressSuggestion[]>([]);
+  const [destinationSuggestions, setDestinationSuggestions] = useState<AddressSuggestion[]>([]);
   const [filter, setFilter] = useState("");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
   const [result, setResult] = useState<Result | null>(null);
@@ -454,6 +500,57 @@ function App() {
     pickupLocation,
   });
 
+  useEffect(() => {
+    let ignore = false;
+    const local = localAddressMatches(origin);
+    setOriginSuggestions(local);
+
+    if (origin.trim().length < 3) return undefined;
+
+    const timer = window.setTimeout(() => {
+      fetchAddressSuggestions(origin)
+        .then((items) => {
+          if (!ignore && items.length) setOriginSuggestions(items);
+        })
+        .catch(() => undefined);
+    }, 280);
+
+    return () => {
+      ignore = true;
+      window.clearTimeout(timer);
+    };
+  }, [origin]);
+
+  useEffect(() => {
+    let ignore = false;
+    const local = localAddressMatches(query);
+    setDestinationSuggestions(local);
+
+    if (query.trim().length < 3) return undefined;
+
+    const timer = window.setTimeout(() => {
+      fetchAddressSuggestions(query)
+        .then((items) => {
+          if (!ignore && items.length) setDestinationSuggestions(items);
+        })
+        .catch(() => undefined);
+    }, 280);
+
+    return () => {
+      ignore = true;
+      window.clearTimeout(timer);
+    };
+  }, [query]);
+
+  function scrollToResult() {
+    window.setTimeout(() => {
+      document.getElementById("resultado")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 80);
+  }
+
   function resultForKey(key: string): Result {
     return makeResultForKey(key, {
       origin,
@@ -468,6 +565,19 @@ function App() {
   function chooseDestination(key: string) {
     setSelectedKey(key);
     setQuery(displayName(key));
+    setResult(null);
+    setRouteError("");
+  }
+
+  function chooseAddress(field: "origin" | "destination", value: string) {
+    if (field === "origin") {
+      setOrigin(value);
+      setOriginSuggestions([]);
+    } else {
+      setQuery(value);
+      setDestinationSuggestions([]);
+    }
+    setActiveAddressField(null);
     setResult(null);
     setRouteError("");
   }
@@ -488,12 +598,14 @@ function App() {
       setSelectedKey(key);
       setQuery(displayName(key));
       setResult(resultForKey(key));
+      scrollToResult();
       return;
     }
 
     if (!trimmedOrigin || !trimmedDestination) {
       setResult(null);
       setRouteError("Indica origen y destino para calcular una ruta exacta.");
+      scrollToResult();
       return;
     }
 
@@ -510,6 +622,7 @@ function App() {
           mode: bookingMode,
         }, trimmedDestination),
       );
+      scrollToResult();
     } catch (error) {
       setResult(null);
       setRouteError(
@@ -517,6 +630,7 @@ function App() {
           ? error.message
           : "No se pudo calcular la ruta exacta. Puedes consultar por WhatsApp.",
       );
+      scrollToResult();
     } finally {
       setRouteLoading(false);
     }
@@ -752,6 +866,7 @@ function App() {
                     <input
                       value={origin}
                       placeholder="Calatayud, hotel, estación..."
+                      onFocus={() => setActiveAddressField("origin")}
                       onChange={(event) => {
                         setOrigin(event.target.value);
                         setResult(null);
@@ -759,6 +874,23 @@ function App() {
                       }}
                     />
                   </div>
+                  {activeAddressField === "origin" && originSuggestions.length ? (
+                    <div className="address-suggestions" aria-label="Sugerencias de origen">
+                      {originSuggestions.map((item) => (
+                        <button
+                          type="button"
+                          key={item.label}
+                          onMouseDown={(event) => {
+                            event.preventDefault();
+                            chooseAddress("origin", item.label);
+                          }}
+                        >
+                          <span>{item.label}</span>
+                          {item.detail ? <small>{item.detail}</small> : null}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
                 </label>
                 <label>
                   <span className="field-label">Destino</span>
@@ -769,6 +901,7 @@ function App() {
                       value={query}
                       list="destination-options"
                       placeholder="Zaragoza, Monasterio, Jaraba..."
+                      onFocus={() => setActiveAddressField("destination")}
                       onChange={(event) => {
                         setQuery(event.target.value);
                         setResult(null);
@@ -776,6 +909,23 @@ function App() {
                       }}
                     />
                   </div>
+                  {activeAddressField === "destination" && destinationSuggestions.length ? (
+                    <div className="address-suggestions" aria-label="Sugerencias de destino">
+                      {destinationSuggestions.map((item) => (
+                        <button
+                          type="button"
+                          key={item.label}
+                          onMouseDown={(event) => {
+                            event.preventDefault();
+                            chooseAddress("destination", item.label);
+                          }}
+                        >
+                          <span>{item.label}</span>
+                          {item.detail ? <small>{item.detail}</small> : null}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
                 </label>
                 <datalist id="destination-options">
                   {tariffEntries.map(([key]) => (
@@ -785,7 +935,7 @@ function App() {
               </div>
 
               <div className="suggestions compact" aria-label="Destinos sugeridos">
-                {suggestions.slice(0, 6).map(([key, tariff]) => (
+                {suggestions.slice(0, 6).map(([key]) => (
                   <button
                     key={key}
                     type="button"
@@ -793,7 +943,7 @@ function App() {
                     onClick={() => chooseDestination(key)}
                   >
                     <span>{displayName(key)}</span>
-                    <small>{formatKm(tariff.km)} km</small>
+                    <small>Destino habitual</small>
                   </button>
                 ))}
               </div>
@@ -904,7 +1054,7 @@ function App() {
               ) : null}
             </div>
 
-            <aside className="result-panel" aria-live="polite">
+            <aside className="result-panel" id="resultado" aria-live="polite">
               {result ? (
                 <>
                   <div className="result-kicker">

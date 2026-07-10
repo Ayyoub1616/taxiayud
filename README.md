@@ -24,9 +24,9 @@ En Vercel añade esta variable de entorno:
 OPENROUTESERVICE_API_KEY=tu_clave
 ```
 
-La clave no va en el navegador. La función `api/route.js` calcula la ruta desde
-Vercel y devuelve solo distancia y duración. Si no configuras la variable, la web
-seguirá funcionando con la tabla de tarifas y la consulta por WhatsApp.
+La clave no va en el navegador. Las funciones `api/route.js` y `api/suggest.js`
+calculan la ruta y muestran sugerencias desde Vercel. Si no configuras la
+variable, la web seguirá funcionando con la tabla de tarifas y WhatsApp.
 
 Alternativas:
 

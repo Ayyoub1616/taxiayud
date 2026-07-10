@@ -154,12 +154,12 @@ img {
 
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: 82vh;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(330px, 420px);
   gap: 34px;
   align-items: center;
-  padding: 126px 40px 76px;
+  padding: 106px 40px 58px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
 }
@@ -391,7 +391,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin: 50px 0 0;
+  margin: 34px 0 0;
   padding: 0;
 }
 
@@ -460,7 +460,7 @@ h1 {
   column-gap: 10px;
   row-gap: 2px;
   align-items: start;
-  padding: 18px 28px;
+  padding: 14px 24px;
   background: rgba(255, 255, 255, 0.52);
 }
 
@@ -488,8 +488,8 @@ h1 {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
   gap: 26px;
   align-items: end;
-  min-height: 390px;
-  padding: 76px 40px;
+  min-height: 300px;
+  padding: 56px 40px;
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(5, 7, 11, 0.9) 0%, rgba(5, 7, 11, 0.62) 45%, rgba(5, 7, 11, 0.12) 100%),
@@ -506,7 +506,7 @@ h1 {
   max-width: 760px;
   margin-bottom: 14px;
   color: #fff;
-  font-size: 3rem;
+  font-size: 2.55rem;
   line-height: 1.04;
 }
 
@@ -545,12 +545,12 @@ h1 {
 }
 
 .section {
-  padding: 88px 40px;
+  padding: 58px 40px;
 }
 
 .section-heading {
   width: min(1120px, 100%);
-  margin: 0 auto 34px;
+  margin: 0 auto 24px;
 }
 
 .section-heading h2,
@@ -559,7 +559,7 @@ h1 {
   max-width: 780px;
   margin-bottom: 14px;
   color: #fff;
-  font-size: 3rem;
+  font-size: 2.45rem;
   line-height: 1.04;
   letter-spacing: 0;
 }
@@ -595,12 +595,13 @@ h1 {
 }
 
 .calculator-panel {
-  padding: 26px;
+  padding: 22px;
 }
 
 .result-panel {
   min-height: 100%;
-  padding: 28px;
+  scroll-margin-top: 92px;
+  padding: 24px;
   background:
     linear-gradient(160deg, rgba(78, 161, 255, 0.11), transparent 38%),
     linear-gradient(180deg, rgba(241, 195, 77, 0.08), transparent 70%),
@@ -646,6 +647,10 @@ h1 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+}
+
+.route-inputs label {
+  position: relative;
 }
 
 .field-label {
@@ -704,16 +709,16 @@ select:focus,
 .suggestions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin: 14px 0 18px;
+  gap: 7px;
+  margin: 12px 0 14px;
 }
 
 .suggestions.compact {
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
 }
 
 .suggestions button {
-  min-height: 52px;
+  min-height: 44px;
   padding: 8px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -737,13 +742,63 @@ select:focus,
 }
 
 .suggestions span {
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 850;
 }
 
 .suggestions small {
   color: var(--muted);
   font-size: 0.78rem;
+}
+
+.address-suggestions {
+  position: absolute;
+  z-index: 12;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: #0b1119;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+}
+
+.address-suggestions button {
+  display: grid;
+  gap: 1px;
+  width: 100%;
+  min-height: 42px;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.address-suggestions button:hover {
+  background: rgba(241, 195, 77, 0.12);
+}
+
+.address-suggestions span,
+.address-suggestions small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.address-suggestions span {
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.address-suggestions small {
+  color: var(--muted);
+  font-size: 0.75rem;
 }
 
 .form-grid {
@@ -842,7 +897,7 @@ select:focus,
 }
 
 .result-price {
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   color: var(--gold);
   font-size: 4rem;
   line-height: 1;
@@ -895,7 +950,7 @@ select:focus,
 .reviews-section {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: 24px;
+  gap: 18px;
   align-items: stretch;
   background: #10131a;
 }
@@ -932,14 +987,14 @@ select:focus,
 }
 
 .review-card {
-  min-height: 190px;
-  padding: 20px;
+  min-height: 150px;
+  padding: 16px;
 }
 
 .review-card div {
   display: flex;
   gap: 4px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   color: var(--gold);
 }
 
@@ -950,8 +1005,8 @@ select:focus,
 }
 
 .review-card p {
-  min-height: 54px;
-  margin-bottom: 16px;
+  min-height: 42px;
+  margin-bottom: 10px;
   color: #fff;
   font-size: 1.08rem;
   font-weight: 900;
@@ -978,8 +1033,8 @@ select:focus,
 }
 
 .service-card {
-  min-height: 245px;
-  padding: 22px;
+  min-height: 190px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
@@ -1061,13 +1116,13 @@ select:focus,
 }
 
 .service-grid.compact .service-card {
-  min-height: 210px;
+  min-height: 175px;
 }
 
 .vehicle-section {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: 32px;
+  gap: 22px;
   align-items: center;
   background: #10131a;
 }
@@ -1081,7 +1136,7 @@ select:focus,
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin-top: 28px;
+  margin-top: 18px;
 }
 
 .spec-grid div {
@@ -1110,14 +1165,14 @@ select:focus,
 
 .vehicle-gallery img {
   width: 100%;
-  height: 430px;
+  height: 310px;
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid var(--line);
 }
 
 .vehicle-gallery img:nth-child(2) {
-  height: 340px;
+  height: 250px;
   align-self: end;
 }
 
@@ -1173,7 +1228,7 @@ select:focus,
 }
 
 .lookup-result {
-  padding: 26px;
+  padding: 22px;
   background:
     linear-gradient(155deg, rgba(78, 161, 255, 0.12), transparent 42%),
     linear-gradient(180deg, rgba(241, 195, 77, 0.08), transparent 72%),
@@ -1189,7 +1244,7 @@ select:focus,
 .lookup-price {
   margin-bottom: 16px;
   color: var(--gold);
-  font-size: 3.5rem;
+  font-size: 3rem;
   line-height: 1;
   font-weight: 950;
 }
@@ -1202,8 +1257,8 @@ select:focus,
 }
 
 .lookup-metrics div {
-  min-height: 74px;
-  padding: 12px;
+  min-height: 62px;
+  padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.045);
@@ -1288,7 +1343,7 @@ select:focus,
 }
 
 .table-wrap {
-  max-height: 520px;
+  max-height: 360px;
   overflow-x: auto;
   overflow-y: auto;
   border: 1px solid var(--line);
@@ -1339,7 +1394,7 @@ tr:hover td {
 
 .closing-band {
   width: min(1120px, calc(100% - 80px));
-  margin: 40px auto 88px;
+  margin: 24px auto 56px;
   display: grid;
   grid-template-columns: 230px 1fr auto;
   gap: 24px;
