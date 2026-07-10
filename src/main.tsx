@@ -288,9 +288,9 @@ function pickupLocationLine(pickupLocation: PickupLocation) {
 
 function whatsappDirectUrl() {
   const text = [
-    "Hola Taxi Ayud, quiero contactar por WhatsApp.",
-    "Necesito un taxi o consultar disponibilidad.",
-    "Te paso por aquí origen, destino y hora.",
+    "Hola Taxi Ayud, ¿estás disponible?",
+    "Quiero hablar para reservar o consultar un taxi.",
+    "Te envío los detalles por aquí.",
     "Gracias.",
   ].join("\n");
 
