@@ -444,6 +444,68 @@ h1 {
   font-weight: 700;
 }
 
+.region-band {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
+  gap: 26px;
+  align-items: end;
+  min-height: 390px;
+  padding: 76px 40px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(5, 7, 11, 0.9) 0%, rgba(5, 7, 11, 0.62) 45%, rgba(5, 7, 11, 0.12) 100%),
+    linear-gradient(0deg, rgba(5, 7, 11, 0.84), rgba(5, 7, 11, 0.08) 58%),
+    url("/assets/comarca-bg.webp") center / cover no-repeat;
+  border-bottom: 1px solid var(--line);
+}
+
+.region-copy {
+  width: min(690px, 100%);
+}
+
+.region-copy h2 {
+  max-width: 760px;
+  margin-bottom: 14px;
+  color: #fff;
+  font-size: 3rem;
+  line-height: 1.04;
+}
+
+.region-copy p:not(.eyebrow) {
+  max-width: 650px;
+  margin-bottom: 0;
+  color: #d8e1ec;
+  font-size: 1.06rem;
+}
+
+.comfort-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.comfort-strip div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(5, 7, 11, 0.48);
+  color: #fff;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+}
+
+.comfort-strip svg {
+  width: 19px;
+  height: 19px;
+  color: var(--gold);
+  flex: 0 0 auto;
+}
+
 .section {
   padding: 88px 40px;
 }
@@ -764,7 +826,7 @@ select:focus,
   align-items: flex-start;
 }
 
-.formula-box {
+.price-note-box {
   display: grid;
   gap: 4px;
   margin-bottom: 18px;
@@ -774,14 +836,14 @@ select:focus,
   background: rgba(241, 195, 77, 0.08);
 }
 
-.formula-box span {
+.price-note-box span {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 850;
   text-transform: uppercase;
 }
 
-.formula-box strong {
+.price-note-box strong {
   color: #fff7d5;
 }
 
@@ -1354,6 +1416,7 @@ tr:hover td {
 
   .hero,
   .calc-layout,
+  .region-band,
   .reviews-section,
   .tariff-lookup,
   .vehicle-section,
@@ -1496,7 +1559,16 @@ tr:hover td {
     padding: 58px 20px;
   }
 
+  .region-band {
+    min-height: auto;
+    padding: 58px 20px;
+    background:
+      linear-gradient(0deg, rgba(5, 7, 11, 0.92) 0%, rgba(5, 7, 11, 0.68) 52%, rgba(5, 7, 11, 0.2) 100%),
+      url("/assets/comarca-bg.webp") center / cover no-repeat;
+  }
+
   .section-heading h2,
+  .region-copy h2,
   .vehicle-copy h2,
   .reviews-summary h2 {
     font-size: 2.15rem;
@@ -1511,7 +1583,8 @@ tr:hover td {
 
   .route-inputs,
   .calc-actions,
-  .review-cards {
+  .review-cards,
+  .comfort-strip {
     grid-template-columns: 1fr;
   }
 

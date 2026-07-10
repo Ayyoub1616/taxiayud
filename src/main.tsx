@@ -47,7 +47,6 @@ type Result = {
   destination: string;
   destinationKey: string;
   km: number;
-  billedKm: number;
   waitMinutes: number;
   waitPrice: number;
   price: number;
@@ -268,7 +267,6 @@ function makeResultForKey(key: string, input: ResultInput): Result {
     destination: displayName(key),
     destinationKey: key,
     km: tariff.km,
-    billedKm: tariff.km * RATES.returnFactor,
     waitMinutes,
     waitPrice,
     price: priceFromKm(tariff.km, info.premium, waitMinutes),
@@ -301,17 +299,12 @@ function whatsappUrl(options: WhatsAppOptions) {
 
   const priceLines = options.result
     ? [
-        `Distancia visible para el cliente: ${formatKm(options.result.km)} km`,
-        `Cálculo taxi: ${formatKm(options.result.km)} km x 2 x ${
-          options.result.tariffLabel === "Nocturna / festiva"
-            ? RATES.nightRate.toString().replace(".", ",")
-            : RATES.dayRate.toString().replace(".", ",")
-        } €/km`,
+        `Distancia estimada: ${formatKm(options.result.km)} km`,
         options.result.waitMinutes
           ? `Espera: ${options.result.waitMinutes} min (${euro(options.result.waitPrice)})`
           : "",
         `Precio orientativo: ${euro(options.result.price)}`,
-        `Tarifa aplicada: ${options.result.tariffLabel}`,
+        `Tarifa: ${options.result.tariffLabel}`,
       ].filter(Boolean)
     : [
         "Necesito que me confirmes precio y disponibilidad.",
@@ -330,7 +323,8 @@ function whatsappUrl(options: WhatsAppOptions) {
     "",
     ...priceLines,
     "",
-    "¿Me confirmas disponibilidad?",
+        "¿Me confirmas disponibilidad?",
+        "Gracias.",
   ]
     .filter((line) => line !== "")
     .join("\n");
@@ -576,6 +570,38 @@ function App() {
           </div>
         </section>
 
+        <section className="region-band" aria-label="Comarca de Calatayud">
+          <div className="region-copy">
+            <p className="eyebrow compact">
+              <MapPin aria-hidden="true" />
+              Comarca de Calatayud
+            </p>
+            <h2>Calatayud, Monasterio de Piedra y balnearios sin complicarte</h2>
+            <p>
+              Viajes tranquilos por la comarca, recogida puntual y coche cómodo
+              para moverte con maletas, familia o visitas turísticas.
+            </p>
+          </div>
+          <div className="comfort-strip" aria-label="Comodidad del servicio">
+            <div>
+              <CheckCircle2 aria-hidden="true" />
+              <span>Conducción tranquila</span>
+            </div>
+            <div>
+              <Luggage aria-hidden="true" />
+              <span>Maletero amplio</span>
+            </div>
+            <div>
+              <ShieldCheck aria-hidden="true" />
+              <span>Taxi oficial</span>
+            </div>
+            <div>
+              <MessageCircle aria-hidden="true" />
+              <span>Reserva por WhatsApp</span>
+            </div>
+          </div>
+        </section>
+
         <section className="section calc-section" id="calculadora">
           <div className="section-heading">
             <p className="eyebrow compact">
@@ -781,8 +807,7 @@ function App() {
                   <ul className="result-list">
                     <li>
                       <MapPin aria-hidden="true" />
-                      Cliente ve {formatKm(result.km)} km · cálculo interno{" "}
-                      {formatKm(result.billedKm)} km
+                      Distancia estimada {formatKm(result.km)} km
                     </li>
                     <li>
                       <CalendarDays aria-hidden="true" />
@@ -802,15 +827,9 @@ function App() {
                       </li>
                     ) : null}
                   </ul>
-                  <div className="formula-box">
-                    <span>Fórmula aplicada</span>
-                    <strong>
-                      {formatKm(result.km)} km x 2 x{" "}
-                      {result.tariffLabel === "Nocturna / festiva"
-                        ? RATES.nightRate.toString().replace(".", ",")
-                        : RATES.dayRate.toString().replace(".", ",")}{" "}
-                      €/km
-                    </strong>
+                  <div className="price-note-box">
+                    <span>Presupuesto orientativo</span>
+                    <strong>Calculado con tarifa oficial y distancia estimada.</strong>
                   </div>
                   <div className="result-actions">
                     <a
@@ -963,9 +982,9 @@ function App() {
             </p>
             <h2>Peugeot 408 Fastback</h2>
             <p>
-              Un coche moderno, silencioso y amplio para traslados cómodos en
-              carretera. Espacio para maletas, buen acceso y licencia oficial
-              para viajar con tranquilidad.
+              Un coche blanco, moderno, silencioso y amplio para traslados
+              cómodos en carretera. Buen acceso, climatización, espacio para
+              maletas y licencia oficial para viajar con tranquilidad.
             </p>
             <div className="spec-grid">
               <div>
@@ -982,7 +1001,15 @@ function App() {
               </div>
               <div>
                 <CreditCard aria-hidden="true" />
-                <span>Pago con tarjeta</span>
+                <span>Pago fácil</span>
+              </div>
+              <div>
+                <Sparkles aria-hidden="true" />
+                <span>Interior cuidado</span>
+              </div>
+              <div>
+                <Clock3 aria-hidden="true" />
+                <span>Recogida puntual</span>
               </div>
             </div>
           </div>
