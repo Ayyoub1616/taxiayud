@@ -1,4 +1,6 @@
 const ORS_BASE_URL = "https://api.openrouteservice.org";
+const CALATAYUD_LAT = "41.3527";
+const CALATAYUD_LON = "-1.6432";
 
 function withSpain(value) {
   const clean = String(value || "").trim();
@@ -6,11 +8,28 @@ function withSpain(value) {
   return /spain|españa/i.test(clean) ? clean : `${clean}, España`;
 }
 
+function pointFromRequest(point, fallbackLabel) {
+  const lat = Number(point?.lat);
+  const lng = Number(point?.lng);
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+
+  return {
+    label: point?.label || fallbackLabel,
+    lat,
+    lng,
+  };
+}
+
 async function geocode(text, apiKey) {
   const params = new URLSearchParams({
     text: withSpain(text),
-    size: "1",
+    size: "5",
+    layers: "address,street,venue,locality,neighbourhood",
     "boundary.country": "ES",
+    "focus.point.lat": CALATAYUD_LAT,
+    "focus.point.lon": CALATAYUD_LON,
+    lang: "es",
   });
 
   const response = await fetch(`${ORS_BASE_URL}/geocode/search?${params}`, {
@@ -22,7 +41,8 @@ async function geocode(text, apiKey) {
   }
 
   const data = await response.json();
-  const feature = data?.features?.[0];
+  const feature =
+    (data?.features || []).find((item) => item?.geometry?.coordinates) || data?.features?.[0];
   const coordinates = feature?.geometry?.coordinates;
 
   if (!Array.isArray(coordinates) || coordinates.length < 2) {
@@ -87,7 +107,12 @@ export default async function handler(request, response) {
   }
 
   try {
-    const { origin, destination } =
+    const {
+      origin,
+      destination,
+      originPoint: rawOriginPoint,
+      destinationPoint: rawDestinationPoint,
+    } =
       typeof request.body === "string" ? JSON.parse(request.body) : request.body || {};
 
     if (!origin || !destination) {
@@ -95,9 +120,11 @@ export default async function handler(request, response) {
       return;
     }
 
+    const directOriginPoint = pointFromRequest(rawOriginPoint, origin);
+    const directDestinationPoint = pointFromRequest(rawDestinationPoint, destination);
     const [originPoint, destinationPoint] = await Promise.all([
-      geocode(origin, apiKey),
-      geocode(destination, apiKey),
+      directOriginPoint || geocode(origin, apiKey),
+      directDestinationPoint || geocode(destination, apiKey),
     ]);
     const route = await getDrivingRoute(originPoint, destinationPoint, apiKey);
 

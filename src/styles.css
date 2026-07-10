@@ -203,7 +203,7 @@ img {
   background:
     linear-gradient(90deg, rgba(5, 7, 11, 0.04), rgba(5, 7, 11, 0.18) 48%, rgba(5, 7, 11, 0.48)),
     linear-gradient(0deg, rgba(5, 7, 11, 0.48), rgba(5, 7, 11, 0) 48%, rgba(5, 7, 11, 0.12)),
-    url("/assets/hero-white.webp") center right / cover no-repeat;
+    url("/assets/peugeot-408-hybrid.webp") center right / cover no-repeat;
   opacity: var(--hero-car-opacity);
   filter: saturate(1.08) contrast(1.05) drop-shadow(0 28px 56px rgba(0, 0, 0, 0.34));
   transform-origin: 74% 78%;
@@ -805,6 +805,8 @@ select:focus,
   right: 0;
   display: grid;
   gap: 4px;
+  max-height: 292px;
+  overflow-y: auto;
   padding: 6px;
   border: 1px solid var(--line-strong);
   border-radius: 8px;
@@ -816,7 +818,7 @@ select:focus,
   display: grid;
   gap: 1px;
   width: 100%;
-  min-height: 42px;
+  min-height: 46px;
   padding: 7px 9px;
   border: 0;
   border-radius: 6px;
@@ -833,16 +835,18 @@ select:focus,
 .address-suggestions span,
 .address-suggestions small {
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
 .address-suggestions span {
+  -webkit-line-clamp: 2;
   font-size: 0.86rem;
   font-weight: 900;
 }
 
 .address-suggestions small {
+  -webkit-line-clamp: 1;
   color: var(--muted);
   font-size: 0.75rem;
 }
@@ -1047,7 +1051,16 @@ select:focus,
 .review-card svg {
   width: 17px;
   height: 17px;
+  color: var(--muted-dark);
+}
+
+.review-card svg.filled {
+  color: var(--gold);
   fill: currentColor;
+}
+
+.review-card svg.empty {
+  fill: none;
 }
 
 .review-card p {
@@ -1203,23 +1216,17 @@ select:focus,
 }
 
 .vehicle-gallery {
-  display: grid;
-  grid-template-columns: 1fr 0.72fr;
-  gap: 12px;
+  display: block;
   min-width: 0;
 }
 
 .vehicle-gallery img {
   width: 100%;
-  height: 310px;
+  height: clamp(330px, 34vw, 470px);
   object-fit: cover;
+  object-position: center;
   border-radius: 8px;
   border: 1px solid var(--line);
-}
-
-.vehicle-gallery img:nth-child(2) {
-  height: 250px;
-  align-self: end;
 }
 
 .tariffs-section {
@@ -1846,8 +1853,7 @@ tr:hover td {
     font-size: 3rem;
   }
 
-  .vehicle-gallery img,
-  .vehicle-gallery img:nth-child(2) {
+  .vehicle-gallery img {
     height: 260px;
   }
 

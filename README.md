@@ -7,7 +7,7 @@ Web moderna para Taxi Ayud Calatayud, lista para desplegar en Vercel sin WordPre
 - Portada con imagen optimizada y llamadas directas.
 - Calculadora de tarifas desde Calatayud con mensaje de WhatsApp preparado.
 - Modo "Taxi ahora" con opción de enviar ubicación del cliente.
-- Bloque de reseñas públicas de Google.
+- Bloque de reseñas públicas de Google con actualización automática opcional.
 - Tabla de destinos frecuentes.
 - Servicios, vehículo, métodos de pago y contacto.
 - SEO básico y metadatos para compartir.
@@ -28,6 +28,21 @@ La clave no va en el navegador. Las funciones `api/route.js` y `api/suggest.js`
 calculan la ruta y muestran sugerencias desde Vercel. Si no configuras la
 variable, la web seguirá funcionando con la tabla de tarifas y WhatsApp.
 
+## Reseñas automáticas de Google
+
+Para que el bloque de reseñas se actualice solo desde Google Places, añade en
+Vercel:
+
+```bash
+GOOGLE_PLACES_API_KEY=tu_clave_google
+GOOGLE_PLACE_ID=place_id_del_perfil
+```
+
+Sin estas variables la web usa las reseñas manuales de respaldo. Google Places
+puede devolver valoración, número de reseñas y algunas reseñas públicas
+visibles del perfil. Para gestionar/listar todas las reseñas del negocio haría
+falta la Business Profile API con OAuth.
+
 Alternativas:
 
 - OpenRouteService: recomendada para empezar, con plan gratuito y API key.
@@ -47,6 +62,9 @@ Vercel detecta el proyecto como Vite:
 Si usas rutas exactas, añade también la variable `OPENROUTESERVICE_API_KEY` en:
 
 Project Settings -> Environment Variables.
+
+Si usas reseñas automáticas, añade también `GOOGLE_PLACES_API_KEY` y
+`GOOGLE_PLACE_ID`.
 
 ## Desarrollo local
 

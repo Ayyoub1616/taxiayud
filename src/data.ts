@@ -9,12 +9,12 @@ export const CONTACT = {
 };
 
 export const RATES = {
-  dayRate: 0.68,
-  nightRate: 0.75,
-  dayWaitRate: 18.02,
-  nightWaitRate: 20.51,
+  dayRate: 0.71,
+  nightRate: 0.79,
+  dayWaitRate: 18.92,
+  nightWaitRate: 21.54,
   returnFactor: 2,
-  officialNotice: "Tarifas oficiales B.O.A. n.º 250 del 29-12-2022",
+  officialNotice: "Tarifas interurbanas oficiales 2026 · B.O.A. n.º 238 del 10-12-2025",
 };
 
 export const GOOGLE_REVIEWS = {

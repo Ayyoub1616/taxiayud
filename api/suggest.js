@@ -1,9 +1,25 @@
 const ORS_BASE_URL = "https://api.openrouteservice.org";
+const CALATAYUD_LAT = "41.3527";
+const CALATAYUD_LON = "-1.6432";
 
 function withSpain(value) {
   const clean = String(value || "").trim();
   if (!clean) return "";
   return /spain|españa/i.test(clean) ? clean : `${clean}, España`;
+}
+
+function compactDetail(properties = {}) {
+  const parts = [
+    properties.layer,
+    [properties.street, properties.housenumber].filter(Boolean).join(" "),
+    properties.postalcode,
+    properties.locality || properties.localadmin,
+    properties.region,
+  ]
+    .filter(Boolean)
+    .map((part) => String(part));
+
+  return [...new Set(parts)].join(" · ");
 }
 
 export default async function handler(request, response) {
@@ -24,10 +40,12 @@ export default async function handler(request, response) {
   try {
     const params = new URLSearchParams({
       text: withSpain(query),
-      size: "5",
+      size: "8",
+      layers: "address,street,venue,locality,neighbourhood",
       "boundary.country": "ES",
-      "focus.point.lat": "41.3527",
-      "focus.point.lon": "-1.6432",
+      "focus.point.lat": CALATAYUD_LAT,
+      "focus.point.lon": CALATAYUD_LON,
+      lang: "es",
     });
 
     const orsResponse = await fetch(`${ORS_BASE_URL}/geocode/autocomplete?${params}`, {
@@ -40,13 +58,24 @@ export default async function handler(request, response) {
     }
 
     const data = await orsResponse.json();
-    const suggestions = (data?.features || [])
-      .map((feature) => ({
-        label: feature?.properties?.label,
-        detail: feature?.properties?.locality || feature?.properties?.region,
-      }))
-      .filter((item) => item.label)
-      .slice(0, 5);
+    const seen = new Set();
+    const suggestions = [];
+
+    for (const feature of data?.features || []) {
+      const label = feature?.properties?.label;
+      if (!label || seen.has(label)) continue;
+
+      seen.add(label);
+      suggestions.push({
+        label,
+        detail: compactDetail(feature?.properties),
+        layer: feature?.properties?.layer,
+        lat: feature?.geometry?.coordinates?.[1],
+        lng: feature?.geometry?.coordinates?.[0],
+      });
+
+      if (suggestions.length >= 6) break;
+    }
 
     response.status(200).json({ suggestions });
   } catch {

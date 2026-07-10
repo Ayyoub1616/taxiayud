@@ -84,6 +84,23 @@ type ExactRouteResponse = {
 type AddressSuggestion = {
   label: string;
   detail?: string;
+  lat?: number;
+  lng?: number;
+};
+
+type ReviewItem = {
+  author: string;
+  text: string;
+  rating?: number;
+  time?: string;
+  url?: string;
+};
+
+type ReviewsData = {
+  rating: string;
+  count: string;
+  items: ReviewItem[];
+  source?: string;
 };
 
 type WhatsAppOptions = {
@@ -333,11 +350,16 @@ function makeResultFromExactRoute(
   };
 }
 
-async function fetchExactRoute(origin: string, destination: string) {
+async function fetchExactRoute(
+  origin: string,
+  destination: string,
+  originPoint?: AddressSuggestion | null,
+  destinationPoint?: AddressSuggestion | null,
+) {
   const response = await fetch("/api/route", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ origin, destination }),
+    body: JSON.stringify({ origin, destination, originPoint, destinationPoint }),
   });
 
   const data = await response.json().catch(() => null);
@@ -358,6 +380,17 @@ async function fetchAddressSuggestions(query: string) {
   }
 
   return data.suggestions as AddressSuggestion[];
+}
+
+async function fetchGoogleReviews() {
+  const response = await fetch("/api/reviews");
+  const data = await response.json().catch(() => null);
+
+  if (!response.ok || !data?.rating || !data?.count) {
+    return null;
+  }
+
+  return data as ReviewsData;
 }
 
 function localAddressMatches(value: string) {
@@ -453,9 +486,13 @@ function App() {
   >(null);
   const [originSuggestions, setOriginSuggestions] = useState<AddressSuggestion[]>([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState<AddressSuggestion[]>([]);
+  const [selectedOriginPoint, setSelectedOriginPoint] = useState<AddressSuggestion | null>(null);
+  const [selectedDestinationPoint, setSelectedDestinationPoint] =
+    useState<AddressSuggestion | null>(null);
   const [filter, setFilter] = useState("");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
   const [result, setResult] = useState<Result | null>(null);
+  const [reviews, setReviews] = useState<ReviewsData>(GOOGLE_REVIEWS);
 
   const suggestions = useMemo(() => {
     const q = normalize(query);
@@ -542,6 +579,27 @@ function App() {
     };
   }, [query]);
 
+  useEffect(() => {
+    let ignore = false;
+
+    fetchGoogleReviews()
+      .then((data) => {
+        if (!ignore && data) {
+          setReviews({
+            rating: data.rating,
+            count: data.count,
+            items: data.items?.length ? data.items : GOOGLE_REVIEWS.items,
+            source: data.source,
+          });
+        }
+      })
+      .catch(() => undefined);
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
   function scrollToResult() {
     window.setTimeout(() => {
       document.getElementById("resultado")?.scrollIntoView({
@@ -565,16 +623,19 @@ function App() {
   function chooseDestination(key: string) {
     setSelectedKey(key);
     setQuery(displayName(key));
+    setSelectedDestinationPoint(null);
     setResult(null);
     setRouteError("");
   }
 
-  function chooseAddress(field: "origin" | "destination", value: string) {
+  function chooseAddress(field: "origin" | "destination", item: AddressSuggestion) {
     if (field === "origin") {
-      setOrigin(value);
+      setOrigin(item.label);
+      setSelectedOriginPoint(item);
       setOriginSuggestions([]);
     } else {
-      setQuery(value);
+      setQuery(item.label);
+      setSelectedDestinationPoint(item);
       setDestinationSuggestions([]);
     }
     setActiveAddressField(null);
@@ -611,7 +672,12 @@ function App() {
 
     setRouteLoading(true);
     try {
-      const route = await fetchExactRoute(trimmedOrigin, trimmedDestination);
+      const route = await fetchExactRoute(
+        trimmedOrigin,
+        trimmedDestination,
+        selectedOriginPoint,
+        selectedDestinationPoint,
+      );
       setResult(
         makeResultFromExactRoute(route, {
           origin: trimmedOrigin,
@@ -732,8 +798,8 @@ function App() {
           <aside className="hero-booking-card" aria-label="Reserva rapida">
             <div className="rating-badge">
               <Star aria-hidden="true" />
-              <strong>{GOOGLE_REVIEWS.rating}</strong>
-              <span>Google · {GOOGLE_REVIEWS.count}</span>
+              <strong>{reviews.rating}</strong>
+              <span>Google · {reviews.count}</span>
             </div>
             <h2>Reserva directa, sin formularios largos</h2>
             <p>
@@ -781,8 +847,8 @@ function App() {
           </div>
           <div>
             <Star aria-hidden="true" />
-            <span>{GOOGLE_REVIEWS.rating} en Google</span>
-            <p>{GOOGLE_REVIEWS.count} públicas en el perfil de empresa</p>
+            <span>{reviews.rating} en Google</span>
+            <p>{reviews.count} públicas en el perfil de empresa</p>
           </div>
         </section>
 
@@ -827,8 +893,8 @@ function App() {
             <h2>Calcula la ruta y envía el mensaje listo</h2>
             <p>
               La web calcula destinos habituales desde Calatayud con tarifa
-              oficial. Para direcciones exactas fuera de la tabla, se envía la
-              consulta por WhatsApp.
+              oficial y rutas exactas con autocompletado cuando
+              OpenRouteService está configurado.
             </p>
           </div>
 
@@ -865,11 +931,17 @@ function App() {
                   <div className="search-field">
                     <MapPinned aria-hidden="true" />
                     <input
+                      name="origin"
+                      autoComplete="street-address"
+                      aria-autocomplete="list"
+                      aria-expanded={activeAddressField === "origin" && originSuggestions.length > 0}
                       value={origin}
-                      placeholder="Calatayud, hotel, estación..."
+                      placeholder="Calle, hotel, estación, municipio..."
                       onFocus={() => setActiveAddressField("origin")}
+                      onBlur={() => window.setTimeout(() => setActiveAddressField(null), 120)}
                       onChange={(event) => {
                         setOrigin(event.target.value);
+                        setSelectedOriginPoint(null);
                         setResult(null);
                         setRouteError("");
                       }}
@@ -883,7 +955,7 @@ function App() {
                           key={item.label}
                           onMouseDown={(event) => {
                             event.preventDefault();
-                            chooseAddress("origin", item.label);
+                            chooseAddress("origin", item);
                           }}
                         >
                           <span>{item.label}</span>
@@ -899,12 +971,19 @@ function App() {
                     <Search aria-hidden="true" />
                     <input
                       id="destination-search"
+                      name="destination"
+                      autoComplete="street-address"
+                      aria-autocomplete="list"
+                      aria-expanded={
+                        activeAddressField === "destination" && destinationSuggestions.length > 0
+                      }
                       value={query}
-                      list="destination-options"
-                      placeholder="Zaragoza, Monasterio, Jaraba..."
+                      placeholder="Calle, hotel, ciudad, aeropuerto..."
                       onFocus={() => setActiveAddressField("destination")}
+                      onBlur={() => window.setTimeout(() => setActiveAddressField(null), 120)}
                       onChange={(event) => {
                         setQuery(event.target.value);
+                        setSelectedDestinationPoint(null);
                         setResult(null);
                         setRouteError("");
                       }}
@@ -918,7 +997,7 @@ function App() {
                           key={item.label}
                           onMouseDown={(event) => {
                             event.preventDefault();
-                            chooseAddress("destination", item.label);
+                            chooseAddress("destination", item);
                           }}
                         >
                           <span>{item.label}</span>
@@ -928,11 +1007,6 @@ function App() {
                     </div>
                   ) : null}
                 </label>
-                <datalist id="destination-options">
-                  {tariffEntries.map(([key]) => (
-                    <option value={displayName(key)} key={key} />
-                  ))}
-                </datalist>
               </div>
 
               <div className="suggestions compact" aria-label="Destinos sugeridos">
@@ -1049,8 +1123,8 @@ function App() {
               </div>
               {!canAutoCalculate ? (
                 <p className="api-note">
-                  Para calcular cualquier dirección exacta automáticamente hace
-                  falta configurar OpenRouteService en Vercel.
+                  Escribe una calle, hotel, estación o municipio. Si eliges una
+                  sugerencia, el cálculo será más preciso.
                 </p>
               ) : null}
             </div>
@@ -1164,10 +1238,11 @@ function App() {
               <Star aria-hidden="true" />
               Reseñas de Google
             </p>
-            <h2>{GOOGLE_REVIEWS.rating} con {GOOGLE_REVIEWS.count}</h2>
+            <h2>{reviews.rating} con {reviews.count}</h2>
             <p>
-              Opiniones públicas vistas en el perfil de Google de Taxi Ayud.
-              Una capa rápida de confianza antes de llamar o reservar.
+              Opiniones públicas del perfil de Google de Taxi Ayud. Se
+              actualizan automáticamente cuando la API de Google está
+              configurada en Vercel.
             </p>
             <a
               className="btn btn-secondary"
@@ -1180,17 +1255,28 @@ function App() {
             </a>
           </div>
           <div className="review-cards">
-            {GOOGLE_REVIEWS.items.map((review) => (
-              <article className="review-card" key={review.author}>
-                <div aria-label="5 estrellas">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Star aria-hidden="true" key={index} />
-                  ))}
-                </div>
-                <p>"{review.text}"</p>
-                <span>{review.author}</span>
-              </article>
-            ))}
+            {reviews.items.map((review) => {
+              const reviewRating = Math.max(1, Math.min(5, Math.round(review.rating || 5)));
+
+              return (
+                <article className="review-card" key={`${review.author}-${review.text}`}>
+                  <div aria-label={`${reviewRating} estrellas`}>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <Star
+                        aria-hidden="true"
+                        className={index < reviewRating ? "filled" : "empty"}
+                        key={index}
+                      />
+                    ))}
+                  </div>
+                  <p>"{review.text}"</p>
+                  <span>
+                    {review.author}
+                    {review.time ? ` · ${review.time}` : ""}
+                  </span>
+                </article>
+              );
+            })}
           </div>
         </section>
 
@@ -1243,11 +1329,12 @@ function App() {
               <ShieldCheck aria-hidden="true" />
               Vehículo
             </p>
-            <h2>Peugeot 408 Fastback</h2>
+            <h2>Peugeot 408 Hybrid</h2>
             <p>
-              Un coche blanco, moderno, silencioso y amplio para traslados
-              cómodos en carretera. Buen acceso, climatización, espacio para
-              maletas y licencia oficial para viajar con tranquilidad.
+              Un Peugeot 408 blanco, hybrid, moderno, silencioso y amplio para
+              traslados cómodos en carretera. Buen acceso, climatización,
+              espacio para maletas y licencia oficial para viajar con
+              tranquilidad.
             </p>
             <div className="spec-grid">
               <div>
@@ -1277,8 +1364,10 @@ function App() {
             </div>
           </div>
           <div className="vehicle-gallery">
-            <img src="/assets/vehicle-white.webp" alt="Taxi Ayud Peugeot 408 blanco" />
-            <img src="/assets/interior.webp" alt="Interior confortable del taxi" />
+            <img
+              src="/assets/peugeot-408-hybrid.webp"
+              alt="Taxi Ayud Peugeot 408 Hybrid blanco"
+            />
           </div>
         </section>
 
