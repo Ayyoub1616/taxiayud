@@ -685,6 +685,7 @@ function App() {
       <main>
         <section className="hero" id="inicio">
           <div className="hero-media" aria-hidden="true" />
+          <div className="hero-car-layer" aria-hidden="true" />
           <div className="hero-content">
             <p className="eyebrow">
               <BadgeCheck aria-hidden="true" />

@@ -77,6 +77,7 @@ img {
   padding: 0 36px;
   background: rgba(5, 7, 11, 0.88);
   border-bottom: 1px solid var(--line);
+  box-shadow: 0 16px 46px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(18px);
 }
 
@@ -154,6 +155,7 @@ img {
 
 .hero {
   position: relative;
+  isolation: isolate;
   min-height: 82vh;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(330px, 420px);
@@ -164,33 +166,77 @@ img {
   border-bottom: 1px solid var(--line);
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 11, 0), rgba(5, 7, 11, 0.82)),
+    linear-gradient(104deg, transparent 0 46%, rgba(241, 195, 77, 0.36) 46% 46.5%, transparent 46.5% 100%);
+  opacity: 0.78;
+}
+
 .hero-media {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background:
-    linear-gradient(90deg, rgba(4, 7, 12, 0.92) 0%, rgba(4, 7, 12, 0.64) 43%, rgba(4, 7, 12, 0.06) 100%),
-    linear-gradient(0deg, rgba(4, 7, 12, 0.52), rgba(4, 7, 12, 0.02) 52%, rgba(4, 7, 12, 0.08)),
-    url("/assets/hero-white.webp") center right / cover no-repeat;
+    linear-gradient(90deg, rgba(4, 7, 12, 0.96) 0%, rgba(4, 7, 12, 0.76) 42%, rgba(4, 7, 12, 0.18) 100%),
+    linear-gradient(0deg, rgba(4, 7, 12, 0.62), rgba(4, 7, 12, 0.1) 52%, rgba(4, 7, 12, 0.06)),
+    url("/assets/comarca-bg.webp") center / cover no-repeat;
+  filter: saturate(1.05) contrast(1.06);
   transform: scale(1.01);
+}
+
+.hero-car-layer {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 0 auto;
+  width: min(74vw, 1180px);
+  --hero-car-opacity: 0.96;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 7, 11, 0.04), rgba(5, 7, 11, 0.18) 48%, rgba(5, 7, 11, 0.48)),
+    linear-gradient(0deg, rgba(5, 7, 11, 0.48), rgba(5, 7, 11, 0) 48%, rgba(5, 7, 11, 0.12)),
+    url("/assets/hero-white.webp") center right / cover no-repeat;
+  opacity: var(--hero-car-opacity);
+  filter: saturate(1.08) contrast(1.05) drop-shadow(0 28px 56px rgba(0, 0, 0, 0.34));
+  transform-origin: 74% 78%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 17%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 17%, #000 100%);
+  animation:
+    heroCarEnter 1300ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both,
+    heroCarCruise 6.8s ease-in-out 1600ms infinite;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(680px, 100%);
+  animation: heroCopyIn 760ms ease-out 80ms both;
 }
 
 .hero-booking-card {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   justify-self: end;
   width: min(420px, 100%);
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  background: rgba(8, 13, 20, 0.76);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(18, 25, 36, 0.9), rgba(7, 11, 17, 0.8)),
+    rgba(8, 13, 20, 0.78);
+  box-shadow:
+    0 28px 82px rgba(0, 0, 0, 0.46),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(18px);
+  animation: heroCardIn 860ms ease-out 220ms both;
 }
 
 .hero-booking-card h2 {
@@ -1494,6 +1540,68 @@ tr:hover td {
   height: 26px;
 }
 
+@keyframes heroCarEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(22vw, 18px, 0) scale(1.04);
+  }
+
+  to {
+    opacity: var(--hero-car-opacity);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes heroCarCruise {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-10px, -4px, 0) scale(1.012);
+  }
+}
+
+@keyframes heroCopyIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroCardIn {
+  from {
+    opacity: 0;
+    transform: translate3d(26px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
+
 @media (max-width: 1050px) {
   .main-nav {
     display: none;
@@ -1505,6 +1613,14 @@ tr:hover td {
 
   h1 {
     font-size: 4.3rem;
+  }
+
+  .hero-car-layer {
+    width: 100%;
+    --hero-car-opacity: 0.42;
+    background-position: center bottom;
+    -webkit-mask-image: linear-gradient(0deg, #000 0%, #000 58%, transparent 100%);
+    mask-image: linear-gradient(0deg, #000 0%, #000 58%, transparent 100%);
   }
 
   .hero,
@@ -1576,8 +1692,15 @@ tr:hover td {
 
   .hero-media {
     background:
-      linear-gradient(0deg, rgba(5, 7, 11, 0.94) 0%, rgba(5, 7, 11, 0.7) 48%, rgba(5, 7, 11, 0.16) 100%),
-      url("/assets/hero-white.webp") center top / cover no-repeat;
+      linear-gradient(0deg, rgba(5, 7, 11, 0.96) 0%, rgba(5, 7, 11, 0.74) 48%, rgba(5, 7, 11, 0.18) 100%),
+      url("/assets/comarca-bg.webp") center top / cover no-repeat;
+  }
+
+  .hero-car-layer {
+    width: 100%;
+    --hero-car-opacity: 0.34;
+    background-size: auto 76%;
+    background-position: center bottom;
   }
 
   h1 {
