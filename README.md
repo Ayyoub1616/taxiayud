@@ -10,7 +10,9 @@ Web moderna para Taxi Ayud Calatayud, lista para desplegar en Vercel sin WordPre
 - Bloque de reseñas públicas de Google con actualización automática opcional.
 - Tabla de destinos frecuentes.
 - Servicios, vehículo, métodos de pago y contacto.
-- SEO básico y metadatos para compartir.
+- SEO local avanzado, sitemap, robots.txt, datos estructurados y metadatos para compartir.
+- Detección de idioma del navegador en español, inglés, francés y árabe.
+- Mensajes de WhatsApp adaptados al idioma del cliente, con aviso de idioma incluido.
 
 ## Rutas exactas sin Google Maps
 

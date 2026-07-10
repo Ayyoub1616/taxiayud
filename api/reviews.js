@@ -57,7 +57,7 @@ export default async function handler(request, response) {
         url: review?.googleMapsUri || review?.authorAttribution?.uri,
       }))
       .filter((review) => review.text)
-      .slice(0, 3);
+      .slice(0, 8);
 
     if (!rating || !count) {
       response.status(502).json({ message: "Google no devolvió valoración suficiente." });

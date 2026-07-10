@@ -19,8 +19,26 @@ export const RATES = {
 
 export const GOOGLE_REVIEWS = {
   rating: "5/5",
-  count: "7 opiniones",
+  count: "8 opiniones",
   items: [
+    {
+      author: "Darlene Cuevas",
+      text: "I can't recommend this taxi service highly enough! I was stranded at the Mercadona near the station...",
+      time: "Hace 7 horas",
+      rating: 5,
+    },
+    {
+      author: "VIRAL VIDEOS #1",
+      text: "Excelente servicio de taxi en Calatayud. Puntual, amable y muy profesional; el coche estaba limpio y el trayecto fue cómodo y seguro.",
+      time: "Hace una semana",
+      rating: 5,
+    },
+    {
+      author: "ImNotAlejandro W",
+      text: "Servicio premium, educación, puntualidad, el vehículo en excelente estado 10/10",
+      time: "Hace una semana",
+      rating: 5,
+    },
     { author: "Ady Adita", text: "El mejor taxi" },
     { author: "Ronmel Manuel", text: "Excelente servicio" },
     { author: "Jorge D", text: "Puntual y coche cómodo" },
