@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
+  ArrowRight,
   BadgeCheck,
   BriefcaseBusiness,
   CalendarDays,
@@ -9,16 +10,22 @@ import {
   Clock3,
   CreditCard,
   HeartPulse,
+  LocateFixed,
   Luggage,
+  MapPinned,
   MapPin,
   MessageCircle,
+  MessageSquareText,
   Navigation,
   Phone,
   Plane,
   Route,
   Search,
+  Send,
   ShieldCheck,
   Sparkles,
+  Star,
+  TimerReset,
   TrainFront,
   Users,
   WalletCards,
@@ -27,6 +34,7 @@ import {
   CONTACT,
   DISPLAY_NAMES,
   FIXED_HOLIDAYS_MMDD,
+  GOOGLE_REVIEWS,
   HOLIDAYS_2026,
   RATES,
   SERVICES,
@@ -35,14 +43,48 @@ import {
 import "./styles.css";
 
 type Result = {
+  origin: string;
   destination: string;
+  destinationKey: string;
   km: number;
+  billedKm: number;
+  waitMinutes: number;
+  waitPrice: number;
   price: number;
   tariffLabel: string;
   reason: string;
   dateLabel: string;
   hour: string;
   passengers: number;
+  mode: BookingMode;
+};
+
+type BookingMode = "later" | "now";
+
+type PickupLocation = {
+  lat: number;
+  lng: number;
+} | null;
+
+type ResultInput = {
+  origin: string;
+  date: string;
+  hour: string;
+  passengers: number;
+  waitMinutes: number;
+  mode: BookingMode;
+};
+
+type WhatsAppOptions = {
+  result: Result | null;
+  origin: string;
+  destination: string;
+  date: string;
+  hour: string;
+  passengers: number;
+  mode: BookingMode;
+  notes: string;
+  pickupLocation: PickupLocation;
 };
 
 const heroStats = [
@@ -83,6 +125,19 @@ const featuredDestinations = [
 
 const tariffEntries = Object.entries(TARIFAS).sort(([a], [b]) =>
   a.localeCompare(b, "es"),
+);
+
+const destinationAliases = new Map(
+  [
+    ["AEROPUERTO DE ZARAGOZA", "ZARAGOZA"],
+    ["ESTACION DELICIAS", "ZARAGOZA"],
+    ["ESTACIÓN DELICIAS", "ZARAGOZA"],
+    ["ZARAGOZA DELICIAS", "ZARAGOZA"],
+    ["MONASTERIO", "MONASTERIO DE PIEDRA"],
+    ["NUEVALOS MONASTERIO", "MONASTERIO DE PIEDRA"],
+    ["BALNEARIO ALHAMA", "ALHAMA DE ARAGON"],
+    ["BALNEARIO JARABA", "JARABA"],
+  ].map(([alias, key]) => [normalize(alias), key]),
 );
 
 function normalize(value: string) {
@@ -141,14 +196,21 @@ function tariffInfo(date: string, hour: string) {
   return {
     premium,
     rate: premium ? RATES.nightRate : RATES.dayRate,
+    waitRate: premium ? RATES.nightWaitRate : RATES.dayWaitRate,
     label: premium ? "Nocturna / festiva" : "Laborable diurna",
     reason: reasons.length ? reasons.join(" y ") : "día laborable",
   };
 }
 
-function priceFromKm(km: number, premium: boolean) {
+function priceFromKm(km: number, premium: boolean, waitMinutes = 0) {
   const rate = premium ? RATES.nightRate : RATES.dayRate;
-  return km * RATES.returnFactor * rate + RATES.baseFare;
+  const waitRate = premium ? RATES.nightWaitRate : RATES.dayWaitRate;
+  const waitingPrice = (Math.max(0, waitMinutes) / 60) * waitRate;
+  return km * RATES.returnFactor * rate + waitingPrice;
+}
+
+function formatKm(value: number) {
+  return value.toString().replace(".", ",");
 }
 
 function dateLabel(value: string) {
@@ -165,54 +227,141 @@ function currentHour() {
   return new Date().toTimeString().slice(0, 5);
 }
 
-function whatsappUrl(result: Result | null, selected: string, passengers: number) {
-  const destination = result ? result.destination : selected || "destino por confirmar";
-  const text = result
-    ? `Hola Taxi Ayud, quiero reservar un viaje:
+function isCalatayudOrigin(value: string) {
+  const normalized = normalize(value);
+  return (
+    !normalized ||
+    normalized.includes("CALATAYUD") ||
+    normalized.includes("PL DEL FUERTE") ||
+    normalized.includes("PLAZA DEL FUERTE")
+  );
+}
 
-Origen: Calatayud
-Destino: ${result.destination}
-Fecha: ${result.dateLabel} a las ${result.hour}h
-Pasajeros: ${result.passengers}
-Distancia estimada: ${result.km.toString().replace(".", ",")} km
-Precio estimado: ${euro(result.price)}
-Tarifa aplicada: ${result.tariffLabel}
+function destinationKeyFromInput(value: string) {
+  const normalized = normalize(value);
+  if (!normalized) return null;
 
-¿Tienes disponibilidad?`
-    : `Hola Taxi Ayud, quiero consultar disponibilidad para un viaje:
+  const alias = destinationAliases.get(normalized);
+  if (alias) return alias;
 
-Origen: Calatayud
-Destino: ${destination}
-Pasajeros: ${passengers}
+  const exact = tariffEntries.find(
+    ([key]) => normalize(key) === normalized || normalize(displayName(key)) === normalized,
+  );
+  if (exact) return exact[0];
 
-¿Me puedes confirmar precio y horario?`;
+  return (
+    tariffEntries.find(
+      ([key]) =>
+        normalize(key).includes(normalized) || normalize(displayName(key)).includes(normalized),
+    )?.[0] ?? null
+  );
+}
+
+function makeResultForKey(key: string, input: ResultInput): Result {
+  const tariff = TARIFAS[key];
+  const info = tariffInfo(input.date, input.hour);
+  const waitMinutes = Math.max(0, input.waitMinutes || 0);
+  const waitPrice = (waitMinutes / 60) * info.waitRate;
+
+  return {
+    origin: input.origin.trim() || "Calatayud",
+    destination: displayName(key),
+    destinationKey: key,
+    km: tariff.km,
+    billedKm: tariff.km * RATES.returnFactor,
+    waitMinutes,
+    waitPrice,
+    price: priceFromKm(tariff.km, info.premium, waitMinutes),
+    tariffLabel: info.label,
+    reason: info.reason,
+    dateLabel: dateLabel(input.date),
+    hour: input.hour,
+    passengers: input.passengers,
+    mode: input.mode,
+  };
+}
+
+function pickupLocationLine(pickupLocation: PickupLocation) {
+  if (!pickupLocation) return "";
+  return `Ubicación de recogida: https://maps.google.com/?q=${pickupLocation.lat.toFixed(
+    6,
+  )},${pickupLocation.lng.toFixed(6)}`;
+}
+
+function whatsappUrl(options: WhatsAppOptions) {
+  const destination =
+    options.result?.destination || options.destination.trim() || "destino por confirmar";
+  const origin = options.result?.origin || options.origin.trim() || "origen por confirmar";
+  const modeLine =
+    options.mode === "now"
+      ? "Tipo: taxi ahora / disponibilidad inmediata"
+      : `Fecha y hora: ${dateLabel(options.date)} a las ${options.hour}h`;
+  const locationLine = pickupLocationLine(options.pickupLocation);
+  const notesLine = options.notes.trim() ? `Notas: ${options.notes.trim()}` : "";
+
+  const priceLines = options.result
+    ? [
+        `Distancia visible para el cliente: ${formatKm(options.result.km)} km`,
+        `Cálculo taxi: ${formatKm(options.result.km)} km x 2 x ${
+          options.result.tariffLabel === "Nocturna / festiva"
+            ? RATES.nightRate.toString().replace(".", ",")
+            : RATES.dayRate.toString().replace(".", ",")
+        } €/km`,
+        options.result.waitMinutes
+          ? `Espera: ${options.result.waitMinutes} min (${euro(options.result.waitPrice)})`
+          : "",
+        `Precio orientativo: ${euro(options.result.price)}`,
+        `Tarifa aplicada: ${options.result.tariffLabel}`,
+      ].filter(Boolean)
+    : [
+        "Necesito que me confirmes precio y disponibilidad.",
+        "La ruta no está calculada automáticamente en la web.",
+      ];
+
+  const text = [
+    "Hola Taxi Ayud, quiero reservar un taxi.",
+    "",
+    modeLine,
+    `Origen: ${origin}`,
+    `Destino: ${destination}`,
+    `Pasajeros: ${options.result?.passengers ?? options.passengers}`,
+    locationLine,
+    notesLine,
+    "",
+    ...priceLines,
+    "",
+    "¿Me confirmas disponibilidad?",
+  ]
+    .filter((line) => line !== "")
+    .join("\n");
 
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
 function App() {
-  const [query, setQuery] = useState("");
+  const [origin, setOrigin] = useState("Calatayud");
+  const [query, setQuery] = useState("Monasterio de Piedra");
   const [selectedKey, setSelectedKey] = useState("MONASTERIO DE PIEDRA");
   const [date, setDate] = useState(todayValue());
   const [hour, setHour] = useState(currentHour());
   const [passengers, setPassengers] = useState(1);
+  const [bookingMode, setBookingMode] = useState<BookingMode>("later");
+  const [waitMinutes, setWaitMinutes] = useState(0);
+  const [notes, setNotes] = useState("");
+  const [pickupLocation, setPickupLocation] = useState<PickupLocation>(null);
+  const [locationStatus, setLocationStatus] = useState("");
   const [filter, setFilter] = useState("");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
-  const [result, setResult] = useState<Result | null>(() => {
-    const destination = "MONASTERIO DE PIEDRA";
-    const tariff = TARIFAS[destination];
-    const info = tariffInfo(todayValue(), currentHour());
-    return {
-      destination: displayName(destination),
-      km: tariff.km,
-      price: priceFromKm(tariff.km, info.premium),
-      tariffLabel: info.label,
-      reason: info.reason,
-      dateLabel: dateLabel(todayValue()),
+  const [result, setResult] = useState<Result | null>(() =>
+    makeResultForKey("MONASTERIO DE PIEDRA", {
+      origin: "Calatayud",
+      date: todayValue(),
       hour: currentHour(),
       passengers: 1,
-    };
-  });
+      waitMinutes: 0,
+      mode: "later",
+    }),
+  );
 
   const suggestions = useMemo(() => {
     const q = normalize(query);
@@ -231,27 +380,47 @@ function App() {
 
   const selectedTariff = TARIFAS[selectedKey];
   const lookupTariff = TARIFAS[tariffLookupKey];
+  const activeDestination = query.trim() || displayName(selectedKey);
+  const canAutoCalculate =
+    Boolean(destinationKeyFromInput(activeDestination)) && isCalatayudOrigin(origin);
+  const quoteUrl = whatsappUrl({
+    result,
+    origin,
+    destination: activeDestination,
+    date,
+    hour,
+    passengers,
+    mode: bookingMode,
+    notes,
+    pickupLocation,
+  });
+  const instantUrl = whatsappUrl({
+    result: null,
+    origin,
+    destination: activeDestination,
+    date,
+    hour,
+    passengers,
+    mode: "now",
+    notes,
+    pickupLocation,
+  });
 
   function resultForKey(key: string): Result {
-    const tariff = TARIFAS[key];
-    const info = tariffInfo(date, hour);
-
-    return {
-      destination: displayName(key),
-      km: tariff.km,
-      price: priceFromKm(tariff.km, info.premium),
-      tariffLabel: info.label,
-      reason: info.reason,
-      dateLabel: dateLabel(date),
+    return makeResultForKey(key, {
+      origin,
+      date,
       hour,
       passengers,
-    };
+      waitMinutes,
+      mode: bookingMode,
+    });
   }
 
   function chooseDestination(key: string) {
     setSelectedKey(key);
     setQuery(displayName(key));
-    setResult(resultForKey(key));
+    setResult(isCalatayudOrigin(origin) ? resultForKey(key) : null);
   }
 
   function useLookupDestination(key: string) {
@@ -261,15 +430,42 @@ function App() {
 
   function calculate() {
     const key =
+      destinationKeyFromInput(query) ||
       (TARIFAS[selectedKey] && selectedKey) ||
       tariffEntries.find(([name]) => normalize(name) === normalize(query))?.[0];
 
-    if (!key || !TARIFAS[key]) {
+    if (!key || !TARIFAS[key] || !isCalatayudOrigin(origin)) {
       setResult(null);
       return;
     }
 
+    setSelectedKey(key);
+    setQuery(displayName(key));
     setResult(resultForKey(key));
+  }
+
+  function requestPickupLocation() {
+    if (!navigator.geolocation) {
+      setLocationStatus("Tu navegador no permite enviar ubicación.");
+      return;
+    }
+
+    setLocationStatus("Pidiendo ubicación...");
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setPickupLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+        setOrigin("Mi ubicación actual");
+        setResult(null);
+        setLocationStatus("Ubicación lista para enviar por WhatsApp.");
+      },
+      () => {
+        setLocationStatus("No se pudo obtener la ubicación. Puedes escribir la dirección.");
+      },
+      { enableHighAccuracy: true, timeout: 10000 },
+    );
   }
 
   return (
@@ -282,10 +478,10 @@ function App() {
           </span>
         </a>
         <nav className="main-nav" aria-label="Navegacion principal">
-          <a href="#calculadora">Calculadora</a>
+          <a href="#calculadora">Reservar</a>
+          <a href="#resenas">Reseñas</a>
           <a href="#servicios">Servicios</a>
           <a href="#tarifas">Tarifas</a>
-          <a href="#vehiculo">Vehículo</a>
         </nav>
         <a className="header-call" href={CONTACT.phoneHref}>
           <Phone aria-hidden="true" />
@@ -303,27 +499,22 @@ function App() {
             </p>
             <h1>Taxi Ayud</h1>
             <p className="hero-subtitle">
-              Traslados a Monasterio de Piedra, balnearios, Zaragoza, aeropuerto,
-              tren y pueblos de la comarca. Reserva rápido por teléfono o
-              WhatsApp.
+              Traslados desde Calatayud a Monasterio de Piedra, balnearios,
+              Zaragoza, aeropuerto, tren y pueblos de la comarca. Precio
+              orientativo y reserva por WhatsApp en segundos.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href={CONTACT.phoneHref}>
-                <Phone aria-hidden="true" />
-                Llamar ahora
-              </a>
-              <a
-                className="btn btn-whatsapp"
-                href={whatsappUrl(result, selectedKey, passengers)}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <MessageCircle aria-hidden="true" />
-                WhatsApp
-              </a>
-              <a className="btn btn-secondary" href="#calculadora">
+              <a className="btn btn-primary" href="#calculadora">
                 <Route aria-hidden="true" />
-                Ver tarifa
+                Calcular ruta
+              </a>
+              <a className="btn btn-whatsapp" href={instantUrl} target="_blank" rel="noreferrer">
+                <Send aria-hidden="true" />
+                Taxi ahora
+              </a>
+              <a className="btn btn-secondary" href={CONTACT.phoneHref}>
+                <Phone aria-hidden="true" />
+                Llamar
               </a>
             </div>
             <dl className="hero-stats">
@@ -343,45 +534,129 @@ function App() {
               ))}
             </div>
           </div>
+
+          <aside className="hero-booking-card" aria-label="Reserva rapida">
+            <div className="rating-badge">
+              <Star aria-hidden="true" />
+              <strong>{GOOGLE_REVIEWS.rating}</strong>
+              <span>Google · {GOOGLE_REVIEWS.count}</span>
+            </div>
+            <h2>Reserva directa, sin formularios largos</h2>
+            <p>
+              Calcula destinos habituales o manda origen, destino, fecha,
+              pasajeros y ubicación por WhatsApp.
+            </p>
+            <div className="hero-card-route">
+              <span>{origin}</span>
+              <ArrowRight aria-hidden="true" />
+              <strong>{activeDestination}</strong>
+            </div>
+            <a className="btn btn-primary" href="#calculadora">
+              <MessageSquareText aria-hidden="true" />
+              Preparar mensaje
+            </a>
+          </aside>
         </section>
 
-        <section className="payment-strip" aria-label="Metodos de pago">
+        <section className="trust-strip" aria-label="Datos principales">
           <div>
             <WalletCards aria-hidden="true" />
             <span>Pago flexible</span>
+            <p>Efectivo · Tarjeta · Bizum · Apple Pay · Google Pay</p>
           </div>
-          <p>Efectivo · Tarjeta · Bizum · Apple Pay · Google Pay</p>
+          <div>
+            <TimerReset aria-hidden="true" />
+            <span>Tarifa oficial</span>
+            <p>{RATES.officialNotice}</p>
+          </div>
+          <div>
+            <Star aria-hidden="true" />
+            <span>{GOOGLE_REVIEWS.rating} en Google</span>
+            <p>{GOOGLE_REVIEWS.count} públicas en el perfil de empresa</p>
+          </div>
         </section>
 
         <section className="section calc-section" id="calculadora">
           <div className="section-heading">
             <p className="eyebrow compact">
               <Route aria-hidden="true" />
-              Calculadora de viaje
+              Reserva y presupuesto
             </p>
-            <h2>Precio orientativo antes de reservar</h2>
+            <h2>Calcula la ruta y envía el mensaje listo</h2>
             <p>
-              Elige un destino frecuente desde Calatayud. La estimación aplica
-              kilometraje de ida y retorno del vehículo, más bajada de bandera.
+              La web calcula destinos habituales desde Calatayud con tarifa
+              oficial. Para direcciones exactas fuera de la tabla, se envía la
+              consulta por WhatsApp.
             </p>
           </div>
 
           <div className="calc-layout">
             <div className="calculator-panel">
-              <label className="field-label" htmlFor="destination-search">
-                Destino
-              </label>
-              <div className="search-field">
-                <Search aria-hidden="true" />
-                <input
-                  id="destination-search"
-                  value={query}
-                  placeholder="Buscar destino, pueblo o ciudad"
-                  onChange={(event) => setQuery(event.target.value)}
-                />
+              <div className="mode-toggle" role="group" aria-label="Tipo de reserva">
+                <button
+                  type="button"
+                  className={bookingMode === "later" ? "active" : ""}
+                  onClick={() => {
+                    setBookingMode("later");
+                    setResult(null);
+                  }}
+                >
+                  <CalendarDays aria-hidden="true" />
+                  Programar
+                </button>
+                <button
+                  type="button"
+                  className={bookingMode === "now" ? "active" : ""}
+                  onClick={() => {
+                    setBookingMode("now");
+                    setResult(null);
+                  }}
+                >
+                  <LocateFixed aria-hidden="true" />
+                  Ahora
+                </button>
               </div>
-              <div className="suggestions" aria-label="Destinos sugeridos">
-                {suggestions.map(([key, tariff]) => (
+
+              <div className="route-inputs">
+                <label>
+                  <span className="field-label">Origen</span>
+                  <div className="search-field">
+                    <MapPinned aria-hidden="true" />
+                    <input
+                      value={origin}
+                      placeholder="Calatayud, hotel, estación..."
+                      onChange={(event) => {
+                        setOrigin(event.target.value);
+                        setResult(null);
+                      }}
+                    />
+                  </div>
+                </label>
+                <label>
+                  <span className="field-label">Destino</span>
+                  <div className="search-field">
+                    <Search aria-hidden="true" />
+                    <input
+                      id="destination-search"
+                      value={query}
+                      list="destination-options"
+                      placeholder="Zaragoza, Monasterio, Jaraba..."
+                      onChange={(event) => {
+                        setQuery(event.target.value);
+                        setResult(null);
+                      }}
+                    />
+                  </div>
+                </label>
+                <datalist id="destination-options">
+                  {tariffEntries.map(([key]) => (
+                    <option value={displayName(key)} key={key} />
+                  ))}
+                </datalist>
+              </div>
+
+              <div className="suggestions compact" aria-label="Destinos sugeridos">
+                {suggestions.slice(0, 6).map(([key, tariff]) => (
                   <button
                     key={key}
                     type="button"
@@ -389,33 +664,51 @@ function App() {
                     onClick={() => chooseDestination(key)}
                   >
                     <span>{displayName(key)}</span>
-                    <small>{tariff.km.toString().replace(".", ",")} km</small>
+                    <small>{formatKm(tariff.km)} km</small>
                   </button>
                 ))}
               </div>
 
               <div className="form-grid">
-                <label>
-                  <span className="field-label">Fecha</span>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(event) => setDate(event.target.value)}
-                  />
-                </label>
-                <label>
-                  <span className="field-label">Hora</span>
-                  <input
-                    type="time"
-                    value={hour}
-                    onChange={(event) => setHour(event.target.value)}
-                  />
-                </label>
+                {bookingMode === "later" ? (
+                  <>
+                    <label>
+                      <span className="field-label">Fecha</span>
+                      <input
+                        type="date"
+                        value={date}
+                        onChange={(event) => {
+                          setDate(event.target.value);
+                          setResult(null);
+                        }}
+                      />
+                    </label>
+                    <label>
+                      <span className="field-label">Hora</span>
+                      <input
+                        type="time"
+                        value={hour}
+                        onChange={(event) => {
+                          setHour(event.target.value);
+                          setResult(null);
+                        }}
+                      />
+                    </label>
+                  </>
+                ) : (
+                  <div className="instant-note">
+                    <LocateFixed aria-hidden="true" />
+                    <span>Se enviará como disponibilidad inmediata.</span>
+                  </div>
+                )}
                 <label>
                   <span className="field-label">Pasajeros</span>
                   <select
                     value={passengers}
-                    onChange={(event) => setPassengers(Number(event.target.value))}
+                    onChange={(event) => {
+                      setPassengers(Number(event.target.value));
+                      setResult(null);
+                    }}
                   >
                     <option value={1}>1 pasajero</option>
                     <option value={2}>2 pasajeros</option>
@@ -423,12 +716,55 @@ function App() {
                     <option value={4}>4 pasajeros</option>
                   </select>
                 </label>
+                <label>
+                  <span className="field-label">Espera opcional</span>
+                  <input
+                    type="number"
+                    min={0}
+                    step={5}
+                    value={waitMinutes}
+                    onChange={(event) => {
+                      setWaitMinutes(Number(event.target.value));
+                      setResult(null);
+                    }}
+                    placeholder="0 min"
+                  />
+                </label>
               </div>
 
-              <button className="btn btn-primary calc-button" onClick={calculate}>
-                <CalculatorIcon />
-                Calcular precio
-              </button>
+              <label className="notes-field">
+                <span className="field-label">Notas</span>
+                <input
+                  value={notes}
+                  placeholder="Tren, maletas, hotel, vuelta..."
+                  onChange={(event) => setNotes(event.target.value)}
+                />
+              </label>
+
+              <div className="location-row">
+                <button className="btn btn-secondary" type="button" onClick={requestPickupLocation}>
+                  <LocateFixed aria-hidden="true" />
+                  Enviar mi ubicación
+                </button>
+                {locationStatus ? <span>{locationStatus}</span> : null}
+              </div>
+
+              <div className="calc-actions">
+                <button className="btn btn-primary calc-button" onClick={calculate}>
+                  <CalculatorIcon />
+                  Calcular precio
+                </button>
+                <a className="btn btn-whatsapp" href={instantUrl} target="_blank" rel="noreferrer">
+                  <Send aria-hidden="true" />
+                  Taxi ahora
+                </a>
+              </div>
+              {!canAutoCalculate ? (
+                <p className="api-note">
+                  Para calcular cualquier dirección exacta automáticamente hace
+                  falta conectar una API de mapas.
+                </p>
+              ) : null}
             </div>
 
             <aside className="result-panel" aria-live="polite">
@@ -438,60 +774,141 @@ function App() {
                     <Clock3 aria-hidden="true" />
                     {result.tariffLabel}
                   </div>
-                  <p className="result-destination">{result.destination}</p>
+                  <p className="result-route">
+                    {result.origin} <ArrowRight aria-hidden="true" /> {result.destination}
+                  </p>
                   <p className="result-price">{euro(result.price)}</p>
                   <ul className="result-list">
                     <li>
                       <MapPin aria-hidden="true" />
-                      {result.km.toString().replace(".", ",")} km desde Calatayud
+                      Cliente ve {formatKm(result.km)} km · cálculo interno{" "}
+                      {formatKm(result.billedKm)} km
                     </li>
                     <li>
                       <CalendarDays aria-hidden="true" />
-                      {result.dateLabel} · {result.hour}h · {result.reason}
+                      {result.mode === "now"
+                        ? "Disponibilidad inmediata"
+                        : `${result.dateLabel} · ${result.hour}h`}{" "}
+                      · {result.reason}
                     </li>
                     <li>
                       <Users aria-hidden="true" />
                       {result.passengers} pasajero{result.passengers > 1 ? "s" : ""}
                     </li>
+                    {result.waitMinutes ? (
+                      <li>
+                        <TimerReset aria-hidden="true" />
+                        Espera {result.waitMinutes} min · {euro(result.waitPrice)}
+                      </li>
+                    ) : null}
                   </ul>
+                  <div className="formula-box">
+                    <span>Fórmula aplicada</span>
+                    <strong>
+                      {formatKm(result.km)} km x 2 x{" "}
+                      {result.tariffLabel === "Nocturna / festiva"
+                        ? RATES.nightRate.toString().replace(".", ",")
+                        : RATES.dayRate.toString().replace(".", ",")}{" "}
+                      €/km
+                    </strong>
+                  </div>
                   <div className="result-actions">
                     <a
                       className="btn btn-whatsapp"
-                      href={whatsappUrl(result, selectedKey, passengers)}
+                      href={quoteUrl}
                       target="_blank"
                       rel="noreferrer"
                     >
                       <MessageCircle aria-hidden="true" />
-                      Reservar por WhatsApp
+                      Reservar con mensaje
                     </a>
-                    <a className="btn btn-secondary" href={CONTACT.phoneHref}>
-                      <Phone aria-hidden="true" />
-                      Llamar
+                    <a className="btn btn-secondary" href={instantUrl} target="_blank" rel="noreferrer">
+                      <LocateFixed aria-hidden="true" />
+                      Ver disponibilidad ahora
                     </a>
                   </div>
                   <p className="small-note">
                     Precio orientativo. El importe final lo marca el taxímetro
-                    homologado.
+                    homologado. {RATES.officialNotice}.
                   </p>
                 </>
               ) : (
                 <>
-                  <p className="result-destination">Destino no encontrado</p>
+                  <div className="result-kicker">
+                    <MessageSquareText aria-hidden="true" />
+                    Presupuesto por WhatsApp
+                  </div>
+                  <p className="result-route">
+                    {origin || "Origen"} <ArrowRight aria-hidden="true" />{" "}
+                    {activeDestination || "Destino"}
+                  </p>
                   <p className="empty-result">
-                    Escribe otro destino o consulta directamente por WhatsApp.
+                    Esta ruta necesita confirmación manual. El mensaje ya incluye
+                    origen, destino, pasajeros, fecha y ubicación si la has
+                    marcado.
                   </p>
                   <a
                     className="btn btn-whatsapp"
-                    href={whatsappUrl(null, query, passengers)}
+                    href={whatsappUrl({
+                      result: null,
+                      origin,
+                      destination: activeDestination,
+                      date,
+                      hour,
+                      passengers,
+                      mode: bookingMode,
+                      notes,
+                      pickupLocation,
+                    })}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <MessageCircle aria-hidden="true" />
-                    Consultar
+                    <Send aria-hidden="true" />
+                    Pedir presupuesto
                   </a>
+                  <p className="small-note">
+                    Para cálculo automático puerta a puerta hay que conectar
+                    Google Maps Routes/Distance Matrix o una API equivalente.
+                  </p>
                 </>
               )}
             </aside>
+          </div>
+        </section>
+
+        <section className="section reviews-section" id="resenas">
+          <div className="reviews-summary">
+            <p className="eyebrow compact">
+              <Star aria-hidden="true" />
+              Reseñas de Google
+            </p>
+            <h2>{GOOGLE_REVIEWS.rating} con {GOOGLE_REVIEWS.count}</h2>
+            <p>
+              Opiniones públicas vistas en el perfil de Google de Taxi Ayud.
+              Una capa rápida de confianza antes de llamar o reservar.
+            </p>
+            <a
+              className="btn btn-secondary"
+              href={CONTACT.googleProfile}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Star aria-hidden="true" />
+              Ver perfil de Google
+            </a>
+          </div>
+          <div className="review-cards">
+            {GOOGLE_REVIEWS.items.map((review) => (
+              <article className="review-card" key={review.author}>
+                <div aria-label="5 estrellas">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star aria-hidden="true" key={index} />
+                  ))}
+                </div>
+                <p>"{review.text}"</p>
+                <span>{review.author}</span>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -508,7 +925,7 @@ function App() {
             </p>
           </div>
           <div className="service-grid">
-            {SERVICES.map((service, index) => {
+            {SERVICES.slice(0, 4).map((service, index) => {
               const Icon = serviceIcons[index] ?? Navigation;
               return (
                 <article className="service-card" key={service.title}>
@@ -520,6 +937,22 @@ function App() {
               );
             })}
           </div>
+          <details className="more-services">
+            <summary>Ver más servicios</summary>
+            <div className="service-grid compact">
+              {SERVICES.slice(4).map((service, index) => {
+                const Icon = serviceIcons[index + 4] ?? Navigation;
+                return (
+                  <article className="service-card" key={service.title}>
+                    <Icon aria-hidden="true" />
+                    <h3>{service.title}</h3>
+                    <p>{service.text}</p>
+                    <small>{service.detail}</small>
+                  </article>
+                );
+              })}
+            </div>
+          </details>
         </section>
 
         <section className="section vehicle-section" id="vehiculo">
@@ -613,7 +1046,7 @@ function App() {
               <div className="lookup-metrics">
                 <div>
                   <span>Km ida</span>
-                  <strong>{lookupTariff.km.toString().replace(".", ",")} km</strong>
+                  <strong>{formatKm(lookupTariff.km)} km</strong>
                 </div>
                 <div>
                   <span>Diurna</span>
@@ -661,7 +1094,7 @@ function App() {
                   {filteredTariffs.map(([key, tariff]) => (
                     <tr key={key}>
                       <td>{displayName(key)}</td>
-                      <td>{tariff.km.toString().replace(".", ",")} km</td>
+                      <td>{formatKm(tariff.km)} km</td>
                       <td>{euro(priceFromKm(tariff.km, false))}</td>
                       <td>{euro(priceFromKm(tariff.km, true))}</td>
                     </tr>
@@ -692,7 +1125,7 @@ function App() {
             </a>
             <a
               className="btn btn-whatsapp"
-              href={whatsappUrl(result, selectedKey, passengers)}
+              href={quoteUrl}
               target="_blank"
               rel="noreferrer"
             >
@@ -727,7 +1160,7 @@ function App() {
 
       <a
         className="floating-whatsapp"
-        href={whatsappUrl(result, selectedKey, passengers)}
+        href={quoteUrl}
         target="_blank"
         rel="noreferrer"
         aria-label="Reservar por WhatsApp"

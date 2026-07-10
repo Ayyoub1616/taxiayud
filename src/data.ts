@@ -2,6 +2,8 @@ export const CONTACT = {
   phoneDisplay: "611 861 041",
   phoneHref: "tel:611861041",
   whatsapp: "34611861041",
+  address: "Pl. del Fuerte, 50300 Calatayud, Zaragoza",
+  googleProfile: "https://share.google/QJyQ83oNHjkRqtciX",
   place: "Calatayud, Aragón",
   license: "Licencia municipal n.º 18",
 };
@@ -9,8 +11,20 @@ export const CONTACT = {
 export const RATES = {
   dayRate: 0.68,
   nightRate: 0.75,
+  dayWaitRate: 18.02,
+  nightWaitRate: 20.51,
   returnFactor: 2,
-  baseFare: 3.31,
+  officialNotice: "Tarifas oficiales B.O.A. n.º 250 del 29-12-2022",
+};
+
+export const GOOGLE_REVIEWS = {
+  rating: "5/5",
+  count: "7 opiniones",
+  items: [
+    { author: "Ady Adita", text: "El mejor taxi" },
+    { author: "Ronmel Manuel", text: "Excelente servicio" },
+    { author: "Jorge D", text: "Puntual y coche cómodo" },
+  ],
 };
 
 export type Tariff = {
