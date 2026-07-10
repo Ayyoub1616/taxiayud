@@ -51,6 +51,13 @@ const heroStats = [
   { value: "+100", label: "destinos" },
 ];
 
+const regionHighlights = [
+  "Calatayud",
+  "Monasterio de Piedra",
+  "Balnearios",
+  "Comarca",
+];
+
 const serviceIcons = [
   Navigation,
   Sparkles,
@@ -190,6 +197,7 @@ function App() {
   const [hour, setHour] = useState(currentHour());
   const [passengers, setPassengers] = useState(1);
   const [filter, setFilter] = useState("");
+  const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
   const [result, setResult] = useState<Result | null>(() => {
     const destination = "MONASTERIO DE PIEDRA";
     const tariff = TARIFAS[destination];
@@ -222,6 +230,7 @@ function App() {
   }, [filter]);
 
   const selectedTariff = TARIFAS[selectedKey];
+  const lookupTariff = TARIFAS[tariffLookupKey];
 
   function resultForKey(key: string): Result {
     const tariff = TARIFAS[key];
@@ -243,6 +252,11 @@ function App() {
     setSelectedKey(key);
     setQuery(displayName(key));
     setResult(resultForKey(key));
+  }
+
+  function useLookupDestination(key: string) {
+    chooseDestination(key);
+    document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
   }
 
   function calculate() {
@@ -320,6 +334,14 @@ function App() {
                 </div>
               ))}
             </dl>
+            <div className="hero-places" aria-label="Zonas de servicio destacadas">
+              {regionHighlights.map((place) => (
+                <span key={place}>
+                  <MapPin aria-hidden="true" />
+                  {place}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -532,7 +554,7 @@ function App() {
             </div>
           </div>
           <div className="vehicle-gallery">
-            <img src="/assets/vehicle.webp" alt="Taxi Ayud Peugeot 408" />
+            <img src="/assets/vehicle-white.webp" alt="Taxi Ayud Peugeot 408 blanco" />
             <img src="/assets/interior.webp" alt="Interior confortable del taxi" />
           </div>
         </section>
@@ -549,38 +571,105 @@ function App() {
               orientativos. Las reservas se confirman por teléfono o WhatsApp.
             </p>
           </div>
-          <div className="table-tools">
-            <div className="search-field">
-              <Search aria-hidden="true" />
-              <input
-                value={filter}
-                placeholder="Filtrar tabla"
-                onChange={(event) => setFilter(event.target.value)}
-              />
-            </div>
-          </div>
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Destino</th>
-                  <th>Km ida</th>
-                  <th>Diurna</th>
-                  <th>Nocturna / festiva</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredTariffs.map(([key, tariff]) => (
-                  <tr key={key}>
-                    <td>{displayName(key)}</td>
-                    <td>{tariff.km.toString().replace(".", ",")} km</td>
-                    <td>{euro(priceFromKm(tariff.km, false))}</td>
-                    <td>{euro(priceFromKm(tariff.km, true))}</td>
-                  </tr>
+
+          <div className="tariff-lookup">
+            <div className="lookup-panel">
+              <label className="field-label" htmlFor="tariff-destination">
+                Elige destino
+              </label>
+              <select
+                id="tariff-destination"
+                value={tariffLookupKey}
+                onChange={(event) => setTariffLookupKey(event.target.value)}
+              >
+                {tariffEntries.map(([key]) => (
+                  <option value={key} key={key}>
+                    {displayName(key)}
+                  </option>
                 ))}
-              </tbody>
-            </table>
+              </select>
+
+              <div className="quick-destinations" aria-label="Destinos rápidos">
+                {featuredDestinations.slice(0, 6).map((key) => (
+                  <button
+                    type="button"
+                    key={key}
+                    className={tariffLookupKey === key ? "active" : ""}
+                    onClick={() => setTariffLookupKey(key)}
+                  >
+                    {displayName(key)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <aside className="lookup-result">
+              <p className="result-kicker">
+                <Route aria-hidden="true" />
+                Tarifa orientativa
+              </p>
+              <h3>{displayName(tariffLookupKey)}</h3>
+              <p className="lookup-price">{euro(priceFromKm(lookupTariff.km, false))}</p>
+              <div className="lookup-metrics">
+                <div>
+                  <span>Km ida</span>
+                  <strong>{lookupTariff.km.toString().replace(".", ",")} km</strong>
+                </div>
+                <div>
+                  <span>Diurna</span>
+                  <strong>{euro(priceFromKm(lookupTariff.km, false))}</strong>
+                </div>
+                <div>
+                  <span>Nocturna / festiva</span>
+                  <strong>{euro(priceFromKm(lookupTariff.km, true))}</strong>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="btn btn-primary lookup-action"
+                onClick={() => useLookupDestination(tariffLookupKey)}
+              >
+                <Route aria-hidden="true" />
+                Calcular este destino
+              </button>
+            </aside>
           </div>
+
+          <details className="full-table-disclosure">
+            <summary>Ver tabla completa de destinos</summary>
+            <div className="table-tools">
+              <div className="search-field">
+                <Search aria-hidden="true" />
+                <input
+                  value={filter}
+                  placeholder="Filtrar tabla"
+                  onChange={(event) => setFilter(event.target.value)}
+                />
+              </div>
+            </div>
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Destino</th>
+                    <th>Km ida</th>
+                    <th>Diurna</th>
+                    <th>Nocturna / festiva</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredTariffs.map(([key, tariff]) => (
+                    <tr key={key}>
+                      <td>{displayName(key)}</td>
+                      <td>{tariff.km.toString().replace(".", ",")} km</td>
+                      <td>{euro(priceFromKm(tariff.km, false))}</td>
+                      <td>{euro(priceFromKm(tariff.km, true))}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </details>
         </section>
 
         <section className="closing-band">
