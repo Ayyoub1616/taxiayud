@@ -286,6 +286,17 @@ function pickupLocationLine(pickupLocation: PickupLocation) {
   )},${pickupLocation.lng.toFixed(6)}`;
 }
 
+function whatsappDirectUrl() {
+  const text = [
+    "Hola Taxi Ayud, quiero contactar por WhatsApp.",
+    "Necesito un taxi o consultar disponibilidad.",
+    "Te paso por aquí origen, destino y hora.",
+    "Gracias.",
+  ].join("\n");
+
+  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
+}
+
 function whatsappUrl(options: WhatsAppOptions) {
   const destination =
     options.result?.destination || options.destination.trim() || "destino por confirmar";
@@ -323,8 +334,8 @@ function whatsappUrl(options: WhatsAppOptions) {
     "",
     ...priceLines,
     "",
-        "¿Me confirmas disponibilidad?",
-        "Gracias.",
+    "¿Me confirmas disponibilidad?",
+    "Gracias.",
   ]
     .filter((line) => line !== "")
     .join("\n");
@@ -346,16 +357,7 @@ function App() {
   const [locationStatus, setLocationStatus] = useState("");
   const [filter, setFilter] = useState("");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
-  const [result, setResult] = useState<Result | null>(() =>
-    makeResultForKey("MONASTERIO DE PIEDRA", {
-      origin: "Calatayud",
-      date: todayValue(),
-      hour: currentHour(),
-      passengers: 1,
-      waitMinutes: 0,
-      mode: "later",
-    }),
-  );
+  const [result, setResult] = useState<Result | null>(null);
 
   const suggestions = useMemo(() => {
     const q = normalize(query);
@@ -377,6 +379,7 @@ function App() {
   const activeDestination = query.trim() || displayName(selectedKey);
   const canAutoCalculate =
     Boolean(destinationKeyFromInput(activeDestination)) && isCalatayudOrigin(origin);
+  const directUrl = whatsappDirectUrl();
   const quoteUrl = whatsappUrl({
     result,
     origin,
@@ -414,7 +417,7 @@ function App() {
   function chooseDestination(key: string) {
     setSelectedKey(key);
     setQuery(displayName(key));
-    setResult(isCalatayudOrigin(origin) ? resultForKey(key) : null);
+    setResult(null);
   }
 
   function useLookupDestination(key: string) {
@@ -472,7 +475,8 @@ function App() {
           </span>
         </a>
         <nav className="main-nav" aria-label="Navegacion principal">
-          <a href="#calculadora">Reservar</a>
+          <a href={directUrl} target="_blank" rel="noreferrer">WhatsApp</a>
+          <a href="#calculadora">Calcular</a>
           <a href="#resenas">Reseñas</a>
           <a href="#servicios">Servicios</a>
           <a href="#tarifas">Tarifas</a>
@@ -494,17 +498,17 @@ function App() {
             <h1>Taxi Ayud</h1>
             <p className="hero-subtitle">
               Traslados desde Calatayud a Monasterio de Piedra, balnearios,
-              Zaragoza, aeropuerto, tren y pueblos de la comarca. Precio
-              orientativo y reserva por WhatsApp en segundos.
+              Zaragoza, aeropuerto, tren y pueblos de la comarca. Contacto
+              directo por WhatsApp o presupuesto orientativo si quieres calcular.
             </p>
             <div className="hero-actions">
+              <a className="btn btn-whatsapp" href={directUrl} target="_blank" rel="noreferrer">
+                <Send aria-hidden="true" />
+                WhatsApp directo
+              </a>
               <a className="btn btn-primary" href="#calculadora">
                 <Route aria-hidden="true" />
-                Calcular ruta
-              </a>
-              <a className="btn btn-whatsapp" href={instantUrl} target="_blank" rel="noreferrer">
-                <Send aria-hidden="true" />
-                Taxi ahora
+                Calcular precio
               </a>
               <a className="btn btn-secondary" href={CONTACT.phoneHref}>
                 <Phone aria-hidden="true" />
@@ -537,18 +541,34 @@ function App() {
             </div>
             <h2>Reserva directa, sin formularios largos</h2>
             <p>
-              Calcula destinos habituales o manda origen, destino, fecha,
-              pasajeros y ubicación por WhatsApp.
+              Manda un mensaje directo si solo quieres hablar, consultar
+              disponibilidad o pedir taxi ahora. La calculadora queda abajo para
+              presupuestos orientativos.
             </p>
-            <div className="hero-card-route">
-              <span>{origin}</span>
-              <ArrowRight aria-hidden="true" />
-              <strong>{activeDestination}</strong>
+            <div className="hero-direct-options" aria-label="Opciones de contacto rapido">
+              <span>
+                <MessageCircle aria-hidden="true" />
+                Sin calcular ruta
+              </span>
+              <span>
+                <Clock3 aria-hidden="true" />
+                Respuesta rápida
+              </span>
+              <span>
+                <LocateFixed aria-hidden="true" />
+                Taxi ahora
+              </span>
             </div>
-            <a className="btn btn-primary" href="#calculadora">
-              <MessageSquareText aria-hidden="true" />
-              Preparar mensaje
-            </a>
+            <div className="hero-card-actions">
+              <a className="btn btn-whatsapp" href={directUrl} target="_blank" rel="noreferrer">
+                <Send aria-hidden="true" />
+                Enviar WhatsApp
+              </a>
+              <a className="btn btn-secondary" href="#calculadora">
+                <Route aria-hidden="true" />
+                Ver presupuesto
+              </a>
+            </div>
           </aside>
         </section>
 
@@ -862,9 +882,9 @@ function App() {
                     {activeDestination || "Destino"}
                   </p>
                   <p className="empty-result">
-                    Esta ruta necesita confirmación manual. El mensaje ya incluye
-                    origen, destino, pasajeros, fecha y ubicación si la has
-                    marcado.
+                    {canAutoCalculate
+                      ? "Pulsa calcular precio para ver un presupuesto orientativo. Si prefieres, puedes consultar por WhatsApp sin calcular."
+                      : "Esta ruta necesita confirmación manual. El mensaje ya incluye origen, destino, pasajeros, fecha y ubicación si la has marcado."}
                   </p>
                   <a
                     className="btn btn-whatsapp"
@@ -883,7 +903,7 @@ function App() {
                     rel="noreferrer"
                   >
                     <Send aria-hidden="true" />
-                    Pedir presupuesto
+                    Consultar por WhatsApp
                   </a>
                   <p className="small-note">
                     Para cálculo automático puerta a puerta hay que conectar
@@ -1152,7 +1172,7 @@ function App() {
             </a>
             <a
               className="btn btn-whatsapp"
-              href={quoteUrl}
+              href={directUrl}
               target="_blank"
               rel="noreferrer"
             >
@@ -1187,7 +1207,7 @@ function App() {
 
       <a
         className="floating-whatsapp"
-        href={quoteUrl}
+        href={directUrl}
         target="_blank"
         rel="noreferrer"
         aria-label="Reservar por WhatsApp"

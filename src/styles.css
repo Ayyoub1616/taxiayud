@@ -259,6 +259,38 @@ img {
   color: var(--gold);
 }
 
+.hero-direct-options {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.hero-direct-options span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #eef5ff;
+  font-weight: 900;
+}
+
+.hero-direct-options svg {
+  width: 18px;
+  height: 18px;
+  color: var(--gold);
+  flex: 0 0 auto;
+}
+
+.hero-card-actions {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 10px;
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -1496,6 +1528,7 @@ tr:hover td {
   }
 
   .hero-actions .btn,
+  .hero-card-actions .btn,
   .result-actions .btn,
   .calc-actions .btn,
   .closing-actions .btn {
@@ -1583,6 +1616,7 @@ tr:hover td {
 
   .route-inputs,
   .calc-actions,
+  .hero-card-actions,
   .review-cards,
   .comfort-strip {
     grid-template-columns: 1fr;
