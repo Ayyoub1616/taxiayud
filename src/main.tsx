@@ -74,6 +74,13 @@ type ResultInput = {
   mode: BookingMode;
 };
 
+type ExactRouteResponse = {
+  km: number;
+  durationMinutes?: number;
+  originLabel?: string;
+  destinationLabel?: string;
+};
+
 type WhatsAppOptions = {
   result: Result | null;
   origin: string;
@@ -279,6 +286,49 @@ function makeResultForKey(key: string, input: ResultInput): Result {
   };
 }
 
+function makeResultFromExactRoute(
+  route: ExactRouteResponse,
+  input: ResultInput,
+  destination: string,
+): Result {
+  const info = tariffInfo(input.date, input.hour);
+  const waitMinutes = Math.max(0, input.waitMinutes || 0);
+  const waitPrice = (waitMinutes / 60) * info.waitRate;
+  const km = Math.max(0, Math.round(route.km * 10) / 10);
+
+  return {
+    origin: route.originLabel || input.origin.trim() || "origen indicado",
+    destination: route.destinationLabel || destination.trim() || "destino indicado",
+    destinationKey: "RUTA_EXACTA",
+    km,
+    waitMinutes,
+    waitPrice,
+    price: priceFromKm(km, info.premium, waitMinutes),
+    tariffLabel: info.label,
+    reason: `${info.reason} · ruta calculada`,
+    dateLabel: dateLabel(input.date),
+    hour: input.hour,
+    passengers: input.passengers,
+    mode: input.mode,
+  };
+}
+
+async function fetchExactRoute(origin: string, destination: string) {
+  const response = await fetch("/api/route", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ origin, destination }),
+  });
+
+  const data = await response.json().catch(() => null);
+
+  if (!response.ok || !data?.km) {
+    throw new Error(data?.message || "No se pudo calcular la ruta exacta.");
+  }
+
+  return data as ExactRouteResponse;
+}
+
 function pickupLocationLine(pickupLocation: PickupLocation) {
   if (!pickupLocation) return "";
   return `Ubicación de recogida: https://maps.google.com/?q=${pickupLocation.lat.toFixed(
@@ -355,6 +405,8 @@ function App() {
   const [notes, setNotes] = useState("");
   const [pickupLocation, setPickupLocation] = useState<PickupLocation>(null);
   const [locationStatus, setLocationStatus] = useState("");
+  const [routeLoading, setRouteLoading] = useState(false);
+  const [routeError, setRouteError] = useState("");
   const [filter, setFilter] = useState("");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
   const [result, setResult] = useState<Result | null>(null);
@@ -374,7 +426,6 @@ function App() {
     return tariffEntries.filter(([name]) => !q || normalize(name).includes(q));
   }, [filter]);
 
-  const selectedTariff = TARIFAS[selectedKey];
   const lookupTariff = TARIFAS[tariffLookupKey];
   const activeDestination = query.trim() || displayName(selectedKey);
   const canAutoCalculate =
@@ -418,6 +469,7 @@ function App() {
     setSelectedKey(key);
     setQuery(displayName(key));
     setResult(null);
+    setRouteError("");
   }
 
   function useLookupDestination(key: string) {
@@ -425,20 +477,49 @@ function App() {
     document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
   }
 
-  function calculate() {
-    const key =
-      destinationKeyFromInput(query) ||
-      (TARIFAS[selectedKey] && selectedKey) ||
-      tariffEntries.find(([name]) => normalize(name) === normalize(query))?.[0];
+  async function calculate() {
+    const key = destinationKeyFromInput(query);
+    const trimmedOrigin = origin.trim();
+    const trimmedDestination = query.trim();
 
-    if (!key || !TARIFAS[key] || !isCalatayudOrigin(origin)) {
-      setResult(null);
+    setRouteError("");
+
+    if (key && TARIFAS[key] && isCalatayudOrigin(origin)) {
+      setSelectedKey(key);
+      setQuery(displayName(key));
+      setResult(resultForKey(key));
       return;
     }
 
-    setSelectedKey(key);
-    setQuery(displayName(key));
-    setResult(resultForKey(key));
+    if (!trimmedOrigin || !trimmedDestination) {
+      setResult(null);
+      setRouteError("Indica origen y destino para calcular una ruta exacta.");
+      return;
+    }
+
+    setRouteLoading(true);
+    try {
+      const route = await fetchExactRoute(trimmedOrigin, trimmedDestination);
+      setResult(
+        makeResultFromExactRoute(route, {
+          origin: trimmedOrigin,
+          date,
+          hour,
+          passengers,
+          waitMinutes,
+          mode: bookingMode,
+        }, trimmedDestination),
+      );
+    } catch (error) {
+      setResult(null);
+      setRouteError(
+        error instanceof Error
+          ? error.message
+          : "No se pudo calcular la ruta exacta. Puedes consultar por WhatsApp.",
+      );
+    } finally {
+      setRouteLoading(false);
+    }
   }
 
   function requestPickupLocation() {
@@ -674,6 +755,7 @@ function App() {
                       onChange={(event) => {
                         setOrigin(event.target.value);
                         setResult(null);
+                        setRouteError("");
                       }}
                     />
                   </div>
@@ -690,6 +772,7 @@ function App() {
                       onChange={(event) => {
                         setQuery(event.target.value);
                         setResult(null);
+                        setRouteError("");
                       }}
                     />
                   </div>
@@ -726,6 +809,7 @@ function App() {
                         onChange={(event) => {
                           setDate(event.target.value);
                           setResult(null);
+                          setRouteError("");
                         }}
                       />
                     </label>
@@ -737,6 +821,7 @@ function App() {
                         onChange={(event) => {
                           setHour(event.target.value);
                           setResult(null);
+                          setRouteError("");
                         }}
                       />
                     </label>
@@ -754,6 +839,7 @@ function App() {
                     onChange={(event) => {
                       setPassengers(Number(event.target.value));
                       setResult(null);
+                      setRouteError("");
                     }}
                   >
                     <option value={1}>1 pasajero</option>
@@ -772,6 +858,7 @@ function App() {
                     onChange={(event) => {
                       setWaitMinutes(Number(event.target.value));
                       setResult(null);
+                      setRouteError("");
                     }}
                     placeholder="0 min"
                   />
@@ -796,9 +883,13 @@ function App() {
               </div>
 
               <div className="calc-actions">
-                <button className="btn btn-primary calc-button" onClick={calculate}>
+                <button
+                  className="btn btn-primary calc-button"
+                  disabled={routeLoading}
+                  onClick={calculate}
+                >
                   <CalculatorIcon />
-                  Calcular precio
+                  {routeLoading ? "Calculando..." : "Calcular precio"}
                 </button>
                 <a className="btn btn-whatsapp" href={instantUrl} target="_blank" rel="noreferrer">
                   <Send aria-hidden="true" />
@@ -808,13 +899,13 @@ function App() {
               {!canAutoCalculate ? (
                 <p className="api-note">
                   Para calcular cualquier dirección exacta automáticamente hace
-                  falta conectar una API de mapas.
+                  falta configurar OpenRouteService en Vercel.
                 </p>
               ) : null}
             </div>
 
             <aside className="result-panel" aria-live="polite">
-              {result && selectedTariff ? (
+              {result ? (
                 <>
                   <div className="result-kicker">
                     <Clock3 aria-hidden="true" />
@@ -882,9 +973,10 @@ function App() {
                     {activeDestination || "Destino"}
                   </p>
                   <p className="empty-result">
-                    {canAutoCalculate
+                    {routeError ||
+                    (canAutoCalculate
                       ? "Pulsa calcular precio para ver un presupuesto orientativo. Si prefieres, puedes consultar por WhatsApp sin calcular."
-                      : "Esta ruta necesita confirmación manual. El mensaje ya incluye origen, destino, pasajeros, fecha y ubicación si la has marcado."}
+                      : "Para rutas exactas, la web quedará lista al configurar OpenRouteService en Vercel. Mientras tanto puedes consultar por WhatsApp.")}
                   </p>
                   <a
                     className="btn btn-whatsapp"
@@ -906,8 +998,8 @@ function App() {
                     Consultar por WhatsApp
                   </a>
                   <p className="small-note">
-                    Para cálculo automático puerta a puerta hay que conectar
-                    Google Maps Routes/Distance Matrix o una API equivalente.
+                    Alternativa preparada: OpenRouteService con clave privada
+                    en Vercel, sin exponerla en el navegador.
                   </p>
                 </>
               )}
