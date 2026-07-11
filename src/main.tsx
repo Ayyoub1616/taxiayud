@@ -224,7 +224,7 @@ const COPY: Record<LangCode, Copy> = {
     call: "Llamar",
     heroEyebrow: "Taxi oficial en Calatayud · Licencia 18",
     heroSubtitle:
-      "Traslados premium desde Calatayud a Monasterio de Piedra, balnearios, Zaragoza, aeropuerto, El Pilar, estación y pueblos de la comarca.",
+      "Taxi desde Calatayud para pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza, aeropuerto y estación.",
     bookTitle: "Reserva directa, sin formularios largos",
     bookText:
       "Manda un mensaje directo si solo quieres hablar, consultar disponibilidad o pedir taxi ahora. La calculadora queda abajo para presupuestos orientativos.",
@@ -239,14 +239,14 @@ const COPY: Record<LangCode, Copy> = {
     googleText: "públicas en el perfil de empresa",
     googleRating: "en Google",
     regionEyebrow: "Comarca de Calatayud",
-    regionTitle: "Calatayud, Monasterio de Piedra, El Pilar y balnearios sin complicarte",
+    regionTitle: "Calatayud, pueblos de la comarca, balnearios y Zaragoza sin complicarte",
     regionText:
       "Servicio puntual, cómodo y discreto para moverte por Calatayud, Zaragoza y toda la comarca con maletas, familia o visitas turísticas.",
     comfort: ["Conducción tranquila", "Maletero amplio", "Taxi oficial", "Reserva por WhatsApp"],
     seoEyebrow: "Taxi local premium",
     seoTitle: "El taxi de confianza para Calatayud y la zona",
     seoText:
-      "Rutas frecuentes con recogida en estación, hoteles, Plaza del Fuerte, Monasterio de Piedra, balnearios, Zaragoza, El Pilar y aeropuerto.",
+      "Rutas frecuentes con recogida en estación, hoteles, Plaza del Fuerte, pueblos de la comarca, Monasterio de Piedra, balnearios, Zaragoza y aeropuerto.",
     seoRoutes: [
       {
         title: "Taxi Calatayud estación AVE",
@@ -257,8 +257,8 @@ const COPY: Record<LangCode, Copy> = {
         text: "Traslado directo desde Calatayud con opción de vuelta programada.",
       },
       {
-        title: "Zaragoza, El Pilar y aeropuerto",
-        text: "Viajes a Delicias, Aeropuerto de Zaragoza, hospitales y centro.",
+        title: "Zaragoza, aeropuerto y Delicias",
+        text: "Viajes a Zaragoza-Delicias, Aeropuerto de Zaragoza, hospitales y centro.",
       },
       {
         title: "Balnearios y comarca",
@@ -310,9 +310,9 @@ const COPY: Record<LangCode, Copy> = {
     moreReviews: "Ver más reseñas",
     viewGoogle: "Ver perfil de Google",
     servicesEyebrow: "Servicios",
-    servicesTitle: "Viajes habituales en Calatayud y comarca",
+    servicesTitle: "Pueblos, balnearios y Zaragoza desde Calatayud",
     servicesText:
-      "Un taxi para trayectos cortos, rutas turísticas, aeropuertos, estaciones, citas médicas y desplazamientos de empresa.",
+      "Servicio cómodo para moverte por la comarca: pueblos cercanos, balnearios, estación, Zaragoza, aeropuerto, citas médicas y viajes programados.",
     serviceItems: [
       {
         title: "Monasterio de Piedra",
@@ -387,7 +387,7 @@ const COPY: Record<LangCode, Copy> = {
     call: "Call",
     heroEyebrow: "Official taxi in Calatayud · Licence 18",
     heroSubtitle:
-      "Premium transfers from Calatayud to Monasterio de Piedra, spas, Zaragoza, airport, El Pilar, train stations and local villages.",
+      "Taxi from Calatayud to local villages, spas, Monasterio de Piedra, Zaragoza, the airport and train stations.",
     bookTitle: "Book directly, no long forms",
     bookText:
       "Send a direct message to check availability or request a taxi now. Use the fare calculator below when you want an estimated quote.",
@@ -402,14 +402,14 @@ const COPY: Record<LangCode, Copy> = {
     googleText: "public on the business profile",
     googleRating: "on Google",
     regionEyebrow: "Calatayud area",
-    regionTitle: "Calatayud, Monasterio de Piedra, El Pilar and spas made easy",
+    regionTitle: "Calatayud, local villages, spas and Zaragoza made easy",
     regionText:
       "A punctual, comfortable and discreet service for Calatayud, Zaragoza and the surrounding area with luggage, family or tourism plans.",
     comfort: ["Smooth driving", "Large boot", "Official taxi", "WhatsApp booking"],
     seoEyebrow: "Premium local taxi",
     seoTitle: "The trusted taxi for Calatayud and the area",
     seoText:
-      "Frequent pick-ups at the station, hotels, Plaza del Fuerte, Monasterio de Piedra, spas, Zaragoza, El Pilar and the airport.",
+      "Frequent pick-ups at the station, hotels, Plaza del Fuerte, local villages, Monasterio de Piedra, spas, Zaragoza and the airport.",
     seoRoutes: [
       {
         title: "Calatayud train station taxi",
@@ -420,8 +420,8 @@ const COPY: Record<LangCode, Copy> = {
         text: "Direct transfer from Calatayud with optional scheduled return.",
       },
       {
-        title: "Zaragoza, El Pilar and airport",
-        text: "Trips to Delicias, Zaragoza Airport, hospitals and city centre.",
+        title: "Zaragoza, airport and Delicias",
+        text: "Trips to Zaragoza-Delicias, Zaragoza Airport, hospitals and city centre.",
       },
       {
         title: "Spas and local villages",
@@ -472,9 +472,9 @@ const COPY: Record<LangCode, Copy> = {
     moreReviews: "See more reviews",
     viewGoogle: "View Google profile",
     servicesEyebrow: "Services",
-    servicesTitle: "Regular journeys in Calatayud and the area",
+    servicesTitle: "Local villages, spas and Zaragoza from Calatayud",
     servicesText:
-      "Taxi service for short trips, tourism routes, airports, train stations, medical appointments and business transfers.",
+      "Comfortable service around the area: nearby villages, spas, train station, Zaragoza, airport, medical appointments and scheduled journeys.",
     serviceItems: [
       {
         title: "Monasterio de Piedra",
@@ -548,7 +548,7 @@ const COPY: Record<LangCode, Copy> = {
     call: "Appeler",
     heroEyebrow: "Taxi officiel à Calatayud · Licence 18",
     heroSubtitle:
-      "Transferts premium depuis Calatayud vers le Monasterio de Piedra, les thermes, Saragosse, l'aéroport, El Pilar, la gare et les villages.",
+      "Taxi depuis Calatayud vers les villages de la région, les thermes, le Monasterio de Piedra, Saragosse, l'aéroport et la gare.",
     bookTitle: "Réservation directe, sans long formulaire",
     bookText:
       "Envoyez un message direct pour vérifier la disponibilité ou demander un taxi maintenant. Le calculateur donne une estimation.",
@@ -563,14 +563,14 @@ const COPY: Record<LangCode, Copy> = {
     googleText: "publiques sur le profil de l'entreprise",
     googleRating: "sur Google",
     regionEyebrow: "Région de Calatayud",
-    regionTitle: "Calatayud, Monasterio de Piedra, El Pilar et thermes sans complication",
+    regionTitle: "Calatayud, villages de la région, thermes et Saragosse sans complication",
     regionText:
       "Service ponctuel, confortable et discret pour Calatayud, Saragosse et toute la région avec bagages, famille ou visites.",
     comfort: ["Conduite tranquille", "Grand coffre", "Taxi officiel", "Réservation WhatsApp"],
     seoEyebrow: "Taxi local premium",
     seoTitle: "Le taxi de confiance pour Calatayud et la région",
     seoText:
-      "Trajets fréquents depuis la gare, hôtels, Plaza del Fuerte, Monasterio de Piedra, thermes, Saragosse, El Pilar et l'aéroport.",
+      "Trajets fréquents depuis la gare, hôtels, Plaza del Fuerte, villages de la région, Monasterio de Piedra, thermes, Saragosse et l'aéroport.",
     seoRoutes: [
       {
         title: "Taxi gare de Calatayud",
@@ -581,7 +581,7 @@ const COPY: Record<LangCode, Copy> = {
         text: "Transfert direct depuis Calatayud avec retour programmé possible.",
       },
       {
-        title: "Saragosse, El Pilar et aéroport",
+        title: "Saragosse, aéroport et Delicias",
         text: "Trajets vers Delicias, l'aéroport, les hôpitaux et le centre.",
       },
       {
@@ -630,8 +630,8 @@ const COPY: Record<LangCode, Copy> = {
     moreReviews: "Voir plus d'avis",
     viewGoogle: "Voir le profil Google",
     servicesEyebrow: "Services",
-    servicesTitle: "Trajets habituels à Calatayud et dans la région",
-    servicesText: "Taxi pour courts trajets, tourisme, aéroports, gares, rendez-vous médicaux et entreprises.",
+    servicesTitle: "Villages, thermes et Saragosse depuis Calatayud",
+    servicesText: "Service confortable dans la région : villages proches, thermes, gare, Saragosse, aéroport, rendez-vous médicaux et trajets programmés.",
     serviceItems: [
       {
         title: "Monasterio de Piedra",
@@ -704,7 +704,7 @@ const COPY: Record<LangCode, Copy> = {
     call: "اتصال",
     heroEyebrow: "تاكسي رسمي في كالاتايود · رخصة 18",
     heroSubtitle:
-      "تنقلات مريحة من كالاتايود إلى دير الحجر، المنتجعات، سرقسطة، المطار، إل بيلار، المحطة وقرى المنطقة.",
+      "تاكسي من كالاتايود إلى قرى المنطقة، المنتجعات، دير الحجر، سرقسطة، المطار والمحطة.",
     bookTitle: "حجز مباشر بدون نماذج طويلة",
     bookText: "أرسل رسالة مباشرة للاستفسار عن التوفر أو طلب تاكسي الآن. يمكن استخدام الحاسبة لتقدير السعر.",
     noRoute: "بدون حساب المسار",
@@ -781,8 +781,8 @@ const COPY: Record<LangCode, Copy> = {
     moreReviews: "عرض المزيد من التقييمات",
     viewGoogle: "عرض ملف Google",
     servicesEyebrow: "الخدمات",
-    servicesTitle: "رحلات شائعة في كالاتايود والمنطقة",
-    servicesText: "تاكسي للرحلات القصيرة، السياحة، المطارات، المحطات، المواعيد الطبية والتنقلات المهنية.",
+    servicesTitle: "قرى المنطقة والمنتجعات وسرقسطة من كالاتايود",
+    servicesText: "خدمة مريحة للتنقل في المنطقة: القرى القريبة، المنتجعات، المحطة، سرقسطة، المطار، المواعيد الطبية والحجوزات المبرمجة.",
     serviceItems: [
       {
         title: "دير الحجر",
@@ -851,9 +851,9 @@ const COPY: Record<LangCode, Copy> = {
 
 const regionHighlights = [
   "Calatayud",
-  "Monasterio de Piedra",
+  "Pueblos",
   "Balnearios",
-  "Comarca",
+  "Zaragoza",
 ];
 
 const serviceIcons = [
@@ -1677,9 +1677,6 @@ function App() {
                 {t.call}
               </a>
             </div>
-            <figure className="mobile-hero-car" aria-label="Peugeot 408 Hybrid Taxi Ayud">
-              <img src="/assets/peugeot-408-hybrid.webp" alt="Taxi Ayud Peugeot 408 Hybrid blanco" />
-            </figure>
             <dl className="hero-stats">
               {heroStatsLocalized.map((item) => (
                 <div key={item.label}>

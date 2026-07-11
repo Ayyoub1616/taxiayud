@@ -186,7 +186,7 @@ img {
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: 82vh;
+  min-height: clamp(700px, 82vh, 860px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(330px, 420px);
   gap: 34px;
@@ -206,8 +206,7 @@ img {
   height: 34%;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(5, 7, 11, 0), rgba(5, 7, 11, 0.82)),
-    linear-gradient(104deg, transparent 0 46%, rgba(241, 195, 77, 0.36) 46% 46.5%, transparent 46.5% 100%);
+    linear-gradient(180deg, rgba(5, 7, 11, 0), rgba(5, 7, 11, 0.86));
   opacity: 0.78;
 }
 
@@ -216,8 +215,8 @@ img {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(90deg, rgba(4, 7, 12, 0.96) 0%, rgba(4, 7, 12, 0.76) 42%, rgba(4, 7, 12, 0.18) 100%),
-    linear-gradient(0deg, rgba(4, 7, 12, 0.62), rgba(4, 7, 12, 0.1) 52%, rgba(4, 7, 12, 0.06)),
+    linear-gradient(90deg, rgba(4, 7, 12, 0.97) 0%, rgba(4, 7, 12, 0.8) 42%, rgba(4, 7, 12, 0.2) 100%),
+    linear-gradient(0deg, rgba(4, 7, 12, 0.66), rgba(4, 7, 12, 0.12) 52%, rgba(4, 7, 12, 0.06)),
     url("/assets/comarca-bg.webp") center / cover no-repeat;
   filter: saturate(1.05) contrast(1.06);
   transform: scale(1.01);
@@ -226,8 +225,9 @@ img {
 .hero-car-layer {
   position: absolute;
   z-index: 1;
-  inset: 0 0 0 auto;
-  width: min(74vw, 1180px);
+  inset: auto 0 0 auto;
+  width: min(72vw, 1060px);
+  height: min(82%, 660px);
   --hero-car-opacity: 0.96;
   pointer-events: none;
   background:
@@ -237,8 +237,14 @@ img {
   opacity: var(--hero-car-opacity);
   filter: saturate(1.08) contrast(1.05) drop-shadow(0 28px 56px rgba(0, 0, 0, 0.34));
   transform-origin: 74% 78%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 17%, #000 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 17%, #000 100%);
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, #000 17%, #000 100%),
+    linear-gradient(180deg, transparent 0%, #000 14%, #000 100%);
+  mask-image:
+    linear-gradient(90deg, transparent 0%, #000 17%, #000 100%),
+    linear-gradient(180deg, transparent 0%, #000 14%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
   animation:
     heroCarEnter 1300ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both,
     heroCarCruise 6.8s ease-in-out 1600ms infinite;
@@ -520,10 +526,6 @@ h1 {
   width: 15px;
   height: 15px;
   color: var(--gold);
-}
-
-.mobile-hero-car {
-  display: none;
 }
 
 .trust-strip {
@@ -1856,36 +1858,35 @@ tr:hover td {
   }
 
   .hero {
-    min-height: auto;
-    padding: 96px 20px 38px;
+    min-height: 720px;
+    padding: 92px 20px 34px;
     align-items: end;
-    gap: 22px;
+    gap: 18px;
   }
 
   .hero-media {
     background:
-      linear-gradient(0deg, rgba(5, 7, 11, 0.96) 0%, rgba(5, 7, 11, 0.74) 48%, rgba(5, 7, 11, 0.18) 100%),
+      linear-gradient(0deg, rgba(5, 7, 11, 0.98) 0%, rgba(5, 7, 11, 0.84) 46%, rgba(5, 7, 11, 0.2) 100%),
+      linear-gradient(90deg, rgba(5, 7, 11, 0.92), rgba(5, 7, 11, 0.32) 58%, rgba(5, 7, 11, 0.56)),
       url("/assets/comarca-bg.webp") center top / cover no-repeat;
   }
 
   .hero-car-layer {
-    display: none;
-  }
-
-  .mobile-hero-car {
     display: block;
-    margin: 18px 0 0;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .mobile-hero-car img {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: contain;
-    object-position: center;
+    inset: auto -34% 90px auto;
+    width: 138%;
+    height: 330px;
+    --hero-car-opacity: 0.58;
+    background:
+      linear-gradient(90deg, rgba(5, 7, 11, 0.12), rgba(5, 7, 11, 0.16) 44%, rgba(5, 7, 11, 0.46)),
+      linear-gradient(0deg, rgba(5, 7, 11, 0.52), rgba(5, 7, 11, 0) 46%),
+      url("/assets/peugeot-408-hybrid.webp") center right / cover no-repeat;
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-image:
+      linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
   }
 
   .local-seo-section {
@@ -1897,11 +1898,20 @@ tr:hover td {
   }
 
   .local-route-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .local-route-grid article {
     min-height: auto;
+    padding: 13px;
+  }
+
+  .local-route-grid h3 {
+    font-size: 0.92rem;
+  }
+
+  .local-route-grid p {
+    font-size: 0.82rem;
   }
 
   h1 {
@@ -1910,6 +1920,7 @@ tr:hover td {
 
   .hero-subtitle {
     font-size: 1.02rem;
+    max-width: 96%;
   }
 
   .hero-actions .btn,
@@ -1921,7 +1932,7 @@ tr:hover td {
   }
 
   .hero-stats {
-    margin-top: 30px;
+    margin-top: 24px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
@@ -1950,7 +1961,7 @@ tr:hover td {
   }
 
   .hero-booking-card {
-    padding: 18px;
+    display: none;
   }
 
   .hero-booking-card h2 {
@@ -1974,12 +1985,12 @@ tr:hover td {
   }
 
   .section {
-    padding: 58px 20px;
+    padding: 46px 20px;
   }
 
   .region-band {
     min-height: auto;
-    padding: 58px 20px;
+    padding: 46px 20px;
     background:
       linear-gradient(0deg, rgba(5, 7, 11, 0.92) 0%, rgba(5, 7, 11, 0.68) 52%, rgba(5, 7, 11, 0.2) 100%),
       url("/assets/comarca-bg.webp") center / cover no-repeat;
@@ -2002,20 +2013,36 @@ tr:hover td {
   .route-inputs,
   .calc-actions,
   .hero-card-actions,
-  .review-cards,
-  .comfort-strip {
+  .review-cards {
     grid-template-columns: 1fr;
   }
 
   .suggestions,
-  .suggestions.compact,
-  .form-grid,
-  .service-grid,
-  .spec-grid,
-  .lookup-metrics,
   .vehicle-gallery,
   .site-footer {
     grid-template-columns: 1fr;
+  }
+
+  .suggestions.compact,
+  .form-grid,
+  .comfort-strip,
+  .service-grid,
+  .spec-grid,
+  .lookup-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lookup-metrics {
+    gap: 7px;
+  }
+
+  .lookup-metrics div {
+    min-height: 54px;
+    padding: 8px;
+  }
+
+  .lookup-metrics span {
+    font-size: 0.68rem;
   }
 
   .instant-note {
@@ -2023,7 +2050,7 @@ tr:hover td {
   }
 
   .reviews-section {
-    padding-top: 58px;
+    padding-top: 46px;
   }
 
   .reviews-summary {
@@ -2052,17 +2079,45 @@ tr:hover td {
   }
 
   .vehicle-gallery img {
-    height: 260px;
+    height: 210px;
+  }
+
+  .service-card {
+    min-height: auto;
+    padding: 13px;
+  }
+
+  .service-card svg {
+    margin-bottom: 12px;
+  }
+
+  .service-card h3 {
+    font-size: 0.98rem;
+  }
+
+  .service-card p {
+    font-size: 0.84rem;
+  }
+
+  .service-card small {
+    display: none;
+  }
+
+  .spec-grid div,
+  .comfort-strip div {
+    min-height: 50px;
+    padding: 10px;
   }
 
   .closing-band {
     width: calc(100% - 40px);
-    margin: 14px auto 58px;
+    margin: 14px auto 42px;
+    padding: 14px;
   }
 
   .closing-band img {
     width: 100%;
-    height: 170px;
+    height: 138px;
   }
 
   .closing-band h2 {
