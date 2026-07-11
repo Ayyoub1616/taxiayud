@@ -115,7 +115,7 @@ type WhatsAppOptions = {
   pickupLocation: PickupLocation;
 };
 
-type LangCode = "es" | "en" | "fr" | "ar";
+type LangCode = "es" | "en" | "fr" | "ca" | "de" | "it" | "pt" | "nl" | "ar";
 
 type Copy = {
   nav: string[];
@@ -213,10 +213,15 @@ const LANGUAGE_OPTIONS: Record<LangCode, { label: string; short: string; whatsap
   es: { label: "Español", short: "ES", whatsapp: "Español", dir: "ltr" },
   en: { label: "English", short: "EN", whatsapp: "English", dir: "ltr" },
   fr: { label: "Français", short: "FR", whatsapp: "Français", dir: "ltr" },
+  ca: { label: "Català", short: "CA", whatsapp: "Català", dir: "ltr" },
+  de: { label: "Deutsch", short: "DE", whatsapp: "Deutsch", dir: "ltr" },
+  it: { label: "Italiano", short: "IT", whatsapp: "Italiano", dir: "ltr" },
+  pt: { label: "Português", short: "PT", whatsapp: "Português", dir: "ltr" },
+  nl: { label: "Nederlands", short: "NL", whatsapp: "Nederlands", dir: "ltr" },
   ar: { label: "العربية", short: "AR", whatsapp: "Arabic / العربية", dir: "rtl" },
 };
 
-const COPY: Record<LangCode, Copy> = {
+const BASE_COPY = {
   es: {
     nav: ["WhatsApp", "Calcular", "Reseñas", "Servicios", "Tarifas"],
     directWhatsapp: "WhatsApp directo",
@@ -718,12 +723,12 @@ const COPY: Record<LangCode, Copy> = {
     googleText: "منشورة في ملف Google التجاري",
     googleRating: "على Google",
     regionEyebrow: "منطقة كالاتايود",
-    regionTitle: "كالاتايود، دير الحجر، إل بيلار والمنتجعات بسهولة",
+    regionTitle: "كالاتايود، قرى المنطقة، المنتجعات وسرقسطة بسهولة",
     regionText: "خدمة دقيقة ومريحة للتنقل في كالاتايود وسرقسطة والمنطقة مع حقائب أو عائلة أو سياحة.",
     comfort: ["قيادة هادئة", "صندوق واسع", "تاكسي رسمي", "حجز واتساب"],
     seoEyebrow: "تاكسي محلي مميز",
     seoTitle: "تاكسي موثوق في كالاتايود والمنطقة",
-    seoText: "رحلات متكررة من المحطة، الفنادق، Plaza del Fuerte، دير الحجر، المنتجعات، سرقسطة، إل بيلار والمطار.",
+    seoText: "رحلات متكررة من المحطة، الفنادق، Plaza del Fuerte، قرى المنطقة، دير الحجر، المنتجعات، سرقسطة والمطار.",
     seoRoutes: [
       {
         title: "تاكسي محطة كالاتايود",
@@ -734,7 +739,7 @@ const COPY: Record<LangCode, Copy> = {
         text: "تنقل مباشر من كالاتايود مع إمكانية حجز العودة.",
       },
       {
-        title: "سرقسطة، إل بيلار والمطار",
+        title: "سرقسطة، المطار وDelicias",
         text: "رحلات إلى Delicias ومطار سرقسطة والمستشفيات والمركز.",
       },
       {
@@ -847,6 +852,254 @@ const COPY: Record<LangCode, Copy> = {
     footerLinks: ["دير الحجر", "المنتجعات", "سرقسطة والمطار", "قرى المنطقة"],
     floatingWhatsapp: "الحجز عبر واتساب",
   },
+} satisfies Record<"es" | "en" | "fr" | "ar", Copy>;
+
+const COPY: Record<LangCode, Copy> = {
+  es: BASE_COPY.es,
+  en: BASE_COPY.en,
+  fr: BASE_COPY.fr,
+  ar: BASE_COPY.ar,
+  ca: {
+    ...BASE_COPY.es,
+    nav: ["WhatsApp", "Calcular", "Ressenyes", "Serveis", "Tarifes"],
+    directWhatsapp: "WhatsApp directe",
+    calculatePrice: "Calcular preu",
+    call: "Trucar",
+    heroEyebrow: "Taxi oficial a Calatayud · Llicència 18",
+    heroSubtitle:
+      "Taxi des de Calatayud per a pobles de la comarca, balnearis, Monasterio de Piedra, Saragossa, aeroport i estació.",
+    bookTitle: "Reserva directa, sense formularis llargs",
+    bookText:
+      "Envia un missatge directe per consultar disponibilitat o demanar taxi ara. La calculadora queda a sota per a pressupostos orientatius.",
+    noRoute: "Sense calcular ruta",
+    fastReply: "Resposta ràpida",
+    taxiNow: "Taxi ara",
+    sendWhatsapp: "Enviar WhatsApp",
+    seeQuote: "Veure pressupost",
+    paymentTitle: "Pagament flexible",
+    officialFare: "Tarifa oficial",
+    googleText: "públiques al perfil d'empresa",
+    googleRating: "a Google",
+    regionTitle: "Calatayud, pobles de la comarca, balnearis i Saragossa sense complicacions",
+    comfort: ["Conducció tranquil·la", "Maleter ampli", "Taxi oficial", "Reserva per WhatsApp"],
+    seoTitle: "El taxi de confiança per a Calatayud i la zona",
+    seoText:
+      "Rutes freqüents amb recollida a estació, hotels, Plaza del Fuerte, pobles de la comarca, Monasterio de Piedra, balnearis, Saragossa i aeroport.",
+    calcTitle: "Calcula la ruta i envia el missatge preparat",
+    schedule: "Programar",
+    now: "Ara",
+    origin: "Origen",
+    destination: "Destinació",
+    originPlaceholder: "Carrer, hotel, estació, municipi...",
+    destinationPlaceholder: "Carrer, hotel, ciutat, aeroport...",
+    habitualDestination: "Destinació habitual",
+    date: "Data",
+    time: "Hora",
+    passengers: "Passatgers",
+    passengerOptions: ["1 passatger", "2 passatgers", "3 passatgers", "4 passatgers"],
+    sendMyLocation: "Enviar la meva ubicació",
+    calculating: "Calculant...",
+    resultDistance: "Distància estimada",
+    quoteEstimate: "Pressupost orientatiu",
+    bookWithMessage: "Reservar amb missatge",
+    seeAvailability: "Veure disponibilitat ara",
+    whatsappQuote: "Pressupost per WhatsApp",
+    reviewsEyebrow: "Ressenyes de Google",
+    reviewsWith: "amb",
+    moreReviews: "Veure més ressenyes",
+    servicesTitle: "Pobles, balnearis i Saragossa des de Calatayud",
+    servicesText:
+      "Servei còmode per moure't per la comarca: pobles propers, balnearis, estació, Saragossa, aeroport, cites mèdiques i viatges programats.",
+    tariffsEyebrow: "Tarifes",
+    tariffsTitle: "Destinacions freqüents",
+    closingTitle: "Taxi disponible a Calatayud",
+    footerText: "Taxi oficial a Calatayud.",
+    floatingWhatsapp: "Reservar per WhatsApp",
+  },
+  de: {
+    ...BASE_COPY.en,
+    nav: ["WhatsApp", "Berechnen", "Bewertungen", "Service", "Tarife"],
+    directWhatsapp: "Direkt per WhatsApp",
+    calculatePrice: "Preis berechnen",
+    call: "Anrufen",
+    heroEyebrow: "Offizielles Taxi in Calatayud · Lizenz 18",
+    heroSubtitle:
+      "Taxi ab Calatayud zu Dörfern der Region, Thermalbädern, Monasterio de Piedra, Zaragoza, Flughafen und Bahnhof.",
+    bookTitle: "Direkt buchen, ohne lange Formulare",
+    bookText:
+      "Senden Sie direkt eine Nachricht, um Verfügbarkeit zu prüfen oder jetzt ein Taxi anzufragen. Der Rechner gibt eine Orientierung.",
+    noRoute: "Ohne Routenberechnung",
+    fastReply: "Schnelle Antwort",
+    taxiNow: "Taxi jetzt",
+    sendWhatsapp: "WhatsApp senden",
+    seeQuote: "Preis ansehen",
+    paymentTitle: "Flexible Zahlung",
+    officialFare: "Offizieller Tarif",
+    googleText: "öffentlich im Unternehmensprofil",
+    googleRating: "bei Google",
+    regionTitle: "Calatayud, Dörfer, Thermalbäder und Zaragoza bequem erreichen",
+    comfort: ["Ruhige Fahrt", "Großer Kofferraum", "Offizielles Taxi", "Buchung per WhatsApp"],
+    seoTitle: "Ihr zuverlässiges Taxi in Calatayud und Umgebung",
+    seoText:
+      "Häufige Fahrten ab Bahnhof, Hotels, Plaza del Fuerte, Dörfern der Region, Monasterio de Piedra, Thermalbädern, Zaragoza und Flughafen.",
+    calcTitle: "Route berechnen und fertige Nachricht senden",
+    schedule: "Planen",
+    now: "Jetzt",
+    origin: "Abfahrt",
+    destination: "Ziel",
+    originPlaceholder: "Straße, Hotel, Bahnhof, Ort...",
+    destinationPlaceholder: "Straße, Hotel, Stadt, Flughafen...",
+    date: "Datum",
+    time: "Uhrzeit",
+    passengers: "Fahrgäste",
+    passengerOptions: ["1 Fahrgast", "2 Fahrgäste", "3 Fahrgäste", "4 Fahrgäste"],
+    sendMyLocation: "Meinen Standort senden",
+    calculating: "Berechnung...",
+    resultDistance: "Geschätzte Entfernung",
+    quoteEstimate: "Orientierungspreis",
+    bookWithMessage: "Mit Nachricht buchen",
+    seeAvailability: "Verfügbarkeit prüfen",
+    whatsappQuote: "WhatsApp-Angebot",
+    reviewsEyebrow: "Google-Bewertungen",
+    reviewsWith: "mit",
+    moreReviews: "Mehr Bewertungen",
+    servicesTitle: "Dörfer, Thermalbäder und Zaragoza ab Calatayud",
+    servicesText:
+      "Komfortabler Service in der Umgebung: nahe Dörfer, Thermalbäder, Bahnhof, Zaragoza, Flughafen, Arzttermine und geplante Fahrten.",
+    tariffsEyebrow: "Tarife",
+    tariffsTitle: "Häufige Ziele",
+    closingTitle: "Taxi verfügbar in Calatayud",
+    footerText: "Offizielles Taxi in Calatayud.",
+  },
+  it: {
+    ...BASE_COPY.en,
+    nav: ["WhatsApp", "Calcola", "Recensioni", "Servizi", "Tariffe"],
+    directWhatsapp: "WhatsApp diretto",
+    calculatePrice: "Calcola prezzo",
+    call: "Chiama",
+    heroEyebrow: "Taxi ufficiale a Calatayud · Licenza 18",
+    heroSubtitle:
+      "Taxi da Calatayud verso paesi della comarca, terme, Monasterio de Piedra, Saragozza, aeroporto e stazione.",
+    bookTitle: "Prenotazione diretta, senza moduli lunghi",
+    noRoute: "Senza calcolare percorso",
+    fastReply: "Risposta rapida",
+    taxiNow: "Taxi ora",
+    sendWhatsapp: "Invia WhatsApp",
+    seeQuote: "Vedi preventivo",
+    paymentTitle: "Pagamento flessibile",
+    officialFare: "Tariffa ufficiale",
+    googleText: "pubbliche sul profilo aziendale",
+    googleRating: "su Google",
+    regionTitle: "Calatayud, paesi, terme e Saragozza senza complicazioni",
+    comfort: ["Guida tranquilla", "Bagagliaio ampio", "Taxi ufficiale", "Prenotazione WhatsApp"],
+    seoTitle: "Il taxi di fiducia per Calatayud e dintorni",
+    calcTitle: "Calcola il percorso e invia il messaggio pronto",
+    schedule: "Programmare",
+    now: "Ora",
+    origin: "Origine",
+    destination: "Destinazione",
+    passengers: "Passeggeri",
+    passengerOptions: ["1 passeggero", "2 passeggeri", "3 passeggeri", "4 passeggeri"],
+    resultDistance: "Distanza stimata",
+    quoteEstimate: "Preventivo orientativo",
+    bookWithMessage: "Prenota con messaggio",
+    seeAvailability: "Verifica disponibilità",
+    whatsappQuote: "Preventivo WhatsApp",
+    reviewsEyebrow: "Recensioni Google",
+    reviewsWith: "con",
+    moreReviews: "Vedi altre recensioni",
+    servicesTitle: "Paesi, terme e Saragozza da Calatayud",
+    tariffsEyebrow: "Tariffe",
+    tariffsTitle: "Destinazioni frequenti",
+    closingTitle: "Taxi disponibile a Calatayud",
+    footerText: "Taxi ufficiale a Calatayud.",
+  },
+  pt: {
+    ...BASE_COPY.en,
+    nav: ["WhatsApp", "Calcular", "Avaliações", "Serviços", "Tarifas"],
+    directWhatsapp: "WhatsApp direto",
+    calculatePrice: "Calcular preço",
+    call: "Ligar",
+    heroEyebrow: "Táxi oficial em Calatayud · Licença 18",
+    heroSubtitle:
+      "Táxi desde Calatayud para aldeias da comarca, termas, Monasterio de Piedra, Zaragoza, aeroporto e estação.",
+    bookTitle: "Reserva direta, sem formulários longos",
+    noRoute: "Sem calcular rota",
+    fastReply: "Resposta rápida",
+    taxiNow: "Táxi agora",
+    sendWhatsapp: "Enviar WhatsApp",
+    seeQuote: "Ver orçamento",
+    paymentTitle: "Pagamento flexível",
+    officialFare: "Tarifa oficial",
+    googleText: "públicas no perfil da empresa",
+    googleRating: "no Google",
+    regionTitle: "Calatayud, aldeias, termas e Zaragoza sem complicações",
+    comfort: ["Condução tranquila", "Bagageira ampla", "Táxi oficial", "Reserva por WhatsApp"],
+    seoTitle: "O táxi de confiança em Calatayud e arredores",
+    calcTitle: "Calcule a rota e envie a mensagem pronta",
+    schedule: "Agendar",
+    now: "Agora",
+    origin: "Origem",
+    destination: "Destino",
+    passengers: "Passageiros",
+    passengerOptions: ["1 passageiro", "2 passageiros", "3 passageiros", "4 passageiros"],
+    resultDistance: "Distância estimada",
+    quoteEstimate: "Orçamento estimado",
+    bookWithMessage: "Reservar com mensagem",
+    seeAvailability: "Ver disponibilidade",
+    whatsappQuote: "Orçamento por WhatsApp",
+    reviewsEyebrow: "Avaliações Google",
+    reviewsWith: "com",
+    moreReviews: "Ver mais avaliações",
+    servicesTitle: "Aldeias, termas e Zaragoza desde Calatayud",
+    tariffsEyebrow: "Tarifas",
+    tariffsTitle: "Destinos frequentes",
+    closingTitle: "Táxi disponível em Calatayud",
+    footerText: "Táxi oficial em Calatayud.",
+  },
+  nl: {
+    ...BASE_COPY.en,
+    nav: ["WhatsApp", "Berekenen", "Reviews", "Diensten", "Tarieven"],
+    directWhatsapp: "Direct WhatsApp",
+    calculatePrice: "Prijs berekenen",
+    call: "Bellen",
+    heroEyebrow: "Officiële taxi in Calatayud · Licentie 18",
+    heroSubtitle:
+      "Taxi vanaf Calatayud naar dorpen in de regio, kuuroorden, Monasterio de Piedra, Zaragoza, luchthaven en station.",
+    bookTitle: "Direct boeken, zonder lange formulieren",
+    noRoute: "Geen route nodig",
+    fastReply: "Snelle reactie",
+    taxiNow: "Taxi nu",
+    sendWhatsapp: "WhatsApp sturen",
+    seeQuote: "Prijs bekijken",
+    paymentTitle: "Flexibel betalen",
+    officialFare: "Officieel tarief",
+    googleText: "openbaar op het bedrijfsprofiel",
+    googleRating: "op Google",
+    regionTitle: "Calatayud, dorpen, kuuroorden en Zaragoza zonder gedoe",
+    comfort: ["Rustige rit", "Ruime kofferbak", "Officiële taxi", "Boeken via WhatsApp"],
+    seoTitle: "De betrouwbare taxi voor Calatayud en omgeving",
+    calcTitle: "Bereken de route en stuur een kant-en-klaar bericht",
+    schedule: "Plannen",
+    now: "Nu",
+    origin: "Vertrek",
+    destination: "Bestemming",
+    passengers: "Passagiers",
+    passengerOptions: ["1 passagier", "2 passagiers", "3 passagiers", "4 passagiers"],
+    resultDistance: "Geschatte afstand",
+    quoteEstimate: "Richtprijs",
+    bookWithMessage: "Boeken met bericht",
+    seeAvailability: "Beschikbaarheid controleren",
+    whatsappQuote: "WhatsApp-prijs",
+    reviewsEyebrow: "Google reviews",
+    reviewsWith: "met",
+    moreReviews: "Meer reviews",
+    servicesTitle: "Dorpen, kuuroorden en Zaragoza vanaf Calatayud",
+    tariffsEyebrow: "Tarieven",
+    tariffsTitle: "Veelgebruikte bestemmingen",
+    closingTitle: "Taxi beschikbaar in Calatayud",
+    footerText: "Officiële taxi in Calatayud.",
+  },
 };
 
 const regionHighlights = [
@@ -854,6 +1107,78 @@ const regionHighlights = [
   "Pueblos",
   "Balnearios",
   "Zaragoza",
+];
+
+const heroStatLabels: Record<LangCode, [string, string, string]> = {
+  es: ["reservas", "licencia", "destinos"],
+  en: ["bookings", "licence", "destinations"],
+  fr: ["réservations", "licence", "destinations"],
+  ca: ["reserves", "llicència", "destins"],
+  de: ["Buchungen", "Lizenz", "Ziele"],
+  it: ["prenotazioni", "licenza", "destinazioni"],
+  pt: ["reservas", "licença", "destinos"],
+  nl: ["boekingen", "licentie", "bestemmingen"],
+  ar: ["حجز", "رخصة", "وجهات"],
+};
+
+const touristSearchCopy: Record<LangCode, { eyebrow: string; title: string; text: string }> = {
+  es: {
+    eyebrow: "Búsquedas de turistas",
+    title: "Taxi cerca de mí en Calatayud, en cualquier idioma",
+    text: "La web está preparada para consultas habituales de viajeros que buscan taxi en la comarca, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto.",
+  },
+  en: {
+    eyebrow: "Tourist searches",
+    title: "Taxi near me in Calatayud, in every key language",
+    text: "The page targets common traveller searches for taxis in the area, spas, Monasterio de Piedra, Zaragoza and the airport.",
+  },
+  fr: {
+    eyebrow: "Recherches touristiques",
+    title: "Taxi près de moi à Calatayud, dans les langues clés",
+    text: "La page couvre les recherches fréquentes des voyageurs vers la région, les thermes, Monasterio de Piedra, Saragosse et l'aéroport.",
+  },
+  ca: {
+    eyebrow: "Cerques de turistes",
+    title: "Taxi prop meu a Calatayud, també en català",
+    text: "La web està preparada per a cerques habituals de viatgers cap a la comarca, balnearis, Monasterio de Piedra, Saragossa i aeroport.",
+  },
+  de: {
+    eyebrow: "Touristische Suchen",
+    title: "Taxi in der Nähe in Calatayud",
+    text: "Die Seite deckt typische Suchanfragen von Reisenden für die Region, Thermalbäder, Monasterio de Piedra, Zaragoza und den Flughafen ab.",
+  },
+  it: {
+    eyebrow: "Ricerche turistiche",
+    title: "Taxi vicino a me a Calatayud",
+    text: "La pagina include ricerche frequenti dei viaggiatori per comarca, terme, Monasterio de Piedra, Saragozza e aeroporto.",
+  },
+  pt: {
+    eyebrow: "Pesquisas de turistas",
+    title: "Táxi perto de mim em Calatayud",
+    text: "A página cobre pesquisas comuns de viajantes para a comarca, termas, Monasterio de Piedra, Zaragoza e aeroporto.",
+  },
+  nl: {
+    eyebrow: "Toeristische zoekopdrachten",
+    title: "Taxi in de buurt in Calatayud",
+    text: "De pagina ondersteunt veelgebruikte zoekopdrachten van reizigers naar de regio, kuuroorden, Monasterio de Piedra, Zaragoza en luchthaven.",
+  },
+  ar: {
+    eyebrow: "بحث السياح",
+    title: "تاكسي قريب مني في كالاتايود بعدة لغات",
+    text: "الصفحة مهيأة لعبارات بحث المسافرين عن تاكسي في المنطقة والمنتجعات ودير الحجر وسرقسطة والمطار.",
+  },
+};
+
+const touristSearchPhrases = [
+  { language: "ES", query: "taxi cerca de mí Calatayud" },
+  { language: "EN", query: "taxi near me Calatayud" },
+  { language: "CA", query: "taxi prop meu Calatayud" },
+  { language: "FR", query: "taxi près de moi Calatayud" },
+  { language: "DE", query: "taxi in der Nähe Calatayud" },
+  { language: "IT", query: "taxi vicino a me Calatayud" },
+  { language: "PT", query: "táxi perto de mim Calatayud" },
+  { language: "NL", query: "taxi in de buurt Calatayud" },
+  { language: "AR", query: "تاكسي قريب مني كالاتايود" },
 ];
 
 const serviceIcons = [
@@ -1003,7 +1328,12 @@ function detectLanguage(): LangCode {
   const language = preferred.toLowerCase();
 
   if (language.startsWith("es")) return "es";
+  if (language.startsWith("ca")) return "ca";
   if (language.startsWith("fr")) return "fr";
+  if (language.startsWith("de")) return "de";
+  if (language.startsWith("it")) return "it";
+  if (language.startsWith("pt")) return "pt";
+  if (language.startsWith("nl")) return "nl";
   if (language.startsWith("ar")) return "ar";
   return "en";
 }
@@ -1161,7 +1491,7 @@ function pickupLocationLine(pickupLocation: PickupLocation) {
 }
 
 function whatsappDirectUrl(language: LangCode) {
-  const linesByLanguage: Record<LangCode, string[]> = {
+  const linesByLanguage: Partial<Record<LangCode, string[]>> = {
     es: [
       "Hola Taxi Ayud, ¿estás disponible?",
       "Quiero hablar para reservar o consultar un taxi.",
@@ -1180,6 +1510,36 @@ function whatsappDirectUrl(language: LangCode) {
       "J'envoie les détails ici.",
       "Merci.",
     ],
+    ca: [
+      "Hola Taxi Ayud, estàs disponible?",
+      "Voldria reservar o consultar un taxi.",
+      "T'envio els detalls per aquí.",
+      "Gràcies.",
+    ],
+    de: [
+      "Hallo Taxi Ayud, sind Sie verfügbar?",
+      "Ich möchte ein Taxi buchen oder anfragen.",
+      "Ich sende die Details hier.",
+      "Danke.",
+    ],
+    it: [
+      "Ciao Taxi Ayud, siete disponibili?",
+      "Vorrei prenotare o chiedere informazioni su un taxi.",
+      "Invio qui i dettagli.",
+      "Grazie.",
+    ],
+    pt: [
+      "Olá Taxi Ayud, está disponível?",
+      "Gostaria de reservar ou pedir informação sobre um táxi.",
+      "Envio os detalhes por aqui.",
+      "Obrigado.",
+    ],
+    nl: [
+      "Hallo Taxi Ayud, bent u beschikbaar?",
+      "Ik wil graag een taxi boeken of informatie vragen.",
+      "Ik stuur de details hier.",
+      "Dank u.",
+    ],
     ar: [
       "مرحبا Taxi Ayud، هل أنت متاح؟",
       "أريد الحجز أو الاستفسار عن تاكسي.",
@@ -1188,7 +1548,7 @@ function whatsappDirectUrl(language: LangCode) {
     ],
   };
 
-  const text = [languageNotice(language), "", ...linesByLanguage[language]].join("\n");
+  const text = [languageNotice(language), "", ...(linesByLanguage[language] ?? linesByLanguage.en!)].join("\n");
 
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 }
@@ -1197,7 +1557,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
   const destination =
     options.result?.destination || options.destination.trim() || "destino por confirmar";
   const origin = options.result?.origin || options.origin.trim() || "origen por confirmar";
-  const whatsappCopy = {
+  const whatsappCopies = {
     es: {
       hello: "Hola Taxi Ayud, quiero reservar un taxi.",
       now: "Tipo: taxi ahora / disponibilidad inmediata",
@@ -1249,6 +1609,91 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       confirm: "Pouvez-vous confirmer la disponibilité ?",
       thanks: "Merci.",
     },
+    ca: {
+      hello: "Hola Taxi Ayud, vull reservar un taxi.",
+      now: "Tipus: taxi ara / disponibilitat immediata",
+      later: `Data i hora: ${dateLabel(options.date)} a les ${options.hour}h`,
+      origin: "Origen",
+      destination: "Destinació",
+      passengers: "Passatgers",
+      notes: "Notes",
+      distance: "Distància estimada",
+      wait: "Espera",
+      price: "Preu orientatiu",
+      fare: "Tarifa",
+      askPrice: "Si us plau, confirma preu i disponibilitat.",
+      notCalculated: "La ruta no s'ha calculat automàticament al web.",
+      confirm: "Em confirmes disponibilitat?",
+      thanks: "Gràcies.",
+    },
+    de: {
+      hello: "Hallo Taxi Ayud, ich möchte ein Taxi buchen.",
+      now: "Art: Taxi jetzt / sofortige Verfügbarkeit",
+      later: `Datum und Uhrzeit: ${dateLabel(options.date)} um ${options.hour}`,
+      origin: "Abfahrt",
+      destination: "Ziel",
+      passengers: "Fahrgäste",
+      notes: "Hinweise",
+      distance: "Geschätzte Entfernung",
+      wait: "Wartezeit",
+      price: "Geschätzter Preis",
+      fare: "Tarif",
+      askPrice: "Bitte Preis und Verfügbarkeit bestätigen.",
+      notCalculated: "Die Route wurde auf der Website nicht automatisch berechnet.",
+      confirm: "Können Sie die Verfügbarkeit bestätigen?",
+      thanks: "Danke.",
+    },
+    it: {
+      hello: "Ciao Taxi Ayud, vorrei prenotare un taxi.",
+      now: "Tipo: taxi ora / disponibilità immediata",
+      later: `Data e ora: ${dateLabel(options.date)} alle ${options.hour}`,
+      origin: "Origine",
+      destination: "Destinazione",
+      passengers: "Passeggeri",
+      notes: "Note",
+      distance: "Distanza stimata",
+      wait: "Attesa",
+      price: "Prezzo stimato",
+      fare: "Tariffa",
+      askPrice: "Per favore confermate prezzo e disponibilità.",
+      notCalculated: "Il percorso non è stato calcolato automaticamente sul sito.",
+      confirm: "Potete confermare la disponibilità?",
+      thanks: "Grazie.",
+    },
+    pt: {
+      hello: "Olá Taxi Ayud, gostaria de reservar um táxi.",
+      now: "Tipo: táxi agora / disponibilidade imediata",
+      later: `Data e hora: ${dateLabel(options.date)} às ${options.hour}`,
+      origin: "Origem",
+      destination: "Destino",
+      passengers: "Passageiros",
+      notes: "Notas",
+      distance: "Distância estimada",
+      wait: "Espera",
+      price: "Preço estimado",
+      fare: "Tarifa",
+      askPrice: "Por favor confirme preço e disponibilidade.",
+      notCalculated: "A rota não foi calculada automaticamente no site.",
+      confirm: "Pode confirmar disponibilidade?",
+      thanks: "Obrigado.",
+    },
+    nl: {
+      hello: "Hallo Taxi Ayud, ik wil graag een taxi boeken.",
+      now: "Type: taxi nu / direct beschikbaar",
+      later: `Datum en tijd: ${dateLabel(options.date)} om ${options.hour}`,
+      origin: "Vertrek",
+      destination: "Bestemming",
+      passengers: "Passagiers",
+      notes: "Opmerkingen",
+      distance: "Geschatte afstand",
+      wait: "Wachttijd",
+      price: "Geschatte prijs",
+      fare: "Tarief",
+      askPrice: "Kunt u prijs en beschikbaarheid bevestigen?",
+      notCalculated: "De route is niet automatisch berekend op de website.",
+      confirm: "Kunt u de beschikbaarheid bevestigen?",
+      thanks: "Dank u.",
+    },
     ar: {
       hello: "مرحبا Taxi Ayud، أريد حجز تاكسي.",
       now: "النوع: تاكسي الآن / توفر فوري",
@@ -1266,7 +1711,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       confirm: "هل يمكنك تأكيد التوفر؟",
       thanks: "شكرا.",
     },
-  }[language];
+  };
+  const whatsappCopy = whatsappCopies[language] ?? whatsappCopies.en;
   const modeLine = options.mode === "now" ? whatsappCopy.now : whatsappCopy.later;
   const locationLine = pickupLocationLine(options.pickupLocation);
   const notesLine = options.notes.trim() ? `${whatsappCopy.notes}: ${options.notes.trim()}` : "";
@@ -1336,10 +1782,12 @@ function App() {
   const [result, setResult] = useState<Result | null>(null);
   const [reviews, setReviews] = useState<ReviewsData>(GOOGLE_REVIEWS);
   const t = COPY[language];
+  const statsLabels = heroStatLabels[language];
+  const touristCopy = touristSearchCopy[language];
   const heroStatsLocalized = [
-    { value: "24h", label: language === "es" ? "reservas" : language === "fr" ? "réservations" : language === "ar" ? "حجز" : "bookings" },
-    { value: "N.18", label: language === "es" ? "licencia" : language === "fr" ? "licence" : language === "ar" ? "رخصة" : "licence" },
-    { value: "+100", label: language === "es" ? "destinos" : language === "fr" ? "destinations" : language === "ar" ? "وجهات" : "destinations" },
+    { value: "24h", label: statsLabels[0] },
+    { value: "N.18", label: statsLabels[1] },
+    { value: "+100", label: statsLabels[2] },
   ];
 
   const suggestions = useMemo(() => {
@@ -1394,6 +1842,34 @@ function App() {
       // Ignore storage errors in private browsing.
     }
   }, [language]);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+
+    document.body.classList.add("motion-ready");
+    const items = Array.from(document.querySelectorAll<HTMLElement>("[data-animate]"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+    );
+
+    items.forEach((item, index) => {
+      item.style.setProperty("--reveal-delay", `${Math.min(index * 35, 220)}ms`);
+      observer.observe(item);
+    });
+
+    return () => {
+      observer.disconnect();
+      document.body.classList.remove("motion-ready");
+    };
+  }, [language, reviews.items.length]);
 
   useEffect(() => {
     let ignore = false;
@@ -1748,7 +2224,7 @@ function App() {
           </div>
         </section>
 
-        <section className="region-band" aria-label="Comarca de Calatayud">
+        <section className="region-band" aria-label="Comarca de Calatayud" data-animate>
           <div className="region-copy">
             <p className="eyebrow compact">
               <MapPin aria-hidden="true" />
@@ -1767,7 +2243,7 @@ function App() {
           </div>
         </section>
 
-        <section className="local-seo-section" aria-label="Taxi en Calatayud y comarca">
+        <section className="local-seo-section" aria-label="Taxi en Calatayud y comarca" data-animate>
           <div>
             <p className="eyebrow compact">
               <MapPinned aria-hidden="true" />
@@ -1787,6 +2263,25 @@ function App() {
           </div>
         </section>
 
+        <section className="tourist-search-section" aria-label="Búsquedas multidioma de taxi" data-animate>
+          <div className="tourist-search-copy">
+            <p className="eyebrow compact">
+              <Languages aria-hidden="true" />
+              {touristCopy.eyebrow}
+            </p>
+            <h2>{touristCopy.title}</h2>
+            <p>{touristCopy.text}</p>
+          </div>
+          <div className="tourist-search-grid">
+            {touristSearchPhrases.map((item) => (
+              <span key={item.language}>
+                <strong>{item.language}</strong>
+                {item.query}
+              </span>
+            ))}
+          </div>
+        </section>
+
         <section className="section calc-section" id="calculadora">
           <div className="section-heading">
             <p className="eyebrow compact">
@@ -1797,7 +2292,7 @@ function App() {
             <p>{t.calcText}</p>
           </div>
 
-          <div className="calc-layout">
+          <div className="calc-layout" data-animate>
             <div className="calculator-panel">
               <div className="mode-toggle" role="group" aria-label="Tipo de reserva">
                 <button
@@ -2129,7 +2624,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section reviews-section" id="resenas">
+        <section className="section reviews-section" id="resenas" data-animate>
           <div className="reviews-summary">
             <p className="eyebrow compact">
               <Star aria-hidden="true" />
@@ -2152,7 +2647,7 @@ function App() {
               const reviewRating = Math.max(1, Math.min(5, Math.round(review.rating || 5)));
 
               return (
-                <article className="review-card featured-review" key={`${review.author}-${review.text}`}>
+                <article className="review-card featured-review" key={`${review.author}-${review.text}`} data-animate>
                   <span className="review-label">{t.featuredReview}</span>
                   <div aria-label={`${reviewRating} estrellas`}>
                     {Array.from({ length: 5 }).map((_, index) => (
@@ -2178,7 +2673,7 @@ function App() {
                   const reviewRating = Math.max(1, Math.min(5, Math.round(review.rating || 5)));
 
                   return (
-                    <article className="review-card" key={`${review.author}-${review.text}`}>
+                    <article className="review-card" key={`${review.author}-${review.text}`} data-animate>
                       <div aria-label={`${reviewRating} estrellas`}>
                         {Array.from({ length: 5 }).map((_, index) => (
                           <Star
@@ -2214,7 +2709,7 @@ function App() {
             {t.serviceItems.slice(0, 4).map((service, index) => {
               const Icon = serviceIcons[index] ?? Navigation;
               return (
-                <article className="service-card" key={service.title}>
+                <article className="service-card" key={service.title} data-animate>
                   <Icon aria-hidden="true" />
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
@@ -2229,7 +2724,7 @@ function App() {
               {t.serviceItems.slice(4).map((service, index) => {
                 const Icon = serviceIcons[index + 4] ?? Navigation;
                 return (
-                  <article className="service-card" key={service.title}>
+                  <article className="service-card" key={service.title} data-animate>
                     <Icon aria-hidden="true" />
                     <h3>{service.title}</h3>
                     <p>{service.text}</p>
@@ -2241,7 +2736,7 @@ function App() {
           </details>
         </section>
 
-        <section className="section vehicle-section" id="vehiculo">
+        <section className="section vehicle-section" id="vehiculo" data-animate>
           <div className="vehicle-copy">
             <p className="eyebrow compact">
               <ShieldCheck aria-hidden="true" />
@@ -2276,7 +2771,7 @@ function App() {
             <p>{t.tariffsText}</p>
           </div>
 
-          <div className="tariff-lookup">
+          <div className="tariff-lookup" data-animate>
             <div className="lookup-panel">
               <label className="field-label" htmlFor="tariff-destination">
                 {t.chooseDestination}
@@ -2376,7 +2871,7 @@ function App() {
           </details>
         </section>
 
-        <section className="closing-band">
+        <section className="closing-band" data-animate>
           <img src="/assets/taxi-light.webp" alt="" />
           <div>
             <p className="eyebrow compact">

@@ -420,6 +420,9 @@ h1 {
 }
 
 .btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -437,8 +440,42 @@ h1 {
     border-color 180ms ease;
 }
 
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0 36%, rgba(255, 255, 255, 0.28) 48%, transparent 60% 100%);
+  transform: translateX(-130%);
+  z-index: 0;
+  pointer-events: none;
+  transition: transform 620ms ease;
+}
+
 .btn:hover {
   transform: translateY(-2px);
+}
+
+.btn:hover::after {
+  transform: translateX(130%);
+}
+
+.btn > svg,
+.btn > span {
+  position: relative;
+  z-index: 1;
+}
+
+.motion-ready [data-animate] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 680ms ease var(--reveal-delay, 0ms),
+    transform 680ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+}
+
+.motion-ready [data-animate].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .btn:disabled {
@@ -669,6 +706,18 @@ h1 {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025)),
     var(--panel);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.local-route-grid article:hover {
+  transform: translateY(-4px);
+  border-color: var(--line-strong);
+  background:
+    linear-gradient(180deg, rgba(241, 195, 77, 0.11), rgba(255, 255, 255, 0.025)),
+    #121a24;
 }
 
 .local-route-grid svg {
@@ -689,6 +738,71 @@ h1 {
   margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.tourist-search-section {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+  gap: 22px;
+  align-items: center;
+  padding: 42px 40px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 72%),
+    #05070b;
+  border-bottom: 1px solid var(--line);
+}
+
+.tourist-search-copy {
+  justify-self: end;
+  width: min(480px, 100%);
+}
+
+.tourist-search-copy h2 {
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 2.15rem;
+  line-height: 1.04;
+}
+
+.tourist-search-copy p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+}
+
+.tourist-search-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.tourist-search-grid span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #eef5ff;
+  font-size: 0.88rem;
+  font-weight: 850;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.tourist-search-grid span:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  background: rgba(241, 195, 77, 0.12);
+}
+
+.tourist-search-grid strong {
+  color: var(--gold);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
 }
 
 .section {
@@ -1785,6 +1899,7 @@ tr:hover td {
   .calc-layout,
   .region-band,
   .local-seo-section,
+  .tourist-search-section,
   .reviews-section,
   .tariff-lookup,
   .vehicle-section,
@@ -1794,7 +1909,8 @@ tr:hover td {
 
   .hero-booking-card,
   .reviews-summary,
-  .local-seo-section > div:first-child {
+  .local-seo-section > div:first-child,
+  .tourist-search-copy {
     justify-self: start;
   }
 
@@ -1891,6 +2007,29 @@ tr:hover td {
 
   .local-seo-section {
     padding: 38px 20px;
+  }
+
+  .tourist-search-section {
+    grid-template-columns: 1fr;
+    padding: 36px 20px;
+  }
+
+  .tourist-search-copy {
+    width: 100%;
+  }
+
+  .tourist-search-copy h2 {
+    font-size: 1.85rem;
+  }
+
+  .tourist-search-grid {
+    gap: 7px;
+  }
+
+  .tourist-search-grid span {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.78rem;
   }
 
   .local-seo-section h2 {
