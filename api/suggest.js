@@ -9,17 +9,27 @@ function withSpain(value) {
 }
 
 function compactDetail(properties = {}) {
+  const province =
+    properties.county ||
+    (String(properties.region || "").toLowerCase() === "aragón" ? "Zaragoza" : properties.region);
   const parts = [
     properties.layer,
     [properties.street, properties.housenumber].filter(Boolean).join(" "),
     properties.postalcode,
     properties.locality || properties.localadmin,
-    properties.region,
+    province,
   ]
     .filter(Boolean)
     .map((part) => String(part));
 
   return [...new Set(parts)].join(" · ");
+}
+
+function displayLabel(label) {
+  return String(label || "")
+    .replace(/,\s*Aragón,\s*España$/i, ", Zaragoza, España")
+    .replace(/^Calatayud,\s*España$/i, "Calatayud, Zaragoza, España")
+    .replace(/^Calatayud,\s*Aragón/i, "Calatayud, Zaragoza");
 }
 
 export default async function handler(request, response) {
@@ -62,7 +72,7 @@ export default async function handler(request, response) {
     const suggestions = [];
 
     for (const feature of data?.features || []) {
-      const label = feature?.properties?.label;
+      const label = displayLabel(feature?.properties?.label);
       if (!label || seen.has(label)) continue;
 
       seen.add(label);

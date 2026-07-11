@@ -805,6 +805,183 @@ h1 {
   letter-spacing: 0.04em;
 }
 
+.intent-section {
+  padding: 44px 40px;
+  background:
+    linear-gradient(135deg, rgba(78, 161, 255, 0.11), transparent 34%),
+    linear-gradient(180deg, rgba(241, 195, 77, 0.06), transparent 68%),
+    #090d13;
+  border-bottom: 1px solid var(--line);
+}
+
+.breadcrumbs {
+  width: min(1120px, 100%);
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.breadcrumbs a {
+  color: #fff3c4;
+}
+
+.breadcrumbs svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+}
+
+.intent-layout {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.14fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.intent-copy,
+.intent-cards article,
+.intent-faq details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.intent-copy {
+  padding: 24px;
+}
+
+.intent-copy h2 {
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 2.15rem;
+  line-height: 1.04;
+}
+
+.intent-copy p:not(.eyebrow) {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.intent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.intent-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.intent-cards article {
+  min-height: 175px;
+  padding: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+    var(--panel);
+}
+
+.intent-cards svg {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 14px;
+  color: var(--gold);
+}
+
+.intent-cards h3 {
+  margin-bottom: 9px;
+  color: #fff;
+  font-size: 1.04rem;
+}
+
+.intent-cards p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.intent-faq,
+.internal-links {
+  width: min(1120px, 100%);
+  margin: 14px auto 0;
+}
+
+.intent-faq {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.intent-faq details {
+  padding: 0 16px;
+}
+
+.intent-faq summary {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.intent-faq p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.internal-links,
+.internal-link-band div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.internal-links a,
+.internal-link-band a {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid rgba(241, 195, 77, 0.2);
+  border-radius: 999px;
+  background: rgba(241, 195, 77, 0.08);
+  color: #fff0bc;
+  font-size: 0.88rem;
+  font-weight: 900;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.internal-links a:hover,
+.internal-link-band a:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  background: rgba(241, 195, 77, 0.15);
+}
+
+.internal-link-band {
+  padding: 28px 40px 34px;
+  background: #080c12;
+  border-bottom: 1px solid var(--line);
+}
+
+.internal-link-band > p,
+.internal-link-band > div {
+  width: min(1120px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .section {
   padding: 58px 40px;
 }
@@ -1342,6 +1519,11 @@ select:focus,
   padding: 0 12px 12px;
 }
 
+.google-more-link {
+  width: calc(100% - 24px);
+  margin: 0 12px 12px;
+}
+
 .service-section {
   background:
     linear-gradient(180deg, rgba(247, 243, 232, 0.06), transparent 240px),
@@ -1791,6 +1973,84 @@ tr:hover td {
   font-weight: 900;
 }
 
+.legal-footer {
+  display: grid;
+  gap: 8px;
+  padding: 0 40px 34px;
+  background: #030406;
+  color: #8b98aa;
+  font-size: 0.78rem;
+}
+
+.legal-footer details {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 8px;
+}
+
+.legal-footer summary {
+  color: #c8d2df;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.legal-footer p {
+  max-width: 980px;
+  margin: 8px 0 0;
+}
+
+.cookie-banner {
+  position: fixed;
+  z-index: 45;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  width: min(960px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid rgba(241, 195, 77, 0.28);
+  border-radius: 8px;
+  background: rgba(7, 11, 17, 0.96);
+  color: #e8eef8;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(18px);
+}
+
+.cookie-banner strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.cookie-banner p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.cookie-banner a {
+  display: inline-flex;
+  margin-right: 12px;
+  color: #ffe9a6;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cookie-actions .btn {
+  min-height: 42px;
+  padding: 0 14px;
+  white-space: nowrap;
+}
+
 .floating-whatsapp {
   position: fixed;
   right: 20px;
@@ -1900,6 +2160,7 @@ tr:hover td {
   .region-band,
   .local-seo-section,
   .tourist-search-section,
+  .intent-layout,
   .reviews-section,
   .tariff-lookup,
   .vehicle-section,
@@ -1916,6 +2177,10 @@ tr:hover td {
 
   .local-route-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intent-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .service-grid {
@@ -2012,6 +2277,31 @@ tr:hover td {
   .tourist-search-section {
     grid-template-columns: 1fr;
     padding: 36px 20px;
+  }
+
+  .intent-section,
+  .internal-link-band {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .intent-layout,
+  .intent-cards,
+  .intent-faq {
+    grid-template-columns: 1fr;
+  }
+
+  .intent-copy {
+    padding: 20px;
+  }
+
+  .intent-copy h2 {
+    font-size: 1.82rem;
+  }
+
+  .intent-cards article {
+    min-height: auto;
+    padding: 14px;
   }
 
   .tourist-search-copy {
@@ -2265,6 +2555,29 @@ tr:hover td {
 
   .site-footer {
     padding: 34px 20px 88px;
+  }
+
+  .legal-footer {
+    padding: 0 20px 92px;
+  }
+
+  .cookie-banner {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    grid-template-columns: 1fr;
+    width: calc(100% - 20px);
+    padding: 13px;
+  }
+
+  .cookie-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cookie-actions .btn {
+    width: 100%;
+    min-height: 44px;
   }
 
   .floating-whatsapp {

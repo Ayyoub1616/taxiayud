@@ -1,0 +1,93 @@
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+
+const siteUrl = "https://www.taxiayud.es";
+const pages = JSON.parse(readFileSync("src/seoPages.json", "utf8"));
+const errors = [];
+const titles = new Map();
+const descriptions = new Map();
+
+function fail(message) {
+  errors.push(message);
+}
+
+function pageFile(path) {
+  return path === "/" ? "dist/index.html" : join("dist", path, "index.html");
+}
+
+function match(html, pattern) {
+  return html.match(pattern)?.[1]?.trim() || "";
+}
+
+for (const page of pages) {
+  const file = pageFile(page.path);
+  if (!existsSync(file)) {
+    fail(`Falta el HTML de ${page.path}`);
+    continue;
+  }
+
+  const html = readFileSync(file, "utf8");
+  const canonical = `${siteUrl}${page.path === "/" ? "/" : page.path}`;
+  const title = match(html, /<title>([\s\S]*?)<\/title>/);
+  const description = match(html, /<meta\s+name="description"\s+content="([^"]*)"\s*\/>/);
+  const h1 = match(html, /<h1>([\s\S]*?)<\/h1>/);
+
+  if (html.includes("taxiayud.com")) fail(`${page.path} contiene taxiayud.com`);
+  if (html.includes("hreflang=")) fail(`${page.path} contiene hreflang sin versiones reales`);
+  if (html.includes('name="keywords"')) fail(`${page.path} contiene meta keywords innecesario`);
+  if (!title) fail(`${page.path} no tiene title`);
+  if (!description) fail(`${page.path} no tiene meta description`);
+  if (!h1) fail(`${page.path} no tiene H1 inicial`);
+  if (!html.includes(`<link rel="canonical" href="${canonical}" />`)) {
+    fail(`${page.path} canonical incorrecto`);
+  }
+  if (!html.includes(`<meta property="og:url" content="${canonical}" />`)) {
+    fail(`${page.path} og:url incorrecto`);
+  }
+  if (!html.includes('<script id="page-structured-data" type="application/ld+json">')) {
+    fail(`${page.path} no tiene JSON-LD principal`);
+  }
+  if (!html.includes("static-seo-content")) {
+    fail(`${page.path} no tiene contenido HTML inicial`);
+  }
+
+  const jsonScripts = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)];
+  if (!jsonScripts.length) fail(`${page.path} no tiene JSON-LD parseable`);
+  for (const script of jsonScripts) {
+    try {
+      JSON.parse(script[1]);
+    } catch (error) {
+      fail(`${page.path} contiene JSON-LD inválido: ${error.message}`);
+    }
+  }
+
+  if (titles.has(title)) fail(`Title duplicado: ${title}`);
+  if (descriptions.has(description)) fail(`Description duplicada: ${description}`);
+  titles.set(title, page.path);
+  descriptions.set(description, page.path);
+}
+
+const robots = readFileSync("dist/robots.txt", "utf8");
+const sitemap = readFileSync("dist/sitemap.xml", "utf8");
+if (!robots.includes(`${siteUrl}/sitemap.xml`)) fail("robots.txt no apunta al sitemap .es");
+if (robots.includes("taxiayud.com")) fail("robots.txt contiene .com");
+if (sitemap.includes("taxiayud.com")) fail("sitemap contiene .com");
+
+for (const page of pages) {
+  const url = `${siteUrl}${page.path === "/" ? "/" : page.path}`;
+  if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`sitemap no incluye ${url}`);
+}
+
+const sitemapUrls = [...sitemap.matchAll(/<loc>([\s\S]*?)<\/loc>/g)].map((item) => item[1]);
+if (sitemapUrls.length !== pages.length) {
+  fail(`sitemap tiene ${sitemapUrls.length} URLs, se esperaban ${pages.length}`);
+}
+
+if (!existsSync("dist/404.html")) fail("Falta dist/404.html");
+
+if (errors.length) {
+  console.error(errors.map((error) => `- ${error}`).join("\n"));
+  process.exit(1);
+}
+
+console.log(`SEO check OK: ${pages.length} URLs indexables, canonicals .es y JSON-LD válido.`);

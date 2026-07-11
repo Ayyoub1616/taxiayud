@@ -21,6 +21,13 @@ function pointFromRequest(point, fallbackLabel) {
   };
 }
 
+function displayLabel(label) {
+  return String(label || "")
+    .replace(/,\s*Aragón,\s*España$/i, ", Zaragoza, España")
+    .replace(/^Calatayud,\s*España$/i, "Calatayud, Zaragoza, España")
+    .replace(/^Calatayud,\s*Aragón/i, "Calatayud, Zaragoza");
+}
+
 async function geocode(text, apiKey) {
   const params = new URLSearchParams({
     text: withSpain(text),
@@ -50,7 +57,7 @@ async function geocode(text, apiKey) {
   }
 
   return {
-    label: feature?.properties?.label,
+    label: displayLabel(feature?.properties?.label),
     lng: coordinates[0],
     lat: coordinates[1],
   };
@@ -101,7 +108,7 @@ export default async function handler(request, response) {
   if (!apiKey) {
     response.status(500).json({
       code: "OPENROUTESERVICE_API_KEY_MISSING",
-      message: "Falta configurar OPENROUTESERVICE_API_KEY en Vercel.",
+      message: "Ahora mismo no se puede calcular la ruta exacta. Puedes consultar por WhatsApp.",
     });
     return;
   }

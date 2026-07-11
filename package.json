@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc -b && vite build && cp -R public/. dist/",
-    "preview": "vite preview --host 127.0.0.1"
+    "build": "tsc -b && vite build && cp -R public/. dist/ && node scripts/generate-static-pages.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "seo:check": "node scripts/seo-check.mjs",
+    "check": "pnpm build && pnpm seo:check"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.7.0",

@@ -4,8 +4,15 @@ export const CONTACT = {
   whatsapp: "34611861041",
   address: "Pl. del Fuerte, 50300 Calatayud, Zaragoza",
   googleProfile: "https://share.google/QJyQ83oNHjkRqtciX",
-  place: "Calatayud, Aragón",
+  place: "Calatayud, Zaragoza",
   license: "Licencia municipal n.º 18",
+};
+
+export const LEGAL = {
+  owner: "Charaf Eddine El Hatri Sbai",
+  taxId: "60535727A",
+  address: "Calatayud, Zaragoza",
+  businessName: "Taxi Ayud",
 };
 
 export const RATES = {
@@ -19,12 +26,19 @@ export const RATES = {
 
 export const GOOGLE_REVIEWS = {
   rating: "5/5",
-  count: "8 opiniones",
+  count: "10 opiniones",
   items: [
+    {
+      author: "Raquel C",
+      text: "Ante la dificultad de encontrar taxi en Calatayud, una suerte dar con ellos. Los necesité dos veces y fui con el mismo taxista, muy amable y puntual. El taxi perfecto, muy limpio y cómodo. Totalmente recomendable.",
+      time: "Hace 6 horas",
+      rating: 5,
+      url: "https://share.google/vVhE9TRxVGqUYTwKp",
+    },
     {
       author: "Darlene Cuevas",
       text: "I can't recommend this taxi service highly enough! I was stranded at the Mercadona near the station...",
-      time: "Hace 7 horas",
+      time: "Reseña reciente",
       rating: 5,
     },
     {

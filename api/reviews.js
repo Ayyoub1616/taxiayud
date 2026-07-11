@@ -14,6 +14,16 @@ function reviewText(review) {
   return review?.text?.text || review?.originalText?.text || "";
 }
 
+function sortByNewest(reviews) {
+  return [...reviews].sort((a, b) => {
+    const first = Date.parse(b?.publishTime || "");
+    const second = Date.parse(a?.publishTime || "");
+
+    if (Number.isNaN(first) || Number.isNaN(second)) return 0;
+    return first - second;
+  });
+}
+
 export default async function handler(request, response) {
   if (request.method !== "GET") {
     response.setHeader("Allow", "GET");
@@ -35,7 +45,8 @@ export default async function handler(request, response) {
       {
         headers: {
           "X-Goog-Api-Key": apiKey,
-          "X-Goog-FieldMask": "rating,userRatingCount,reviews",
+          "X-Goog-FieldMask":
+            "rating,userRatingCount,reviews.rating,reviews.text,reviews.originalText,reviews.authorAttribution,reviews.relativePublishTimeDescription,reviews.publishTime,reviews.googleMapsUri",
         },
       },
     );
@@ -48,12 +59,13 @@ export default async function handler(request, response) {
     const data = await googleResponse.json();
     const rating = ratingLabel(data.rating);
     const count = countLabel(data.userRatingCount);
-    const items = (data.reviews || [])
+    const items = sortByNewest(data.reviews || [])
       .map((review) => ({
         author: review?.authorAttribution?.displayName || "Cliente de Google",
         text: reviewText(review),
         rating: review?.rating || 5,
         time: review?.relativePublishTimeDescription,
+        publishTime: review?.publishTime,
         url: review?.googleMapsUri || review?.authorAttribution?.uri,
       }))
       .filter((review) => review.text)

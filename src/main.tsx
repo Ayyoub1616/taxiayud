@@ -37,9 +37,12 @@ import {
   FIXED_HOLIDAYS_MMDD,
   GOOGLE_REVIEWS,
   HOLIDAYS_2026,
+  LEGAL,
   RATES,
   TARIFAS,
 } from "./data";
+import { initAnalytics, trackEvent } from "./analytics";
+import seoPagesData from "./seoPages.json";
 import "./styles.css";
 
 type Result = {
@@ -93,6 +96,7 @@ type ReviewItem = {
   text: string;
   rating?: number;
   time?: string;
+  publishTime?: string;
   url?: string;
 };
 
@@ -209,6 +213,21 @@ type Copy = {
   floatingWhatsapp: string;
 };
 
+type SeoPage = {
+  path: string;
+  title: string;
+  description: string;
+  breadcrumb: string;
+  navLabel: string;
+  eyebrow: string;
+  h1: string;
+  intro: string;
+  h2: string;
+  body: string;
+  sections: { heading: string; text: string }[];
+  faq: { question: string; answer: string }[];
+};
+
 const LANGUAGE_OPTIONS: Record<LangCode, { label: string; short: string; whatsapp: string; dir: "ltr" | "rtl" }> = {
   es: { label: "Español", short: "ES", whatsapp: "Español", dir: "ltr" },
   en: { label: "English", short: "EN", whatsapp: "English", dir: "ltr" },
@@ -273,7 +292,7 @@ const BASE_COPY = {
     calcEyebrow: "Reserva y presupuesto",
     calcTitle: "Calcula la ruta y envía el mensaje listo",
     calcText:
-      "La web calcula destinos habituales desde Calatayud con tarifa oficial y rutas exactas con autocompletado cuando OpenRouteService está configurado.",
+      "Introduce origen, destino, fecha y pasajeros para preparar un presupuesto orientativo y enviar la reserva por WhatsApp.",
     schedule: "Programar",
     now: "Ahora",
     origin: "Origen",
@@ -303,17 +322,17 @@ const BASE_COPY = {
     emptyResult:
       "Pulsa calcular precio para ver un presupuesto orientativo. Si prefieres, puedes consultar por WhatsApp sin calcular.",
     exactRouteFallback:
-      "Para rutas exactas, la web quedará lista al configurar OpenRouteService en Vercel. Mientras tanto puedes consultar por WhatsApp.",
+      "Escribe origen y destino para consultar disponibilidad y presupuesto por WhatsApp.",
     apiPrivateNote:
-      "Alternativa preparada: OpenRouteService con clave privada en Vercel, sin exponerla en el navegador.",
+      "Para confirmar precio final y disponibilidad, envía la consulta por WhatsApp o llama directamente.",
     whatsappQuote: "Presupuesto por WhatsApp",
     reviewsEyebrow: "Reseñas de Google",
     reviewsText:
-      "Opiniones públicas del perfil de Google de Taxi Ayud. La última reseña aparece destacada y el resto queda ordenado debajo.",
+      "Opiniones públicas del perfil de Google de Taxi Ayud. La reseña más reciente aparece destacada y puedes ver el resto en Google.",
     reviewsWith: "con",
     featuredReview: "Última reseña destacada",
     moreReviews: "Ver más reseñas",
-    viewGoogle: "Ver perfil de Google",
+    viewGoogle: "Ver más reseñas en Google",
     servicesEyebrow: "Servicios",
     servicesTitle: "Pueblos, balnearios y Zaragoza desde Calatayud",
     servicesText:
@@ -436,7 +455,7 @@ const BASE_COPY = {
     calcEyebrow: "Booking and quote",
     calcTitle: "Calculate the route and send a ready message",
     calcText:
-      "The site calculates common destinations from Calatayud with official fares and exact routes with autocomplete when OpenRouteService is configured.",
+      "Enter origin, destination, date and passengers to prepare an estimated quote and send the booking by WhatsApp.",
     schedule: "Schedule",
     now: "Now",
     origin: "Origin",
@@ -465,17 +484,17 @@ const BASE_COPY = {
     emptyResult:
       "Tap calculate fare to see an estimated quote. You can also ask by WhatsApp without calculating.",
     exactRouteFallback:
-      "Exact routes will work when OpenRouteService is configured in Vercel. For now you can ask by WhatsApp.",
+      "Enter origin and destination to ask for availability and an estimated quote by WhatsApp.",
     apiPrivateNote:
-      "Ready option: OpenRouteService with a private key in Vercel, never exposed in the browser.",
+      "For final price and availability, send the request by WhatsApp or call directly.",
     whatsappQuote: "WhatsApp quote",
     reviewsEyebrow: "Google reviews",
     reviewsText:
-      "Public reviews from Taxi Ayud's Google profile. The latest review is highlighted and the rest are available below.",
+      "Public reviews from Taxi Ayud's Google profile. The most recent review is highlighted and you can see the rest on Google.",
     reviewsWith: "with",
     featuredReview: "Latest featured review",
     moreReviews: "See more reviews",
-    viewGoogle: "View Google profile",
+    viewGoogle: "See more reviews on Google",
     servicesEyebrow: "Services",
     servicesTitle: "Local villages, spas and Zaragoza from Calatayud",
     servicesText:
@@ -597,7 +616,7 @@ const BASE_COPY = {
     calcEyebrow: "Réservation et estimation",
     calcTitle: "Calculez l'itinéraire et envoyez le message prêt",
     calcText:
-      "Le site calcule les destinations habituelles depuis Calatayud avec tarif officiel et les routes exactes avec autocomplétion si OpenRouteService est configuré.",
+      "Indiquez le départ, la destination, la date et les passagers pour préparer une estimation et envoyer la réservation par WhatsApp.",
     schedule: "Programmer",
     now: "Maintenant",
     origin: "Départ",
@@ -624,16 +643,16 @@ const BASE_COPY = {
     bookWithMessage: "Réserver avec message",
     seeAvailability: "Voir disponibilité",
     emptyResult: "Appuyez sur calculer pour voir une estimation ou demandez par WhatsApp.",
-    exactRouteFallback: "Les itinéraires exacts fonctionneront avec OpenRouteService configuré dans Vercel.",
+    exactRouteFallback: "Indiquez le départ et la destination pour demander disponibilité et estimation par WhatsApp.",
     apiPrivateNote:
-      "Option prête : OpenRouteService avec clé privée dans Vercel, sans l'exposer dans le navigateur.",
+      "Pour confirmer le prix final et la disponibilité, envoyez la demande par WhatsApp ou appelez directement.",
     whatsappQuote: "Estimation WhatsApp",
     reviewsEyebrow: "Avis Google",
-    reviewsText: "Avis publics du profil Google de Taxi Ayud. Le dernier avis est mis en avant.",
+    reviewsText: "Avis publics du profil Google de Taxi Ayud. L'avis le plus récent est mis en avant et le reste est disponible sur Google.",
     reviewsWith: "avec",
     featuredReview: "Dernier avis mis en avant",
     moreReviews: "Voir plus d'avis",
-    viewGoogle: "Voir le profil Google",
+    viewGoogle: "Voir plus d'avis sur Google",
     servicesEyebrow: "Services",
     servicesTitle: "Villages, thermes et Saragosse depuis Calatayud",
     servicesText: "Service confortable dans la région : villages proches, thermes, gare, Saragosse, aéroport, rendez-vous médicaux et trajets programmés.",
@@ -749,7 +768,7 @@ const BASE_COPY = {
     ],
     calcEyebrow: "حجز وتقدير",
     calcTitle: "احسب المسار وأرسل رسالة جاهزة",
-    calcText: "تحسب الصفحة الوجهات الشائعة من كالاتايود بالتعرفة الرسمية والمسارات الدقيقة عند تفعيل OpenRouteService.",
+    calcText: "أدخل نقطة الانطلاق والوجهة والتاريخ وعدد الركاب لإعداد تقدير وإرسال الحجز عبر واتساب.",
     schedule: "حجز لاحق",
     now: "الآن",
     origin: "نقطة الانطلاق",
@@ -776,15 +795,15 @@ const BASE_COPY = {
     bookWithMessage: "احجز برسالة",
     seeAvailability: "تحقق من التوفر الآن",
     emptyResult: "اضغط احسب السعر لرؤية تقدير أو اسأل عبر واتساب بدون حساب.",
-    exactRouteFallback: "المسارات الدقيقة تعمل بعد تفعيل OpenRouteService في Vercel.",
-    apiPrivateNote: "الخيار جاهز: OpenRouteService بمفتاح خاص في Vercel دون ظهوره في المتصفح.",
+    exactRouteFallback: "أدخل نقطة الانطلاق والوجهة لطلب التوفر والتقدير عبر واتساب.",
+    apiPrivateNote: "لتأكيد السعر النهائي والتوفر، أرسل الطلب عبر واتساب أو اتصل مباشرة.",
     whatsappQuote: "تقدير عبر واتساب",
     reviewsEyebrow: "تقييمات Google",
-    reviewsText: "تقييمات عامة من ملف Taxi Ayud على Google. آخر تقييم يظهر أولا.",
+    reviewsText: "تقييمات عامة من ملف Taxi Ayud على Google. أحدث تقييم يظهر أولا ويمكن رؤية الباقي على Google.",
     reviewsWith: "مع",
     featuredReview: "آخر تقييم مميز",
     moreReviews: "عرض المزيد من التقييمات",
-    viewGoogle: "عرض ملف Google",
+    viewGoogle: "عرض المزيد من تقييمات Google",
     servicesEyebrow: "الخدمات",
     servicesTitle: "قرى المنطقة والمنتجعات وسرقسطة من كالاتايود",
     servicesText: "خدمة مريحة للتنقل في المنطقة: القرى القريبة، المنتجعات، المحطة، سرقسطة، المطار، المواعيد الطبية والحجوزات المبرمجة.",
@@ -1123,62 +1142,72 @@ const heroStatLabels: Record<LangCode, [string, string, string]> = {
 
 const touristSearchCopy: Record<LangCode, { eyebrow: string; title: string; text: string }> = {
   es: {
-    eyebrow: "Búsquedas de turistas",
-    title: "Taxi cerca de mí en Calatayud, en cualquier idioma",
-    text: "La web está preparada para consultas habituales de viajeros que buscan taxi en la comarca, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto.",
+    eyebrow: "Visitantes y alojamientos",
+    title: "Taxi para hoteles, balnearios y pueblos de la comarca",
+    text: "Si estás en un hotel, casa rural, balneario, Monasterio de Piedra o pueblo cercano, puedes pedir recogida con dirección o ubicación.",
   },
   en: {
-    eyebrow: "Tourist searches",
-    title: "Taxi near me in Calatayud, in every key language",
-    text: "The page targets common traveller searches for taxis in the area, spas, Monasterio de Piedra, Zaragoza and the airport.",
+    eyebrow: "Visitors and accommodation",
+    title: "Taxi for hotels, spas and villages around Calatayud",
+    text: "If you are at a hotel, rural house, spa, Monasterio de Piedra or nearby village, you can request pick-up with address or location.",
   },
   fr: {
-    eyebrow: "Recherches touristiques",
-    title: "Taxi près de moi à Calatayud, dans les langues clés",
-    text: "La page couvre les recherches fréquentes des voyageurs vers la région, les thermes, Monasterio de Piedra, Saragosse et l'aéroport.",
+    eyebrow: "Visiteurs et hébergements",
+    title: "Taxi pour hôtels, thermes et villages autour de Calatayud",
+    text: "Si vous êtes dans un hôtel, gîte, thermes, Monasterio de Piedra ou village proche, demandez une prise en charge avec adresse ou position.",
   },
   ca: {
-    eyebrow: "Cerques de turistes",
-    title: "Taxi prop meu a Calatayud, també en català",
-    text: "La web està preparada per a cerques habituals de viatgers cap a la comarca, balnearis, Monasterio de Piedra, Saragossa i aeroport.",
+    eyebrow: "Visitants i allotjaments",
+    title: "Taxi per a hotels, balnearis i pobles prop de Calatayud",
+    text: "Si ets en un hotel, casa rural, balneari, Monasterio de Piedra o poble proper, pots demanar recollida amb adreça o ubicació.",
   },
   de: {
-    eyebrow: "Touristische Suchen",
-    title: "Taxi in der Nähe in Calatayud",
-    text: "Die Seite deckt typische Suchanfragen von Reisenden für die Region, Thermalbäder, Monasterio de Piedra, Zaragoza und den Flughafen ab.",
+    eyebrow: "Besucher und Unterkünfte",
+    title: "Taxi für Hotels, Thermalbäder und Dörfer bei Calatayud",
+    text: "Wenn Sie in einem Hotel, Ferienhaus, Thermalbad, Monasterio de Piedra oder nahen Ort sind, senden Sie Adresse oder Standort.",
   },
   it: {
-    eyebrow: "Ricerche turistiche",
-    title: "Taxi vicino a me a Calatayud",
-    text: "La pagina include ricerche frequenti dei viaggiatori per comarca, terme, Monasterio de Piedra, Saragozza e aeroporto.",
+    eyebrow: "Visitatori e alloggi",
+    title: "Taxi per hotel, terme e paesi vicino a Calatayud",
+    text: "Se siete in hotel, casa rurale, terme, Monasterio de Piedra o paese vicino, potete inviare indirizzo o posizione.",
   },
   pt: {
-    eyebrow: "Pesquisas de turistas",
-    title: "Táxi perto de mim em Calatayud",
-    text: "A página cobre pesquisas comuns de viajantes para a comarca, termas, Monasterio de Piedra, Zaragoza e aeroporto.",
+    eyebrow: "Visitantes e alojamentos",
+    title: "Táxi para hotéis, termas e aldeias perto de Calatayud",
+    text: "Se está num hotel, casa rural, termas, Monasterio de Piedra ou aldeia próxima, envie morada ou localização.",
   },
   nl: {
-    eyebrow: "Toeristische zoekopdrachten",
-    title: "Taxi in de buurt in Calatayud",
-    text: "De pagina ondersteunt veelgebruikte zoekopdrachten van reizigers naar de regio, kuuroorden, Monasterio de Piedra, Zaragoza en luchthaven.",
+    eyebrow: "Bezoekers en verblijf",
+    title: "Taxi voor hotels, kuuroorden en dorpen rond Calatayud",
+    text: "Bent u in een hotel, vakantiehuis, kuuroord, Monasterio de Piedra of nabij dorp, stuur dan adres of locatie.",
   },
   ar: {
-    eyebrow: "بحث السياح",
-    title: "تاكسي قريب مني في كالاتايود بعدة لغات",
-    text: "الصفحة مهيأة لعبارات بحث المسافرين عن تاكسي في المنطقة والمنتجعات ودير الحجر وسرقسطة والمطار.",
+    eyebrow: "الزوار والإقامة",
+    title: "تاكسي للفنادق والمنتجعات والقرى قرب كالاتايود",
+    text: "إذا كنت في فندق أو بيت ريفي أو منتجع أو دير الحجر أو قرية قريبة، أرسل العنوان أو الموقع.",
   },
 };
 
 const touristSearchPhrases = [
-  { language: "ES", query: "taxi cerca de mí Calatayud" },
-  { language: "EN", query: "taxi near me Calatayud" },
-  { language: "CA", query: "taxi prop meu Calatayud" },
-  { language: "FR", query: "taxi près de moi Calatayud" },
-  { language: "DE", query: "taxi in der Nähe Calatayud" },
-  { language: "IT", query: "taxi vicino a me Calatayud" },
-  { language: "PT", query: "táxi perto de mim Calatayud" },
-  { language: "NL", query: "taxi in de buurt Calatayud" },
-  { language: "AR", query: "تاكسي قريب مني كالاتايود" },
+  { language: "Hoteles", query: "Recogida en hoteles de Calatayud y la comarca" },
+  { language: "Balnearios", query: "Jaraba, Alhama de Aragón y Paracuellos de Jiloca" },
+  { language: "Turismo", query: "Monasterio de Piedra, Nuévalos y rutas cercanas" },
+  { language: "Pueblos", query: "Ateca, Maluenda, Ariza, Cetina, Miedes y más" },
+  { language: "Tren", query: "Estación de Calatayud y conexión con AVE" },
+  { language: "Zaragoza", query: "Aeropuerto, Delicias, hospitales y direcciones concretas" },
+];
+
+const SEO_PAGES = seoPagesData as SeoPage[];
+const HOME_SEO_PAGE = SEO_PAGES.find((page) => page.path === "/") ?? SEO_PAGES[0];
+const DEFAULT_SEO_LINKS = [
+  "/taxi-calatayud/",
+  "/taxi-estacion-ave-calatayud/",
+  "/taxi-monasterio-de-piedra/",
+  "/taxi-balnearios-jaraba-alhama/",
+  "/taxi-aeropuerto-zaragoza/",
+  "/taxi-pueblos-comarca-calatayud/",
+  "/contacto/",
+  "/preguntas-frecuentes/",
 ];
 
 const serviceIcons = [
@@ -1205,15 +1234,20 @@ const featuredDestinations = [
 ].filter((item) => TARIFAS[item]);
 
 const localAddressSuggestions = [
-  "Calatayud",
-  "Plaza del Fuerte, Calatayud",
-  "Estación de tren de Calatayud",
-  "Hospital Ernest Lluch, Calatayud",
-  "Monasterio de Piedra, Nuévalos",
-  "Balneario Sicilia, Jaraba",
-  "Balneario Serón, Jaraba",
-  "Balneario Termas Pallarés, Alhama de Aragón",
-  "Estación Zaragoza-Delicias",
+  "Calatayud, Zaragoza",
+  "Plaza del Fuerte, Calatayud, Zaragoza",
+  "Estación de tren de Calatayud, Zaragoza",
+  "Hospital Ernest Lluch, Calatayud, Zaragoza",
+  "Monasterio de Piedra, Nuévalos, Zaragoza",
+  "Nuévalos, Zaragoza",
+  "Balneario Sicilia, Jaraba, Zaragoza",
+  "Balneario Serón, Jaraba, Zaragoza",
+  "Balneario Termas Pallarés, Alhama de Aragón, Zaragoza",
+  "Ateca, Zaragoza",
+  "Maluenda, Zaragoza",
+  "Ariza, Zaragoza",
+  "Daroca, Zaragoza",
+  "Estación Zaragoza-Delicias, Zaragoza",
   "Aeropuerto de Zaragoza",
   "Zaragoza centro",
   "Madrid",
@@ -1336,6 +1370,21 @@ function detectLanguage(): LangCode {
   if (language.startsWith("nl")) return "nl";
   if (language.startsWith("ar")) return "ar";
   return "en";
+}
+
+function cleanPathname(pathname: string) {
+  if (!pathname || pathname === "/") return "/";
+  return `${pathname.replace(/\/+$/, "")}/`;
+}
+
+function activeSeoPage() {
+  if (typeof window === "undefined") return null;
+  const pathname = cleanPathname(window.location.pathname);
+  return SEO_PAGES.find((page) => page.path !== "/" && page.path === pathname) ?? null;
+}
+
+function pageFromPath(path: string) {
+  return SEO_PAGES.find((page) => page.path === path);
 }
 
 function languageNotice(language: LangCode) {
@@ -1754,8 +1803,180 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
+function relatedSeoPages(currentPath: string | null) {
+  return DEFAULT_SEO_LINKS
+    .map(pageFromPath)
+    .filter((page): page is SeoPage => page !== undefined && page.path !== currentPath)
+    .slice(0, 6);
+}
+
+function SeoIntentSection({
+  page,
+  directUrl,
+}: {
+  page: SeoPage;
+  directUrl: string;
+}) {
+  const relatedPages = relatedSeoPages(page.path);
+
+  return (
+    <section className="intent-section" aria-label={page.h1} data-animate>
+      <nav className="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Taxi Ayud</a>
+        <ArrowRight aria-hidden="true" />
+        <span>{page.breadcrumb}</span>
+      </nav>
+      <div className="intent-layout">
+        <div className="intent-copy">
+          <p className="eyebrow compact">
+            <MapPinned aria-hidden="true" />
+            {page.eyebrow}
+          </p>
+          <h2>{page.h2}</h2>
+          <p>{page.body}</p>
+          <div className="intent-actions">
+            <a
+              className="btn btn-whatsapp"
+              href={directUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackEvent("clic_whatsapp", { source: "seo_page" })}
+            >
+              <Send aria-hidden="true" />
+              Reservar por WhatsApp
+            </a>
+            <a
+              className="btn btn-secondary"
+              href={CONTACT.phoneHref}
+              onClick={() => trackEvent("clic_llamada", { source: "seo_page" })}
+            >
+              <Phone aria-hidden="true" />
+              {CONTACT.phoneDisplay}
+            </a>
+          </div>
+        </div>
+        <div className="intent-cards">
+          {page.sections.map((section) => (
+            <article key={section.heading}>
+              <CheckCircle2 aria-hidden="true" />
+              <h3>{section.heading}</h3>
+              <p>{section.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+      {page.faq.length ? (
+        <div className="intent-faq">
+          {page.faq.slice(0, 3).map((item) => (
+            <details key={item.question}>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      ) : null}
+      <div className="internal-links" aria-label="Enlaces relacionados">
+        {relatedPages.map((relatedPage) => (
+          <a href={relatedPage.path} key={relatedPage.path}>
+            {relatedPage.navLabel}
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function InternalLinksBand() {
+  const pages = relatedSeoPages(null);
+
+  return (
+    <section className="internal-link-band" aria-label="Rutas principales de Taxi Ayud" data-animate>
+      <p className="eyebrow compact">
+        <Route aria-hidden="true" />
+        Rutas principales
+      </p>
+      <div>
+        {pages.map((page) => (
+          <a href={page.path} key={page.path}>
+            {page.navLabel}
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CookieBanner({
+  onAccept,
+  onReject,
+}: {
+  onAccept: () => void;
+  onReject: () => void;
+}) {
+  return (
+    <div className="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+      <div>
+        <strong>Privacidad y cookies</strong>
+        <p>
+          Usamos cookies técnicas para que la web funcione. Si aceptas, también podremos
+          medir de forma anónima llamadas, WhatsApp y consultas de tarifa para mejorar el servicio.
+        </p>
+        <a href="#privacidad">Privacidad</a>
+        <a href="#cookies">Cookies</a>
+      </div>
+      <div className="cookie-actions">
+        <button type="button" className="btn btn-secondary" onClick={onReject}>
+          Solo necesarias
+        </button>
+        <button type="button" className="btn btn-primary" onClick={onAccept}>
+          Aceptar
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function LegalFooter() {
+  return (
+    <section className="legal-footer" aria-label="Información legal">
+      <details id="aviso-legal">
+        <summary>Aviso legal</summary>
+        <p>
+          Titular: {LEGAL.owner}, DNI/NIF {LEGAL.taxId}, con domicilio en {LEGAL.address}.
+          Nombre comercial: {LEGAL.businessName}. Actividad: servicio de taxi y reservas de
+          traslados en Calatayud y comarca. Teléfono de contacto: {CONTACT.phoneDisplay}.
+        </p>
+      </details>
+      <details id="privacidad">
+        <summary>Protección de datos y privacidad</summary>
+        <p>
+          Responsable: {LEGAL.owner}. Los datos que envíes por llamada, WhatsApp o formularios
+          se usan únicamente para atender tu consulta, preparar la reserva, confirmar
+          disponibilidad y gestionar el servicio solicitado. La base legal es tu solicitud o la
+          relación precontractual/contractual. No se venden datos ni se publican datos personales.
+          Puedes solicitar acceso, rectificación o supresión contactando por teléfono o WhatsApp.
+        </p>
+      </details>
+      <details id="cookies">
+        <summary>Política de cookies</summary>
+        <p>
+          La web utiliza cookies técnicas necesarias para recordar preferencias básicas. La
+          analítica de Google Analytics 4 solo se carga si aceptas las cookies y sirve para medir
+          eventos generales como clics en llamada, WhatsApp o consulta de tarifa, sin registrar
+          mensajes, teléfonos ni direcciones personales.
+        </p>
+      </details>
+    </section>
+  );
+}
+
 function App() {
   const [language, setLanguage] = useState<LangCode>(() => detectLanguage());
+  const [cookieConsent, setCookieConsent] = useState<"accepted" | "necessary" | "pending">(() => {
+    if (typeof window === "undefined") return "pending";
+    const saved = window.localStorage.getItem("taxiayud-cookie-consent");
+    return saved === "accepted" || saved === "necessary" ? saved : "pending";
+  });
   const [origin, setOrigin] = useState("Calatayud");
   const [query, setQuery] = useState("Monasterio de Piedra");
   const [selectedKey, setSelectedKey] = useState("MONASTERIO DE PIEDRA");
@@ -1782,6 +2003,8 @@ function App() {
   const [result, setResult] = useState<Result | null>(null);
   const [reviews, setReviews] = useState<ReviewsData>(GOOGLE_REVIEWS);
   const t = COPY[language];
+  const currentSeoPage = activeSeoPage();
+  const heroSeoPage = currentSeoPage ?? HOME_SEO_PAGE;
   const statsLabels = heroStatLabels[language];
   const touristCopy = touristSearchCopy[language];
   const heroStatsLocalized = [
@@ -1832,6 +2055,44 @@ function App() {
     notes,
     pickupLocation,
   }, language);
+
+  useEffect(() => {
+    const page = currentSeoPage ?? HOME_SEO_PAGE;
+    const absoluteUrl = `https://www.taxiayud.es${page.path === "/" ? "/" : page.path}`;
+    document.title = page.title;
+
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (description) description.content = page.description;
+
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonical) canonical.href = absoluteUrl;
+
+    const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]');
+    const ogDescription = document.querySelector<HTMLMetaElement>('meta[property="og:description"]');
+    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    const twitterTitle = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]');
+    const twitterDescription = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]');
+
+    if (ogTitle) ogTitle.content = page.title;
+    if (ogDescription) ogDescription.content = page.description;
+    if (ogUrl) ogUrl.content = absoluteUrl;
+    if (twitterTitle) twitterTitle.content = page.title;
+    if (twitterDescription) twitterDescription.content = page.description;
+  }, [currentSeoPage]);
+
+  useEffect(() => {
+    if (cookieConsent === "accepted") initAnalytics();
+  }, [cookieConsent]);
+
+  function saveCookieConsent(value: "accepted" | "necessary") {
+    try {
+      window.localStorage.setItem("taxiayud-cookie-consent", value);
+    } catch {
+      // Ignore storage errors in private browsing.
+    }
+    setCookieConsent(value);
+    if (value === "accepted") initAnalytics();
+  }
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -1987,6 +2248,9 @@ function App() {
     const trimmedOrigin = origin.trim();
     const trimmedDestination = query.trim();
 
+    trackEvent("consulta_tarifa", {
+      mode: key && TARIFAS[key] && isCalatayudOrigin(origin) ? "destino_habitual" : "ruta_exacta",
+    });
     setRouteError("");
 
     if (key && TARIFAS[key] && isCalatayudOrigin(origin)) {
@@ -2095,17 +2359,24 @@ function App() {
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="#inicio" aria-label="Taxi Ayud inicio">
+        <a className="brand" href="/" aria-label="Taxi Ayud inicio">
           <img src="/assets/logo.webp" alt="" />
           <span>
             Taxi <strong>Ayud</strong>
           </span>
         </a>
         <nav className="main-nav" aria-label="Navegacion principal">
-          <a href={directUrl} target="_blank" rel="noreferrer">{t.nav[0]}</a>
+          <a
+            href={directUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackEvent("clic_whatsapp", { source: "header" })}
+          >
+            {t.nav[0]}
+          </a>
           <a href="#calculadora">{t.nav[1]}</a>
           <a href="#resenas">{t.nav[2]}</a>
-          <a href="#servicios">{t.nav[3]}</a>
+          <a href="/servicios/">{t.nav[3]}</a>
           <a href="#tarifas">{t.nav[4]}</a>
         </nav>
         <div className="language-switcher">
@@ -2122,7 +2393,11 @@ function App() {
             ))}
           </select>
         </div>
-        <a className="header-call" href={CONTACT.phoneHref}>
+        <a
+          className="header-call"
+          href={CONTACT.phoneHref}
+          onClick={() => trackEvent("clic_llamada", { source: "header" })}
+        >
           <Phone aria-hidden="true" />
           {CONTACT.phoneDisplay}
         </a>
@@ -2135,20 +2410,34 @@ function App() {
           <div className="hero-content">
             <p className="eyebrow">
               <BadgeCheck aria-hidden="true" />
-              {t.heroEyebrow}
+              {currentSeoPage?.eyebrow ?? t.heroEyebrow}
             </p>
-            <h1>Taxi Ayud</h1>
-            <p className="hero-subtitle">{t.heroSubtitle}</p>
+            <h1>{heroSeoPage.h1}</h1>
+            <p className="hero-subtitle">{currentSeoPage?.intro ?? t.heroSubtitle}</p>
             <div className="hero-actions">
-              <a className="btn btn-whatsapp" href={directUrl} target="_blank" rel="noreferrer">
+              <a
+                className="btn btn-whatsapp"
+                href={directUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("clic_whatsapp", { source: "hero" })}
+              >
                 <Send aria-hidden="true" />
                 {t.directWhatsapp}
               </a>
-              <a className="btn btn-primary" href="#calculadora">
+              <a
+                className="btn btn-primary"
+                href="#calculadora"
+                onClick={() => trackEvent("clic_reserva", { source: "hero_calculator" })}
+              >
                 <Route aria-hidden="true" />
                 {t.calculatePrice}
               </a>
-              <a className="btn btn-secondary" href={CONTACT.phoneHref}>
+              <a
+                className="btn btn-secondary"
+                href={CONTACT.phoneHref}
+                onClick={() => trackEvent("clic_llamada", { source: "hero" })}
+              >
                 <Phone aria-hidden="true" />
                 {t.call}
               </a>
@@ -2194,11 +2483,21 @@ function App() {
               </span>
             </div>
             <div className="hero-card-actions">
-              <a className="btn btn-whatsapp" href={directUrl} target="_blank" rel="noreferrer">
+              <a
+                className="btn btn-whatsapp"
+                href={directUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("clic_whatsapp", { source: "hero_card" })}
+              >
                 <Send aria-hidden="true" />
                 {t.sendWhatsapp}
               </a>
-              <a className="btn btn-secondary" href="#calculadora">
+              <a
+                className="btn btn-secondary"
+                href="#calculadora"
+                onClick={() => trackEvent("clic_reserva", { source: "hero_card_calculator" })}
+              >
                 <Route aria-hidden="true" />
                 {t.seeQuote}
               </a>
@@ -2223,6 +2522,8 @@ function App() {
             <p>{reviews.count} {t.googleText}</p>
           </div>
         </section>
+
+        {currentSeoPage ? <SeoIntentSection page={currentSeoPage} directUrl={directUrl} /> : null}
 
         <section className="region-band" aria-label="Comarca de Calatayud" data-animate>
           <div className="region-copy">
@@ -2263,7 +2564,7 @@ function App() {
           </div>
         </section>
 
-        <section className="tourist-search-section" aria-label="Búsquedas multidioma de taxi" data-animate>
+        <section className="tourist-search-section" aria-label="Taxi para visitantes y alojamientos" data-animate>
           <div className="tourist-search-copy">
             <p className="eyebrow compact">
               <Languages aria-hidden="true" />
@@ -2281,6 +2582,8 @@ function App() {
             ))}
           </div>
         </section>
+
+        <InternalLinksBand />
 
         <section className="section calc-section" id="calculadora">
           <div className="section-heading">
@@ -2511,7 +2814,13 @@ function App() {
                   <CalculatorIcon />
                   {routeLoading ? t.calculating : t.calculatePrice}
                 </button>
-                <a className="btn btn-whatsapp" href={instantUrl} target="_blank" rel="noreferrer">
+                <a
+                  className="btn btn-whatsapp"
+                  href={instantUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackEvent("clic_whatsapp", { source: "calculator_now" })}
+                >
                   <Send aria-hidden="true" />
                   {t.taxiNow}
                 </a>
@@ -2567,11 +2876,22 @@ function App() {
                       href={quoteUrl}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={() => {
+                        trackEvent("clic_whatsapp", { source: "calculated_quote" });
+                        trackEvent("clic_reserva", { source: "calculated_quote" });
+                        trackEvent("formulario_enviado", { source: "calculated_quote" });
+                      }}
                     >
                       <MessageCircle aria-hidden="true" />
                       {t.bookWithMessage}
                     </a>
-                    <a className="btn btn-secondary" href={instantUrl} target="_blank" rel="noreferrer">
+                    <a
+                      className="btn btn-secondary"
+                      href={instantUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => trackEvent("clic_whatsapp", { source: "result_availability" })}
+                    >
                       <LocateFixed aria-hidden="true" />
                       {t.seeAvailability}
                     </a>
@@ -2611,6 +2931,7 @@ function App() {
                     }, language)}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() => trackEvent("clic_whatsapp", { source: "result_without_calculation" })}
                   >
                     <Send aria-hidden="true" />
                     {t.sendWhatsapp}
@@ -2637,6 +2958,7 @@ function App() {
               href={CONTACT.googleProfile}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackEvent("clic_reserva", { source: "google_reviews" })}
             >
               <Star aria-hidden="true" />
               {t.viewGoogle}
@@ -2692,6 +3014,16 @@ function App() {
                   );
                 })}
               </div>
+              <a
+                className="btn btn-secondary google-more-link"
+                href={CONTACT.googleProfile}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("clic_reserva", { source: "google_reviews_details" })}
+              >
+                <Star aria-hidden="true" />
+                {t.viewGoogle}
+              </a>
             </details>
           </div>
         </section>
@@ -2826,7 +3158,10 @@ function App() {
               <button
                 type="button"
                 className="btn btn-primary lookup-action"
-                onClick={() => useLookupDestination(tariffLookupKey)}
+                onClick={() => {
+                  trackEvent("consulta_tarifa", { mode: "tabla_destinos" });
+                  useLookupDestination(tariffLookupKey);
+                }}
               >
                 <Route aria-hidden="true" />
                 {t.calcDestination}
@@ -2882,7 +3217,11 @@ function App() {
             <p>{t.closingText}</p>
           </div>
           <div className="closing-actions">
-            <a className="btn btn-primary" href={CONTACT.phoneHref}>
+            <a
+              className="btn btn-primary"
+              href={CONTACT.phoneHref}
+              onClick={() => trackEvent("clic_llamada", { source: "closing" })}
+            >
               <Phone aria-hidden="true" />
               {CONTACT.phoneDisplay}
             </a>
@@ -2891,6 +3230,7 @@ function App() {
               href={directUrl}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackEvent("clic_whatsapp", { source: "closing" })}
             >
               <MessageCircle aria-hidden="true" />
               WhatsApp
@@ -2909,16 +3249,32 @@ function App() {
           </p>
         </div>
         <ul>
-          {t.footerLinks.map((item) => (
-            <li key={item}>{item}</li>
+          {DEFAULT_SEO_LINKS.slice(1, 5).map((path) => pageFromPath(path)).filter(Boolean).map((page) => (
+            <li key={page!.path}>
+              <a href={page!.path}>{page!.navLabel}</a>
+            </li>
           ))}
         </ul>
         <address>
-          <a href={CONTACT.phoneHref}>{CONTACT.phoneDisplay}</a>
+          <a
+            href={CONTACT.phoneHref}
+            onClick={() => trackEvent("clic_llamada", { source: "footer" })}
+          >
+            {CONTACT.phoneDisplay}
+          </a>
           <span>{CONTACT.place}</span>
           <span>Efectivo · Tarjeta · Bizum</span>
         </address>
       </footer>
+
+      <LegalFooter />
+
+      {cookieConsent === "pending" ? (
+        <CookieBanner
+          onAccept={() => saveCookieConsent("accepted")}
+          onReject={() => saveCookieConsent("necessary")}
+        />
+      ) : null}
 
       <a
         className="floating-whatsapp"
@@ -2926,6 +3282,7 @@ function App() {
         target="_blank"
         rel="noreferrer"
         aria-label={t.floatingWhatsapp}
+        onClick={() => trackEvent("clic_whatsapp", { source: "floating" })}
       >
         <MessageCircle aria-hidden="true" />
       </a>

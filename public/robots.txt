@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.taxiayud.com/sitemap.xml
+Sitemap: https://www.taxiayud.es/sitemap.xml
