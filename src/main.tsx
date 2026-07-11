@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, type Root } from "react-dom/client";
 import {
   ArrowRight,
   BadgeCheck,
@@ -106,6 +106,12 @@ type ReviewsData = {
   items: ReviewItem[];
   source?: string;
 };
+
+declare global {
+  interface Window {
+    __taxiAyudRoot?: Root;
+  }
+}
 
 type WhatsAppOptions = {
   result: Result | null;
@@ -238,6 +244,18 @@ const LANGUAGE_OPTIONS: Record<LangCode, { label: string; short: string; whatsap
   pt: { label: "Português", short: "PT", whatsapp: "Português", dir: "ltr" },
   nl: { label: "Nederlands", short: "NL", whatsapp: "Nederlands", dir: "ltr" },
   ar: { label: "العربية", short: "AR", whatsapp: "Arabic / العربية", dir: "rtl" },
+};
+
+const HTML_LANG: Record<LangCode, string> = {
+  es: "es-ES",
+  en: "en",
+  fr: "fr",
+  ca: "ca-ES",
+  de: "de",
+  it: "it",
+  pt: "pt",
+  nl: "nl",
+  ar: "ar",
 };
 
 const BASE_COPY = {
@@ -1961,7 +1979,7 @@ function LegalFooter() {
         <summary>Política de cookies</summary>
         <p>
           La web utiliza cookies técnicas necesarias para recordar preferencias básicas. La
-          analítica de Google Analytics 4 solo se carga si aceptas las cookies y sirve para medir
+          medición anónima de la web solo se carga si aceptas las cookies y sirve para conocer
           eventos generales como clics en llamada, WhatsApp o consulta de tarifa, sin registrar
           mensajes, teléfonos ni direcciones personales.
         </p>
@@ -2095,7 +2113,7 @@ function App() {
   }
 
   useEffect(() => {
-    document.documentElement.lang = language;
+    document.documentElement.lang = HTML_LANG[language];
     document.documentElement.dir = LANGUAGE_OPTIONS[language].dir;
     try {
       window.localStorage.setItem("taxiayud-language", language);
@@ -2360,7 +2378,7 @@ function App() {
     <>
       <header className="site-header">
         <a className="brand" href="/" aria-label="Taxi Ayud inicio">
-          <img src="/assets/logo.webp" alt="" />
+          <img src="/assets/logo.webp" alt="" width="520" height="520" />
           <span>
             Taxi <strong>Ayud</strong>
           </span>
@@ -3089,6 +3107,10 @@ function App() {
             <img
               src="/assets/peugeot-408-hybrid.webp"
               alt="Taxi Ayud Peugeot 408 Hybrid blanco"
+              width="1600"
+              height="1067"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </section>
@@ -3207,7 +3229,14 @@ function App() {
         </section>
 
         <section className="closing-band" data-animate>
-          <img src="/assets/taxi-light.webp" alt="" />
+          <img
+            src="/assets/taxi-light.webp"
+            alt=""
+            width="1200"
+            height="835"
+            loading="lazy"
+            decoding="async"
+          />
           <div>
             <p className="eyebrow compact">
               <Phone aria-hidden="true" />
@@ -3241,7 +3270,7 @@ function App() {
 
       <footer className="site-footer">
         <div>
-          <img src="/assets/logo.webp" alt="" />
+          <img src="/assets/logo.webp" alt="" width="520" height="520" loading="lazy" decoding="async" />
           <p>
             <strong>Taxi Ayud</strong>
             <br />
@@ -3294,7 +3323,16 @@ function CalculatorIcon() {
   return <Route aria-hidden="true" />;
 }
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+  throw new Error("No se encontró el contenedor principal de Taxi Ayud.");
+}
+
+const root = window.__taxiAyudRoot ?? createRoot(rootElement);
+window.__taxiAyudRoot = root;
+
+root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,

@@ -61,6 +61,7 @@ Se ha renovado la base técnica y SEO de Taxi Ayud para que el dominio principal
 - Aviso legal, privacidad y política de cookies rellenos.
 - Autocompletado y sugerencias locales mostrando `Calatayud, Zaragoza`.
 - GA4 preparado con consentimiento.
+- Favicon reemplazado por iconos de Taxi Ayud en `/favicon.ico`, PNG estándar, Apple Touch Icon y manifest.
 
 ## Validación realizada
 
@@ -70,6 +71,8 @@ Se ha renovado la base técnica y SEO de Taxi Ayud para que el dominio principal
 - 10 URLs indexables en sitemap.
 - Canonicals y Open Graph apuntando a `https://www.taxiayud.es`.
 - Contenido principal presente en HTML inicial.
+- Revisión responsive en móvil estrecho sin scroll horizontal.
+- Favicon comprobado en `/favicon.ico` como icono de Taxi Ayud.
 
 ## Pendiente externo
 
