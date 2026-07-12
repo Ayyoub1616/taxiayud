@@ -1292,6 +1292,8 @@ function normalize(value: string) {
   return value
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
     .toUpperCase()
     .trim();
 }
@@ -1439,6 +1441,21 @@ function destinationKeyFromInput(value: string) {
   );
   if (exact) return exact[0];
 
+  const labelMatch = tariffEntries.find(([key]) => {
+    const keyName = normalize(key);
+    const display = normalize(displayName(key));
+
+    return (
+      normalized.startsWith(`${keyName} `) ||
+      normalized.startsWith(`${display} `) ||
+      normalized.includes(` ${keyName} `) ||
+      normalized.includes(` ${display} `) ||
+      normalized.endsWith(` ${keyName}`) ||
+      normalized.endsWith(` ${display}`)
+    );
+  });
+  if (labelMatch) return labelMatch[0];
+
   return (
     tariffEntries.find(
       ([key]) =>
@@ -1514,11 +1531,17 @@ async function fetchExactRoute(
   originPoint?: AddressSuggestion | null,
   destinationPoint?: AddressSuggestion | null,
 ) {
-  const response = await fetch("/api/route", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ origin, destination, originPoint, destinationPoint }),
-  });
+  let response: Response;
+
+  try {
+    response = await fetch("/api/route", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ origin, destination, originPoint, destinationPoint }),
+    });
+  } catch {
+    throw new Error("No se pudo conectar con el calculador automático.");
+  }
 
   const data = await response.json().catch(() => null);
 
@@ -1527,6 +1550,16 @@ async function fetchExactRoute(
   }
 
   return data as ExactRouteResponse;
+}
+
+function friendlyRouteError(error: unknown, fallback: string) {
+  if (!(error instanceof Error)) return fallback;
+
+  if (/load failed|failed to fetch|networkerror|calculador automatico/i.test(error.message)) {
+    return fallback;
+  }
+
+  return error.message || fallback;
 }
 
 async function fetchAddressSuggestions(query: string) {
@@ -2335,11 +2368,7 @@ function App() {
       scrollToResult();
     } catch (error) {
       setResult(null);
-      setRouteError(
-        error instanceof Error
-          ? error.message
-          : t.routeError,
-      );
+      setRouteError(friendlyRouteError(error, t.routeError));
       scrollToResult();
     } finally {
       setRouteLoading(false);
