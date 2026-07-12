@@ -331,7 +331,8 @@ const BASE_COPY = {
     locationHint:
       "Escribe una calle, hotel, estación o municipio. Si eliges una sugerencia, el cálculo será más preciso.",
     routeMissing: "Indica origen y destino para calcular una ruta exacta.",
-    routeError: "No se pudo calcular la ruta exacta. Puedes consultar por WhatsApp.",
+    routeError:
+      "Ahora mismo no se ha podido calcular esta ruta automáticamente. Envíame la consulta por WhatsApp y te confirmo precio y disponibilidad enseguida.",
     resultDistance: "Distancia estimada",
     quoteEstimate: "Presupuesto orientativo",
     quoteOfficial: "Calculado con tarifa oficial y distancia estimada.",
@@ -342,7 +343,7 @@ const BASE_COPY = {
     exactRouteFallback:
       "Escribe origen y destino para consultar disponibilidad y presupuesto por WhatsApp.",
     apiPrivateNote:
-      "Para confirmar precio final y disponibilidad, envía la consulta por WhatsApp o llama directamente.",
+      "El mensaje incluye origen, destino, fecha y pasajeros para responderte con el precio final.",
     whatsappQuote: "Presupuesto por WhatsApp",
     reviewsEyebrow: "Reseñas de Google",
     reviewsText:
@@ -1555,7 +1556,11 @@ async function fetchExactRoute(
 function friendlyRouteError(error: unknown, fallback: string) {
   if (!(error instanceof Error)) return fallback;
 
-  if (/load failed|failed to fetch|networkerror|calculador automatico/i.test(error.message)) {
+  if (
+    /load failed|failed to fetch|networkerror|calculador automatico|localizar|encontr[oó]|direccion|dirección|ruta|mapas|suficientemente clara|distancia/i.test(
+      error.message,
+    )
+  ) {
     return fallback;
   }
 
@@ -1682,7 +1687,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "Precio orientativo",
       fare: "Tarifa",
       askPrice: "Necesito que me confirmes precio y disponibilidad.",
-      notCalculated: "La ruta no está calculada automáticamente en la web.",
+      notCalculated:
+        "El cálculo automático no se ha podido cerrar en la web. Te envío la ruta para confirmar precio final.",
       confirm: "¿Me confirmas disponibilidad?",
       thanks: "Gracias.",
     },
