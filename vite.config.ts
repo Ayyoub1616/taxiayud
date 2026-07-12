@@ -86,7 +86,7 @@ function localApiMiddleware() {
       response.end(
         JSON.stringify({
           message:
-            "No se pudo completar el cálculo automático. Puedes consultar precio y disponibilidad por WhatsApp.",
+            "🚕 Ups, esta ruta necesita una mirada rápida. Escríbeme por WhatsApp y te confirmo precio y disponibilidad enseguida.",
         }),
       );
     }

@@ -332,7 +332,7 @@ const BASE_COPY = {
       "Escribe una calle, hotel, estación o municipio. Si eliges una sugerencia, el cálculo será más preciso.",
     routeMissing: "Indica origen y destino para calcular una ruta exacta.",
     routeError:
-      "Ahora mismo no se ha podido calcular esta ruta automáticamente. Envíame la consulta por WhatsApp y te confirmo precio y disponibilidad enseguida.",
+      "🚕 Ups, esta ruta necesita una mirada rápida. No te preocupes: escríbeme por WhatsApp y te confirmo precio y disponibilidad enseguida.",
     resultDistance: "Distancia estimada",
     quoteEstimate: "Presupuesto orientativo",
     quoteOfficial: "Calculado con tarifa oficial y distancia estimada.",
@@ -343,7 +343,7 @@ const BASE_COPY = {
     exactRouteFallback:
       "Escribe origen y destino para consultar disponibilidad y presupuesto por WhatsApp.",
     apiPrivateNote:
-      "El mensaje incluye origen, destino, fecha y pasajeros para responderte con el precio final.",
+      "📲 El WhatsApp ya lleva origen, destino, fecha y pasajeros para ayudarte rápido.",
     whatsappQuote: "Presupuesto por WhatsApp",
     reviewsEyebrow: "Reseñas de Google",
     reviewsText:
@@ -494,7 +494,8 @@ const BASE_COPY = {
     calculating: "Calculating...",
     locationHint: "Enter a street, hotel, station or town. Choosing a suggestion improves accuracy.",
     routeMissing: "Enter origin and destination to calculate an exact route.",
-    routeError: "The exact route could not be calculated. You can ask by WhatsApp.",
+    routeError:
+      "🚕 Oops, this route needs a quick manual check. No worries: send it by WhatsApp and I will confirm price and availability right away.",
     resultDistance: "Estimated distance",
     quoteEstimate: "Estimated quote",
     quoteOfficial: "Calculated with official fare and estimated distance.",
@@ -505,7 +506,7 @@ const BASE_COPY = {
     exactRouteFallback:
       "Enter origin and destination to ask for availability and an estimated quote by WhatsApp.",
     apiPrivateNote:
-      "For final price and availability, send the request by WhatsApp or call directly.",
+      "📲 The WhatsApp message already includes origin, destination, date and passengers so we can help quickly.",
     whatsappQuote: "WhatsApp quote",
     reviewsEyebrow: "Google reviews",
     reviewsText:
@@ -655,7 +656,8 @@ const BASE_COPY = {
     calculating: "Calcul...",
     locationHint: "Saisissez une rue, un hôtel, une gare ou une commune. Une suggestion améliore la précision.",
     routeMissing: "Indiquez le départ et la destination pour calculer l'itinéraire.",
-    routeError: "L'itinéraire exact n'a pas pu être calculé. Vous pouvez demander par WhatsApp.",
+    routeError:
+      "🚕 Oups, cet itinéraire demande une vérification rapide. Pas d'inquiétude : envoyez-le par WhatsApp et je confirme le prix et la disponibilité.",
     resultDistance: "Distance estimée",
     quoteEstimate: "Estimation",
     quoteOfficial: "Calculé avec le tarif officiel et la distance estimée.",
@@ -664,7 +666,7 @@ const BASE_COPY = {
     emptyResult: "Appuyez sur calculer pour voir une estimation ou demandez par WhatsApp.",
     exactRouteFallback: "Indiquez le départ et la destination pour demander disponibilité et estimation par WhatsApp.",
     apiPrivateNote:
-      "Pour confirmer le prix final et la disponibilité, envoyez la demande par WhatsApp ou appelez directement.",
+      "📲 Le message WhatsApp contient déjà le départ, la destination, la date et les passagers.",
     whatsappQuote: "Estimation WhatsApp",
     reviewsEyebrow: "Avis Google",
     reviewsText: "Avis publics du profil Google de Taxi Ayud. L'avis le plus récent est mis en avant et le reste est disponible sur Google.",
@@ -807,7 +809,7 @@ const BASE_COPY = {
     calculating: "جار الحساب...",
     locationHint: "اكتب شارعا أو فندقا أو محطة أو بلدة. اختيار اقتراح يحسن الدقة.",
     routeMissing: "أدخل نقطة الانطلاق والوجهة لحساب المسار.",
-    routeError: "تعذر حساب المسار بدقة. يمكنك الاستفسار عبر واتساب.",
+    routeError: "🚕 لا تقلق، هذا المسار يحتاج تأكيدا سريعا. أرسله عبر واتساب وسأؤكد لك السعر والتوفر.",
     resultDistance: "المسافة التقديرية",
     quoteEstimate: "تقدير السعر",
     quoteOfficial: "محسوب بالتعرفة الرسمية والمسافة التقديرية.",
@@ -815,7 +817,7 @@ const BASE_COPY = {
     seeAvailability: "تحقق من التوفر الآن",
     emptyResult: "اضغط احسب السعر لرؤية تقدير أو اسأل عبر واتساب بدون حساب.",
     exactRouteFallback: "أدخل نقطة الانطلاق والوجهة لطلب التوفر والتقدير عبر واتساب.",
-    apiPrivateNote: "لتأكيد السعر النهائي والتوفر، أرسل الطلب عبر واتساب أو اتصل مباشرة.",
+    apiPrivateNote: "📲 رسالة واتساب تتضمن نقطة الانطلاق والوجهة والتاريخ وعدد الركاب للمساعدة بسرعة.",
     whatsappQuote: "تقدير عبر واتساب",
     reviewsEyebrow: "تقييمات Google",
     reviewsText: "تقييمات عامة من ملف Taxi Ayud على Google. أحدث تقييم يظهر أولا ويمكن رؤية الباقي على Google.",
@@ -937,11 +939,15 @@ const COPY: Record<LangCode, Copy> = {
     passengerOptions: ["1 passatger", "2 passatgers", "3 passatgers", "4 passatgers"],
     sendMyLocation: "Enviar la meva ubicació",
     calculating: "Calculant...",
+    routeError:
+      "🚕 Ui, aquesta ruta necessita una mirada ràpida. No pateixis: envia-la per WhatsApp i confirmo preu i disponibilitat de seguida.",
     resultDistance: "Distància estimada",
     quoteEstimate: "Pressupost orientatiu",
     bookWithMessage: "Reservar amb missatge",
     seeAvailability: "Veure disponibilitat ara",
     whatsappQuote: "Pressupost per WhatsApp",
+    apiPrivateNote:
+      "📲 El WhatsApp ja porta origen, destinació, data i passatgers per ajudar-te ràpid.",
     reviewsEyebrow: "Ressenyes de Google",
     reviewsWith: "amb",
     moreReviews: "Veure més ressenyes",
@@ -993,11 +999,15 @@ const COPY: Record<LangCode, Copy> = {
     passengerOptions: ["1 Fahrgast", "2 Fahrgäste", "3 Fahrgäste", "4 Fahrgäste"],
     sendMyLocation: "Meinen Standort senden",
     calculating: "Berechnung...",
+    routeError:
+      "🚕 Ups, diese Route braucht einen kurzen manuellen Blick. Keine Sorge: per WhatsApp bestätige ich Preis und Verfügbarkeit sofort.",
     resultDistance: "Geschätzte Entfernung",
     quoteEstimate: "Orientierungspreis",
     bookWithMessage: "Mit Nachricht buchen",
     seeAvailability: "Verfügbarkeit prüfen",
     whatsappQuote: "WhatsApp-Angebot",
+    apiPrivateNote:
+      "📲 Die WhatsApp-Nachricht enthält bereits Abfahrt, Ziel, Datum und Fahrgäste.",
     reviewsEyebrow: "Google-Bewertungen",
     reviewsWith: "mit",
     moreReviews: "Mehr Bewertungen",
@@ -1038,11 +1048,15 @@ const COPY: Record<LangCode, Copy> = {
     destination: "Destinazione",
     passengers: "Passeggeri",
     passengerOptions: ["1 passeggero", "2 passeggeri", "3 passeggeri", "4 passeggeri"],
+    routeError:
+      "🚕 Ops, questo percorso ha bisogno di un controllo rapido. Nessun problema: invialo su WhatsApp e confermo prezzo e disponibilità.",
     resultDistance: "Distanza stimata",
     quoteEstimate: "Preventivo orientativo",
     bookWithMessage: "Prenota con messaggio",
     seeAvailability: "Verifica disponibilità",
     whatsappQuote: "Preventivo WhatsApp",
+    apiPrivateNote:
+      "📲 Il messaggio WhatsApp include già origine, destinazione, data e passeggeri.",
     reviewsEyebrow: "Recensioni Google",
     reviewsWith: "con",
     moreReviews: "Vedi altre recensioni",
@@ -1081,11 +1095,15 @@ const COPY: Record<LangCode, Copy> = {
     destination: "Destino",
     passengers: "Passageiros",
     passengerOptions: ["1 passageiro", "2 passageiros", "3 passageiros", "4 passageiros"],
+    routeError:
+      "🚕 Opa, esta rota precisa de uma confirmação rápida. Não se preocupe: envie por WhatsApp e confirmo preço e disponibilidade.",
     resultDistance: "Distância estimada",
     quoteEstimate: "Orçamento estimado",
     bookWithMessage: "Reservar com mensagem",
     seeAvailability: "Ver disponibilidade",
     whatsappQuote: "Orçamento por WhatsApp",
+    apiPrivateNote:
+      "📲 A mensagem de WhatsApp já inclui origem, destino, data e passageiros.",
     reviewsEyebrow: "Avaliações Google",
     reviewsWith: "com",
     moreReviews: "Ver mais avaliações",
@@ -1124,11 +1142,15 @@ const COPY: Record<LangCode, Copy> = {
     destination: "Bestemming",
     passengers: "Passagiers",
     passengerOptions: ["1 passagier", "2 passagiers", "3 passagiers", "4 passagiers"],
+    routeError:
+      "🚕 Oeps, deze route heeft een snelle check nodig. Geen zorgen: stuur hem via WhatsApp en ik bevestig prijs en beschikbaarheid.",
     resultDistance: "Geschatte afstand",
     quoteEstimate: "Richtprijs",
     bookWithMessage: "Boeken met bericht",
     seeAvailability: "Beschikbaarheid controleren",
     whatsappQuote: "WhatsApp-prijs",
+    apiPrivateNote:
+      "📲 Het WhatsApp-bericht bevat al vertrek, bestemming, datum en passagiers.",
     reviewsEyebrow: "Google reviews",
     reviewsWith: "met",
     moreReviews: "Meer reviews",
@@ -1688,7 +1710,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarifa",
       askPrice: "Necesito que me confirmes precio y disponibilidad.",
       notCalculated:
-        "El cálculo automático no se ha podido cerrar en la web. Te envío la ruta para confirmar precio final.",
+        "🚕 La web no ha cerrado el precio exacto, pero no pasa nada: te envío la ruta para que me confirmes precio final y disponibilidad.",
       confirm: "¿Me confirmas disponibilidad?",
       thanks: "Gracias.",
     },
@@ -1705,7 +1727,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "Estimated price",
       fare: "Fare",
       askPrice: "Please confirm price and availability.",
-      notCalculated: "The route was not automatically calculated on the website.",
+      notCalculated:
+        "🚕 The website did not finish the exact fare, but no worries: I am sending the route so you can confirm price and availability.",
       confirm: "Can you confirm availability?",
       thanks: "Thank you.",
     },
@@ -1722,7 +1745,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "Prix estimé",
       fare: "Tarif",
       askPrice: "Merci de confirmer le prix et la disponibilité.",
-      notCalculated: "L'itinéraire n'a pas été calculé automatiquement sur le site.",
+      notCalculated:
+        "🚕 Le site n'a pas finalisé le prix exact, mais pas d'inquiétude : j'envoie l'itinéraire pour confirmer le prix et la disponibilité.",
       confirm: "Pouvez-vous confirmer la disponibilité ?",
       thanks: "Merci.",
     },
@@ -1739,7 +1763,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "Preu orientatiu",
       fare: "Tarifa",
       askPrice: "Si us plau, confirma preu i disponibilitat.",
-      notCalculated: "La ruta no s'ha calculat automàticament al web.",
+      notCalculated:
+        "🚕 El web no ha tancat el preu exacte, però no passa res: envio la ruta per confirmar preu i disponibilitat.",
       confirm: "Em confirmes disponibilitat?",
       thanks: "Gràcies.",
     },
@@ -1756,7 +1781,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "Geschätzter Preis",
       fare: "Tarif",
       askPrice: "Bitte Preis und Verfügbarkeit bestätigen.",
-      notCalculated: "Die Route wurde auf der Website nicht automatisch berechnet.",
+      notCalculated:
+        "🚕 Die Website konnte den genauen Preis nicht abschliessen, aber kein Problem: Ich sende die Route zur Bestätigung von Preis und Verfügbarkeit.",
       confirm: "Können Sie die Verfügbarkeit bestätigen?",
       thanks: "Danke.",
     },
@@ -1773,7 +1799,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "Prezzo stimato",
       fare: "Tariffa",
       askPrice: "Per favore confermate prezzo e disponibilità.",
-      notCalculated: "Il percorso non è stato calcolato automaticamente sul sito.",
+      notCalculated:
+        "🚕 Il sito non ha chiuso il prezzo esatto, ma nessun problema: invio il percorso per confermare prezzo e disponibilità.",
       confirm: "Potete confermare la disponibilità?",
       thanks: "Grazie.",
     },
@@ -1790,7 +1817,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "Preço estimado",
       fare: "Tarifa",
       askPrice: "Por favor confirme preço e disponibilidade.",
-      notCalculated: "A rota não foi calculada automaticamente no site.",
+      notCalculated:
+        "🚕 O site não fechou o preço exato, mas não há problema: envio a rota para confirmar preço e disponibilidade.",
       confirm: "Pode confirmar disponibilidade?",
       thanks: "Obrigado.",
     },
@@ -1807,7 +1835,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "Geschatte prijs",
       fare: "Tarief",
       askPrice: "Kunt u prijs en beschikbaarheid bevestigen?",
-      notCalculated: "De route is niet automatisch berekend op de website.",
+      notCalculated:
+        "🚕 De website kon de exacte prijs niet afronden, maar geen zorgen: ik stuur de route om prijs en beschikbaarheid te bevestigen.",
       confirm: "Kunt u de beschikbaarheid bevestigen?",
       thanks: "Dank u.",
     },
@@ -1824,7 +1853,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "السعر التقديري",
       fare: "التعرفة",
       askPrice: "يرجى تأكيد السعر والتوفر.",
-      notCalculated: "لم يتم حساب المسار تلقائيا في الموقع.",
+      notCalculated: "🚕 لم يغلق الموقع السعر الدقيق، لا تقلق: أرسل المسار لتأكيد السعر والتوفر.",
       confirm: "هل يمكنك تأكيد التوفر؟",
       thanks: "شكرا.",
     },
