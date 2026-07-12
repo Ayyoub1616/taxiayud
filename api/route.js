@@ -1,11 +1,122 @@
 const ORS_BASE_URL = "https://api.openrouteservice.org";
+const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org";
+const OSRM_BASE_URL = "https://router.project-osrm.org";
 const CALATAYUD_LAT = "41.3527";
 const CALATAYUD_LON = "-1.6432";
+const PUBLIC_HEADERS = {
+  Accept: "application/json",
+  "User-Agent": "TaxiAyudWebsite/1.0 (https://www.taxiayud.es)",
+  Referer: "https://www.taxiayud.es/",
+};
+
+const COMMON_POINTS = [
+  {
+    keys: ["CALATAYUD", "CALATAYUD ZARAGOZA"],
+    label: "Calatayud, Zaragoza, España",
+    lat: 41.3535,
+    lng: -1.6434,
+  },
+  {
+    keys: ["PLAZA DEL FUERTE", "PL DEL FUERTE"],
+    label: "Plaza del Fuerte, Calatayud, Zaragoza, España",
+    lat: 41.3529,
+    lng: -1.6431,
+  },
+  {
+    keys: ["ESTACION DE TREN DE CALATAYUD", "RENFE CALATAYUD", "ESTACION CALATAYUD"],
+    label: "Estación de tren de Calatayud, Zaragoza, España",
+    lat: 41.3521,
+    lng: -1.6395,
+  },
+  {
+    keys: ["HOSPITAL ERNEST LLUCH", "HOSPITAL CALATAYUD"],
+    label: "Hospital Ernest Lluch, Calatayud, Zaragoza, España",
+    lat: 41.3396,
+    lng: -1.6515,
+  },
+  {
+    keys: ["MONASTERIO DE PIEDRA", "MONASTERIO PIEDRA"],
+    label: "Monasterio de Piedra, Nuévalos, Zaragoza, España",
+    lat: 41.1904,
+    lng: -1.7822,
+  },
+  {
+    keys: ["NUEVALOS", "NUÉVALOS"],
+    label: "Nuévalos, Zaragoza, España",
+    lat: 41.2114,
+    lng: -1.7891,
+  },
+  {
+    keys: ["ALHAMA DE ARAGON", "ALHAMA DE ARAGÓN", "BALNEARIO ALHAMA", "TERMAS PALLARES"],
+    label: "Alhama de Aragón, Zaragoza, España",
+    lat: 41.2962,
+    lng: -1.8945,
+  },
+  {
+    keys: ["JARABA", "BALNEARIO SICILIA", "BALNEARIO SERON", "BALNEARIO SERÓN"],
+    label: "Jaraba, Zaragoza, España",
+    lat: 41.1906,
+    lng: -1.8843,
+  },
+  {
+    keys: ["ATECA"],
+    label: "Ateca, Zaragoza, España",
+    lat: 41.3301,
+    lng: -1.7939,
+  },
+  {
+    keys: ["DAROCA"],
+    label: "Daroca, Zaragoza, España",
+    lat: 41.1146,
+    lng: -1.4143,
+  },
+  {
+    keys: ["ZARAGOZA", "ZARAGOZA CENTRO"],
+    label: "Zaragoza, España",
+    lat: 41.6488,
+    lng: -0.8891,
+  },
+  {
+    keys: ["ESTACION ZARAGOZA DELICIAS", "ZARAGOZA DELICIAS", "DELICIAS ZARAGOZA"],
+    label: "Estación Zaragoza-Delicias, Zaragoza, España",
+    lat: 41.6582,
+    lng: -0.9118,
+  },
+  {
+    keys: ["AEROPUERTO DE ZARAGOZA", "AEROPUERTO ZARAGOZA"],
+    label: "Aeropuerto de Zaragoza, España",
+    lat: 41.6662,
+    lng: -1.0415,
+  },
+  {
+    keys: ["MADRID"],
+    label: "Madrid, España",
+    lat: 40.4168,
+    lng: -3.7038,
+  },
+];
+const EXACT_COMMON_POINT_KEYS = new Set([
+  "CALATAYUD",
+  "CALATAYUD ZARAGOZA",
+  "ZARAGOZA",
+  "ZARAGOZA CENTRO",
+  "MADRID",
+]);
 
 function withSpain(value) {
   const clean = String(value || "").trim();
   if (!clean) return "";
   return /spain|españa/i.test(clean) ? clean : `${clean}, España`;
+}
+
+function normalize(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .toUpperCase()
+    .trim();
 }
 
 function pointFromRequest(point, fallbackLabel) {
@@ -22,10 +133,70 @@ function pointFromRequest(point, fallbackLabel) {
 }
 
 function displayLabel(label) {
-  return String(label || "")
+  const ignoredParts = new Set(["ARAGON", "COMUNIDAD DE CALATAYUD"]);
+  const parts = String(label || "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part) => part && !/^\d{5}$/.test(part))
+    .filter((part) => !ignoredParts.has(normalize(part)));
+  const cleanParts = [];
+  const seen = new Set();
+
+  for (const part of parts) {
+    const key = normalize(part);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    cleanParts.push(part);
+  }
+
+  return cleanParts
+    .join(", ")
     .replace(/,\s*Aragón,\s*España$/i, ", Zaragoza, España")
     .replace(/^Calatayud,\s*España$/i, "Calatayud, Zaragoza, España")
     .replace(/^Calatayud,\s*Aragón/i, "Calatayud, Zaragoza");
+}
+
+async function fetchJson(url, options = {}, timeoutMs = 8000) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const fetchResponse = await fetch(url, { ...options, signal: controller.signal });
+
+    if (!fetchResponse.ok) {
+      throw new Error("El servicio de mapas no respondió correctamente.");
+    }
+
+    return await fetchResponse.json();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function commonPoint(text) {
+  const value = normalize(text);
+  if (!value) return null;
+
+  const item = COMMON_POINTS.find((point) => {
+    return point.keys.some((key) => {
+      const normalizedKey = normalize(key);
+      const exactOnly = EXACT_COMMON_POINT_KEYS.has(normalizedKey);
+
+      return value === normalizedKey || (!exactOnly && value.includes(normalizedKey));
+    });
+  });
+
+  return item
+    ? {
+        label: item.label,
+        lat: item.lat,
+        lng: item.lng,
+      }
+    : null;
+}
+
+function labelFromNominatim(item, fallbackLabel) {
+  return displayLabel(item?.display_name || fallbackLabel);
 }
 
 async function geocode(text, apiKey) {
@@ -63,6 +234,35 @@ async function geocode(text, apiKey) {
   };
 }
 
+async function geocodeWithOpenStreetMap(text) {
+  const known = commonPoint(text);
+  if (known) return known;
+
+  const params = new URLSearchParams({
+    q: withSpain(text),
+    format: "jsonv2",
+    limit: "5",
+    countrycodes: "es",
+    addressdetails: "1",
+    "accept-language": "es",
+  });
+
+  const data = await fetchJson(`${NOMINATIM_BASE_URL}/search?${params}`, {
+    headers: PUBLIC_HEADERS,
+  });
+  const item = (Array.isArray(data) ? data : []).find((entry) => entry?.lat && entry?.lon);
+
+  if (!item) {
+    throw new Error("No se encontró una dirección suficientemente clara.");
+  }
+
+  return {
+    label: labelFromNominatim(item, text),
+    lat: Number(item.lat),
+    lng: Number(item.lon),
+  };
+}
+
 async function getDrivingRoute(origin, destination, apiKey) {
   const response = await fetch(`${ORS_BASE_URL}/v2/directions/driving-car/json`, {
     method: "POST",
@@ -96,6 +296,58 @@ async function getDrivingRoute(origin, destination, apiKey) {
   };
 }
 
+async function getDrivingRouteWithOpenStreetMap(origin, destination) {
+  const coordinates = `${origin.lng},${origin.lat};${destination.lng},${destination.lat}`;
+  const params = new URLSearchParams({
+    overview: "false",
+    alternatives: "false",
+    steps: "false",
+  });
+  const data = await fetchJson(`${OSRM_BASE_URL}/route/v1/driving/${coordinates}?${params}`, {
+    headers: PUBLIC_HEADERS,
+  });
+  const route = data?.routes?.[0];
+
+  if (!route?.distance) {
+    throw new Error("La ruta no devolvió distancia.");
+  }
+
+  return {
+    km: Math.round((Number(route.distance) / 1000) * 10) / 10,
+    durationMinutes: route.duration ? Math.round(Number(route.duration) / 60) : undefined,
+  };
+}
+
+async function calculateWithOpenRouteService(origin, destination, originPoint, destinationPoint, apiKey) {
+  const [resolvedOrigin, resolvedDestination] = await Promise.all([
+    originPoint || geocode(origin, apiKey),
+    destinationPoint || geocode(destination, apiKey),
+  ]);
+  const route = await getDrivingRoute(resolvedOrigin, resolvedDestination, apiKey);
+
+  return {
+    route,
+    originPoint: resolvedOrigin,
+    destinationPoint: resolvedDestination,
+    provider: "openrouteservice",
+  };
+}
+
+async function calculateWithOpenStreetMap(origin, destination, originPoint, destinationPoint) {
+  const [resolvedOrigin, resolvedDestination] = await Promise.all([
+    originPoint || geocodeWithOpenStreetMap(origin),
+    destinationPoint || geocodeWithOpenStreetMap(destination),
+  ]);
+  const route = await getDrivingRouteWithOpenStreetMap(resolvedOrigin, resolvedDestination);
+
+  return {
+    route,
+    originPoint: resolvedOrigin,
+    destinationPoint: resolvedDestination,
+    provider: "openstreetmap-osrm",
+  };
+}
+
 export default async function handler(request, response) {
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
@@ -104,14 +356,6 @@ export default async function handler(request, response) {
   }
 
   const apiKey = process.env.OPENROUTESERVICE_API_KEY;
-
-  if (!apiKey) {
-    response.status(500).json({
-      code: "OPENROUTESERVICE_API_KEY_MISSING",
-      message: "Ahora mismo no se puede calcular la ruta exacta. Puedes consultar por WhatsApp.",
-    });
-    return;
-  }
 
   try {
     const {
@@ -129,24 +373,43 @@ export default async function handler(request, response) {
 
     const directOriginPoint = pointFromRequest(rawOriginPoint, origin);
     const directDestinationPoint = pointFromRequest(rawDestinationPoint, destination);
-    const [originPoint, destinationPoint] = await Promise.all([
-      directOriginPoint || geocode(origin, apiKey),
-      directDestinationPoint || geocode(destination, apiKey),
-    ]);
-    const route = await getDrivingRoute(originPoint, destinationPoint, apiKey);
+    let calculation = null;
+
+    if (apiKey) {
+      try {
+        calculation = await calculateWithOpenRouteService(
+          origin,
+          destination,
+          directOriginPoint,
+          directDestinationPoint,
+          apiKey,
+        );
+      } catch {
+        calculation = null;
+      }
+    }
+
+    if (!calculation) {
+      calculation = await calculateWithOpenStreetMap(
+        origin,
+        destination,
+        directOriginPoint,
+        directDestinationPoint,
+      );
+    }
 
     response.status(200).json({
-      ...route,
-      originLabel: originPoint.label,
-      destinationLabel: destinationPoint.label,
-      provider: "openrouteservice",
+      ...calculation.route,
+      originLabel: calculation.originPoint.label,
+      destinationLabel: calculation.destinationPoint.label,
+      provider: calculation.provider,
     });
   } catch (error) {
     response.status(400).json({
       message:
         error instanceof Error
           ? error.message
-          : "No se pudo calcular la ruta exacta.",
+          : "No se pudo calcular la ruta exacta. Puedes consultar por WhatsApp.",
     });
   }
 }

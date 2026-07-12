@@ -1470,6 +1470,17 @@ function makeResultForKey(key: string, input: ResultInput): Result {
   };
 }
 
+function makeReverseResultForKey(key: string, input: ResultInput, destination: string): Result {
+  const result = makeResultForKey(key, input);
+
+  return {
+    ...result,
+    origin: displayName(key),
+    destination: destination.trim() || "Calatayud",
+    reason: `${result.reason} · ruta habitual`,
+  };
+}
+
 function makeResultFromExactRoute(
   route: ExactRouteResponse,
   input: ResultInput,
@@ -2263,6 +2274,7 @@ function App() {
 
   async function calculate() {
     const key = destinationKeyFromInput(query);
+    const originKey = destinationKeyFromInput(origin);
     const trimmedOrigin = origin.trim();
     const trimmedDestination = query.trim();
 
@@ -2275,6 +2287,22 @@ function App() {
       setSelectedKey(key);
       setQuery(displayName(key));
       setResult(resultForKey(key));
+      scrollToResult();
+      return;
+    }
+
+    if (originKey && TARIFAS[originKey] && isCalatayudOrigin(query)) {
+      setSelectedKey(originKey);
+      setResult(
+        makeReverseResultForKey(originKey, {
+          origin: trimmedOrigin,
+          date,
+          hour,
+          passengers,
+          waitMinutes,
+          mode: bookingMode,
+        }, trimmedDestination || "Calatayud"),
+      );
       scrollToResult();
       return;
     }
