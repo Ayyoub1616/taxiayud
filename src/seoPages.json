@@ -288,6 +288,298 @@
     ]
   },
   {
+    "path": "/taxi-cerca-de-mi-calatayud/",
+    "title": "Taxi cerca de mí en Calatayud | Taxi Ayud 24h",
+    "description": "Taxi cerca de mí en Calatayud con recogida por ubicación, hoteles, estación, Plaza del Fuerte, balnearios y pueblos de la comarca.",
+    "breadcrumb": "Taxi cerca de mí",
+    "navLabel": "Taxi cerca",
+    "eyebrow": "Recogida cercana en Calatayud",
+    "h1": "Taxi cerca de mí en Calatayud",
+    "intro": "Si estás en Calatayud o en un pueblo cercano y buscas un taxi cerca de ti, Taxi Ayud permite llamar, enviar WhatsApp o compartir ubicación para coordinar la recogida.",
+    "h2": "Recogida por dirección o ubicación",
+    "body": "El servicio está pensado para vecinos, viajeros, hoteles, restaurantes, estación de tren, alojamientos rurales, balnearios y visitantes que necesitan un taxi sin perder tiempo buscando parada.",
+    "sections": [
+      {
+        "heading": "Calatayud centro",
+        "text": "Recogidas en Plaza del Fuerte, estación, hoteles, bares, restaurantes, domicilios y direcciones concretas."
+      },
+      {
+        "heading": "Ubicación por WhatsApp",
+        "text": "Puedes enviar tu ubicación o escribir la dirección completa para confirmar disponibilidad y hora de llegada."
+      },
+      {
+        "heading": "Comarca cercana",
+        "text": "Servicio para municipios próximos, alojamientos rurales, balnearios y puntos turísticos alrededor de Calatayud."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cómo pido un taxi cerca de mí en Calatayud?",
+        "answer": "Pulsa llamada o WhatsApp directo y envía tu ubicación, dirección o punto de recogida. Se confirma disponibilidad directamente."
+      },
+      {
+        "question": "¿Puedo pedir taxi desde un hotel o restaurante?",
+        "answer": "Sí. Indica el nombre del hotel, restaurante o dirección exacta para facilitar la recogida."
+      },
+      {
+        "question": "¿Sirve para pueblos cercanos?",
+        "answer": "Sí. Puedes pedir recogida en pueblos de la comarca y confirmar precio o disponibilidad por WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-24-horas-calatayud/",
+    "title": "Taxi 24 horas en Calatayud | Taxi Ayud",
+    "description": "Taxi 24 horas en Calatayud para reservas, recogidas programadas, trenes, aeropuerto, pueblos, balnearios y urgencias de transporte.",
+    "breadcrumb": "Taxi 24 horas",
+    "navLabel": "Taxi 24h",
+    "eyebrow": "Disponibilidad 24h",
+    "h1": "Taxi 24 horas en Calatayud",
+    "intro": "Taxi Ayud atiende reservas y consultas de disponibilidad para traslados a cualquier hora en Calatayud, comarca, estación, Zaragoza, aeropuerto y balnearios.",
+    "h2": "Reserva de día, noche o madrugada",
+    "body": "Para horarios especiales, viajes de madrugada, trenes tempranos, vuelos, citas médicas o vueltas programadas, lo mejor es escribir con antelación y dejar los datos claros.",
+    "sections": [
+      {
+        "heading": "Madrugada y festivos",
+        "text": "Consulta disponibilidad para salidas nocturnas, festivos, eventos o regresos con hora concreta."
+      },
+      {
+        "heading": "Trenes y vuelos",
+        "text": "Reserva para estación de Calatayud, Zaragoza-Delicias o Aeropuerto de Zaragoza con margen suficiente."
+      },
+      {
+        "heading": "Confirmación rápida",
+        "text": "WhatsApp permite enviar fecha, hora, origen, destino, pasajeros y equipaje sin formularios largos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Hay taxi 24 horas en Calatayud?",
+        "answer": "Puedes consultar disponibilidad por teléfono o WhatsApp para viajes inmediatos o reservas programadas a cualquier hora."
+      },
+      {
+        "question": "¿Conviene reservar de madrugada?",
+        "answer": "Sí. Para madrugada, festivos, trenes o vuelos, es recomendable confirmar con antelación."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-hoteles-calatayud/",
+    "title": "Taxi para hoteles en Calatayud y comarca | Taxi Ayud",
+    "description": "Taxi para hoteles, casas rurales y alojamientos de Calatayud, Monasterio de Piedra, Nuévalos, Jaraba, Alhama y pueblos cercanos.",
+    "breadcrumb": "Hoteles y alojamientos",
+    "navLabel": "Hoteles",
+    "eyebrow": "Recogidas en alojamientos",
+    "h1": "Taxi para hoteles en Calatayud y comarca",
+    "intro": "Servicio de taxi para viajeros alojados en hoteles, hostales, apartamentos turísticos, casas rurales, balnearios y alojamientos cercanos a Calatayud.",
+    "h2": "Recogidas cómodas para huéspedes y turistas",
+    "body": "Indica el nombre del alojamiento, dirección, hora, pasajeros, equipaje y destino. Es útil para llegar desde la estación, visitar Monasterio de Piedra o conectar con balnearios y Zaragoza.",
+    "sections": [
+      {
+        "heading": "Hoteles de Calatayud",
+        "text": "Recogidas en alojamientos del centro, estación, restaurantes y puntos de interés de la ciudad."
+      },
+      {
+        "heading": "Casas rurales",
+        "text": "Servicio hacia pueblos de la comarca, alojamientos rurales y rutas turísticas con reserva previa."
+      },
+      {
+        "heading": "Turismo sin coche",
+        "text": "Traslados a Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón y otros destinos habituales."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo reservar taxi desde un hotel de Calatayud?",
+        "answer": "Sí. Envía nombre del hotel, hora de recogida, destino, pasajeros y equipaje."
+      },
+      {
+        "question": "¿Se hacen traslados para turistas al Monasterio de Piedra?",
+        "answer": "Sí. Puedes reservar ida, vuelta o consultar disponibilidad para una visita programada."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-nuevalos-monasterio-piedra/",
+    "title": "Taxi Nuévalos y Monasterio de Piedra desde Calatayud",
+    "description": "Taxi desde Calatayud a Nuévalos, Monasterio de Piedra, hoteles cercanos y vuelta programada para visitantes y alojamientos.",
+    "breadcrumb": "Nuévalos",
+    "navLabel": "Nuévalos",
+    "eyebrow": "Nuévalos y Monasterio",
+    "h1": "Taxi a Nuévalos y Monasterio de Piedra",
+    "intro": "Traslado en taxi desde Calatayud a Nuévalos, Monasterio de Piedra, hoteles y alojamientos próximos para visitas turísticas o recogidas concertadas.",
+    "h2": "Conexión directa desde estación, hotel o domicilio",
+    "body": "Es una ruta habitual para viajeros que llegan a Calatayud en tren y quieren visitar el Monasterio de Piedra sin coche. Puedes pedir ida, vuelta o recogida a una hora concreta.",
+    "sections": [
+      {
+        "heading": "Desde estación de Calatayud",
+        "text": "Recogida coordinada con la llegada del tren y traslado directo hacia Nuévalos o Monasterio de Piedra."
+      },
+      {
+        "heading": "Hoteles y alojamientos",
+        "text": "Servicio para huéspedes alojados en Calatayud, Nuévalos y entorno del parque."
+      },
+      {
+        "heading": "Regreso programado",
+        "text": "La vuelta puede dejarse prevista para evitar esperas al terminar la visita."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Hay taxi de Calatayud a Nuévalos?",
+        "answer": "Sí. Puedes reservar por WhatsApp indicando punto de recogida, hora, pasajeros y si necesitas vuelta."
+      },
+      {
+        "question": "¿Es recomendable reservar para visitar el Monasterio de Piedra?",
+        "answer": "Sí. En temporadas de turismo conviene reservar con antelación para asegurar disponibilidad."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-jaraba/",
+    "title": "Taxi Jaraba desde Calatayud | Balnearios y alojamientos",
+    "description": "Taxi desde Calatayud a Jaraba para balnearios, hoteles, tratamientos termales, recogidas con maletas y regreso programado.",
+    "breadcrumb": "Jaraba",
+    "navLabel": "Jaraba",
+    "eyebrow": "Balnearios de Jaraba",
+    "h1": "Taxi a Jaraba desde Calatayud",
+    "intro": "Traslado de taxi desde Calatayud a Jaraba para balnearios, hoteles, tratamientos, estancias termales y conexiones con estación de tren.",
+    "h2": "Viaje cómodo a los balnearios de Jaraba",
+    "body": "Indica balneario o alojamiento, hora de recogida, pasajeros, equipaje y si necesitas regreso. Para tratamientos o citas, conviene reservar con margen.",
+    "sections": [
+      {
+        "heading": "Balnearios",
+        "text": "Recogidas y llegadas a balnearios de Jaraba con coordinación de horarios."
+      },
+      {
+        "heading": "Estación de Calatayud",
+        "text": "Conexión para viajeros que llegan en tren y continúan hacia Jaraba."
+      },
+      {
+        "heading": "Regreso a Calatayud",
+        "text": "Posibilidad de dejar preparada la vuelta para estación, hotel o domicilio."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo pedir taxi para un balneario de Jaraba?",
+        "answer": "Sí. Envía el nombre del balneario, hora, pasajeros y equipaje por WhatsApp."
+      },
+      {
+        "question": "¿Se puede reservar ida y vuelta?",
+        "answer": "Sí. Indica la hora aproximada de regreso o pide confirmación de disponibilidad."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-alhama-de-aragon/",
+    "title": "Taxi Alhama de Aragón Calatayud | Taxi Ayud",
+    "description": "Taxi entre Calatayud y Alhama de Aragón para balnearios, hoteles, estación, tratamientos termales, pueblos cercanos y Zaragoza.",
+    "breadcrumb": "Alhama de Aragón",
+    "navLabel": "Alhama",
+    "eyebrow": "Alhama de Aragón",
+    "h1": "Taxi entre Calatayud y Alhama de Aragón",
+    "intro": "Servicio de taxi para traslados entre Calatayud y Alhama de Aragón, balnearios, hoteles, estación, tratamientos termales y pueblos cercanos.",
+    "h2": "Traslado directo a Alhama de Aragón",
+    "body": "Ruta útil para viajeros alojados en balnearios, personas que llegan en tren a Calatayud o vecinos que necesitan conexión con otros destinos de la comarca.",
+    "sections": [
+      {
+        "heading": "Balnearios y hoteles",
+        "text": "Recogidas en alojamientos termales y traslado hacia estación, Calatayud o Zaragoza."
+      },
+      {
+        "heading": "Viajes con maletas",
+        "text": "Vehículo cómodo para pasajeros con equipaje y estancias de varios días."
+      },
+      {
+        "heading": "Reserva anticipada",
+        "text": "Recomendable para horarios de tren, tratamientos o salidas de madrugada."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Hay taxi de Calatayud a Alhama de Aragón?",
+        "answer": "Sí. Puedes consultar presupuesto y disponibilidad por WhatsApp con origen, destino y hora."
+      },
+      {
+        "question": "¿Recogéis en balnearios de Alhama?",
+        "answer": "Sí. Indica el nombre del balneario u hotel y el punto exacto de recogida."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-ariza/",
+    "title": "Taxi Ariza Calatayud | Taxi Ayud comarca",
+    "description": "Taxi entre Ariza y Calatayud, estación, pueblos de la comarca, Zaragoza, Soria y traslados programados con presupuesto por WhatsApp.",
+    "breadcrumb": "Ariza",
+    "navLabel": "Ariza",
+    "eyebrow": "Ariza y comarca",
+    "h1": "Taxi entre Ariza y Calatayud",
+    "intro": "Traslados en taxi entre Ariza, Calatayud, estación, pueblos cercanos y destinos como Zaragoza o Soria con reserva por teléfono o WhatsApp.",
+    "h2": "Servicio para Ariza y conexiones cercanas",
+    "body": "Puedes calcular una ruta orientativa o enviar directamente origen, destino, fecha, hora y pasajeros. Para trayectos largos, la disponibilidad se confirma por WhatsApp.",
+    "sections": [
+      {
+        "heading": "Ariza - Calatayud",
+        "text": "Conexión con estación, hoteles, citas, compras o gestiones en Calatayud."
+      },
+      {
+        "heading": "Rutas interurbanas",
+        "text": "Traslados desde Ariza hacia Soria, Zaragoza, pueblos cercanos o destinos concretos."
+      },
+      {
+        "heading": "Presupuesto claro",
+        "text": "La calculadora orienta cuando hay ruta disponible y WhatsApp permite confirmar el precio."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo calcular una ruta desde Ariza?",
+        "answer": "Sí. La calculadora intenta obtener distancia exacta y, si falla, te ofrece contactar por WhatsApp para confirmarlo."
+      },
+      {
+        "question": "¿Se hacen viajes de Ariza a Soria?",
+        "answer": "Sí. Es recomendable confirmar disponibilidad y precio con antelación por WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-ateca/",
+    "title": "Taxi Ateca Calatayud | Taxi Ayud comarca",
+    "description": "Taxi entre Ateca y Calatayud para estación, citas, hoteles, pueblos cercanos, Monasterio de Piedra, Zaragoza y reservas por WhatsApp.",
+    "breadcrumb": "Ateca",
+    "navLabel": "Ateca",
+    "eyebrow": "Ateca y Calatayud",
+    "h1": "Taxi entre Ateca y Calatayud",
+    "intro": "Servicio de taxi para traslados entre Ateca, Calatayud, estación, alojamientos, pueblos de la comarca y destinos habituales como Zaragoza o Monasterio de Piedra.",
+    "h2": "Recogidas en Ateca con destino Calatayud y comarca",
+    "body": "Envía el punto de recogida, hora, pasajeros y destino. Para trenes, citas o viajes programados, conviene reservar con antelación.",
+    "sections": [
+      {
+        "heading": "Ateca - Calatayud",
+        "text": "Traslado para estación, compras, gestiones, citas médicas, hoteles o conexiones con tren."
+      },
+      {
+        "heading": "Turismo y comarca",
+        "text": "Conexión hacia Monasterio de Piedra, balnearios, pueblos cercanos y alojamientos rurales."
+      },
+      {
+        "heading": "Reserva rápida",
+        "text": "WhatsApp directo permite enviar origen, destino y hora sin rellenar formularios largos."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Taxi Ayud recoge en Ateca?",
+        "answer": "Sí. Indica dirección, hora y destino para confirmar disponibilidad."
+      },
+      {
+        "question": "¿Puedo reservar desde Ateca a la estación de Calatayud?",
+        "answer": "Sí. Para trenes, envía hora de salida o llegada y equipaje si lo hay."
+      }
+    ]
+  },
+  {
     "path": "/contacto/",
     "title": "Contacto Taxi Ayud Calatayud | Teléfono y WhatsApp",
     "description": "Contacta con Taxi Ayud en Calatayud por teléfono o WhatsApp para reservar taxi, consultar disponibilidad o pedir presupuesto orientativo.",

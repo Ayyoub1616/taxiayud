@@ -1242,6 +1242,7 @@ const touristSearchCopy: Record<LangCode, { eyebrow: string; title: string; text
 };
 
 const touristSearchPhrases = [
+  { language: "Cerca", query: "Taxi cerca de mi en Calatayud con recogida por ubicación" },
   { language: "Hoteles", query: "Recogida en hoteles de Calatayud y la comarca" },
   { language: "Balnearios", query: "Jaraba, Alhama de Aragón y Paracuellos de Jiloca" },
   { language: "Turismo", query: "Monasterio de Piedra, Nuévalos y rutas cercanas" },
@@ -1254,11 +1255,19 @@ const SEO_PAGES = seoPagesData as SeoPage[];
 const HOME_SEO_PAGE = SEO_PAGES.find((page) => page.path === "/") ?? SEO_PAGES[0];
 const DEFAULT_SEO_LINKS = [
   "/taxi-calatayud/",
+  "/taxi-cerca-de-mi-calatayud/",
+  "/taxi-24-horas-calatayud/",
   "/taxi-estacion-ave-calatayud/",
   "/taxi-monasterio-de-piedra/",
+  "/taxi-nuevalos-monasterio-piedra/",
   "/taxi-balnearios-jaraba-alhama/",
+  "/taxi-jaraba/",
+  "/taxi-alhama-de-aragon/",
   "/taxi-aeropuerto-zaragoza/",
   "/taxi-pueblos-comarca-calatayud/",
+  "/taxi-hoteles-calatayud/",
+  "/taxi-ariza/",
+  "/taxi-ateca/",
   "/contacto/",
   "/preguntas-frecuentes/",
 ];
@@ -1932,7 +1941,7 @@ function relatedSeoPages(currentPath: string | null) {
   return DEFAULT_SEO_LINKS
     .map(pageFromPath)
     .filter((page): page is SeoPage => page !== undefined && page.path !== currentPath)
-    .slice(0, 6);
+    .slice(0, 12);
 }
 
 function SeoIntentSection({

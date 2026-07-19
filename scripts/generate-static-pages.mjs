@@ -9,7 +9,14 @@ const businessGraph = {
   "@type": ["TaxiService", "LocalBusiness"],
   "@id": `${siteUrl}/#taxi-ayud`,
   name: "Taxi Ayud",
-  alternateName: ["Taxi Calatayud Ayud", "Taxi Ayud Calatayud"],
+  alternateName: [
+    "Taxi Calatayud Ayud",
+    "Taxi Ayud Calatayud",
+    "Taxi en Calatayud",
+    "Taxi cerca de mi Calatayud",
+    "Taxi 24 horas Calatayud",
+  ],
+  slogan: "Tu taxi de confianza en Calatayud",
   description:
     "Taxi oficial en Calatayud para traslados 24h a Monasterio de Piedra, Zaragoza, aeropuerto, estación, balnearios y pueblos de la comarca.",
   telephone: "+34611861041",
@@ -20,6 +27,15 @@ const businessGraph = {
     "Nuévalos",
     "Jaraba",
     "Alhama de Aragón",
+    "Ateca",
+    "Ariza",
+    "Maluenda",
+    "Cetina",
+    "Paracuellos de Jiloca",
+    "Munébrega",
+    "Ibdes",
+    "Carenas",
+    "Daroca",
     "Zaragoza",
     "Aeropuerto de Zaragoza",
     "Estación Zaragoza-Delicias",
@@ -54,6 +70,63 @@ const businessGraph = {
   },
   hasMap: "https://share.google/QJyQ83oNHjkRqtciX",
   sameAs: ["https://share.google/QJyQ83oNHjkRqtciX"],
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 41.3535,
+    longitude: -1.6432,
+  },
+  knowsAbout: [
+    "taxi en Calatayud",
+    "taxi cerca de mi en Calatayud",
+    "taxi 24 horas",
+    "traslados a Monasterio de Piedra",
+    "taxi a balnearios de Jaraba y Alhama",
+    "taxi estación AVE Calatayud",
+    "taxi Aeropuerto de Zaragoza",
+    "taxi pueblos comarca de Calatayud",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios de taxi en Calatayud y comarca",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Taxi cerca de mi en Calatayud",
+          serviceType: "Recogida local de taxi",
+          areaServed: "Calatayud",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Taxi a Monasterio de Piedra y Nuévalos",
+          serviceType: "Traslado turístico",
+          areaServed: "Comarca de Calatayud",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Taxi a balnearios de Jaraba y Alhama de Aragón",
+          serviceType: "Traslado a balnearios",
+          areaServed: "Jaraba, Alhama de Aragón",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Taxi Calatayud Aeropuerto de Zaragoza",
+          serviceType: "Traslado al aeropuerto",
+          areaServed: "Zaragoza",
+        },
+      },
+    ],
+  },
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+34611861041",
@@ -78,9 +151,25 @@ function absoluteUrl(path) {
 function staticFallback(page) {
   const links = pages
     .filter((item) => item.path !== page.path)
-    .slice(0, 7)
+    .slice(0, 14)
     .map((item) => `<a href="${item.path}">${escapeHtml(item.navLabel)}</a>`)
     .join(" ");
+  const serviceAreas = [
+    "Calatayud",
+    "Estación AVE de Calatayud",
+    "Plaza del Fuerte",
+    "Ateca",
+    "Ariza",
+    "Maluenda",
+    "Nuévalos",
+    "Monasterio de Piedra",
+    "Jaraba",
+    "Alhama de Aragón",
+    "Paracuellos de Jiloca",
+    "Aeropuerto de Zaragoza",
+  ]
+    .map((area) => `<li>${escapeHtml(area)}</li>`)
+    .join("");
   const sections = page.sections
     .map(
       (section) =>
@@ -94,7 +183,7 @@ function staticFallback(page) {
     )
     .join("");
 
-  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p><p><a href="tel:611861041">Llamar al 611 861 041</a> · <a href="https://wa.me/34611861041">Reservar por WhatsApp</a></p><article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}</article>${faq}<nav aria-label="Rutas relacionadas">${links}</nav></main>`;
+  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p><p><a href="tel:611861041">Llamar al 611 861 041</a> · <a href="https://wa.me/34611861041">Reservar por WhatsApp</a></p><article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>Zonas habituales de recogida</h2><p>Taxi oficial con recogidas en Calatayud, hoteles, estación, balnearios, pueblos de la comarca y destinos turísticos cercanos.</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="Rutas relacionadas">${links}</nav></main>`;
 }
 
 function pageJsonLd(page) {
@@ -107,11 +196,41 @@ function pageJsonLd(page) {
       text: item.answer,
     },
   }));
+  const pageService = {
+    "@type": "Service",
+    "@id": `${pageUrl}#service`,
+    name: page.h1,
+    serviceType: page.eyebrow || "Servicio de taxi",
+    description: page.description,
+    provider: { "@id": `${siteUrl}/#taxi-ayud` },
+    areaServed: [
+      "Calatayud",
+      "Comarca de Calatayud",
+      "Zaragoza",
+      "Monasterio de Piedra",
+      "Nuévalos",
+      "Jaraba",
+      "Alhama de Aragón",
+      "Ateca",
+      "Ariza",
+    ],
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: pageUrl,
+      servicePhone: {
+        "@type": "ContactPoint",
+        telephone: "+34611861041",
+        contactType: "reservas de taxi",
+        availableLanguage: ["es", "en", "fr", "ca", "de", "it", "pt", "nl", "ar"],
+      },
+    },
+  };
 
   return {
     "@context": "https://schema.org",
     "@graph": [
       businessGraph,
+      pageService,
       {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
@@ -129,6 +248,7 @@ function pageJsonLd(page) {
         inLanguage: "es-ES",
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${siteUrl}/#taxi-ayud` },
+        mainEntity: { "@id": `${pageUrl}#service` },
       },
       {
         "@type": "BreadcrumbList",
@@ -213,21 +333,15 @@ function replaceMeta(html, page) {
       `<script id="page-structured-data" type="application/ld+json">${ldJson}</script>`,
     )
     .replace(
-      /<div id="root">[\s\S]*?<\/div>\s*<script type="module"/,
-      `<div id="root">${staticFallback(page)}</div>\n    <script type="module"`,
+      /<div id="root">[\s\S]*?<\/main><\/div>/,
+      `<div id="root">${staticFallback(page)}</div>`,
     );
 }
 
 function sitemapEntry(page, lastmod) {
-  const isHome = page.path === "/";
-  const priority = isHome ? "1.0" : page.path === "/taxi-calatayud/" ? "0.9" : "0.8";
-  const changefreq = isHome || page.path === "/taxi-calatayud/" ? "weekly" : "monthly";
-
   return `  <url>
     <loc>${absoluteUrl(page.path)}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
   </url>`;
 }
 
