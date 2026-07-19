@@ -31,7 +31,7 @@ export const GOOGLE_REVIEWS = {
     {
       author: "Raquel C",
       text: "Ante la dificultad de encontrar taxi en Calatayud, una suerte dar con ellos. Los necesité dos veces y fui con el mismo taxista, muy amable y puntual. El taxi perfecto, muy limpio y cómodo. Totalmente recomendable.",
-      time: "Hace 6 horas",
+      time: "Reseña principal",
       rating: 5,
       url: "https://share.google/vVhE9TRxVGqUYTwKp",
     },
@@ -50,7 +50,13 @@ export const GOOGLE_REVIEWS = {
     {
       author: "ImNotAlejandro W",
       text: "Servicio premium, educación, puntualidad, el vehículo en excelente estado 10/10",
-      time: "Hace una semana",
+      time: "Hace 2 semanas",
+      rating: 5,
+    },
+    {
+      author: "hakim msellek",
+      text: "Excelente servicio",
+      time: "Hace 2 semanas",
       rating: 5,
     },
     { author: "Ady Adita", text: "El mejor taxi" },

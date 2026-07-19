@@ -11,14 +11,14 @@ Web moderna para Taxi Ayud Calatayud, lista para desplegar en Vercel sin WordPre
 - Tabla de destinos frecuentes.
 - Servicios, vehículo, métodos de pago y contacto.
 - SEO local avanzado, sitemap, robots.txt, datos estructurados y metadatos para compartir.
-- Detección de idioma del navegador en español, inglés, francés y árabe.
+- Detección de idioma del navegador en español, inglés, francés, catalán, alemán, italiano, portugués, neerlandés y árabe.
 - Mensajes de WhatsApp adaptados al idioma del cliente, con aviso de idioma incluido.
 
 ## Rutas exactas sin Google Maps
 
 La calculadora usa primero la tabla oficial de destinos habituales desde Calatayud.
-Para direcciones exactas queda preparada una alternativa más económica:
-OpenRouteService, basada en OpenStreetMap.
+Para direcciones exactas usa funciones privadas en Vercel y tiene doble vía:
+OpenRouteService cuando hay clave configurada y respaldo OpenStreetMap/OSRM si falta o falla.
 
 En Vercel añade esta variable de entorno:
 
@@ -28,7 +28,7 @@ OPENROUTESERVICE_API_KEY=tu_clave
 
 La clave no va en el navegador. Las funciones `api/route.js` y `api/suggest.js`
 calculan la ruta y muestran sugerencias desde Vercel. Si no configuras la
-variable, la web seguirá funcionando con la tabla de tarifas y WhatsApp.
+variable, la web intenta el respaldo libre y mantiene WhatsApp como salida profesional.
 
 ## Reseñas automáticas de Google
 

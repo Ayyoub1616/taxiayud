@@ -218,6 +218,31 @@ function replaceMeta(html, page) {
     );
 }
 
+function sitemapEntry(page, lastmod) {
+  const isHome = page.path === "/";
+  const priority = isHome ? "1.0" : page.path === "/taxi-calatayud/" ? "0.9" : "0.8";
+  const changefreq = isHome || page.path === "/taxi-calatayud/" ? "weekly" : "monthly";
+
+  return `  <url>
+    <loc>${absoluteUrl(page.path)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+}
+
+function writeSitemap() {
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const entries = pages.map((page) => sitemapEntry(page, lastmod)).join("\n");
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+</urlset>
+`;
+
+  writeFileSync("dist/sitemap.xml", sitemap);
+}
+
 for (const page of pages) {
   const html = replaceMeta(template, page);
   const outputPath = page.path === "/" ? "dist/index.html" : join("dist", page.path, "index.html");
@@ -246,3 +271,4 @@ const notFoundHtml = replaceMeta(template, notFoundPage)
   .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${siteUrl}/404/" />`);
 
 writeFileSync("dist/404.html", notFoundHtml);
+writeSitemap();

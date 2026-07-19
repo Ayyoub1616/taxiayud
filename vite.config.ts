@@ -1,5 +1,4 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import reviewsHandler from "./api/reviews.js";
 import routeHandler from "./api/route.js";
 import suggestHandler from "./api/suggest.js";
@@ -95,7 +94,6 @@ function localApiMiddleware() {
 
 export default defineConfig({
   plugins: [
-    react(),
     {
       name: "taxiayud-local-api",
       configureServer(server) {

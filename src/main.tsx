@@ -13,8 +13,8 @@ import {
   Languages,
   LocateFixed,
   Luggage,
-  MapPinned,
   MapPin,
+  MapPinned,
   MessageCircle,
   MessageSquareText,
   Navigation,
@@ -30,7 +30,7 @@ import {
   TrainFront,
   Users,
   WalletCards,
-} from "lucide-react";
+} from "./icons";
 import {
   CONTACT,
   DISPLAY_NAMES,
@@ -258,6 +258,18 @@ const HTML_LANG: Record<LangCode, string> = {
   ar: "ar",
 };
 
+const REVIEW_SIGNALS: Record<LangCode, string[]> = {
+  es: ["Puntualidad", "Coche limpio", "Trato amable"],
+  en: ["Punctual", "Clean car", "Kind service"],
+  fr: ["Ponctuel", "Taxi propre", "Service aimable"],
+  ca: ["Puntualitat", "Cotxe net", "Tracte amable"],
+  de: ["Pünktlich", "Sauberes Auto", "Freundlich"],
+  it: ["Puntuale", "Auto pulita", "Servizio gentile"],
+  pt: ["Pontual", "Carro limpo", "Atendimento amable"],
+  nl: ["Stipt", "Schone auto", "Vriendelijk"],
+  ar: ["دقيق", "سيارة نظيفة", "خدمة لطيفة"],
+};
+
 const BASE_COPY = {
   es: {
     nav: ["WhatsApp", "Calcular", "Reseñas", "Servicios", "Tarifas"],
@@ -347,9 +359,9 @@ const BASE_COPY = {
     whatsappQuote: "Presupuesto por WhatsApp",
     reviewsEyebrow: "Reseñas de Google",
     reviewsText:
-      "Opiniones públicas del perfil de Google de Taxi Ayud. La reseña más reciente aparece destacada y puedes ver el resto en Google.",
+      "Destacamos la experiencia de Raquel en Google: puntualidad, taxi limpio y trato cercano. El resto de opiniones queda disponible en Google.",
     reviewsWith: "con",
-    featuredReview: "Última reseña destacada",
+    featuredReview: "Reseña principal",
     moreReviews: "Ver más reseñas",
     viewGoogle: "Ver más reseñas en Google",
     servicesEyebrow: "Servicios",
@@ -510,9 +522,9 @@ const BASE_COPY = {
     whatsappQuote: "WhatsApp quote",
     reviewsEyebrow: "Google reviews",
     reviewsText:
-      "Public reviews from Taxi Ayud's Google profile. The most recent review is highlighted and you can see the rest on Google.",
+      "Raquel's Google review is highlighted for punctuality, a clean taxi and kind service. The rest of the reviews are available on Google.",
     reviewsWith: "with",
-    featuredReview: "Latest featured review",
+    featuredReview: "Main review",
     moreReviews: "See more reviews",
     viewGoogle: "See more reviews on Google",
     servicesEyebrow: "Services",
@@ -669,9 +681,9 @@ const BASE_COPY = {
       "📲 Le message WhatsApp contient déjà le départ, la destination, la date et les passagers.",
     whatsappQuote: "Estimation WhatsApp",
     reviewsEyebrow: "Avis Google",
-    reviewsText: "Avis publics du profil Google de Taxi Ayud. L'avis le plus récent est mis en avant et le reste est disponible sur Google.",
+    reviewsText: "L'avis de Raquel sur Google est mis en avant pour la ponctualité, le taxi propre et le service aimable. Le reste est disponible sur Google.",
     reviewsWith: "avec",
-    featuredReview: "Dernier avis mis en avant",
+    featuredReview: "Avis principal",
     moreReviews: "Voir plus d'avis",
     viewGoogle: "Voir plus d'avis sur Google",
     servicesEyebrow: "Services",
@@ -820,9 +832,9 @@ const BASE_COPY = {
     apiPrivateNote: "📲 رسالة واتساب تتضمن نقطة الانطلاق والوجهة والتاريخ وعدد الركاب للمساعدة بسرعة.",
     whatsappQuote: "تقدير عبر واتساب",
     reviewsEyebrow: "تقييمات Google",
-    reviewsText: "تقييمات عامة من ملف Taxi Ayud على Google. أحدث تقييم يظهر أولا ويمكن رؤية الباقي على Google.",
+    reviewsText: "نبرز تقييم Raquel على Google بسبب الالتزام بالمواعيد ونظافة سيارة الأجرة والخدمة اللطيفة. يمكن رؤية باقي التقييمات على Google.",
     reviewsWith: "مع",
-    featuredReview: "آخر تقييم مميز",
+    featuredReview: "التقييم الرئيسي",
     moreReviews: "عرض المزيد من التقييمات",
     viewGoogle: "عرض المزيد من تقييمات Google",
     servicesEyebrow: "الخدمات",
@@ -1611,6 +1623,22 @@ async function fetchGoogleReviews() {
   return data as ReviewsData;
 }
 
+function pinnedReviewItems(items: ReviewItem[] = GOOGLE_REVIEWS.items) {
+  const featured = GOOGLE_REVIEWS.items[0];
+  const seen = new Set([normalize(`${featured.author} ${featured.text}`)]);
+  const rest = items.filter((review) => {
+    const key = normalize(`${review.author} ${review.text}`);
+    const sameAuthor = normalize(review.author) === normalize(featured.author);
+    const sameText = normalize(review.text).startsWith(normalize(featured.text).slice(0, 34));
+
+    if (sameAuthor || sameText || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  return [featured, ...rest].slice(0, 10);
+}
+
 function localAddressMatches(value: string) {
   const q = normalize(value);
   if (q.length < 2) return [];
@@ -2280,7 +2308,7 @@ function App() {
           setReviews({
             rating: data.rating,
             count: data.count,
-            items: data.items?.length ? data.items : GOOGLE_REVIEWS.items,
+            items: pinnedReviewItems(data.items?.length ? data.items : GOOGLE_REVIEWS.items),
             source: data.source,
           });
         }
@@ -3063,6 +3091,11 @@ function App() {
             </p>
             <h2>{reviews.rating} {t.reviewsWith} {reviews.count}</h2>
             <p>{t.reviewsText}</p>
+            <div className="review-signals" aria-label="Puntos destacados de las reseñas">
+              {REVIEW_SIGNALS[language].map((signal) => (
+                <span key={signal}>{signal}</span>
+              ))}
+            </div>
             <a
               className="btn btn-secondary"
               href={CONTACT.googleProfile}

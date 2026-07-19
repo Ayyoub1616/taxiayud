@@ -1451,6 +1451,26 @@ select:focus,
   color: var(--muted);
 }
 
+.review-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -4px 0 20px;
+}
+
+.review-signals span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(241, 195, 77, 0.22);
+  border-radius: 999px;
+  background: rgba(241, 195, 77, 0.08);
+  color: #fff2be;
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
 .review-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1469,6 +1489,7 @@ select:focus,
 
 .featured-review {
   position: relative;
+  overflow: hidden;
   min-height: 210px;
   padding: 22px;
   border-color: rgba(241, 195, 77, 0.32);
@@ -1478,7 +1499,20 @@ select:focus,
   box-shadow: 0 22px 52px rgba(0, 0, 0, 0.28);
 }
 
+.featured-review::before {
+  content: "\201C";
+  position: absolute;
+  right: 18px;
+  top: -24px;
+  color: rgba(241, 195, 77, 0.12);
+  font-family: Georgia, serif;
+  font-size: 8rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
 .review-label {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 28px;
@@ -1490,6 +1524,13 @@ select:focus,
   font-size: 0.76rem;
   font-weight: 950;
   text-transform: uppercase;
+}
+
+.featured-review p {
+  position: relative;
+  max-width: 760px;
+  font-size: 1.16rem;
+  line-height: 1.42;
 }
 
 .review-card div {
