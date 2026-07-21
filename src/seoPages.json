@@ -31,7 +31,7 @@
       },
       {
         "question": "¿La calculadora da un precio cerrado?",
-        "answer": "No. Muestra un presupuesto orientativo con tarifas oficiales y distancia estimada. La reserva se confirma por teléfono o WhatsApp."
+        "answer": "No. Muestra un presupuesto orientativo con tarifas oficiales y distancia estimada. La reserva, disponibilidad e importe final se confirman por teléfono o WhatsApp."
       }
     ]
   },
@@ -665,7 +665,7 @@
     "h1": "Taxi por avería en autovía cerca de Calatayud",
     "intro": "Si te has quedado tirado por una avería o incidencia cerca de Calatayud, Taxi Ayud puede recoger pasajeros en un punto seguro de la A-2, N-II, N-234 o carreteras de la comarca.",
     "h2": "Recogida urgente de pasajeros, no grúa",
-    "body": "Servicio de taxi para llevar personas a Calatayud, taller, hotel, estación, Zaragoza o un destino seguro. Comparte ubicación por WhatsApp y confirma disponibilidad. Si hay peligro, accidente o emergencia médica, llama primero al 112 o a tu asistencia en carretera.",
+    "body": "Servicio de taxi para llevar personas a Calatayud, taller, hotel, estación, Zaragoza o un destino seguro. Comparte ubicación por WhatsApp y confirma disponibilidad. Si hay peligro, accidente o emergencia médica, llama primero al 112. Si el vehículo necesita grúa o asistencia, avisa también a tu aseguradora o asistencia en carretera.",
     "sections": [
       {
         "heading": "A-2, N-II, N-234 y salidas cercanas",
