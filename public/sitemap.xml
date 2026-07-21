@@ -2,62 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.taxiayud.es/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-calatayud/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-desde-calatayud/</loc>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/servicios/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-estacion-ave-calatayud/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-monasterio-de-piedra/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-balnearios-jaraba-alhama/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-aeropuerto-zaragoza/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-pueblos-comarca-calatayud/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-cerca-de-mi-calatayud/</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-24-horas-calatayud/</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-hoteles-calatayud/</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-nuevalos-monasterio-piedra/</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-jaraba/</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-alhama-de-aragon/</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-ariza/</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-ateca/</loc>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/contacto/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/telefono-taxi-calatayud/</loc>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/preguntas-frecuentes/</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-07-21</lastmod>
   </url>
 </urlset>

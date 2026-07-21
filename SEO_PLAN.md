@@ -8,13 +8,23 @@ Mejorar la visibilidad de Taxi Ayud para búsquedas locales reales relacionadas 
 
 - `/`: portada principal y reserva rápida.
 - `/taxi-calatayud/`: intención general “taxi en Calatayud”.
+- `/taxi-desde-calatayud/`: búsquedas de salida desde Calatayud a comarca, estación, balnearios, Zaragoza y aeropuerto.
 - `/servicios/`: resumen de servicios reales.
 - `/taxi-estacion-ave-calatayud/`: recogidas en estación y tren.
 - `/taxi-monasterio-de-piedra/`: traslado turístico específico.
 - `/taxi-balnearios-jaraba-alhama/`: Jaraba, Alhama y balnearios.
 - `/taxi-aeropuerto-zaragoza/`: Zaragoza, Delicias y aeropuerto.
 - `/taxi-pueblos-comarca-calatayud/`: pueblos de la comarca sin crear doorway pages.
+- `/taxi-cerca-de-mi-calatayud/`: intención local “taxi cerca de mí” en Calatayud.
+- `/taxi-24-horas-calatayud/`: disponibilidad 24h y viajes programados.
+- `/taxi-hoteles-calatayud/`: recogidas en hoteles, alojamientos y casas rurales.
+- `/taxi-nuevalos-monasterio-piedra/`: Nuévalos y Monasterio de Piedra.
+- `/taxi-jaraba/`: Jaraba y balnearios.
+- `/taxi-alhama-de-aragon/`: Alhama de Aragón y balnearios.
+- `/taxi-ariza/`: Ariza y eje hacia Soria.
+- `/taxi-ateca/`: Ateca y pueblos cercanos.
 - `/contacto/`: teléfono, WhatsApp y datos para reservar.
+- `/telefono-taxi-calatayud/`: intención directa de teléfono y WhatsApp.
 - `/preguntas-frecuentes/`: dudas habituales.
 
 ## Criterios aplicados
@@ -26,6 +36,7 @@ Mejorar la visibilidad de Taxi Ayud para búsquedas locales reales relacionadas 
 - FAQ útil por página.
 - Enlaces internos contextuales.
 - Sitemap con solo URLs indexables.
+- `llms.txt` con resumen de servicios, contacto y URLs principales.
 - `404.html` no indexable.
 - JSON-LD con `TaxiService`, `LocalBusiness`, `WebSite`, `WebPage`, `BreadcrumbList` y `FAQPage`.
 

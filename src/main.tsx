@@ -91,6 +91,16 @@ type AddressSuggestion = {
   lng?: number;
 };
 
+type KnownRoutePoint = AddressSuggestion & {
+  keys: string[];
+};
+
+type RoutePoint = {
+  label: string;
+  lat: number;
+  lng: number;
+};
+
 type ReviewItem = {
   author: string;
   text: string;
@@ -1243,11 +1253,13 @@ const touristSearchCopy: Record<LangCode, { eyebrow: string; title: string; text
 
 const touristSearchPhrases = [
   { language: "Cerca", query: "Taxi cerca de mi en Calatayud con recogida por ubicación" },
+  { language: "Desde", query: "Taxi desde Calatayud a pueblos, estación, balnearios y Zaragoza" },
   { language: "Hoteles", query: "Recogida en hoteles de Calatayud y la comarca" },
   { language: "Balnearios", query: "Jaraba, Alhama de Aragón y Paracuellos de Jiloca" },
   { language: "Turismo", query: "Monasterio de Piedra, Nuévalos y rutas cercanas" },
   { language: "Pueblos", query: "Ateca, Maluenda, Ariza, Cetina, Miedes y más" },
   { language: "Tren", query: "Estación de Calatayud y conexión con AVE" },
+  { language: "Teléfono", query: "Teléfono taxi Calatayud y WhatsApp directo" },
   { language: "Zaragoza", query: "Aeropuerto, Delicias, hospitales y direcciones concretas" },
 ];
 
@@ -1256,6 +1268,7 @@ const HOME_SEO_PAGE = SEO_PAGES.find((page) => page.path === "/") ?? SEO_PAGES[0
 const DEFAULT_SEO_LINKS = [
   "/taxi-calatayud/",
   "/taxi-cerca-de-mi-calatayud/",
+  "/taxi-desde-calatayud/",
   "/taxi-24-horas-calatayud/",
   "/taxi-estacion-ave-calatayud/",
   "/taxi-monasterio-de-piedra/",
@@ -1269,6 +1282,7 @@ const DEFAULT_SEO_LINKS = [
   "/taxi-ariza/",
   "/taxi-ateca/",
   "/contacto/",
+  "/telefono-taxi-calatayud/",
   "/preguntas-frecuentes/",
 ];
 
@@ -1295,24 +1309,164 @@ const featuredDestinations = [
   "MALUENDA",
 ].filter((item) => TARIFAS[item]);
 
-const localAddressSuggestions = [
-  "Calatayud, Zaragoza",
-  "Plaza del Fuerte, Calatayud, Zaragoza",
-  "Estación de tren de Calatayud, Zaragoza",
-  "Hospital Ernest Lluch, Calatayud, Zaragoza",
-  "Monasterio de Piedra, Nuévalos, Zaragoza",
-  "Nuévalos, Zaragoza",
-  "Balneario Sicilia, Jaraba, Zaragoza",
-  "Balneario Serón, Jaraba, Zaragoza",
-  "Balneario Termas Pallarés, Alhama de Aragón, Zaragoza",
-  "Ateca, Zaragoza",
-  "Maluenda, Zaragoza",
-  "Ariza, Zaragoza",
-  "Daroca, Zaragoza",
-  "Estación Zaragoza-Delicias, Zaragoza",
-  "Aeropuerto de Zaragoza",
-  "Zaragoza centro",
-  "Madrid",
+const NOMINATIM_CLIENT_BASE_URL = "https://nominatim.openstreetmap.org";
+const OSRM_CLIENT_BASE_URL = "https://router.project-osrm.org";
+
+const knownRoutePoints: KnownRoutePoint[] = [
+  {
+    keys: ["CALATAYUD", "CALATAYUD ZARAGOZA"],
+    label: "Calatayud, Zaragoza, España",
+    detail: "Municipio · Calatayud · Zaragoza",
+    lat: 41.3535,
+    lng: -1.6434,
+  },
+  {
+    keys: ["PLAZA DEL FUERTE", "PL DEL FUERTE"],
+    label: "Plaza del Fuerte, Calatayud, Zaragoza, España",
+    detail: "Punto habitual · Centro de Calatayud",
+    lat: 41.3529,
+    lng: -1.6431,
+  },
+  {
+    keys: ["ESTACION DE TREN DE CALATAYUD", "RENFE CALATAYUD", "ESTACION CALATAYUD"],
+    label: "Estación de tren de Calatayud, Zaragoza, España",
+    detail: "Estación AVE · Calatayud",
+    lat: 41.3521,
+    lng: -1.6395,
+  },
+  {
+    keys: ["HOSPITAL ERNEST LLUCH", "HOSPITAL CALATAYUD"],
+    label: "Hospital Ernest Lluch, Calatayud, Zaragoza, España",
+    detail: "Hospital · Calatayud",
+    lat: 41.3396,
+    lng: -1.6515,
+  },
+  {
+    keys: ["MONASTERIO DE PIEDRA", "MONASTERIO PIEDRA"],
+    label: "Monasterio de Piedra, Nuévalos, Zaragoza, España",
+    detail: "Turismo · Nuévalos",
+    lat: 41.1904,
+    lng: -1.7822,
+  },
+  {
+    keys: ["NUEVALOS", "NUÉVALOS"],
+    label: "Nuévalos, Zaragoza, España",
+    detail: "Municipio · Comarca de Calatayud",
+    lat: 41.2114,
+    lng: -1.7891,
+  },
+  {
+    keys: ["ALHAMA DE ARAGON", "ALHAMA DE ARAGÓN", "BALNEARIO ALHAMA", "TERMAS PALLARES"],
+    label: "Alhama de Aragón, Zaragoza, España",
+    detail: "Balnearios · Comarca de Calatayud",
+    lat: 41.2962,
+    lng: -1.8945,
+  },
+  {
+    keys: ["JARABA", "BALNEARIO SICILIA", "BALNEARIO SERON", "BALNEARIO SERÓN"],
+    label: "Jaraba, Zaragoza, España",
+    detail: "Balnearios · Comarca de Calatayud",
+    lat: 41.1906,
+    lng: -1.8843,
+  },
+  {
+    keys: ["PARACUELLOS DE JILOCA"],
+    label: "Paracuellos de Jiloca, Zaragoza, España",
+    detail: "Balnearios · Cerca de Calatayud",
+    lat: 41.3137,
+    lng: -1.6413,
+  },
+  {
+    keys: ["ATECA"],
+    label: "Ateca, Zaragoza, España",
+    detail: "Municipio · Comarca de Calatayud",
+    lat: 41.3301,
+    lng: -1.7939,
+  },
+  {
+    keys: ["MALUENDA"],
+    label: "Maluenda, Zaragoza, España",
+    detail: "Municipio · Comarca de Calatayud",
+    lat: 41.2878,
+    lng: -1.6167,
+  },
+  {
+    keys: ["ARIZA"],
+    label: "Ariza, Zaragoza, España",
+    detail: "Municipio · Comarca de Calatayud",
+    lat: 41.3131,
+    lng: -2.0536,
+  },
+  {
+    keys: ["DAROCA"],
+    label: "Daroca, Zaragoza, España",
+    detail: "Municipio · Zaragoza",
+    lat: 41.1146,
+    lng: -1.4143,
+  },
+  {
+    keys: ["SORIA"],
+    label: "Soria, Soria, España",
+    detail: "Ciudad · Castilla y León",
+    lat: 41.7666,
+    lng: -2.479,
+  },
+  {
+    keys: ["ALMAZAN", "ALMAZÁN"],
+    label: "Almazán, Soria, España",
+    detail: "Municipio · Soria",
+    lat: 41.4865,
+    lng: -2.5306,
+  },
+  {
+    keys: ["MEDINACELI"],
+    label: "Medinaceli, Soria, España",
+    detail: "Municipio · Soria",
+    lat: 41.1722,
+    lng: -2.4347,
+  },
+  {
+    keys: ["ARCOS DE JALON", "ARCOS DE JALÓN"],
+    label: "Arcos de Jalón, Soria, España",
+    detail: "Municipio · Soria",
+    lat: 41.2153,
+    lng: -2.2745,
+  },
+  {
+    keys: ["AGREDA", "ÁGREDA"],
+    label: "Ágreda, Soria, España",
+    detail: "Municipio · Soria",
+    lat: 41.8553,
+    lng: -1.9227,
+  },
+  {
+    keys: ["ZARAGOZA", "ZARAGOZA CENTRO"],
+    label: "Zaragoza, Zaragoza, España",
+    detail: "Ciudad · Zaragoza",
+    lat: 41.6488,
+    lng: -0.8891,
+  },
+  {
+    keys: ["ESTACION ZARAGOZA DELICIAS", "ZARAGOZA DELICIAS", "DELICIAS ZARAGOZA"],
+    label: "Estación Zaragoza-Delicias, Zaragoza, España",
+    detail: "Estación · Zaragoza",
+    lat: 41.6582,
+    lng: -0.9118,
+  },
+  {
+    keys: ["AEROPUERTO DE ZARAGOZA", "AEROPUERTO ZARAGOZA"],
+    label: "Aeropuerto de Zaragoza, Zaragoza, España",
+    detail: "Aeropuerto · Zaragoza",
+    lat: 41.6662,
+    lng: -1.0415,
+  },
+  {
+    keys: ["MADRID"],
+    label: "Madrid, Madrid, España",
+    detail: "Ciudad · Madrid",
+    lat: 40.4168,
+    lng: -3.7038,
+  },
 ];
 
 const tariffEntries = Object.entries(TARIFAS).sort(([a], [b]) =>
@@ -1405,6 +1559,36 @@ function priceFromKm(km: number, premium: boolean, waitMinutes = 0) {
 
 function formatKm(value: number) {
   return value.toString().replace(".", ",");
+}
+
+function withSpain(value: string) {
+  const clean = value.trim();
+  if (!clean) return "";
+  return /spain|españa/i.test(clean) ? clean : `${clean}, España`;
+}
+
+function displayRouteLabel(label: string) {
+  const ignoredParts = new Set(["ARAGON", "COMUNIDAD DE CALATAYUD"]);
+  const cleanParts: string[] = [];
+  const seen = new Set<string>();
+
+  String(label || "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part) => part && !/^\d{5}$/.test(part))
+    .filter((part) => !ignoredParts.has(normalize(part)))
+    .forEach((part) => {
+      const key = normalize(part);
+      if (seen.has(key)) return;
+      seen.add(key);
+      cleanParts.push(part);
+    });
+
+  return cleanParts
+    .join(", ")
+    .replace(/,\s*Aragón,\s*España$/i, ", Zaragoza, España")
+    .replace(/^Calatayud,\s*España$/i, "Calatayud, Zaragoza, España")
+    .replace(/^Calatayud,\s*Aragón/i, "Calatayud, Zaragoza");
 }
 
 function dateLabel(value: string) {
@@ -1575,25 +1759,23 @@ async function fetchExactRoute(
   originPoint?: AddressSuggestion | null,
   destinationPoint?: AddressSuggestion | null,
 ) {
-  let response: Response;
-
   try {
-    response = await fetch("/api/route", {
+    const response = await fetch("/api/route", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ origin, destination, originPoint, destinationPoint }),
     });
+
+    const data = await response.json().catch(() => null);
+
+    if (!response.ok || !data?.km) {
+      throw new Error(data?.message || "No se pudo calcular la ruta exacta.");
+    }
+
+    return data as ExactRouteResponse;
   } catch {
-    throw new Error("No se pudo conectar con el calculador automático.");
+    return fetchBrowserExactRoute(origin, destination, originPoint, destinationPoint);
   }
-
-  const data = await response.json().catch(() => null);
-
-  if (!response.ok || !data?.km) {
-    throw new Error(data?.message || "No se pudo calcular la ruta exacta.");
-  }
-
-  return data as ExactRouteResponse;
 }
 
 function friendlyRouteError(error: unknown, fallback: string) {
@@ -1610,15 +1792,199 @@ function friendlyRouteError(error: unknown, fallback: string) {
   return error.message || fallback;
 }
 
-async function fetchAddressSuggestions(query: string) {
-  const response = await fetch(`/api/suggest?q=${encodeURIComponent(query)}`);
-  const data = await response.json().catch(() => null);
+function compactClientDetail(item: Record<string, unknown>) {
+  const address = (item.address || {}) as Record<string, string | undefined>;
+  const province =
+    address.state_district ||
+    address.province ||
+    (String(address.state || "").toLowerCase() === "aragón" ? "Zaragoza" : address.state) ||
+    address.county;
+  const town =
+    address.city ||
+    address.town ||
+    address.village ||
+    address.municipality ||
+    address.locality;
+  const parts = [
+    item.type,
+    [address.road, address.house_number].filter(Boolean).join(" "),
+    address.postcode,
+    town,
+    province,
+  ]
+    .filter(Boolean)
+    .filter((part) => !["ARAGON", "COMUNIDAD DE CALATAYUD"].includes(normalize(String(part))))
+    .map((part) => String(part));
 
-  if (!response.ok || !Array.isArray(data?.suggestions)) {
-    return [];
+  return [...new Set(parts)].join(" · ");
+}
+
+function uniqueAddressSuggestions(items: AddressSuggestion[]) {
+  const seen = new Set<string>();
+
+  return items.filter((item) => {
+    const key = normalize(item.label);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function knownRoutePoint(value: string): RoutePoint | null {
+  const q = normalize(value);
+  if (!q) return null;
+
+  const point = knownRoutePoints.find((item) => {
+    const label = normalize(item.label);
+
+    return (
+      label === q ||
+      label.includes(q) ||
+      item.keys.some((key) => {
+        const normalizedKey = normalize(key);
+        return q === normalizedKey || q.includes(normalizedKey);
+      })
+    );
+  });
+
+  return point && Number.isFinite(point.lat) && Number.isFinite(point.lng)
+    ? { label: point.label, lat: Number(point.lat), lng: Number(point.lng) }
+    : null;
+}
+
+function pointFromSuggestion(suggestion: AddressSuggestion | null | undefined, fallback: string) {
+  const lat = Number(suggestion?.lat);
+  const lng = Number(suggestion?.lng);
+
+  if (Number.isFinite(lat) && Number.isFinite(lng)) {
+    return {
+      label: suggestion?.label || fallback,
+      lat,
+      lng,
+    };
   }
 
-  return data.suggestions as AddressSuggestion[];
+  return knownRoutePoint(fallback);
+}
+
+async function fetchClientJson(url: string, timeoutMs = 8000) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+
+    if (!response.ok) {
+      throw new Error("El servicio de mapas no respondió correctamente.");
+    }
+
+    return await response.json();
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
+async function geocodeInBrowser(value: string, suggestion?: AddressSuggestion | null) {
+  const directPoint = pointFromSuggestion(suggestion, value);
+  if (directPoint) return directPoint;
+
+  const params = new URLSearchParams({
+    q: withSpain(value),
+    format: "jsonv2",
+    limit: "5",
+    countrycodes: "es",
+    addressdetails: "1",
+    "accept-language": "es",
+  });
+  const data = await fetchClientJson(`${NOMINATIM_CLIENT_BASE_URL}/search?${params}`);
+  const item = (Array.isArray(data) ? data : []).find((entry) => entry?.lat && entry?.lon);
+
+  if (!item) {
+    throw new Error("No se encontró una dirección suficientemente clara.");
+  }
+
+  return {
+    label: displayRouteLabel(item.display_name || value),
+    lat: Number(item.lat),
+    lng: Number(item.lon),
+  };
+}
+
+async function fetchBrowserExactRoute(
+  origin: string,
+  destination: string,
+  originPoint?: AddressSuggestion | null,
+  destinationPoint?: AddressSuggestion | null,
+): Promise<ExactRouteResponse> {
+  const [resolvedOrigin, resolvedDestination] = await Promise.all([
+    geocodeInBrowser(origin, originPoint),
+    geocodeInBrowser(destination, destinationPoint),
+  ]);
+  const coordinates = `${resolvedOrigin.lng},${resolvedOrigin.lat};${resolvedDestination.lng},${resolvedDestination.lat}`;
+  const params = new URLSearchParams({
+    overview: "false",
+    alternatives: "false",
+    steps: "false",
+  });
+  const data = await fetchClientJson(`${OSRM_CLIENT_BASE_URL}/route/v1/driving/${coordinates}?${params}`);
+  const route = data?.routes?.[0];
+
+  if (!route?.distance) {
+    throw new Error("La ruta no devolvió distancia.");
+  }
+
+  return {
+    km: Math.round((Number(route.distance) / 1000) * 10) / 10,
+    durationMinutes: route.duration ? Math.round(Number(route.duration) / 60) : undefined,
+    originLabel: resolvedOrigin.label,
+    destinationLabel: resolvedDestination.label,
+  };
+}
+
+async function fetchBrowserAddressSuggestions(query: string) {
+  const local = localAddressMatches(query);
+  const params = new URLSearchParams({
+    q: withSpain(query),
+    format: "jsonv2",
+    limit: "8",
+    countrycodes: "es",
+    addressdetails: "1",
+    "accept-language": "es",
+  });
+
+  try {
+    const data = await fetchClientJson(`${NOMINATIM_CLIENT_BASE_URL}/search?${params}`, 6500);
+    const remote = (Array.isArray(data) ? data : [])
+      .filter((item) => item?.lat && item?.lon)
+      .map((item) => ({
+        label: displayRouteLabel(item.display_name || query),
+        detail: compactClientDetail(item),
+        lat: Number(item.lat),
+        lng: Number(item.lon),
+      }))
+      .slice(0, 6);
+
+    return uniqueAddressSuggestions([...local, ...remote]).slice(0, 6);
+  } catch {
+    return local;
+  }
+}
+
+async function fetchAddressSuggestions(query: string) {
+  const local = localAddressMatches(query);
+
+  try {
+    const response = await fetch(`/api/suggest?q=${encodeURIComponent(query)}`);
+    const data = await response.json().catch(() => null);
+
+    if (response.ok && Array.isArray(data?.suggestions) && data.suggestions.length) {
+      return uniqueAddressSuggestions([...local, ...data.suggestions]).slice(0, 6);
+    }
+  } catch {
+    // Browser fallback keeps local preview useful when Vercel functions are not running.
+  }
+
+  return fetchBrowserAddressSuggestions(query);
 }
 
 async function fetchGoogleReviews() {
@@ -1652,10 +2018,13 @@ function localAddressMatches(value: string) {
   const q = normalize(value);
   if (q.length < 2) return [];
 
-  return localAddressSuggestions
-    .filter((item) => normalize(item).includes(q) && normalize(item) !== q)
+  return knownRoutePoints
+    .filter((item) => {
+      const searchable = normalize([item.label, item.detail, ...item.keys].filter(Boolean).join(" "));
+      return searchable.includes(q) && normalize(item.label) !== q;
+    })
     .slice(0, 5)
-    .map((label) => ({ label, detail: "Sugerencia rápida" }));
+    .map(({ keys: _keys, ...suggestion }) => suggestion);
 }
 
 function pickupLocationLine(pickupLocation: PickupLocation) {

@@ -17,8 +17,10 @@ Web moderna para Taxi Ayud Calatayud, lista para desplegar en Vercel sin WordPre
 ## Rutas exactas sin Google Maps
 
 La calculadora usa primero la tabla oficial de destinos habituales desde Calatayud.
-Para direcciones exactas usa funciones privadas en Vercel y tiene doble vía:
-OpenRouteService cuando hay clave configurada y respaldo OpenStreetMap/OSRM si falta o falla.
+Para direcciones exactas usa funciones privadas en Vercel y tiene varias vías:
+OpenRouteService cuando hay clave configurada, respaldo OpenStreetMap/OSRM desde
+Vercel si falta o falla, y un fallback en navegador para que la preview local no
+se quede rota si las funciones `/api` no están levantadas.
 
 En Vercel añade esta variable de entorno:
 
@@ -29,6 +31,8 @@ OPENROUTESERVICE_API_KEY=tu_clave
 La clave no va en el navegador. Las funciones `api/route.js` y `api/suggest.js`
 calculan la ruta y muestran sugerencias desde Vercel. Si no configuras la
 variable, la web intenta el respaldo libre y mantiene WhatsApp como salida profesional.
+El fallback público es útil para pruebas y resiliencia, pero para producción
+conviene mantener `OPENROUTESERVICE_API_KEY` en Vercel.
 
 ## Reseñas automáticas de Google
 

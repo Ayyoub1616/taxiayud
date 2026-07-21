@@ -8,10 +8,11 @@ Estas acciones no se pueden completar solo desde el código, pero son clave para
 2. Mantener teléfono, web y zona coherentes con la web: `611 861 041` y `https://www.taxiayud.es`.
 3. Usar categorías reales, sin añadir palabras clave falsas al nombre.
 4. Añadir servicios: taxi en Calatayud, estación, pueblos, Monasterio de Piedra, balnearios, Zaragoza y aeropuerto.
-5. Mantener horarios y festivos actualizados.
-6. Subir fotos reales del Peugeot 408 Hybrid, exteriores, interior si procede, estación, comarca y puntos turísticos.
-7. Pedir reseñas reales después del servicio.
-8. Responder reseñas de forma profesional, breve y natural.
+5. Completar zona de servicio: Calatayud, Comunidad de Calatayud, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza, Monasterio de Piedra, Zaragoza y aeropuerto.
+6. Mantener horarios y festivos actualizados, especialmente fines de semana, trenes, eventos y festivos locales.
+7. Subir fotos reales del Peugeot 408 Hybrid, exteriores, interior si procede, estación, comarca y puntos turísticos.
+8. Pedir reseñas reales después del servicio, con naturalidad y sin incentivos.
+9. Responder reseñas de forma profesional, breve y natural, incluyendo detalles reales del servicio cuando proceda.
 
 ## Autoridad local y enlaces
 
@@ -35,8 +36,28 @@ Evitar:
 
 1. Añadir propiedad de dominio o prefijo URL para `https://www.taxiayud.es`.
 2. Enviar `https://www.taxiayud.es/sitemap.xml`.
-3. Revisar cobertura de las 10 URLs indexables.
-4. Comprobar consultas reales: taxi Calatayud, taxi cerca de mí, taxi estación Calatayud, taxi Monasterio de Piedra, taxi balnearios, taxi aeropuerto Zaragoza.
+3. Revisar cobertura de las 20 URLs indexables.
+4. Pedir indexación de las URLs nuevas más importantes: `/`, `/taxi-calatayud/`, `/taxi-cerca-de-mi-calatayud/`, `/taxi-desde-calatayud/`, `/telefono-taxi-calatayud/`, `/taxi-estacion-ave-calatayud/`, `/taxi-monasterio-de-piedra/`, `/taxi-balnearios-jaraba-alhama/`.
+5. Comprobar consultas reales: taxi Calatayud, taxi en Calatayud, taxi cerca de mí Calatayud, taxi desde Calatayud, teléfono taxi Calatayud, taxi estación Calatayud, taxi Monasterio de Piedra, taxi balnearios, taxi aeropuerto Zaragoza.
+
+## Búsquedas prioritarias
+
+- taxi Calatayud
+- taxi en Calatayud
+- taxi cerca de mi Calatayud
+- taxi cerca de mí estando en Calatayud
+- taxi desde Calatayud
+- teléfono taxi Calatayud
+- WhatsApp taxi Calatayud
+- taxi estación AVE Calatayud
+- taxi hoteles Calatayud
+- taxi Monasterio de Piedra
+- taxi Nuévalos Monasterio de Piedra
+- taxi Jaraba balnearios
+- taxi Alhama de Aragón balnearios
+- taxi Ariza Calatayud
+- taxi Ateca Calatayud
+- taxi pueblos comarca Calatayud
 
 ## Analítica
 

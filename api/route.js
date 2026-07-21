@@ -71,6 +71,36 @@ const COMMON_POINTS = [
     lng: -1.4143,
   },
   {
+    keys: ["SORIA"],
+    label: "Soria, Soria, España",
+    lat: 41.7666,
+    lng: -2.479,
+  },
+  {
+    keys: ["ALMAZAN", "ALMAZÁN"],
+    label: "Almazán, Soria, España",
+    lat: 41.4865,
+    lng: -2.5306,
+  },
+  {
+    keys: ["MEDINACELI"],
+    label: "Medinaceli, Soria, España",
+    lat: 41.1722,
+    lng: -2.4347,
+  },
+  {
+    keys: ["ARCOS DE JALON", "ARCOS DE JALÓN"],
+    label: "Arcos de Jalón, Soria, España",
+    lat: 41.2153,
+    lng: -2.2745,
+  },
+  {
+    keys: ["AGREDA", "ÁGREDA"],
+    label: "Ágreda, Soria, España",
+    lat: 41.8553,
+    lng: -1.9227,
+  },
+  {
     keys: ["ZARAGOZA", "ZARAGOZA CENTRO"],
     label: "Zaragoza, España",
     lat: 41.6488,
