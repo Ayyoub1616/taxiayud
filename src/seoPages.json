@@ -43,7 +43,7 @@
       },
       {
         "question": "¿Taxi Ayud puede recoger por avería en la A-2 o carreteras cercanas?",
-        "answer": "Sí, como taxi para pasajeros. Puede ayudarte con recogida cerca de la A-2, N-II, N-234 o carreteras de Calatayud y llevarte a un punto seguro, hotel, estación, taller o destino indicado. No es servicio de grúa."
+        "answer": "Sí, como taxi para pasajeros. Puede ayudarte con recogida cerca de la A-2, N-II, N-234 o carreteras de Calatayud y llevarte a un lugar seguro, hotel, estación, taller o destino indicado. No es servicio de grúa."
       }
     ]
   },
@@ -779,7 +779,7 @@
       },
       {
         "question": "¿Qué hago si no sé la dirección exacta?",
-        "answer": "Envía una referencia como hotel, gasolinera, salida de autovía, restaurante o ubicación de Google Maps. Taxi Ayud te orienta por WhatsApp."
+        "answer": "Envía ubicación de Google Maps o una referencia visible como carretera, sentido, salida cercana, kilómetro aproximado, hotel o restaurante. Mantén el teléfono disponible por si hay que llamarte para localizarte mejor."
       }
     ]
   },
@@ -791,13 +791,13 @@
     "navLabel": "Avería carretera",
     "eyebrow": "Recogida en carretera",
     "h1": "Taxi por avería en autovía cerca de Calatayud",
-    "intro": "Si te has quedado tirado por una avería o incidencia cerca de Calatayud, Taxi Ayud puede recoger pasajeros en un punto seguro de la A-2, N-II, N-234 o carreteras de la comarca.",
+    "intro": "Si te has quedado tirado por una avería o incidencia cerca de Calatayud, Taxi Ayud puede recoger pasajeros en la A-2, N-II, N-234 o carreteras de la comarca, confirmando la ubicación exacta por WhatsApp o llamada.",
     "h2": "Recogida urgente de pasajeros, no grúa",
     "body": "Servicio de taxi para llevar personas a Calatayud, taller, hotel, estación, Zaragoza o un destino seguro. Comparte ubicación por WhatsApp y confirma disponibilidad. Si hay peligro, accidente o emergencia médica, llama primero al 112. Si el vehículo necesita grúa o asistencia, avisa también a tu aseguradora o asistencia en carretera.",
     "sections": [
       {
         "heading": "A-2, N-II, N-234 y salidas cercanas",
-        "text": "Recogida en áreas de servicio, gasolineras, salidas, talleres o puntos seguros próximos a Calatayud, Valdeherrera, Ateca o Ariza."
+        "text": "Recogida de pasajeros cerca de Calatayud, Valdeherrera, Ateca o Ariza. Envía ubicación, sentido de la marcha, salida o kilómetro aproximado y mantén el teléfono disponible."
       },
       {
         "heading": "Ubicación por WhatsApp",
@@ -819,11 +819,11 @@
       },
       {
         "question": "¿Qué datos envío por WhatsApp si estoy en carretera?",
-        "answer": "Envía ubicación de Google Maps, carretera, sentido, salida o kilómetro, número de pasajeros y destino. Si no sabes el punto exacto, escribe la referencia más cercana."
+        "answer": "Envía ubicación de Google Maps, carretera, sentido, salida o kilómetro aproximado, número de pasajeros y destino. Mantén el teléfono disponible porque en autovía puede ser necesario llamarte para localizarte bien."
       },
       {
         "question": "¿Me podéis llevar a un taller, hotel o estación?",
-        "answer": "Sí. Puedes pedir traslado de pasajeros a un taller, hotel, estación de Calatayud, Zaragoza, domicilio o punto seguro. El destino final se confirma por WhatsApp."
+        "answer": "Sí. Puedes pedir traslado de pasajeros a un taller, hotel, estación de Calatayud, Zaragoza, domicilio o lugar seguro. El destino final se confirma por WhatsApp."
       },
       {
         "question": "¿Se puede calcular precio para una recogida por avería?",
@@ -839,17 +839,17 @@
     "navLabel": "Taxi A-2",
     "eyebrow": "Autovía A-2",
     "h1": "Taxi en la A-2 cerca de Calatayud",
-    "intro": "Recogida de pasajeros en puntos seguros de la A-2 cerca de Calatayud, Valdeherrera, Ateca, Ariza y salidas próximas cuando hay avería, incidencia o necesitas continuar viaje.",
+    "intro": "Recogida de pasajeros en la A-2 cerca de Calatayud, Valdeherrera, Ateca, Ariza y salidas próximas cuando hay avería, incidencia o necesitas continuar viaje.",
     "h2": "Recogida en A-2 con ubicación por WhatsApp",
-    "body": "Si estás parado por una avería, espera en un punto seguro y envía ubicación, salida o kilómetro aproximado. Taxi Ayud puede trasladar pasajeros hacia Calatayud, taller, hotel, estación, Zaragoza, Soria u otro destino confirmado. No es servicio de grúa ni reparación.",
+    "body": "Si estás parado por una avería, ponte a salvo si puedes, envía ubicación, sentido, salida o kilómetro aproximado y mantén el teléfono disponible para confirmar el punto exacto. Taxi Ayud puede trasladar pasajeros hacia Calatayud, taller, hotel, estación, Zaragoza, Soria u otro destino confirmado. No es servicio de grúa ni reparación.",
     "sections": [
       {
         "heading": "Valdeherrera y Calatayud",
-        "text": "Punto habitual cerca de la A-2 km 231, gasolineras, talleres, salidas y accesos a Calatayud."
+        "text": "Referencia habitual cerca de la A-2 km 231, accesos a Calatayud, Valdeherrera y ubicaciones aproximadas que se terminan de confirmar por llamada o WhatsApp."
       },
       {
         "heading": "Ateca y Ariza",
-        "text": "Recogidas en salidas próximas, áreas seguras o puntos indicados por asistencia en carretera."
+        "text": "Recogidas según ubicación real del viajero, sentido de la marcha, salida o kilómetro aproximado, confirmando el punto por llamada o WhatsApp."
       },
       {
         "heading": "Destino seguro",
@@ -863,7 +863,7 @@
       },
       {
         "question": "¿Podéis recoger en el arcén?",
-        "answer": "Por seguridad, lo ideal es quedar en un punto seguro: gasolinera, área de servicio, salida, taller o ubicación indicada por asistencia. Si hay peligro, llama primero al 112."
+        "answer": "No siempre se puede elegir el lugar exacto. Ponte a salvo si puedes, no cruces la vía, mantén el teléfono disponible y envía ubicación, sentido y km aproximado. Si hay peligro, llama primero al 112."
       },
       {
         "question": "¿Es servicio de grúa?",
@@ -875,7 +875,7 @@
       },
       {
         "question": "¿Puedo mandar mi ubicación por WhatsApp?",
-        "answer": "Sí. Es la forma más rápida para confirmar recogida en carretera. También puedes escribir salida, kilómetro, gasolinera o pueblo cercano."
+        "answer": "Sí. Es la forma más rápida para confirmar recogida en carretera. También puedes escribir carretera, sentido, salida, kilómetro aproximado o referencia visible. Mantén el teléfono disponible para una llamada de confirmación."
       }
     ]
   },
@@ -1295,7 +1295,7 @@
       },
       {
         "question": "¿Taxi Ayud puede recogerme por avería en la A-2, N-II o N-234?",
-        "answer": "Sí, como taxi para pasajeros. No es grúa ni asistencia mecánica. Si hay peligro, llama primero al 112; para taxi, envía ubicación, salida o kilómetro por WhatsApp."
+        "answer": "Sí, como taxi para pasajeros. No es grúa ni asistencia mecánica. Si hay peligro, llama primero al 112; para taxi, envía ubicación, sentido, salida o kilómetro aproximado por WhatsApp y mantén el teléfono disponible."
       },
       {
         "question": "¿Se hacen viajes a Zaragoza, aeropuerto o estación Delicias?",
