@@ -83,6 +83,8 @@ type ExactRouteResponse = {
   durationMinutes?: number;
   originLabel?: string;
   destinationLabel?: string;
+  approximate?: boolean;
+  provider?: string;
 };
 
 type AddressSuggestion = {
@@ -2089,6 +2091,7 @@ function makeResultFromExactRoute(
   const waitMinutes = Math.max(0, input.waitMinutes || 0);
   const waitPrice = (waitMinutes / 60) * info.waitRate;
   const km = Math.max(0, Math.round(route.km * 10) / 10);
+  const routeReason = route.approximate ? "ruta estimada" : "ruta calculada";
 
   return {
     origin: route.originLabel || input.origin.trim() || "origen indicado",
@@ -2099,7 +2102,7 @@ function makeResultFromExactRoute(
     waitPrice,
     price: priceFromKm(km, info.premium, waitMinutes),
     tariffLabel: info.label,
-    reason: `${info.reason} · ruta calculada`,
+    reason: `${info.reason} · ${routeReason}`,
     dateLabel: dateLabel(input.date),
     hour: input.hour,
     passengers: input.passengers,
@@ -2113,10 +2116,14 @@ async function fetchExactRoute(
   originPoint?: AddressSuggestion | null,
   destinationPoint?: AddressSuggestion | null,
 ) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 9000);
+
   try {
     const response = await fetch("/api/route", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
       body: JSON.stringify({ origin, destination, originPoint, destinationPoint }),
     });
 
@@ -2129,6 +2136,8 @@ async function fetchExactRoute(
     return data as ExactRouteResponse;
   } catch {
     return fetchBrowserExactRoute(origin, destination, originPoint, destinationPoint);
+  } finally {
+    window.clearTimeout(timeout);
   }
 }
 
@@ -2239,6 +2248,41 @@ async function fetchClientJson(url: string, timeoutMs = 8000) {
   }
 }
 
+function haversineKm(origin: RoutePoint, destination: RoutePoint) {
+  const earthRadiusKm = 6371;
+  const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
+  const latDelta = toRadians(destination.lat - origin.lat);
+  const lngDelta = toRadians(destination.lng - origin.lng);
+  const originLat = toRadians(origin.lat);
+  const destinationLat = toRadians(destination.lat);
+  const a =
+    Math.sin(latDelta / 2) ** 2 +
+    Math.cos(originLat) * Math.cos(destinationLat) * Math.sin(lngDelta / 2) ** 2;
+
+  return 2 * earthRadiusKm * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function estimateDrivingRoute(origin: RoutePoint, destination: RoutePoint): ExactRouteResponse {
+  const directKm = haversineKm(origin, destination);
+
+  if (!Number.isFinite(directKm) || directKm <= 0) {
+    throw new Error("No se pudo estimar la distancia entre las direcciones.");
+  }
+
+  const correction = directKm < 12 ? 1.35 : directKm < 60 ? 1.27 : 1.23;
+  const minimumBuffer = directKm < 12 ? 1.8 : 4;
+  const km = Math.round(Math.max(directKm * correction, directKm + minimumBuffer) * 10) / 10;
+
+  return {
+    km,
+    durationMinutes: Math.round((km / 68) * 60),
+    originLabel: origin.label,
+    destinationLabel: destination.label,
+    approximate: true,
+    provider: "estimated-distance",
+  };
+}
+
 async function geocodeInBrowser(value: string, suggestion?: AddressSuggestion | null) {
   const directPoint = pointFromSuggestion(suggestion, value);
   if (directPoint) return directPoint;
@@ -2281,19 +2325,24 @@ async function fetchBrowserExactRoute(
     alternatives: "false",
     steps: "false",
   });
-  const data = await fetchClientJson(`${OSRM_CLIENT_BASE_URL}/route/v1/driving/${coordinates}?${params}`);
-  const route = data?.routes?.[0];
+  try {
+    const data = await fetchClientJson(`${OSRM_CLIENT_BASE_URL}/route/v1/driving/${coordinates}?${params}`);
+    const route = data?.routes?.[0];
 
-  if (!route?.distance) {
-    throw new Error("La ruta no devolvió distancia.");
+    if (!route?.distance) {
+      throw new Error("La ruta no devolvió distancia.");
+    }
+
+    return {
+      km: Math.round((Number(route.distance) / 1000) * 10) / 10,
+      durationMinutes: route.duration ? Math.round(Number(route.duration) / 60) : undefined,
+      originLabel: resolvedOrigin.label,
+      destinationLabel: resolvedDestination.label,
+      provider: "openstreetmap-osrm",
+    };
+  } catch {
+    return estimateDrivingRoute(resolvedOrigin, resolvedDestination);
   }
-
-  return {
-    km: Math.round((Number(route.distance) / 1000) * 10) / 10,
-    durationMinutes: route.duration ? Math.round(Number(route.duration) / 60) : undefined,
-    originLabel: resolvedOrigin.label,
-    destinationLabel: resolvedDestination.label,
-  };
 }
 
 async function fetchBrowserAddressSuggestions(query: string) {
@@ -3900,7 +3949,13 @@ function App() {
               ) : null}
             </div>
 
-            <aside className="result-panel" id="resultado" aria-live="polite">
+            <aside
+              className="result-panel"
+              id="resultado"
+              aria-live="polite"
+              aria-busy={routeLoading}
+              role={routeError ? "alert" : "status"}
+            >
               {result ? (
                 <>
                   <div className="result-kicker">
@@ -3965,7 +4020,8 @@ function App() {
                     </a>
                   </div>
                   <p className="small-note">
-                    {t.quoteEstimate}. {RATES.officialNotice}.
+                    {result.reason.includes("estimada") ? `${t.quoteEstimate}. ` : ""}
+                    {RATES.officialNotice}.
                   </p>
                 </>
               ) : (

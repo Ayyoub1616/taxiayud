@@ -179,7 +179,7 @@ const EXACT_COMMON_POINT_KEYS = new Set([
 ]);
 
 function withSpain(value) {
-  const clean = String(value || "").trim();
+  const clean = String(value || "").trim().slice(0, 180);
   if (!clean) return "";
   return /spain|españa/i.test(clean) ? clean : `${clean}, España`;
 }
@@ -229,6 +229,38 @@ function displayLabel(label) {
     .replace(/,\s*Aragón,\s*España$/i, ", Zaragoza, España")
     .replace(/^Calatayud,\s*España$/i, "Calatayud, Zaragoza, España")
     .replace(/^Calatayud,\s*Aragón/i, "Calatayud, Zaragoza");
+}
+
+function haversineKm(origin, destination) {
+  const earthRadiusKm = 6371;
+  const toRadians = (degrees) => (degrees * Math.PI) / 180;
+  const latDelta = toRadians(destination.lat - origin.lat);
+  const lngDelta = toRadians(destination.lng - origin.lng);
+  const originLat = toRadians(origin.lat);
+  const destinationLat = toRadians(destination.lat);
+  const a =
+    Math.sin(latDelta / 2) ** 2 +
+    Math.cos(originLat) * Math.cos(destinationLat) * Math.sin(lngDelta / 2) ** 2;
+
+  return 2 * earthRadiusKm * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function estimateDrivingRoute(origin, destination) {
+  const directKm = haversineKm(origin, destination);
+
+  if (!Number.isFinite(directKm) || directKm <= 0) {
+    throw new Error("No se pudo estimar la distancia entre las direcciones.");
+  }
+
+  const correction = directKm < 12 ? 1.35 : directKm < 60 ? 1.27 : 1.23;
+  const minimumBuffer = directKm < 12 ? 1.8 : 4;
+  const km = Math.round(Math.max(directKm * correction, directKm + minimumBuffer) * 10) / 10;
+
+  return {
+    km,
+    durationMinutes: Math.round((km / 68) * 60),
+    approximate: true,
+  };
 }
 
 async function fetchJson(url, options = {}, timeoutMs = 8000) {
@@ -413,13 +445,21 @@ async function calculateWithOpenStreetMap(origin, destination, originPoint, dest
     originPoint || geocodeWithOpenStreetMap(origin),
     destinationPoint || geocodeWithOpenStreetMap(destination),
   ]);
-  const route = await getDrivingRouteWithOpenStreetMap(resolvedOrigin, resolvedDestination);
+  let route = null;
+  let provider = "openstreetmap-osrm";
+
+  try {
+    route = await getDrivingRouteWithOpenStreetMap(resolvedOrigin, resolvedDestination);
+  } catch {
+    route = estimateDrivingRoute(resolvedOrigin, resolvedDestination);
+    provider = "estimated-distance";
+  }
 
   return {
     route,
     originPoint: resolvedOrigin,
     destinationPoint: resolvedDestination,
-    provider: "openstreetmap-osrm",
+    provider,
   };
 }
 
@@ -434,12 +474,14 @@ export default async function handler(request, response) {
 
   try {
     const {
-      origin,
-      destination,
+      origin: rawOrigin,
+      destination: rawDestination,
       originPoint: rawOriginPoint,
       destinationPoint: rawDestinationPoint,
     } =
       typeof request.body === "string" ? JSON.parse(request.body) : request.body || {};
+    const origin = String(rawOrigin || "").trim().slice(0, 180);
+    const destination = String(rawDestination || "").trim().slice(0, 180);
 
     if (!origin || !destination) {
       response.status(400).json({ message: "Indica origen y destino." });

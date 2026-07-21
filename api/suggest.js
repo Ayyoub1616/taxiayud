@@ -9,7 +9,7 @@ const PUBLIC_HEADERS = {
 };
 
 function withSpain(value) {
-  const clean = String(value || "").trim();
+  const clean = String(value || "").trim().slice(0, 120);
   if (!clean) return "";
   return /spain|españa/i.test(clean) ? clean : `${clean}, España`;
 }
@@ -188,7 +188,7 @@ export default async function handler(request, response) {
   }
 
   const apiKey = process.env.OPENROUTESERVICE_API_KEY;
-  const query = String(request.query?.q || "").trim();
+  const query = String(request.query?.q || "").trim().slice(0, 120);
 
   if (query.length < 3) {
     response.status(200).json({ suggestions: [] });

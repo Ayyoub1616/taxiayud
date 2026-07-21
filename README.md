@@ -23,7 +23,10 @@ La calculadora usa primero la tabla oficial de destinos habituales desde Calatay
 Para direcciones exactas usa funciones privadas en Vercel y tiene varias vías:
 OpenRouteService cuando hay clave configurada, respaldo OpenStreetMap/OSRM desde
 Vercel si falta o falla, y un fallback en navegador para que la preview local no
-se quede rota si las funciones `/api` no están levantadas.
+se quede rota si las funciones `/api` no están levantadas. Si una dirección se
+localiza pero el motor de rutas no responde, la calculadora usa una estimación
+prudente por coordenadas y mantiene la salida de WhatsApp para confirmar precio
+y disponibilidad.
 
 En Vercel añade esta variable de entorno:
 
@@ -68,6 +71,9 @@ Vercel detecta el proyecto como Vite:
 - Build command: `pnpm build`
 - Output directory: `dist`
 
+Usa `.env.example` como plantilla de variables. No subas claves privadas al
+repositorio.
+
 Si usas rutas exactas, añade también la variable `OPENROUTESERVICE_API_KEY` en:
 
 Project Settings -> Environment Variables.
@@ -81,6 +87,7 @@ Si usas reseñas automáticas, añade también `GOOGLE_PLACES_API_KEY` y
 pnpm install
 pnpm dev
 pnpm build
+pnpm test
 ```
 
 La web es estática y no necesita base de datos.
