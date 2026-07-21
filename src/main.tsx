@@ -1601,6 +1601,18 @@ const localizedTaxiPages: Array<{ path: string; lang: LangCode; label: string }>
   { path: "/ar/taxi-calatayud/", lang: "ar", label: "العربية" },
 ];
 
+const roadDestinationPlaceholders: Record<LangCode, string> = {
+  es: "Destino por confirmar: taller, hotel, estación o ciudad",
+  en: "Destination to confirm: garage, hotel, station or city",
+  fr: "Destination à confirmer : garage, hôtel, gare ou ville",
+  ca: "Destinació per confirmar: taller, hotel, estació o ciutat",
+  de: "Ziel noch zu bestätigen: Werkstatt, Hotel, Bahnhof oder Stadt",
+  it: "Destinazione da confermare: officina, hotel, stazione o città",
+  pt: "Destino a confirmar: oficina, hotel, estação ou cidade",
+  nl: "Bestemming te bevestigen: garage, hotel, station of stad",
+  ar: "الوجهة للتأكيد: ورشة، فندق، محطة أو مدينة",
+};
+
 const roadPickupPresets: AddressSuggestion[] = [
   {
     label: "E.S. Valdeherrera, Autovía A-2 km 231, Calatayud, Zaragoza, España",
@@ -1866,6 +1878,16 @@ function normalize(value: string) {
     .replace(/\s+/g, " ")
     .toUpperCase()
     .trim();
+}
+
+function isRoadDestinationDraft(value: string) {
+  const q = normalize(value);
+  return (
+    q === "PUNTO SEGURO O DESTINO POR CONFIRMAR" ||
+    q === "DESTINO POR CONFIRMAR" ||
+    (q.includes("PUNTO SEGURO") && q.includes("DESTINO")) ||
+    (q.includes("DESTINO") && q.includes("CONFIRMAR"))
+  );
 }
 
 function titleCase(value: string) {
@@ -3138,6 +3160,11 @@ function App() {
   const heroSeoPage = currentSeoPage ?? HOME_SEO_PAGE;
   const statsLabels = heroStatLabels[language];
   const touristCopy = touristSearchCopy[language];
+  const destinationSearchValue = isRoadDestinationDraft(query) ? "" : query;
+  const isRoadPickupContext = notes.includes("Avería o incidencia en carretera");
+  const destinationPlaceholder = isRoadPickupContext
+    ? roadDestinationPlaceholders[language]
+    : t.destinationPlaceholder;
   const heroStatsLocalized = [
     { value: "24h", label: statsLabels[0] },
     { value: "N.18", label: statsLabels[1] },
@@ -3145,14 +3172,14 @@ function App() {
   ];
 
   const suggestions = useMemo(() => {
-    const q = normalize(query);
+    const q = normalize(destinationSearchValue);
     if (!q) {
       return featuredDestinations.map((key) => [key, TARIFAS[key]] as const);
     }
     return tariffEntries
       .filter(([name]) => !q || normalize(name).includes(q))
       .slice(0, 8);
-  }, [query]);
+  }, [destinationSearchValue]);
 
   const filteredTariffs = useMemo(() => {
     const q = normalize(filter);
@@ -3160,7 +3187,7 @@ function App() {
   }, [filter]);
 
   const lookupTariff = TARIFAS[tariffLookupKey];
-  const activeDestination = query.trim() || displayName(selectedKey);
+  const activeDestination = destinationSearchValue.trim() || (selectedKey ? displayName(selectedKey) : "");
   const canAutoCalculate =
     Boolean(destinationKeyFromInput(activeDestination)) && isCalatayudOrigin(origin);
   const directUrl = whatsappDirectUrl(language);
@@ -3302,13 +3329,13 @@ function App() {
 
   useEffect(() => {
     let ignore = false;
-    const local = localAddressMatches(query);
+    const local = localAddressMatches(destinationSearchValue);
     setDestinationSuggestions(local);
 
-    if (query.trim().length < 3) return undefined;
+    if (destinationSearchValue.trim().length < 3) return undefined;
 
     const timer = window.setTimeout(() => {
-      fetchAddressSuggestions(query)
+      fetchAddressSuggestions(destinationSearchValue)
         .then((items) => {
           if (!ignore && items.length) setDestinationSuggestions(items);
         })
@@ -3319,7 +3346,7 @@ function App() {
       ignore = true;
       window.clearTimeout(timer);
     };
-  }, [query]);
+  }, [destinationSearchValue]);
 
   useEffect(() => {
     let ignore = false;
@@ -3377,6 +3404,7 @@ function App() {
       setOriginSuggestions([]);
     } else {
       setQuery(item.label);
+      setSelectedKey("");
       setSelectedDestinationPoint(item);
       setDestinationSuggestions([]);
     }
@@ -3393,9 +3421,11 @@ function App() {
   function prepareRoadPickup() {
     setBookingMode("now");
     setOrigin(pickupLocation ? "Mi ubicación actual" : "A-2 / carretera cerca de Calatayud");
-    setQuery("Punto seguro o destino por confirmar");
+    setQuery("");
+    setSelectedKey("");
     setSelectedOriginPoint(null);
     setSelectedDestinationPoint(null);
+    setDestinationSuggestions([]);
     setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros. Mantengo el teléfono disponible para confirmar ubicación exacta. Taxi para pasajeros, no grúa. Precio sujeto a confirmación directa.");
     setResult(null);
     setRouteError("");
@@ -3427,10 +3457,10 @@ function App() {
   }
 
   async function calculate() {
-    const key = destinationKeyFromInput(query);
+    const key = destinationKeyFromInput(destinationSearchValue);
     const originKey = destinationKeyFromInput(origin);
     const trimmedOrigin = origin.trim();
-    const trimmedDestination = query.trim();
+    const trimmedDestination = destinationSearchValue.trim();
     const sharedOriginPoint =
       pickupLocation && normalize(trimmedOrigin).includes("MI UBICACION ACTUAL")
         ? pickupLocationSuggestion(pickupLocation)
@@ -3450,7 +3480,7 @@ function App() {
       return;
     }
 
-    if (originKey && TARIFAS[originKey] && isCalatayudOrigin(query)) {
+    if (originKey && TARIFAS[originKey] && isCalatayudOrigin(destinationSearchValue)) {
       setSelectedKey(originKey);
       setResult(
         makeReverseResultForKey(originKey, {
@@ -3926,12 +3956,21 @@ function App() {
                       aria-expanded={
                         activeAddressField === "destination" && destinationSuggestions.length > 0
                       }
-                      value={query}
-                      placeholder={t.destinationPlaceholder}
-                      onFocus={() => setActiveAddressField("destination")}
+                      value={destinationSearchValue}
+                      placeholder={destinationPlaceholder}
+                      onFocus={() => {
+                        setActiveAddressField("destination");
+                        if (isRoadDestinationDraft(query)) {
+                          setQuery("");
+                          setSelectedKey("");
+                          setSelectedDestinationPoint(null);
+                          setDestinationSuggestions([]);
+                        }
+                      }}
                       onBlur={() => window.setTimeout(() => setActiveAddressField(null), 120)}
                       onChange={(event) => {
                         setQuery(event.target.value);
+                        setSelectedKey("");
                         setSelectedDestinationPoint(null);
                         setResult(null);
                         setRouteError("");
