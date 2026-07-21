@@ -30,6 +30,10 @@ Taxi Ayud es un servicio de taxi oficial en Calatayud, Zaragoza.
 - taxi avería autovía Calatayud
 - taxi carretera Calatayud
 - taxi A-2 Calatayud
+- taxi avería A-2 Calatayud
+- taxi Valdeherrera Calatayud
+- taxi salida Ateca A-2
+- taxi Ariza A-2
 - taxi N-234 Calatayud
 - taxi para pasajeros tirados cerca de Calatayud
 - teléfono taxi Calatayud
@@ -44,6 +48,7 @@ Taxi Ayud es un servicio de taxi oficial en Calatayud, Zaragoza.
 - https://www.taxiayud.es/taxi-calatayud/
 - https://www.taxiayud.es/taxi-cerca-de-mi-calatayud/
 - https://www.taxiayud.es/taxi-autovia-calatayud/
+- https://www.taxiayud.es/taxi-a2-calatayud/
 - https://www.taxiayud.es/taxi-desde-calatayud/
 - https://www.taxiayud.es/taxi-24-horas-calatayud/
 - https://www.taxiayud.es/servicios/

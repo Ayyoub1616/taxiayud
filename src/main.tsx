@@ -1266,6 +1266,7 @@ const touristSearchPhrases = [
   { language: "Cerca", query: "Taxi cerca de mi en Calatayud con recogida por ubicación" },
   { language: "Desde", query: "Taxi desde Calatayud a pueblos, estación, balnearios y Zaragoza" },
   { language: "Autovía", query: "Taxi por avería en A-2, N-II o carretera cerca de Calatayud" },
+  { language: "A-2", query: "Recogida urgente en A-2 Valdeherrera, Ateca, Ariza y Calatayud" },
   { language: "Hoteles", query: "Recogida en hoteles de Calatayud y la comarca" },
   { language: "Balnearios", query: "Jaraba, Alhama de Aragón y Paracuellos de Jiloca" },
   { language: "Turismo", query: "Monasterio de Piedra, Nuévalos y rutas cercanas" },
@@ -1281,6 +1282,7 @@ const DEFAULT_SEO_LINKS = [
   "/taxi-calatayud/",
   "/taxi-cerca-de-mi-calatayud/",
   "/taxi-autovia-calatayud/",
+  "/taxi-a2-calatayud/",
   "/taxi-desde-calatayud/",
   "/taxi-24-horas-calatayud/",
   "/taxi-estacion-ave-calatayud/",
@@ -1322,6 +1324,33 @@ const featuredDestinations = [
   "PARACUELLOS DE JILOCA",
   "MALUENDA",
 ].filter((item) => TARIFAS[item]);
+
+const roadPickupPresets: AddressSuggestion[] = [
+  {
+    label: "E.S. Valdeherrera, Autovía A-2 km 231, Calatayud, Zaragoza, España",
+    detail: "A-2 · Gasolinera y punto seguro",
+    lat: 41.3253,
+    lng: -1.6678,
+  },
+  {
+    label: "Ateca salida 218, Autovía A-2, Zaragoza, España",
+    detail: "A-2 · Ateca",
+    lat: 41.3301,
+    lng: -1.7939,
+  },
+  {
+    label: "Ariza, Autovía A-2 km 197, Zaragoza, España",
+    detail: "A-2 · Ariza",
+    lat: 41.3131,
+    lng: -2.0536,
+  },
+  {
+    label: "N-234 cerca de Calatayud, Zaragoza, España",
+    detail: "Carretera · Calatayud",
+    lat: 41.3377,
+    lng: -1.642,
+  },
+];
 
 const NOMINATIM_CLIENT_BASE_URL = "https://nominatim.openstreetmap.org";
 const OSRM_CLIENT_BASE_URL = "https://router.project-osrm.org";
@@ -1412,7 +1441,17 @@ const knownRoutePoints: KnownRoutePoint[] = [
     lng: -2.0536,
   },
   {
-    keys: ["A2 CALATAYUD", "A 2 CALATAYUD", "AUTOVIA A2 CALATAYUD", "AUTOVÍA A2 CALATAYUD"],
+    keys: [
+      "A2",
+      "A-2",
+      "A 2",
+      "AUTOVIA A2",
+      "AUTOVÍA A2",
+      "A2 CALATAYUD",
+      "A 2 CALATAYUD",
+      "AUTOVIA A2 CALATAYUD",
+      "AUTOVÍA A2 CALATAYUD",
+    ],
     label: "Autovía A-2 cerca de Calatayud, Zaragoza, España",
     detail: "Carretera · Indica km, salida o gasolinera",
     lat: 41.3253,
@@ -1517,6 +1556,14 @@ const knownRoutePoints: KnownRoutePoint[] = [
     lng: -3.7038,
   },
 ];
+
+const exactRoutePointKeys = new Set([
+  "A2",
+  "A-2",
+  "A 2",
+  "AUTOVIA A2",
+  "AUTOVÍA A2",
+]);
 
 const tariffEntries = Object.entries(TARIFAS).sort(([a], [b]) =>
   a.localeCompare(b, "es"),
@@ -1891,6 +1938,7 @@ function knownRoutePoint(value: string): RoutePoint | null {
       label.includes(q) ||
       item.keys.some((key) => {
         const normalizedKey = normalize(key);
+        if (exactRoutePointKeys.has(normalizedKey)) return q === normalizedKey;
         return q === normalizedKey || q.includes(normalizedKey);
       })
     );
@@ -2081,6 +2129,17 @@ function pickupLocationLine(pickupLocation: PickupLocation) {
   return `Ubicación de recogida: https://maps.google.com/?q=${pickupLocation.lat.toFixed(
     6,
   )},${pickupLocation.lng.toFixed(6)}`;
+}
+
+function pickupLocationSuggestion(pickupLocation: PickupLocation): AddressSuggestion | null {
+  if (!pickupLocation) return null;
+
+  return {
+    label: "Mi ubicación actual",
+    detail: "Ubicación compartida desde el navegador",
+    lat: pickupLocation.lat,
+    lng: pickupLocation.lng,
+  };
 }
 
 function whatsappDirectUrl(language: LangCode) {
@@ -2870,6 +2929,24 @@ function App() {
     document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function prepareRoadPreset(preset: AddressSuggestion) {
+    setBookingMode("now");
+    setOrigin(preset.label);
+    setSelectedOriginPoint(preset);
+    setQuery("Calatayud");
+    setSelectedDestinationPoint({
+      label: "Calatayud, Zaragoza, España",
+      detail: "Municipio · Calatayud · Zaragoza",
+      lat: 41.3535,
+      lng: -1.6434,
+    });
+    setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros en un punto seguro. No es servicio de grúa.");
+    setResult(null);
+    setRouteError("");
+    trackEvent("clic_reserva", { source: "road_preset" });
+    document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   function requestRoadPickupLocation() {
     prepareRoadPickup();
     requestPickupLocation();
@@ -2880,6 +2957,11 @@ function App() {
     const originKey = destinationKeyFromInput(origin);
     const trimmedOrigin = origin.trim();
     const trimmedDestination = query.trim();
+    const sharedOriginPoint =
+      pickupLocation && normalize(trimmedOrigin).includes("MI UBICACION ACTUAL")
+        ? pickupLocationSuggestion(pickupLocation)
+        : null;
+    const routeOriginPoint = selectedOriginPoint ?? sharedOriginPoint;
 
     trackEvent("consulta_tarifa", {
       mode: key && TARIFAS[key] && isCalatayudOrigin(origin) ? "destino_habitual" : "ruta_exacta",
@@ -2922,7 +3004,7 @@ function App() {
       const route = await fetchExactRoute(
         trimmedOrigin,
         trimmedDestination,
-        selectedOriginPoint,
+        routeOriginPoint,
         selectedDestinationPoint,
       );
       setResult(
@@ -3261,6 +3343,14 @@ function App() {
                 <MessageCircle aria-hidden="true" />
                 WhatsApp urgente
               </a>
+            </div>
+            <div className="road-preset-grid" aria-label="Puntos habituales de carretera">
+              {roadPickupPresets.map((preset) => (
+                <button type="button" key={preset.label} onClick={() => prepareRoadPreset(preset)}>
+                  <MapPin aria-hidden="true" />
+                  <span>{preset.label.replace(", Zaragoza, España", "")}</span>
+                </button>
+              ))}
             </div>
             <p className="road-disclaimer">
               Servicio de taxi para pasajeros. No es grúa ni asistencia mecánica. Si hay peligro,
@@ -4014,6 +4104,33 @@ function App() {
       >
         <MessageCircle aria-hidden="true" />
       </a>
+
+      <nav className="mobile-action-bar" aria-label="Acciones rápidas">
+        <a
+          href={directUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => trackEvent("clic_whatsapp", { source: "mobile_bar" })}
+        >
+          <MessageCircle aria-hidden="true" />
+          WhatsApp
+        </a>
+        <a
+          href={CONTACT.phoneHref}
+          onClick={() => trackEvent("clic_llamada", { source: "mobile_bar" })}
+        >
+          <Phone aria-hidden="true" />
+          Llamar
+        </a>
+        <a href="#calculadora" onClick={() => trackEvent("clic_reserva", { source: "mobile_bar_calc" })}>
+          <Route aria-hidden="true" />
+          Calcular
+        </a>
+        <button type="button" onClick={requestRoadPickupLocation}>
+          <TriangleAlert aria-hidden="true" />
+          A-2
+        </button>
+      </nav>
     </>
   );
 }

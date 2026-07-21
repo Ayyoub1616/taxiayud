@@ -4,6 +4,7 @@ import { dirname, join } from "node:path";
 const siteUrl = "https://www.taxiayud.es";
 const pages = JSON.parse(readFileSync("src/seoPages.json", "utf8"));
 const template = readFileSync("dist/index.html", "utf8");
+const buildDate = new Date().toISOString().slice(0, 10);
 
 const businessGraph = {
   "@type": ["TaxiService", "LocalBusiness"],
@@ -16,6 +17,8 @@ const businessGraph = {
     "Taxi desde Calatayud",
     "Taxi cerca de mi Calatayud",
     "Taxi avería autovía Calatayud",
+    "Taxi A-2 Calatayud",
+    "Taxi avería A-2 Calatayud",
     "Teléfono taxi Calatayud",
     "Taxi 24 horas Calatayud",
   ],
@@ -27,6 +30,10 @@ const businessGraph = {
     "Calatayud",
     "Comarca de Calatayud",
     "A-2 Calatayud",
+    "Autovía A-2",
+    "A-2 km 231 Valdeherrera",
+    "A-2 salida Ateca",
+    "A-2 Ariza",
     "N-II Calatayud",
     "N-234 Calatayud",
     "Carreteras de la comarca de Calatayud",
@@ -87,6 +94,9 @@ const businessGraph = {
     "taxi desde Calatayud",
     "taxi cerca de mi en Calatayud",
     "taxi por avería en autovía cerca de Calatayud",
+    "taxi A-2 Calatayud",
+    "taxi avería A-2 Calatayud",
+    "taxi me he quedado tirado cerca de Calatayud",
     "recogida de pasajeros en carretera cerca de Calatayud",
     "teléfono taxi Calatayud",
     "WhatsApp taxi Calatayud",
@@ -127,6 +137,16 @@ const businessGraph = {
           serviceType: "Recogida de pasajeros en carretera",
           areaServed: "A-2, N-II, N-234 y carreteras de la comarca de Calatayud",
           description: "Servicio de taxi para pasajeros, no grúa ni asistencia mecánica.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Taxi A-2 cerca de Calatayud",
+          serviceType: "Recogida de pasajeros en la A-2",
+          areaServed: "Autovía A-2, Valdeherrera, Ateca, Ariza y Calatayud",
+          description: "Traslado de pasajeros desde puntos seguros de la A-2 hacia Calatayud, taller, hotel, estación o destino confirmado.",
         },
       },
       {
@@ -198,6 +218,10 @@ function staticFallback(page) {
     "Calatayud",
     "Estación AVE de Calatayud",
     "Plaza del Fuerte",
+    "A-2 Valdeherrera",
+    "A-2 Ateca",
+    "A-2 Ariza",
+    "N-234 Calatayud",
     "Ateca",
     "Ariza",
     "Maluenda",
@@ -246,6 +270,10 @@ function pageJsonLd(page) {
     areaServed: [
       "Calatayud",
       "Comarca de Calatayud",
+      "A-2 Calatayud",
+      "Autovía A-2",
+      "N-II Calatayud",
+      "N-234 Calatayud",
       "Zaragoza",
       "Monasterio de Piedra",
       "Nuévalos",
@@ -286,6 +314,7 @@ function pageJsonLd(page) {
         name: page.title,
         description: page.description,
         inLanguage: "es-ES",
+        dateModified: buildDate,
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${siteUrl}/#taxi-ayud` },
         mainEntity: { "@id": `${pageUrl}#service` },
@@ -386,8 +415,7 @@ function sitemapEntry(page, lastmod) {
 }
 
 function writeSitemap() {
-  const lastmod = new Date().toISOString().slice(0, 10);
-  const entries = pages.map((page) => sitemapEntry(page, lastmod)).join("\n");
+  const entries = pages.map((page) => sitemapEntry(page, buildDate)).join("\n");
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${entries}

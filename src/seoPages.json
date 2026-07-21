@@ -408,6 +408,46 @@
     ]
   },
   {
+    "path": "/taxi-a2-calatayud/",
+    "title": "Taxi A-2 Calatayud | Recogida por avería o incidencia",
+    "description": "Taxi para pasajeros en la A-2 cerca de Calatayud, Valdeherrera, Ateca y Ariza. Envía ubicación por WhatsApp si te has quedado tirado.",
+    "breadcrumb": "Taxi A-2 Calatayud",
+    "navLabel": "Taxi A-2",
+    "eyebrow": "Autovía A-2",
+    "h1": "Taxi en la A-2 cerca de Calatayud",
+    "intro": "Recogida de pasajeros en puntos seguros de la A-2 cerca de Calatayud, Valdeherrera, Ateca, Ariza y salidas próximas cuando hay avería, incidencia o necesitas continuar viaje.",
+    "h2": "Recogida en A-2 con ubicación por WhatsApp",
+    "body": "Si estás parado por una avería, espera en un punto seguro y envía ubicación, salida o kilómetro aproximado. Taxi Ayud puede trasladar pasajeros hacia Calatayud, taller, hotel, estación, Zaragoza, Soria u otro destino confirmado. No es servicio de grúa ni reparación.",
+    "sections": [
+      {
+        "heading": "Valdeherrera y Calatayud",
+        "text": "Punto habitual cerca de la A-2 km 231, gasolineras, talleres, salidas y accesos a Calatayud."
+      },
+      {
+        "heading": "Ateca y Ariza",
+        "text": "Recogidas en salidas próximas, áreas seguras o puntos indicados por asistencia en carretera."
+      },
+      {
+        "heading": "Destino seguro",
+        "text": "Traslado de pasajeros a Calatayud, estación, hotel, taller, Zaragoza, Soria o dirección concreta."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué envío si necesito taxi en la A-2?",
+        "answer": "Envía ubicación por WhatsApp, kilómetro o salida aproximada, número de pasajeros, equipaje y destino."
+      },
+      {
+        "question": "¿Podéis recoger en el arcén?",
+        "answer": "La recogida debe hacerse en un punto seguro: gasolinera, salida, área de servicio, taller o lugar indicado por asistencia."
+      },
+      {
+        "question": "¿Es servicio de grúa?",
+        "answer": "No. Es taxi para pasajeros. Para mover el vehículo o asistencia mecánica hay que contactar con grúa o seguro."
+      }
+    ]
+  },
+  {
     "path": "/taxi-24-horas-calatayud/",
     "title": "Taxi 24 horas en Calatayud | Taxi Ayud",
     "description": "Taxi 24 horas en Calatayud para reservas, recogidas programadas, trenes, aeropuerto, pueblos, balnearios y urgencias de transporte.",

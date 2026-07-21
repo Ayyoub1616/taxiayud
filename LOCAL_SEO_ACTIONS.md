@@ -36,8 +36,8 @@ Evitar:
 
 1. Añadir propiedad de dominio o prefijo URL para `https://www.taxiayud.es`.
 2. Enviar `https://www.taxiayud.es/sitemap.xml`.
-3. Revisar cobertura de las 20 URLs indexables.
-4. Pedir indexación de las URLs nuevas más importantes: `/`, `/taxi-calatayud/`, `/taxi-cerca-de-mi-calatayud/`, `/taxi-autovia-calatayud/`, `/taxi-desde-calatayud/`, `/telefono-taxi-calatayud/`, `/taxi-estacion-ave-calatayud/`, `/taxi-monasterio-de-piedra/`, `/taxi-balnearios-jaraba-alhama/`.
+3. Revisar cobertura de las URLs indexables del sitemap.
+4. Pedir indexación de las URLs nuevas más importantes: `/`, `/taxi-calatayud/`, `/taxi-cerca-de-mi-calatayud/`, `/taxi-autovia-calatayud/`, `/taxi-a2-calatayud/`, `/taxi-desde-calatayud/`, `/telefono-taxi-calatayud/`, `/taxi-estacion-ave-calatayud/`, `/taxi-monasterio-de-piedra/`, `/taxi-balnearios-jaraba-alhama/`.
 5. Comprobar consultas reales: taxi Calatayud, taxi en Calatayud, taxi cerca de mí Calatayud, taxi desde Calatayud, teléfono taxi Calatayud, taxi estación Calatayud, taxi Monasterio de Piedra, taxi balnearios, taxi aeropuerto Zaragoza.
 
 ## Búsquedas prioritarias
@@ -48,6 +48,10 @@ Evitar:
 - taxi cerca de mí estando en Calatayud
 - taxi avería autovía Calatayud
 - taxi A-2 Calatayud
+- taxi avería A-2 Calatayud
+- taxi Valdeherrera Calatayud
+- taxi salida Ateca A-2
+- taxi Ariza A-2
 - taxi N-234 Calatayud
 - taxi carretera Calatayud
 - taxi me he quedado tirado Calatayud

@@ -12,14 +12,19 @@
     <meta name="geo.region" content="ES-Z" />
     <meta name="geo.placename" content="Calatayud" />
     <meta name="theme-color" content="#05070b" />
+    <link rel="preconnect" href="https://wa.me" />
+    <link rel="dns-prefetch" href="//api.openrouteservice.org" />
+    <link rel="dns-prefetch" href="//nominatim.openstreetmap.org" />
+    <link rel="dns-prefetch" href="//router.project-osrm.org" />
+    <link rel="dns-prefetch" href="//places.googleapis.com" />
     <link rel="preload" as="image" href="/assets/peugeot-408-hybrid.webp" />
     <link rel="preload" as="image" href="/assets/comarca-bg.webp" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico?v=20260721" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260721" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png?v=20260721" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=20260721" />
+    <link rel="shortcut icon" href="/favicon.ico?v=20260721" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260721" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="msapplication-TileColor" content="#05070b" />
     <meta name="msapplication-TileImage" content="/favicon-192x192.png" />
@@ -65,6 +70,8 @@
               "Taxi desde Calatayud",
               "Taxi cerca de mi Calatayud",
               "Taxi avería autovía Calatayud",
+              "Taxi A-2 Calatayud",
+              "Taxi avería A-2 Calatayud",
               "Teléfono taxi Calatayud",
               "Taxi 24 horas Calatayud"
             ],
@@ -74,11 +81,23 @@
               "Calatayud",
               "Comarca de Calatayud",
               "A-2 Calatayud",
+              "Autovía A-2",
+              "A-2 km 231 Valdeherrera",
+              "A-2 salida Ateca",
+              "A-2 Ariza",
               "N-II Calatayud",
+              "N-234 Calatayud",
+              "Carreteras de la comarca de Calatayud",
               "Monasterio de Piedra",
               "Nuévalos",
               "Jaraba",
               "Alhama de Aragón",
+              "Ateca",
+              "Ariza",
+              "Maluenda",
+              "Cetina",
+              "Paracuellos de Jiloca",
+              "Daroca",
               "Zaragoza",
               "Aeropuerto de Zaragoza",
               "Estación Zaragoza-Delicias",
@@ -121,6 +140,66 @@
             },
             "hasMap": "https://share.google/QJyQ83oNHjkRqtciX",
             "sameAs": ["https://share.google/QJyQ83oNHjkRqtciX"],
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 41.3535,
+              "longitude": -1.6432
+            },
+            "knowsAbout": [
+              "taxi en Calatayud",
+              "taxi desde Calatayud",
+              "taxi cerca de mi en Calatayud",
+              "taxi A-2 Calatayud",
+              "taxi avería autovía Calatayud",
+              "recogida de pasajeros en carretera cerca de Calatayud",
+              "taxi estación AVE Calatayud",
+              "taxi Monasterio de Piedra",
+              "taxi balnearios Jaraba Alhama",
+              "taxi Aeropuerto de Zaragoza",
+              "taxi pueblos comarca de Calatayud"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Servicios de taxi en Calatayud y comarca",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Taxi cerca de mi en Calatayud",
+                    "serviceType": "Recogida local de taxi",
+                    "areaServed": "Calatayud"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Taxi A-2 cerca de Calatayud",
+                    "serviceType": "Recogida de pasajeros en la A-2",
+                    "areaServed": "Autovía A-2, Valdeherrera, Ateca, Ariza y Calatayud"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Taxi a Monasterio de Piedra y Nuévalos",
+                    "serviceType": "Traslado turístico",
+                    "areaServed": "Comarca de Calatayud"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Taxi Calatayud Aeropuerto de Zaragoza",
+                    "serviceType": "Traslado al aeropuerto",
+                    "areaServed": "Zaragoza"
+                  }
+                }
+              ]
+            },
             "contactPoint": {
               "@type": "ContactPoint",
               "telephone": "+34611861041",
