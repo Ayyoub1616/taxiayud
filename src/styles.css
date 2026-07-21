@@ -1011,6 +1011,21 @@ h1 {
   margin-right: auto;
 }
 
+.language-link-heading {
+  margin-top: 18px;
+  margin-bottom: 9px;
+  color: #d8e1ec;
+  font-size: 0.82rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.language-link-row a {
+  background: rgba(78, 161, 255, 0.08);
+  border-color: rgba(78, 161, 255, 0.22);
+  color: #d9eaff;
+}
+
 .road-assist-section {
   position: relative;
   isolation: isolate;

@@ -72,6 +72,294 @@
     ]
   },
   {
+    "path": "/en/taxi-calatayud/",
+    "title": "Taxi in Calatayud | Official local taxi | Taxi Ayud",
+    "description": "Official taxi in Calatayud for the train station, hotels, local villages, spas, Monasterio de Piedra, Zaragoza airport and road pick-ups.",
+    "breadcrumb": "Taxi in Calatayud",
+    "navLabel": "English",
+    "eyebrow": "Official taxi in Calatayud",
+    "h1": "Taxi in Calatayud",
+    "intro": "Taxi Ayud is an official taxi service in Calatayud for visitors, hotels, the train station, nearby villages, Monasterio de Piedra, spas, Zaragoza and the airport.",
+    "h2": "Book a taxi by phone or WhatsApp",
+    "body": "You can call directly, send a WhatsApp message or prepare an estimated fare with origin, destination, date, time and passengers. The service is useful for immediate journeys, planned transfers and tourist visits around Calatayud.",
+    "sections": [
+      {
+        "heading": "Pick-up in Calatayud",
+        "text": "Homes, hotels, Calatayud train station, Plaza del Fuerte, restaurants and exact addresses."
+      },
+      {
+        "heading": "Tourism and villages",
+        "text": "Transfers to Monasterio de Piedra, Nuevalos, Jaraba, Alhama de Aragon, Ateca, Ariza and nearby villages."
+      },
+      {
+        "heading": "Zaragoza and airport",
+        "text": "Door-to-door trips to Zaragoza, Zaragoza-Delicias station, hospitals and Zaragoza Airport."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can I book a taxi in English?",
+        "answer": "Yes. The website and WhatsApp message can indicate the customer's language so the booking is easier to understand."
+      },
+      {
+        "question": "Can I send my location for pick-up?",
+        "answer": "Yes. You can share your location or write the full address by WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/fr/taxi-calatayud/",
+    "title": "Taxi à Calatayud | Taxi officiel local | Taxi Ayud",
+    "description": "Taxi officiel à Calatayud pour gare, hôtels, villages, thermes, Monasterio de Piedra, Saragosse, aéroport et prise en charge sur route.",
+    "breadcrumb": "Taxi à Calatayud",
+    "navLabel": "Français",
+    "eyebrow": "Taxi officiel à Calatayud",
+    "h1": "Taxi à Calatayud",
+    "intro": "Taxi Ayud propose un service de taxi officiel à Calatayud pour voyageurs, hôtels, gare, villages proches, Monasterio de Piedra, thermes, Saragosse et aéroport.",
+    "h2": "Réserver un taxi par téléphone ou WhatsApp",
+    "body": "Vous pouvez appeler directement, envoyer un WhatsApp ou préparer une estimation avec départ, destination, date, heure et passagers. Service utile pour les trajets immédiats, transferts programmés et visites touristiques autour de Calatayud.",
+    "sections": [
+      {
+        "heading": "Prise en charge à Calatayud",
+        "text": "Domiciles, hôtels, gare de Calatayud, Plaza del Fuerte, restaurants et adresses précises."
+      },
+      {
+        "heading": "Tourisme et villages",
+        "text": "Transferts vers Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza et villages proches."
+      },
+      {
+        "heading": "Saragosse et aéroport",
+        "text": "Trajets porte à porte vers Saragosse, gare Zaragoza-Delicias, hôpitaux et Aéroport de Saragosse."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Puis-je réserver un taxi en français ?",
+        "answer": "Oui. Le message WhatsApp peut indiquer la langue du client afin de faciliter la réponse."
+      },
+      {
+        "question": "Puis-je envoyer ma position pour la prise en charge ?",
+        "answer": "Oui. Vous pouvez partager votre position ou écrire l'adresse complète par WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/ca/taxi-calatayud/",
+    "title": "Taxi a Calatayud | Taxi oficial local | Taxi Ayud",
+    "description": "Taxi oficial a Calatayud per a estació, hotels, pobles, balnearis, Monasterio de Piedra, Saragossa, aeroport i recollides en carretera.",
+    "breadcrumb": "Taxi a Calatayud",
+    "navLabel": "Català",
+    "eyebrow": "Taxi oficial a Calatayud",
+    "h1": "Taxi a Calatayud",
+    "intro": "Taxi Ayud ofereix servei de taxi oficial a Calatayud per a visitants, hotels, estació, pobles propers, Monasterio de Piedra, balnearis, Saragossa i aeroport.",
+    "h2": "Reserva taxi per telèfon o WhatsApp",
+    "body": "Pots trucar directament, enviar WhatsApp o preparar un pressupost orientatiu amb origen, destinació, data, hora i passatgers. Servei útil per a trajectes immediats, trasllats programats i visites turístiques.",
+    "sections": [
+      {
+        "heading": "Recollida a Calatayud",
+        "text": "Domicilis, hotels, estació de Calatayud, Plaza del Fuerte, restaurants i adreces concretes."
+      },
+      {
+        "heading": "Turisme i pobles",
+        "text": "Trasllats a Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza i pobles propers."
+      },
+      {
+        "heading": "Saragossa i aeroport",
+        "text": "Viatges porta a porta a Saragossa, Zaragoza-Delicias, hospitals i Aeroport de Saragossa."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Puc reservar un taxi en català?",
+        "answer": "Sí. El missatge de WhatsApp pot indicar l'idioma del client per facilitar la resposta."
+      },
+      {
+        "question": "Puc enviar la meva ubicació?",
+        "answer": "Sí. Pots compartir ubicació o escriure l'adreça completa per WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/de/taxi-calatayud/",
+    "title": "Taxi in Calatayud | Offizielles lokales Taxi | Taxi Ayud",
+    "description": "Offizielles Taxi in Calatayud für Bahnhof, Hotels, Dörfer, Thermalbäder, Monasterio de Piedra, Zaragoza, Flughafen und Abholung auf der Straße.",
+    "breadcrumb": "Taxi in Calatayud",
+    "navLabel": "Deutsch",
+    "eyebrow": "Offizielles Taxi in Calatayud",
+    "h1": "Taxi in Calatayud",
+    "intro": "Taxi Ayud ist ein offizieller Taxidienst in Calatayud für Besucher, Hotels, Bahnhof, umliegende Orte, Monasterio de Piedra, Thermalbäder, Zaragoza und Flughafen.",
+    "h2": "Taxi per Telefon oder WhatsApp buchen",
+    "body": "Sie können direkt anrufen, eine WhatsApp senden oder eine unverbindliche Preisorientierung mit Abfahrt, Ziel, Datum, Uhrzeit und Fahrgästen vorbereiten. Nützlich für sofortige Fahrten, geplante Transfers und touristische Besuche.",
+    "sections": [
+      {
+        "heading": "Abholung in Calatayud",
+        "text": "Wohnungen, Hotels, Bahnhof Calatayud, Plaza del Fuerte, Restaurants und genaue Adressen."
+      },
+      {
+        "heading": "Tourismus und Dörfer",
+        "text": "Transfers nach Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza und nahegelegene Orte."
+      },
+      {
+        "heading": "Zaragoza und Flughafen",
+        "text": "Direkte Fahrten nach Zaragoza, Bahnhof Zaragoza-Delicias, Krankenhäuser und Flughafen Zaragoza."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Kann ich ein Taxi auf Deutsch buchen?",
+        "answer": "Ja. Die WhatsApp-Nachricht kann die Sprache des Kunden anzeigen, damit die Antwort leichter verständlich ist."
+      },
+      {
+        "question": "Kann ich meinen Standort senden?",
+        "answer": "Ja. Sie können Ihren Standort teilen oder die vollständige Adresse per WhatsApp schreiben."
+      }
+    ]
+  },
+  {
+    "path": "/it/taxi-calatayud/",
+    "title": "Taxi a Calatayud | Taxi ufficiale locale | Taxi Ayud",
+    "description": "Taxi ufficiale a Calatayud per stazione, hotel, paesi, terme, Monasterio de Piedra, Saragozza, aeroporto e recupero su strada.",
+    "breadcrumb": "Taxi a Calatayud",
+    "navLabel": "Italiano",
+    "eyebrow": "Taxi ufficiale a Calatayud",
+    "h1": "Taxi a Calatayud",
+    "intro": "Taxi Ayud offre un servizio taxi ufficiale a Calatayud per visitatori, hotel, stazione, paesi vicini, Monasterio de Piedra, terme, Saragozza e aeroporto.",
+    "h2": "Prenota taxi per telefono o WhatsApp",
+    "body": "Puoi chiamare direttamente, inviare WhatsApp o preparare un preventivo indicativo con partenza, destinazione, data, ora e passeggeri. Utile per corse immediate, trasferimenti programmati e visite turistiche.",
+    "sections": [
+      {
+        "heading": "Ritiro a Calatayud",
+        "text": "Domicili, hotel, stazione di Calatayud, Plaza del Fuerte, ristoranti e indirizzi precisi."
+      },
+      {
+        "heading": "Turismo e paesi",
+        "text": "Trasferimenti a Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza e paesi vicini."
+      },
+      {
+        "heading": "Saragozza e aeroporto",
+        "text": "Viaggi porta a porta verso Saragozza, stazione Zaragoza-Delicias, ospedali e Aeroporto di Saragozza."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Posso prenotare un taxi in italiano?",
+        "answer": "Sì. Il messaggio WhatsApp può indicare la lingua del cliente per facilitare la risposta."
+      },
+      {
+        "question": "Posso inviare la mia posizione?",
+        "answer": "Sì. Puoi condividere la posizione o scrivere l'indirizzo completo su WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/pt/taxi-calatayud/",
+    "title": "Táxi em Calatayud | Táxi oficial local | Taxi Ayud",
+    "description": "Táxi oficial em Calatayud para estação, hotéis, aldeias, termas, Monasterio de Piedra, Saragoça, aeroporto e recolhas na estrada.",
+    "breadcrumb": "Táxi em Calatayud",
+    "navLabel": "Português",
+    "eyebrow": "Táxi oficial em Calatayud",
+    "h1": "Táxi em Calatayud",
+    "intro": "Taxi Ayud oferece serviço de táxi oficial em Calatayud para visitantes, hotéis, estação, aldeias próximas, Monasterio de Piedra, termas, Saragoça e aeroporto.",
+    "h2": "Reserve táxi por telefone ou WhatsApp",
+    "body": "Pode ligar diretamente, enviar WhatsApp ou preparar uma estimativa com origem, destino, data, hora e passageiros. Útil para viagens imediatas, transferes programados e visitas turísticas.",
+    "sections": [
+      {
+        "heading": "Recolha em Calatayud",
+        "text": "Domicílios, hotéis, estação de Calatayud, Plaza del Fuerte, restaurantes e moradas exatas."
+      },
+      {
+        "heading": "Turismo e aldeias",
+        "text": "Transferes para Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza e localidades próximas."
+      },
+      {
+        "heading": "Saragoça e aeroporto",
+        "text": "Viagens porta a porta para Saragoça, estação Zaragoza-Delicias, hospitais e Aeroporto de Saragoça."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Posso reservar um táxi em português?",
+        "answer": "Sim. A mensagem de WhatsApp pode indicar o idioma do cliente para facilitar a resposta."
+      },
+      {
+        "question": "Posso enviar a minha localização?",
+        "answer": "Sim. Pode partilhar a localização ou escrever a morada completa por WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/nl/taxi-calatayud/",
+    "title": "Taxi in Calatayud | Officiële lokale taxi | Taxi Ayud",
+    "description": "Officiële taxi in Calatayud voor station, hotels, dorpen, kuuroorden, Monasterio de Piedra, Zaragoza, luchthaven en ophalen langs de weg.",
+    "breadcrumb": "Taxi in Calatayud",
+    "navLabel": "Nederlands",
+    "eyebrow": "Officiële taxi in Calatayud",
+    "h1": "Taxi in Calatayud",
+    "intro": "Taxi Ayud is een officiële taxiservice in Calatayud voor bezoekers, hotels, station, nabijgelegen dorpen, Monasterio de Piedra, kuuroorden, Zaragoza en luchthaven.",
+    "h2": "Boek taxi per telefoon of WhatsApp",
+    "body": "U kunt direct bellen, WhatsApp sturen of een prijsindicatie voorbereiden met vertrekpunt, bestemming, datum, tijd en passagiers. Handig voor directe ritten, geplande transfers en toeristische bezoeken.",
+    "sections": [
+      {
+        "heading": "Ophalen in Calatayud",
+        "text": "Woningen, hotels, station Calatayud, Plaza del Fuerte, restaurants en exacte adressen."
+      },
+      {
+        "heading": "Toerisme en dorpen",
+        "text": "Transfers naar Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza en nabijgelegen dorpen."
+      },
+      {
+        "heading": "Zaragoza en luchthaven",
+        "text": "Deur-tot-deur ritten naar Zaragoza, station Zaragoza-Delicias, ziekenhuizen en luchthaven Zaragoza."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Kan ik een taxi in het Nederlands boeken?",
+        "answer": "Ja. Het WhatsApp-bericht kan de taal van de klant vermelden zodat het antwoord duidelijker is."
+      },
+      {
+        "question": "Kan ik mijn locatie sturen?",
+        "answer": "Ja. U kunt uw locatie delen of het volledige adres via WhatsApp sturen."
+      }
+    ]
+  },
+  {
+    "path": "/ar/taxi-calatayud/",
+    "title": "تاكسي في كالاتايود | Taxi Ayud",
+    "description": "تاكسي رسمي في كالاتايود للمحطة والفنادق والقرى والمنتجعات ودير Monasterio de Piedra وسرقسطة والمطار والطرق القريبة.",
+    "breadcrumb": "تاكسي في كالاتايود",
+    "navLabel": "العربية",
+    "eyebrow": "تاكسي رسمي في كالاتايود",
+    "h1": "تاكسي في كالاتايود",
+    "intro": "Taxi Ayud يقدم خدمة تاكسي رسمية في كالاتايود للزوار والفنادق والمحطة والقرى القريبة وMonasterio de Piedra والمنتجعات وسرقسطة والمطار.",
+    "h2": "احجز تاكسي بالهاتف أو واتساب",
+    "body": "يمكنك الاتصال مباشرة أو إرسال واتساب أو تجهيز تقدير للسعر مع نقطة الانطلاق والوجهة والتاريخ والوقت وعدد الركاب. الخدمة مناسبة للرحلات الفورية والتحويلات المحجوزة والزيارات السياحية.",
+    "sections": [
+      {
+        "heading": "الاستلام في كالاتايود",
+        "text": "المنازل والفنادق ومحطة كالاتايود وPlaza del Fuerte والمطاعم والعناوين الدقيقة."
+      },
+      {
+        "heading": "السياحة والقرى",
+        "text": "رحلات إلى Monasterio de Piedra وNuévalos وJaraba وAlhama de Aragón وAteca وAriza والقرى القريبة."
+      },
+      {
+        "heading": "سرقسطة والمطار",
+        "text": "رحلات مباشرة إلى سرقسطة ومحطة Zaragoza-Delicias والمستشفيات ومطار سرقسطة."
+      }
+    ],
+    "faq": [
+      {
+        "question": "هل يمكنني حجز تاكسي بالعربية؟",
+        "answer": "نعم. رسالة واتساب يمكن أن تذكر لغة العميل لتسهيل الرد."
+      },
+      {
+        "question": "هل يمكنني إرسال موقعي؟",
+        "answer": "نعم. يمكنك مشاركة الموقع أو كتابة العنوان الكامل عبر واتساب."
+      }
+    ]
+  },
+  {
     "path": "/taxi-desde-calatayud/",
     "title": "Taxi desde Calatayud | Traslados comarca y Zaragoza",
     "description": "Taxi desde Calatayud a pueblos de la comarca, estación AVE, Monasterio de Piedra, balnearios, Zaragoza, aeropuerto, hoteles y citas.",

@@ -14,6 +14,7 @@ Web moderna para Taxi Ayud Calatayud, lista para desplegar en Vercel sin WordPre
 - Servicios, vehículo, métodos de pago y contacto.
 - SEO local avanzado, sitemap, robots.txt, datos estructurados y metadatos para compartir.
 - Detección de idioma del navegador en español, inglés, francés, catalán, alemán, italiano, portugués, neerlandés y árabe.
+- URLs SEO reales por idioma para la búsqueda principal de taxi en Calatayud, con `hreflang`.
 - Mensajes de WhatsApp adaptados al idioma del cliente, con aviso de idioma incluido.
 
 ## Rutas exactas sin Google Maps

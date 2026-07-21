@@ -6,6 +6,18 @@ const pages = JSON.parse(readFileSync("src/seoPages.json", "utf8"));
 const errors = [];
 const titles = new Map();
 const descriptions = new Map();
+const pageUrls = new Set(pages.map((page) => `${siteUrl}${page.path === "/" ? "/" : page.path}`));
+const localizedTaxiPaths = new Set([
+  "/taxi-calatayud/",
+  "/en/taxi-calatayud/",
+  "/fr/taxi-calatayud/",
+  "/ca/taxi-calatayud/",
+  "/de/taxi-calatayud/",
+  "/it/taxi-calatayud/",
+  "/pt/taxi-calatayud/",
+  "/nl/taxi-calatayud/",
+  "/ar/taxi-calatayud/",
+]);
 
 function fail(message) {
   errors.push(message);
@@ -33,11 +45,17 @@ for (const page of pages) {
   const h1 = match(html, /<h1>([\s\S]*?)<\/h1>/);
 
   if (html.includes("taxiayud.com")) fail(`${page.path} contiene taxiayud.com`);
-  if (html.includes("hreflang=")) fail(`${page.path} contiene hreflang sin versiones reales`);
   if (html.includes('name="keywords"')) fail(`${page.path} contiene meta keywords innecesario`);
   if (!title) fail(`${page.path} no tiene title`);
   if (!description) fail(`${page.path} no tiene meta description`);
   if (!h1) fail(`${page.path} no tiene H1 inicial`);
+  if (!html.includes("<html lang=")) fail(`${page.path} no declara lang en html`);
+  if (!html.includes('dir="ltr"') && !html.includes('dir="rtl"')) {
+    fail(`${page.path} no declara dir en html`);
+  }
+  if (page.path.startsWith("/ar/") && !html.includes('dir="rtl"')) {
+    fail(`${page.path} debería usar dir rtl`);
+  }
   if (!html.includes(`<link rel="canonical" href="${canonical}" />`)) {
     fail(`${page.path} canonical incorrecto`);
   }
@@ -61,6 +79,21 @@ for (const page of pages) {
     }
   }
 
+  const hreflangLinks = [
+    ...html.matchAll(/<link\s+rel="alternate"\s+hreflang="([^"]+)"\s+href="([^"]+)"\s*\/>/g),
+  ];
+  for (const [, hreflang, href] of hreflangLinks) {
+    if (hreflang !== "x-default" && !pageUrls.has(href)) {
+      fail(`${page.path} hreflang ${hreflang} apunta a URL no indexable: ${href}`);
+    }
+  }
+  if (localizedTaxiPaths.has(page.path) && hreflangLinks.length !== 10) {
+    fail(`${page.path} debería tener 10 hreflang incluyendo x-default`);
+  }
+  if (hreflangLinks.length && !hreflangLinks.some(([, , href]) => href === canonical)) {
+    fail(`${page.path} tiene hreflang pero no se referencia a sí misma`);
+  }
+
   if (titles.has(title)) fail(`Title duplicado: ${title}`);
   if (descriptions.has(description)) fail(`Description duplicada: ${description}`);
   titles.set(title, page.path);
@@ -72,10 +105,16 @@ const sitemap = readFileSync("dist/sitemap.xml", "utf8");
 if (!robots.includes(`${siteUrl}/sitemap.xml`)) fail("robots.txt no apunta al sitemap .es");
 if (robots.includes("taxiayud.com")) fail("robots.txt contiene .com");
 if (sitemap.includes("taxiayud.com")) fail("sitemap contiene .com");
+if (!sitemap.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"')) {
+  fail("sitemap no declara alternates xhtml");
+}
 
 for (const page of pages) {
   const url = `${siteUrl}${page.path === "/" ? "/" : page.path}`;
   if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`sitemap no incluye ${url}`);
+  if (localizedTaxiPaths.has(page.path) && !sitemap.includes(`<xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/taxi-calatayud/" />`)) {
+    fail(`sitemap no incluye hreflang x-default para ${page.path}`);
+  }
 }
 
 const sitemapUrls = [...sitemap.matchAll(/<loc>([\s\S]*?)<\/loc>/g)].map((item) => item[1]);

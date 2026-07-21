@@ -1276,6 +1276,235 @@ const touristSearchPhrases = [
   { language: "Zaragoza", query: "Aeropuerto, Delicias, hospitales y direcciones concretas" },
 ];
 
+const UI_COPY: Record<
+  LangCode,
+  {
+    roadHeroOption: string;
+    roadEyebrow: string;
+    roadTitle: string;
+    roadText: string;
+    roadLocationButton: string;
+    roadWhatsapp: string;
+    roadPresetAria: string;
+    roadDisclaimer: string;
+    roadPanelAria: string;
+    roadSteps: Array<{ title: string; text: string }>;
+    roadQuickTitle: string;
+    roadQuickText: string;
+    roadQuickButton: string;
+    internalRoutes: string;
+    otherLanguages: string;
+  }
+> = {
+  es: {
+    roadHeroOption: "Avería en carretera",
+    roadEyebrow: "Recogida urgente en carretera",
+    roadTitle: "Taxi si te has quedado tirado cerca de Calatayud",
+    roadText:
+      "Si tienes una avería o incidencia en la A-2, N-II, N-234 o carreteras de la comarca, puedo ayudarte con recogida de pasajeros para llevarte a Calatayud, taller, hotel, estación o un punto seguro.",
+    roadLocationButton: "Preparar recogida con ubicación",
+    roadWhatsapp: "WhatsApp urgente",
+    roadPresetAria: "Puntos habituales de carretera",
+    roadDisclaimer:
+      "Servicio de taxi para pasajeros. No es grúa ni asistencia mecánica. Si hay peligro, emergencia médica o riesgo en la vía, llama primero al 112 o a tu asistencia en carretera.",
+    roadPanelAria: "Cómo pedir taxi desde carretera",
+    roadSteps: [
+      { title: "Muévete a zona segura", text: "Arcén protegido, área de servicio, salida, gasolinera o punto indicado por asistencia." },
+      { title: "Envía ubicación", text: "Valdeherrera, Ateca, Ariza, N-234 o la salida/km más cercano ayudan mucho." },
+      { title: "Confirma destino", text: "Calatayud, taller, hotel, estación, Zaragoza o destino que necesites." },
+    ],
+    roadQuickTitle: "Avería o incidencia en carretera",
+    roadQuickText: "Prepara un mensaje urgente con ubicación y pasajeros. Taxi para personas, no grúa.",
+    roadQuickButton: "Preparar",
+    internalRoutes: "Rutas principales",
+    otherLanguages: "Taxi Ayud en otros idiomas",
+  },
+  en: {
+    roadHeroOption: "Road breakdown",
+    roadEyebrow: "Urgent road pick-up",
+    roadTitle: "Taxi if you are stranded near Calatayud",
+    roadText:
+      "If you have a breakdown or road incident on the A-2, N-II, N-234 or nearby roads, I can pick up passengers and take you to Calatayud, a garage, hotel, station or safe point.",
+    roadLocationButton: "Prepare pick-up with location",
+    roadWhatsapp: "Urgent WhatsApp",
+    roadPresetAria: "Common road pick-up points",
+    roadDisclaimer:
+      "Passenger taxi service only. This is not a tow truck or mechanical assistance. If there is danger, a medical emergency or road risk, call 112 or your roadside assistance first.",
+    roadPanelAria: "How to request a taxi from the road",
+    roadSteps: [
+      { title: "Move to a safe place", text: "Protected shoulder, service area, exit, petrol station or a point indicated by assistance." },
+      { title: "Send location", text: "Valdeherrera, Ateca, Ariza, N-234 or the nearest exit/km helps a lot." },
+      { title: "Confirm destination", text: "Calatayud, garage, hotel, station, Zaragoza or the destination you need." },
+    ],
+    roadQuickTitle: "Breakdown or road incident",
+    roadQuickText: "Prepare an urgent message with location and passengers. Taxi for people, not a tow truck.",
+    roadQuickButton: "Prepare",
+    internalRoutes: "Main routes",
+    otherLanguages: "Taxi Ayud in other languages",
+  },
+  fr: {
+    roadHeroOption: "Panne sur route",
+    roadEyebrow: "Prise en charge urgente sur route",
+    roadTitle: "Taxi si vous êtes bloqué près de Calatayud",
+    roadText:
+      "En cas de panne ou d'incident sur l'A-2, N-II, N-234 ou routes proches, je peux prendre en charge les passagers vers Calatayud, garage, hôtel, gare ou point sûr.",
+    roadLocationButton: "Préparer avec position",
+    roadWhatsapp: "WhatsApp urgent",
+    roadPresetAria: "Points routiers habituels",
+    roadDisclaimer:
+      "Service de taxi pour passagers. Ce n'est pas une dépanneuse ni une assistance mécanique. En cas de danger, urgence médicale ou risque sur la route, appelez d'abord le 112 ou votre assistance.",
+    roadPanelAria: "Comment demander un taxi depuis la route",
+    roadSteps: [
+      { title: "Allez en zone sûre", text: "Bande protégée, aire de service, sortie, station-service ou point indiqué par l'assistance." },
+      { title: "Envoyez la position", text: "Valdeherrera, Ateca, Ariza, N-234 ou la sortie/km le plus proche aide beaucoup." },
+      { title: "Confirmez la destination", text: "Calatayud, garage, hôtel, gare, Saragosse ou destination souhaitée." },
+    ],
+    roadQuickTitle: "Panne ou incident sur route",
+    roadQuickText: "Préparez un message urgent avec position et passagers. Taxi pour personnes, pas dépanneuse.",
+    roadQuickButton: "Préparer",
+    internalRoutes: "Routes principales",
+    otherLanguages: "Taxi Ayud en plusieurs langues",
+  },
+  ca: {
+    roadHeroOption: "Avaria en carretera",
+    roadEyebrow: "Recollida urgent en carretera",
+    roadTitle: "Taxi si t'has quedat tirat prop de Calatayud",
+    roadText:
+      "Si tens una avaria o incidència a l'A-2, N-II, N-234 o carreteres properes, puc recollir passatgers i portar-los a Calatayud, taller, hotel, estació o punt segur.",
+    roadLocationButton: "Preparar recollida amb ubicació",
+    roadWhatsapp: "WhatsApp urgent",
+    roadPresetAria: "Punts habituals de carretera",
+    roadDisclaimer:
+      "Servei de taxi per a passatgers. No és grua ni assistència mecànica. Si hi ha perill o emergència, truca primer al 112 o a l'assistència en carretera.",
+    roadPanelAria: "Com demanar taxi des de carretera",
+    roadSteps: [
+      { title: "Ves a una zona segura", text: "Vorera protegida, àrea de servei, sortida, gasolinera o punt indicat per assistència." },
+      { title: "Envia ubicació", text: "Valdeherrera, Ateca, Ariza, N-234 o la sortida/km més propera ajuda molt." },
+      { title: "Confirma destinació", text: "Calatayud, taller, hotel, estació, Saragossa o destinació que necessitis." },
+    ],
+    roadQuickTitle: "Avaria o incidència en carretera",
+    roadQuickText: "Prepara un missatge urgent amb ubicació i passatgers. Taxi per a persones, no grua.",
+    roadQuickButton: "Preparar",
+    internalRoutes: "Rutes principals",
+    otherLanguages: "Taxi Ayud en altres idiomes",
+  },
+  de: {
+    roadHeroOption: "Panne auf der Straße",
+    roadEyebrow: "Dringende Abholung auf der Straße",
+    roadTitle: "Taxi, wenn Sie bei Calatayud liegen geblieben sind",
+    roadText:
+      "Bei Panne oder Vorfall auf A-2, N-II, N-234 oder nahen Straßen kann ich Fahrgäste nach Calatayud, Werkstatt, Hotel, Bahnhof oder zu einem sicheren Punkt bringen.",
+    roadLocationButton: "Abholung mit Standort vorbereiten",
+    roadWhatsapp: "Dringend per WhatsApp",
+    roadPresetAria: "Häufige Straßen-Abholpunkte",
+    roadDisclaimer:
+      "Nur Taxi für Fahrgäste. Kein Abschleppdienst und keine Pannenhilfe. Bei Gefahr, medizinischem Notfall oder Risiko auf der Straße zuerst 112 oder Pannenhilfe anrufen.",
+    roadPanelAria: "Taxi von der Straße anfragen",
+    roadSteps: [
+      { title: "Sicheren Ort aufsuchen", text: "Geschützter Seitenstreifen, Rastplatz, Ausfahrt, Tankstelle oder von Hilfe genannter Punkt." },
+      { title: "Standort senden", text: "Valdeherrera, Ateca, Ariza, N-234 oder nächste Ausfahrt/km helfen sehr." },
+      { title: "Ziel bestätigen", text: "Calatayud, Werkstatt, Hotel, Bahnhof, Zaragoza oder gewünschtes Ziel." },
+    ],
+    roadQuickTitle: "Panne oder Straßenereignis",
+    roadQuickText: "Dringende Nachricht mit Standort und Fahrgästen vorbereiten. Taxi für Personen, kein Abschleppdienst.",
+    roadQuickButton: "Vorbereiten",
+    internalRoutes: "Wichtige Routen",
+    otherLanguages: "Taxi Ayud in anderen Sprachen",
+  },
+  it: {
+    roadHeroOption: "Guasto su strada",
+    roadEyebrow: "Ritiro urgente su strada",
+    roadTitle: "Taxi se sei rimasto bloccato vicino a Calatayud",
+    roadText:
+      "In caso di guasto o incidente su A-2, N-II, N-234 o strade vicine, posso ritirare i passeggeri verso Calatayud, officina, hotel, stazione o punto sicuro.",
+    roadLocationButton: "Prepara ritiro con posizione",
+    roadWhatsapp: "WhatsApp urgente",
+    roadPresetAria: "Punti stradali abituali",
+    roadDisclaimer:
+      "Servizio taxi per passeggeri. Non è carro attrezzi né assistenza meccanica. In caso di pericolo o emergenza chiama prima il 112 o l'assistenza stradale.",
+    roadPanelAria: "Come chiedere taxi dalla strada",
+    roadSteps: [
+      { title: "Spostati in zona sicura", text: "Corsia protetta, area di servizio, uscita, benzinaio o punto indicato dall'assistenza." },
+      { title: "Invia posizione", text: "Valdeherrera, Ateca, Ariza, N-234 o uscita/km più vicino aiutano molto." },
+      { title: "Conferma destinazione", text: "Calatayud, officina, hotel, stazione, Saragozza o destinazione necessaria." },
+    ],
+    roadQuickTitle: "Guasto o incidente su strada",
+    roadQuickText: "Prepara un messaggio urgente con posizione e passeggeri. Taxi per persone, non carro attrezzi.",
+    roadQuickButton: "Preparare",
+    internalRoutes: "Rotte principali",
+    otherLanguages: "Taxi Ayud in altre lingue",
+  },
+  pt: {
+    roadHeroOption: "Avaria na estrada",
+    roadEyebrow: "Recolha urgente na estrada",
+    roadTitle: "Táxi se ficou parado perto de Calatayud",
+    roadText:
+      "Se tiver avaria ou incidente na A-2, N-II, N-234 ou estradas próximas, posso recolher passageiros para Calatayud, oficina, hotel, estação ou ponto seguro.",
+    roadLocationButton: "Preparar recolha com localização",
+    roadWhatsapp: "WhatsApp urgente",
+    roadPresetAria: "Pontos habituais de estrada",
+    roadDisclaimer:
+      "Serviço de táxi para passageiros. Não é reboque nem assistência mecânica. Em caso de perigo ou emergência, ligue primeiro 112 ou assistência rodoviária.",
+    roadPanelAria: "Como pedir táxi desde a estrada",
+    roadSteps: [
+      { title: "Vá para zona segura", text: "Berma protegida, área de serviço, saída, bomba de gasolina ou ponto indicado pela assistência." },
+      { title: "Envie localização", text: "Valdeherrera, Ateca, Ariza, N-234 ou saída/km mais próximo ajudam muito." },
+      { title: "Confirme destino", text: "Calatayud, oficina, hotel, estação, Zaragoza ou destino necessário." },
+    ],
+    roadQuickTitle: "Avaria ou incidente na estrada",
+    roadQuickText: "Prepare uma mensagem urgente com localização e passageiros. Táxi para pessoas, não reboque.",
+    roadQuickButton: "Preparar",
+    internalRoutes: "Rotas principais",
+    otherLanguages: "Taxi Ayud noutros idiomas",
+  },
+  nl: {
+    roadHeroOption: "Pech onderweg",
+    roadEyebrow: "Dringend ophalen langs de weg",
+    roadTitle: "Taxi als u gestrand bent bij Calatayud",
+    roadText:
+      "Bij pech of een incident op de A-2, N-II, N-234 of nabijgelegen wegen kan ik passagiers ophalen naar Calatayud, garage, hotel, station of veilige plek.",
+    roadLocationButton: "Ophalen met locatie voorbereiden",
+    roadWhatsapp: "Dringend WhatsApp",
+    roadPresetAria: "Veelgebruikte ophaalpunten langs de weg",
+    roadDisclaimer:
+      "Alleen taxiservice voor passagiers. Geen sleepwagen of mechanische hulp. Bij gevaar of nood eerst 112 of pechhulp bellen.",
+    roadPanelAria: "Taxi vanaf de weg aanvragen",
+    roadSteps: [
+      { title: "Ga naar een veilige plek", text: "Beschermde berm, servicegebied, afrit, tankstation of punt aangegeven door hulp." },
+      { title: "Stuur locatie", text: "Valdeherrera, Ateca, Ariza, N-234 of dichtstbijzijnde afrit/km helpt veel." },
+      { title: "Bevestig bestemming", text: "Calatayud, garage, hotel, station, Zaragoza of gewenste bestemming." },
+    ],
+    roadQuickTitle: "Pech of incident onderweg",
+    roadQuickText: "Maak een dringend bericht met locatie en passagiers. Taxi voor mensen, geen sleepwagen.",
+    roadQuickButton: "Voorbereiden",
+    internalRoutes: "Belangrijke routes",
+    otherLanguages: "Taxi Ayud in andere talen",
+  },
+  ar: {
+    roadHeroOption: "عطل على الطريق",
+    roadEyebrow: "استلام عاجل على الطريق",
+    roadTitle: "تاكسي إذا تعطلت قرب كالاتايود",
+    roadText:
+      "إذا حدث عطل أو مشكلة على A-2 أو N-II أو N-234 أو الطرق القريبة، يمكن نقل الركاب إلى كالاتايود أو ورشة أو فندق أو محطة أو نقطة آمنة.",
+    roadLocationButton: "تجهيز الاستلام مع الموقع",
+    roadWhatsapp: "واتساب عاجل",
+    roadPresetAria: "نقاط استلام شائعة على الطريق",
+    roadDisclaimer:
+      "خدمة تاكسي للركاب فقط. ليست شاحنة سحب ولا مساعدة ميكانيكية. إذا كان هناك خطر أو طارئ اتصل أولا ب 112 أو مساعدة الطريق.",
+    roadPanelAria: "كيفية طلب تاكسي من الطريق",
+    roadSteps: [
+      { title: "انتقل إلى مكان آمن", text: "منطقة آمنة، محطة خدمة، مخرج، محطة وقود أو نقطة تحددها المساعدة." },
+      { title: "أرسل الموقع", text: "Valdeherrera أو Ateca أو Ariza أو N-234 أو أقرب مخرج/كم يساعد كثيرا." },
+      { title: "أكد الوجهة", text: "كالاتايود، ورشة، فندق، محطة، سرقسطة أو الوجهة المطلوبة." },
+    ],
+    roadQuickTitle: "عطل أو مشكلة على الطريق",
+    roadQuickText: "جهز رسالة عاجلة بالموقع وعدد الركاب. تاكسي للأشخاص، وليس سحب سيارة.",
+    roadQuickButton: "تجهيز",
+    internalRoutes: "الطرق الرئيسية",
+    otherLanguages: "Taxi Ayud بلغات أخرى",
+  },
+};
+
 const SEO_PAGES = seoPagesData as SeoPage[];
 const HOME_SEO_PAGE = SEO_PAGES.find((page) => page.path === "/") ?? SEO_PAGES[0];
 const DEFAULT_SEO_LINKS = [
@@ -1324,6 +1553,18 @@ const featuredDestinations = [
   "PARACUELLOS DE JILOCA",
   "MALUENDA",
 ].filter((item) => TARIFAS[item]);
+
+const localizedTaxiPages: Array<{ path: string; lang: LangCode; label: string }> = [
+  { path: "/taxi-calatayud/", lang: "es", label: "Español" },
+  { path: "/en/taxi-calatayud/", lang: "en", label: "English" },
+  { path: "/fr/taxi-calatayud/", lang: "fr", label: "Français" },
+  { path: "/ca/taxi-calatayud/", lang: "ca", label: "Català" },
+  { path: "/de/taxi-calatayud/", lang: "de", label: "Deutsch" },
+  { path: "/it/taxi-calatayud/", lang: "it", label: "Italiano" },
+  { path: "/pt/taxi-calatayud/", lang: "pt", label: "Português" },
+  { path: "/nl/taxi-calatayud/", lang: "nl", label: "Nederlands" },
+  { path: "/ar/taxi-calatayud/", lang: "ar", label: "العربية" },
+];
 
 const roadPickupPresets: AddressSuggestion[] = [
   {
@@ -1695,6 +1936,9 @@ function dateLabel(value: string) {
 
 function detectLanguage(): LangCode {
   if (typeof navigator === "undefined") return "es";
+  const pathLanguage = languageFromPathname(window.location.pathname);
+  if (pathLanguage) return pathLanguage;
+
   try {
     const saved = window.localStorage.getItem("taxiayud-language");
     if (saved && saved in LANGUAGE_OPTIONS) return saved as LangCode;
@@ -1716,6 +1960,11 @@ function detectLanguage(): LangCode {
   return "en";
 }
 
+function languageFromPathname(pathname: string): LangCode | null {
+  const match = pathname.match(/^\/(en|fr|ca|de|it|pt|nl|ar)(?:\/|$)/);
+  return match?.[1] && match[1] in LANGUAGE_OPTIONS ? (match[1] as LangCode) : null;
+}
+
 function cleanPathname(pathname: string) {
   if (!pathname || pathname === "/") return "/";
   return `${pathname.replace(/\/+$/, "")}/`;
@@ -1725,6 +1974,15 @@ function activeSeoPage() {
   if (typeof window === "undefined") return null;
   const pathname = cleanPathname(window.location.pathname);
   return SEO_PAGES.find((page) => page.path !== "/" && page.path === pathname) ?? null;
+}
+
+function localizedTaxiPathForLanguage(language: LangCode) {
+  return localizedTaxiPages.find((page) => page.lang === language)?.path;
+}
+
+function isLocalizedTaxiPath(pathname: string) {
+  const clean = cleanPathname(pathname);
+  return localizedTaxiPages.some((page) => page.path === clean);
 }
 
 function pageFromPath(path: string) {
@@ -2554,19 +2812,28 @@ function SeoIntentSection({
   );
 }
 
-function InternalLinksBand() {
+function InternalLinksBand({ language }: { language: LangCode }) {
   const pages = relatedSeoPages(null);
+  const ui = UI_COPY[language];
 
   return (
     <section className="internal-link-band" aria-label="Rutas principales de Taxi Ayud" data-animate>
       <p className="eyebrow compact">
         <Route aria-hidden="true" />
-        Rutas principales
+        {ui.internalRoutes}
       </p>
       <div>
         {pages.map((page) => (
           <a href={page.path} key={page.path}>
             {page.navLabel}
+          </a>
+        ))}
+      </div>
+      <p className="language-link-heading">{ui.otherLanguages}</p>
+      <div className="language-link-row" aria-label="Versiones por idioma">
+        {localizedTaxiPages.map((page) => (
+          <a href={page.path} hrefLang={HTML_LANG[page.lang]} key={page.path}>
+            {page.label}
           </a>
         ))}
       </div>
@@ -2671,6 +2938,7 @@ function App() {
   const [result, setResult] = useState<Result | null>(null);
   const [reviews, setReviews] = useState<ReviewsData>(GOOGLE_REVIEWS);
   const t = COPY[language];
+  const ui = UI_COPY[language];
   const currentSeoPage = activeSeoPage();
   const heroSeoPage = currentSeoPage ?? HOME_SEO_PAGE;
   const statsLabels = heroStatLabels[language];
@@ -2765,6 +3033,17 @@ function App() {
     }
     setCookieConsent(value);
     if (value === "accepted") initAnalytics();
+  }
+
+  function changeLanguage(nextLanguage: LangCode) {
+    setLanguage(nextLanguage);
+
+    if (!isLocalizedTaxiPath(window.location.pathname)) return;
+
+    const targetPath = localizedTaxiPathForLanguage(nextLanguage);
+    if (targetPath && targetPath !== cleanPathname(window.location.pathname)) {
+      window.history.pushState({}, "", targetPath);
+    }
   }
 
   useEffect(() => {
@@ -3111,7 +3390,7 @@ function App() {
           <select
             aria-label="Idioma"
             value={language}
-            onChange={(event) => setLanguage(event.target.value as LangCode)}
+            onChange={(event) => changeLanguage(event.target.value as LangCode)}
           >
             {Object.entries(LANGUAGE_OPTIONS).map(([key, option]) => (
               <option value={key} key={key}>
@@ -3210,7 +3489,7 @@ function App() {
               </span>
               <span>
                 <TriangleAlert aria-hidden="true" />
-                Avería en carretera
+                {ui.roadHeroOption}
               </span>
             </div>
             <div className="hero-card-actions">
@@ -3314,24 +3593,20 @@ function App() {
           </div>
         </section>
 
-        <InternalLinksBand />
+        <InternalLinksBand language={language} />
 
-        <section className="road-assist-section" id="taxi-averia-calatayud" aria-label="Taxi por averia en carretera cerca de Calatayud" data-animate>
+        <section className="road-assist-section" id="taxi-averia-calatayud" aria-label={ui.roadTitle} data-animate>
           <div className="road-assist-copy">
             <p className="eyebrow compact">
               <TriangleAlert aria-hidden="true" />
-              Recogida urgente en carretera
+              {ui.roadEyebrow}
             </p>
-            <h2>Taxi si te has quedado tirado cerca de Calatayud</h2>
-            <p>
-              Si tienes una avería o incidencia en la A-2, N-II, N-234 o carreteras de la comarca,
-              puedo ayudarte con recogida de pasajeros para llevarte a Calatayud, taller,
-              hotel, estación o un punto seguro.
-            </p>
+            <h2>{ui.roadTitle}</h2>
+            <p>{ui.roadText}</p>
             <div className="road-actions">
               <button type="button" className="btn btn-primary" onClick={requestRoadPickupLocation}>
                 <LocateFixed aria-hidden="true" />
-                Preparar recogida con ubicación
+                {ui.roadLocationButton}
               </button>
               <a
                 className="btn btn-whatsapp"
@@ -3341,10 +3616,10 @@ function App() {
                 onClick={() => trackEvent("clic_whatsapp", { source: "road_assist" })}
               >
                 <MessageCircle aria-hidden="true" />
-                WhatsApp urgente
+                {ui.roadWhatsapp}
               </a>
             </div>
-            <div className="road-preset-grid" aria-label="Puntos habituales de carretera">
+            <div className="road-preset-grid" aria-label={ui.roadPresetAria}>
               {roadPickupPresets.map((preset) => (
                 <button type="button" key={preset.label} onClick={() => prepareRoadPreset(preset)}>
                   <MapPin aria-hidden="true" />
@@ -3353,26 +3628,17 @@ function App() {
               ))}
             </div>
             <p className="road-disclaimer">
-              Servicio de taxi para pasajeros. No es grúa ni asistencia mecánica. Si hay peligro,
-              emergencia médica o riesgo en la vía, llama primero al 112 o a tu asistencia en carretera.
+              {ui.roadDisclaimer}
             </p>
           </div>
-          <div className="road-assist-panel" aria-label="Como pedir taxi desde carretera">
-            <div className="road-step">
-              <span>1</span>
-              <strong>Muévete a zona segura</strong>
-              <p>Arcén protegido, área de servicio, salida, gasolinera o punto indicado por asistencia.</p>
-            </div>
-            <div className="road-step">
-              <span>2</span>
-              <strong>Envía ubicación</strong>
-              <p>Valdeherrera, Ateca, Ariza, N-234 o la salida/km más cercano ayudan mucho.</p>
-            </div>
-            <div className="road-step">
-              <span>3</span>
-              <strong>Confirma destino</strong>
-              <p>Calatayud, taller, hotel, estación, Zaragoza o destino que necesites.</p>
-            </div>
+          <div className="road-assist-panel" aria-label={ui.roadPanelAria}>
+            {ui.roadSteps.map((step, index) => (
+              <div className="road-step" key={step.title}>
+                <span>{index + 1}</span>
+                <strong>{step.title}</strong>
+                <p>{step.text}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -3599,11 +3865,11 @@ function App() {
               <div className="road-quick-card">
                 <TriangleAlert aria-hidden="true" />
                 <div>
-                  <strong>Avería o incidencia en carretera</strong>
-                  <p>Prepara un mensaje urgente con ubicación y pasajeros. Taxi para personas, no grúa.</p>
+                  <strong>{ui.roadQuickTitle}</strong>
+                  <p>{ui.roadQuickText}</p>
                 </div>
                 <button type="button" className="btn btn-secondary" onClick={prepareRoadPickup}>
-                  Preparar
+                  {ui.roadQuickButton}
                 </button>
               </div>
 

@@ -5,6 +5,113 @@ const siteUrl = "https://www.taxiayud.es";
 const pages = JSON.parse(readFileSync("src/seoPages.json", "utf8"));
 const template = readFileSync("dist/index.html", "utf8");
 const buildDate = new Date().toISOString().slice(0, 10);
+const htmlLangByPrefix = {
+  "/en/": "en",
+  "/fr/": "fr",
+  "/ca/": "ca-ES",
+  "/de/": "de",
+  "/it/": "it",
+  "/pt/": "pt",
+  "/nl/": "nl",
+  "/ar/": "ar",
+};
+const ogLocaleByLang = {
+  "es-ES": "es_ES",
+  en: "en_GB",
+  fr: "fr_FR",
+  "ca-ES": "ca_ES",
+  de: "de_DE",
+  it: "it_IT",
+  pt: "pt_PT",
+  nl: "nl_NL",
+  ar: "ar_AR",
+};
+const localizedTaxiAlternates = [
+  { path: "/taxi-calatayud/", hreflang: "es-ES", label: "Español" },
+  { path: "/en/taxi-calatayud/", hreflang: "en", label: "English" },
+  { path: "/fr/taxi-calatayud/", hreflang: "fr", label: "Français" },
+  { path: "/ca/taxi-calatayud/", hreflang: "ca-ES", label: "Català" },
+  { path: "/de/taxi-calatayud/", hreflang: "de", label: "Deutsch" },
+  { path: "/it/taxi-calatayud/", hreflang: "it", label: "Italiano" },
+  { path: "/pt/taxi-calatayud/", hreflang: "pt", label: "Português" },
+  { path: "/nl/taxi-calatayud/", hreflang: "nl", label: "Nederlands" },
+  { path: "/ar/taxi-calatayud/", hreflang: "ar", label: "العربية" },
+];
+const localizedTaxiPaths = new Set(localizedTaxiAlternates.map((item) => item.path));
+const staticCopy = {
+  "es-ES": {
+    call: "Llamar al 611 861 041",
+    whatsapp: "Reservar por WhatsApp",
+    serviceAreasHeading: "Zonas habituales de recogida",
+    serviceAreasText:
+      "Taxi oficial con recogidas en Calatayud, hoteles, estación, balnearios, pueblos de la comarca y destinos turísticos cercanos.",
+    related: "Rutas relacionadas",
+  },
+  en: {
+    call: "Call 611 861 041",
+    whatsapp: "Book by WhatsApp",
+    serviceAreasHeading: "Frequent pick-up areas",
+    serviceAreasText:
+      "Official taxi pick-ups in Calatayud, hotels, the station, spas, nearby villages and tourist destinations.",
+    related: "Related taxi pages",
+  },
+  fr: {
+    call: "Appeler le 611 861 041",
+    whatsapp: "Réserver par WhatsApp",
+    serviceAreasHeading: "Zones de prise en charge habituelles",
+    serviceAreasText:
+      "Taxi officiel avec prises en charge à Calatayud, hôtels, gare, thermes, villages proches et destinations touristiques.",
+    related: "Pages taxi liées",
+  },
+  "ca-ES": {
+    call: "Trucar al 611 861 041",
+    whatsapp: "Reservar per WhatsApp",
+    serviceAreasHeading: "Zones habituals de recollida",
+    serviceAreasText:
+      "Taxi oficial amb recollides a Calatayud, hotels, estació, balnearis, pobles propers i destinacions turístiques.",
+    related: "Pàgines relacionades",
+  },
+  de: {
+    call: "611 861 041 anrufen",
+    whatsapp: "Per WhatsApp buchen",
+    serviceAreasHeading: "Häufige Abholbereiche",
+    serviceAreasText:
+      "Offizielles Taxi mit Abholung in Calatayud, Hotels, Bahnhof, Thermalbädern, nahen Orten und touristischen Zielen.",
+    related: "Verwandte Taxiseiten",
+  },
+  it: {
+    call: "Chiama 611 861 041",
+    whatsapp: "Prenota su WhatsApp",
+    serviceAreasHeading: "Zone abituali di ritiro",
+    serviceAreasText:
+      "Taxi ufficiale con ritiri a Calatayud, hotel, stazione, terme, paesi vicini e destinazioni turistiche.",
+    related: "Pagine taxi correlate",
+  },
+  pt: {
+    call: "Ligar 611 861 041",
+    whatsapp: "Reservar por WhatsApp",
+    serviceAreasHeading: "Áreas habituais de recolha",
+    serviceAreasText:
+      "Táxi oficial com recolhas em Calatayud, hotéis, estação, termas, aldeias próximas e destinos turísticos.",
+    related: "Páginas relacionadas",
+  },
+  nl: {
+    call: "Bel 611 861 041",
+    whatsapp: "Boek via WhatsApp",
+    serviceAreasHeading: "Veelgebruikte ophaalgebieden",
+    serviceAreasText:
+      "Officiële taxi met ophaalservice in Calatayud, hotels, station, kuuroorden, nabijgelegen dorpen en toeristische bestemmingen.",
+    related: "Gerelateerde taxipagina's",
+  },
+  ar: {
+    call: "اتصل على 611 861 041",
+    whatsapp: "احجز عبر واتساب",
+    serviceAreasHeading: "مناطق الاستلام الشائعة",
+    serviceAreasText:
+      "تاكسي رسمي مع استلام في كالاتايود والفنادق والمحطة والمنتجعات والقرى القريبة والوجهات السياحية.",
+    related: "صفحات تاكسي ذات صلة",
+  },
+};
 
 const businessGraph = {
   "@type": ["TaxiService", "LocalBusiness"],
@@ -208,9 +315,51 @@ function absoluteUrl(path) {
   return `${siteUrl}${path === "/" ? "/" : path}`;
 }
 
+function pageLang(page) {
+  const entry = Object.entries(htmlLangByPrefix).find(([prefix]) => page.path.startsWith(prefix));
+  return entry?.[1] ?? "es-ES";
+}
+
+function pageDir(page) {
+  return pageLang(page) === "ar" ? "rtl" : "ltr";
+}
+
+function pageStaticCopy(page) {
+  return staticCopy[pageLang(page)] ?? staticCopy["es-ES"];
+}
+
+function isLocalizedTaxiPage(path) {
+  return localizedTaxiPaths.has(path);
+}
+
+function alternateTags(page) {
+  if (!isLocalizedTaxiPage(page.path)) return "";
+
+  const tags = localizedTaxiAlternates.map(
+    (alternate) =>
+      `<link rel="alternate" hreflang="${alternate.hreflang}" href="${absoluteUrl(alternate.path)}" />`,
+  );
+  tags.push(`<link rel="alternate" hreflang="x-default" href="${absoluteUrl("/taxi-calatayud/")}" />`);
+  return `${tags.join("\n    ")}\n    `;
+}
+
+function sitemapAlternateTags(page) {
+  if (!isLocalizedTaxiPage(page.path)) return "";
+
+  const tags = localizedTaxiAlternates.map(
+    (alternate) =>
+      `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${absoluteUrl(alternate.path)}" />`,
+  );
+  tags.push(
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${absoluteUrl("/taxi-calatayud/")}" />`,
+  );
+  return `\n${tags.join("\n")}`;
+}
+
 function staticFallback(page) {
+  const copy = pageStaticCopy(page);
   const links = pages
-    .filter((item) => item.path !== page.path)
+    .filter((item) => item.path !== page.path && (!isLocalizedTaxiPage(page.path) || isLocalizedTaxiPage(item.path)))
     .slice(0, 14)
     .map((item) => `<a href="${item.path}">${escapeHtml(item.navLabel)}</a>`)
     .join(" ");
@@ -247,11 +396,12 @@ function staticFallback(page) {
     )
     .join("");
 
-  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p><p><a href="tel:611861041">Llamar al 611 861 041</a> · <a href="https://wa.me/34611861041">Reservar por WhatsApp</a></p><article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>Zonas habituales de recogida</h2><p>Taxi oficial con recogidas en Calatayud, hoteles, estación, balnearios, pueblos de la comarca y destinos turísticos cercanos.</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="Rutas relacionadas">${links}</nav></main>`;
+  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p><p><a href="tel:611861041">${escapeHtml(copy.call)}</a> · <a href="https://wa.me/34611861041">${escapeHtml(copy.whatsapp)}</a></p><article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>${escapeHtml(copy.serviceAreasHeading)}</h2><p>${escapeHtml(copy.serviceAreasText)}</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="${escapeHtml(copy.related)}">${links}</nav></main>`;
 }
 
 function pageJsonLd(page) {
   const pageUrl = absoluteUrl(page.path);
+  const lang = pageLang(page);
   const faqEntity = page.faq.map((item) => ({
     "@type": "Question",
     name: item.question,
@@ -266,6 +416,7 @@ function pageJsonLd(page) {
     name: page.h1,
     serviceType: page.eyebrow || "Servicio de taxi",
     description: page.description,
+    inLanguage: lang,
     provider: { "@id": `${siteUrl}/#taxi-ayud` },
     areaServed: [
       "Calatayud",
@@ -313,7 +464,7 @@ function pageJsonLd(page) {
         url: pageUrl,
         name: page.title,
         description: page.description,
-        inLanguage: "es-ES",
+        inLanguage: lang,
         dateModified: buildDate,
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${siteUrl}/#taxi-ayud` },
@@ -362,12 +513,13 @@ function pageJsonLd(page) {
 
 function replaceMeta(html, page) {
   const pageUrl = absoluteUrl(page.path);
+  const lang = pageLang(page);
   const ldJson = JSON.stringify(pageJsonLd(page), null, 2)
     .replace(/</g, "\\u003c")
     .replace(/<\/script/gi, "<\\/script");
 
   return html
-    .replace(/<html lang="[^"]*"/, '<html lang="es-ES"')
+    .replace(/<html lang="[^"]*"(?: dir="[^"]*")?/, `<html lang="${lang}" dir="${pageDir(page)}"`)
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(page.title)}</title>`)
     .replace(
       /<meta\s+name="description"\s+content="[^"]*"\s*\/>/,
@@ -375,7 +527,7 @@ function replaceMeta(html, page) {
     )
     .replace(
       /<link\s+rel="canonical"\s+href="[^"]*"\s*\/>/,
-      `<link rel="canonical" href="${pageUrl}" />`,
+      `${alternateTags(page)}<link rel="canonical" href="${pageUrl}" />`,
     )
     .replace(
       /<meta\s+property="og:title"\s+content="[^"]*"\s*\/>/,
@@ -388,6 +540,10 @@ function replaceMeta(html, page) {
     .replace(
       /<meta\s+property="og:url"\s+content="[^"]*"\s*\/>/,
       `<meta property="og:url" content="${pageUrl}" />`,
+    )
+    .replace(
+      /<meta\s+property="og:locale"\s+content="[^"]*"\s*\/>/,
+      `<meta property="og:locale" content="${ogLocaleByLang[lang] ?? "es_ES"}" />`,
     )
     .replace(
       /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/>/,
@@ -410,14 +566,16 @@ function replaceMeta(html, page) {
 function sitemapEntry(page, lastmod) {
   return `  <url>
     <loc>${absoluteUrl(page.path)}</loc>
+${sitemapAlternateTags(page)}
     <lastmod>${lastmod}</lastmod>
   </url>`;
 }
 
 function writeSitemap() {
   const entries = pages.map((page) => sitemapEntry(page, buildDate)).join("\n");
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries}
 </urlset>
 `;

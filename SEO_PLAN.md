@@ -8,6 +8,7 @@ Mejorar la visibilidad de Taxi Ayud para búsquedas locales reales relacionadas 
 
 - `/`: portada principal y reserva rápida.
 - `/taxi-calatayud/`: intención general “taxi en Calatayud”.
+- `/en/taxi-calatayud/`, `/fr/taxi-calatayud/`, `/ca/taxi-calatayud/`, `/de/taxi-calatayud/`, `/it/taxi-calatayud/`, `/pt/taxi-calatayud/`, `/nl/taxi-calatayud/`, `/ar/taxi-calatayud/`: versiones por idioma para visitantes que buscan taxi en Calatayud en su propio idioma.
 - `/taxi-desde-calatayud/`: búsquedas de salida desde Calatayud a comarca, estación, balnearios, Zaragoza y aeropuerto.
 - `/taxi-autovia-calatayud/`: recogida de pasajeros por avería o incidencia en A-2, N-II y carreteras cercanas.
 - `/taxi-a2-calatayud/`: intención concreta de recogida en A-2, Valdeherrera, Ateca y Ariza.
@@ -41,6 +42,7 @@ Mejorar la visibilidad de Taxi Ayud para búsquedas locales reales relacionadas 
 - `llms.txt` con resumen de servicios, contacto y URLs principales.
 - `404.html` no indexable.
 - JSON-LD con `TaxiService`, `LocalBusiness`, `WebSite`, `WebPage`, `BreadcrumbList` y `FAQPage`.
+- `hreflang` en las páginas multilingües reales para que Google relacione cada versión idiomática.
 
 ## Contenido
 

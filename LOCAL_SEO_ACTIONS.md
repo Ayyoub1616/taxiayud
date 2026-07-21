@@ -36,13 +36,20 @@ Evitar:
 
 1. Añadir propiedad de dominio o prefijo URL para `https://www.taxiayud.es`.
 2. Enviar `https://www.taxiayud.es/sitemap.xml`.
-3. Revisar cobertura de las URLs indexables del sitemap.
+3. Revisar cobertura de las URLs indexables del sitemap, incluidas las versiones por idioma.
 4. Pedir indexación de las URLs nuevas más importantes: `/`, `/taxi-calatayud/`, `/taxi-cerca-de-mi-calatayud/`, `/taxi-autovia-calatayud/`, `/taxi-a2-calatayud/`, `/taxi-desde-calatayud/`, `/telefono-taxi-calatayud/`, `/taxi-estacion-ave-calatayud/`, `/taxi-monasterio-de-piedra/`, `/taxi-balnearios-jaraba-alhama/`.
-5. Comprobar consultas reales: taxi Calatayud, taxi en Calatayud, taxi cerca de mí Calatayud, taxi desde Calatayud, teléfono taxi Calatayud, taxi estación Calatayud, taxi Monasterio de Piedra, taxi balnearios, taxi aeropuerto Zaragoza.
+5. Pedir indexación también de las versiones de idioma principales: `/en/taxi-calatayud/`, `/fr/taxi-calatayud/`, `/ca/taxi-calatayud/`, `/de/taxi-calatayud/`, `/it/taxi-calatayud/`, `/pt/taxi-calatayud/`, `/nl/taxi-calatayud/`, `/ar/taxi-calatayud/`.
+6. Comprobar consultas reales: taxi Calatayud, taxi in Calatayud, taxi à Calatayud, taxi cerca de mí Calatayud, taxi desde Calatayud, teléfono taxi Calatayud, taxi estación Calatayud, taxi Monasterio de Piedra, taxi balnearios, taxi aeropuerto Zaragoza.
 
 ## Búsquedas prioritarias
 
 - taxi Calatayud
+- taxi in Calatayud
+- taxi near me Calatayud
+- taxi à Calatayud
+- taxi gare Calatayud
+- taxi Calatayud Bahnhof
+- taxi Calatayud aeroporto
 - taxi en Calatayud
 - taxi cerca de mi Calatayud
 - taxi cerca de mí estando en Calatayud

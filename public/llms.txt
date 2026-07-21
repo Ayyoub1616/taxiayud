@@ -11,6 +11,7 @@ Taxi Ayud es un servicio de taxi oficial en Calatayud, Zaragoza.
 ## Servicios principales
 
 - Taxi en Calatayud y comarca.
+- Páginas principales por idioma para búsquedas como taxi in Calatayud, taxi à Calatayud, taxi a Calatayud y equivalentes.
 - Taxi cerca de mí en Calatayud con recogida por ubicación.
 - Taxi desde Calatayud a pueblos, estación, hoteles, balnearios, Zaragoza y aeropuerto.
 - Taxi para pasajeros por avería o incidencia en A-2, N-II, N-234 y carreteras cerca de Calatayud.
@@ -24,6 +25,12 @@ Taxi Ayud es un servicio de taxi oficial en Calatayud, Zaragoza.
 ## Consultas habituales cubiertas
 
 - taxi Calatayud
+- taxi in Calatayud
+- taxi near me Calatayud
+- taxi à Calatayud
+- taxi à la gare de Calatayud
+- taxi Calatayud Bahnhof
+- taxi Calatayud aeroporto
 - taxi en Calatayud
 - taxi cerca de mi Calatayud
 - taxi desde Calatayud
@@ -46,6 +53,14 @@ Taxi Ayud es un servicio de taxi oficial en Calatayud, Zaragoza.
 
 - https://www.taxiayud.es/
 - https://www.taxiayud.es/taxi-calatayud/
+- https://www.taxiayud.es/en/taxi-calatayud/
+- https://www.taxiayud.es/fr/taxi-calatayud/
+- https://www.taxiayud.es/ca/taxi-calatayud/
+- https://www.taxiayud.es/de/taxi-calatayud/
+- https://www.taxiayud.es/it/taxi-calatayud/
+- https://www.taxiayud.es/pt/taxi-calatayud/
+- https://www.taxiayud.es/nl/taxi-calatayud/
+- https://www.taxiayud.es/ar/taxi-calatayud/
 - https://www.taxiayud.es/taxi-cerca-de-mi-calatayud/
 - https://www.taxiayud.es/taxi-autovia-calatayud/
 - https://www.taxiayud.es/taxi-a2-calatayud/
