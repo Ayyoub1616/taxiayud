@@ -2979,7 +2979,7 @@ function SeoIntentSection({
       </div>
       {page.faq.length ? (
         <div className="intent-faq">
-          {page.faq.slice(0, 3).map((item) => (
+          {page.faq.slice(0, 5).map((item) => (
             <details key={item.question}>
               <summary>{item.question}</summary>
               <p>{item.answer}</p>

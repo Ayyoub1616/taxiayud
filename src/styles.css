@@ -966,6 +966,23 @@ h1 {
   color: var(--muted);
 }
 
+.static-seo-content .static-faq {
+  margin-top: 28px;
+}
+
+.static-seo-content .static-faq h2 {
+  margin-bottom: 12px;
+}
+
+.static-seo-content .static-faq details {
+  margin-top: 8px;
+}
+
+.static-seo-content .static-faq summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
 .internal-links,
 .internal-link-band div {
   display: flex;

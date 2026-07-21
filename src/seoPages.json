@@ -26,12 +26,24 @@
     ],
     "faq": [
       {
+        "question": "¿Cómo pido un taxi cerca de mí en Calatayud?",
+        "answer": "Puedes llamar o abrir WhatsApp directo desde la web. Si compartes ubicación o escribes la dirección completa, Taxi Ayud puede confirmar recogida, disponibilidad y precio orientativo más rápido."
+      },
+      {
         "question": "¿Puedo pedir un taxi sin calcular ruta?",
-        "answer": "Sí. El botón de WhatsApp directo abre un mensaje sencillo para consultar disponibilidad o reservar sin usar la calculadora."
+        "answer": "Sí. El botón de WhatsApp directo abre un mensaje sencillo para consultar disponibilidad o reservar sin usar la calculadora. Si tienes dudas, pregunta por WhatsApp antes de cerrar el viaje."
       },
       {
         "question": "¿La calculadora da un precio cerrado?",
-        "answer": "No. Muestra un presupuesto orientativo con tarifas oficiales y distancia estimada. La reserva, disponibilidad e importe final se confirman por teléfono o WhatsApp."
+        "answer": "No. Muestra un presupuesto orientativo con tarifas oficiales y distancia estimada. La reserva, disponibilidad e importe final se confirman siempre por teléfono o WhatsApp."
+      },
+      {
+        "question": "¿Hay taxi para Monasterio de Piedra, balnearios y pueblos de la comarca?",
+        "answer": "Sí. Se realizan traslados desde Calatayud a Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza y otros pueblos de la comarca. Para horarios concretos, consulta por WhatsApp."
+      },
+      {
+        "question": "¿Taxi Ayud puede recoger por avería en la A-2 o carreteras cercanas?",
+        "answer": "Sí, como taxi para pasajeros. Puede ayudarte con recogida cerca de la A-2, N-II, N-234 o carreteras de Calatayud y llevarte a un punto seguro, hotel, estación, taller o destino indicado. No es servicio de grúa."
       }
     ]
   },
@@ -63,11 +75,23 @@
     "faq": [
       {
         "question": "¿Taxi Ayud recoge en la estación de Calatayud?",
-        "answer": "Sí. Puedes indicar tren, hora de llegada y punto de recogida en el mensaje de WhatsApp."
+        "answer": "Sí. Puedes indicar tren, hora de llegada y punto de recogida en el mensaje de WhatsApp para confirmar disponibilidad."
+      },
+      {
+        "question": "¿Puedo pedir taxi desde un hotel, restaurante o domicilio en Calatayud?",
+        "answer": "Sí. Indica nombre del hotel, restaurante, calle o ubicación exacta. Si no conoces la dirección, puedes compartir ubicación por WhatsApp."
       },
       {
         "question": "¿Puedo reservar para otro día?",
-        "answer": "Sí. Usa la opción de programar o escribe por WhatsApp con fecha, hora, origen y destino."
+        "answer": "Sí. Usa la opción de programar o escribe por WhatsApp con fecha, hora, origen, destino, pasajeros y equipaje."
+      },
+      {
+        "question": "¿Hay taxi en Calatayud de madrugada o festivos?",
+        "answer": "Puedes consultar disponibilidad para madrugada, fines de semana o festivos por llamada o WhatsApp. Lo recomendable es reservar con antelación si tienes tren, vuelo o cita."
+      },
+      {
+        "question": "¿Puedo consultar precio antes de reservar?",
+        "answer": "Sí. La calculadora ofrece un precio orientativo y por WhatsApp puedes confirmar disponibilidad, ruta exacta, espera, suplementos e importe final."
       }
     ]
   },
@@ -98,12 +122,20 @@
     ],
     "faq": [
       {
-        "question": "Can I book a taxi in English?",
-        "answer": "Yes. The website and WhatsApp message can indicate the customer's language so the booking is easier to understand."
+        "question": "Can I book a taxi in English in Calatayud?",
+        "answer": "Yes. The website and WhatsApp message can show the customer's language, making it easier to confirm pick-up, destination, time and availability."
       },
       {
-        "question": "Can I send my location for pick-up?",
-        "answer": "Yes. You can share your location or write the full address by WhatsApp."
+        "question": "Can I request a taxi near me in Calatayud?",
+        "answer": "Yes. You can share your live location or send the full address by WhatsApp. Taxi Ayud will confirm availability and an indicative fare directly."
+      },
+      {
+        "question": "Do you provide transfers to Monasterio de Piedra, spas and nearby villages?",
+        "answer": "Yes. Taxi Ayud covers Monasterio de Piedra, Nuevalos, Jaraba, Alhama de Aragon, Ateca, Ariza and other villages around Calatayud."
+      },
+      {
+        "question": "Can you pick up passengers after a road breakdown near Calatayud?",
+        "answer": "Yes, as a passenger taxi service. For towing or mechanical assistance, contact your insurer or roadside assistance separately. For taxi availability, send your location by WhatsApp."
       }
     ]
   },
@@ -134,12 +166,20 @@
     ],
     "faq": [
       {
-        "question": "Puis-je réserver un taxi en français ?",
-        "answer": "Oui. Le message WhatsApp peut indiquer la langue du client afin de faciliter la réponse."
+        "question": "Puis-je réserver un taxi en français à Calatayud ?",
+        "answer": "Oui. Le site et le message WhatsApp peuvent indiquer la langue du client afin de confirmer plus facilement la prise en charge, la destination, l'heure et la disponibilité."
       },
       {
-        "question": "Puis-je envoyer ma position pour la prise en charge ?",
-        "answer": "Oui. Vous pouvez partager votre position ou écrire l'adresse complète par WhatsApp."
+        "question": "Puis-je demander un taxi près de moi à Calatayud ?",
+        "answer": "Oui. Vous pouvez partager votre position ou envoyer l'adresse complète par WhatsApp. Taxi Ayud confirme ensuite disponibilité et prix indicatif."
+      },
+      {
+        "question": "Faites-vous des trajets vers Monasterio de Piedra, thermes et villages proches ?",
+        "answer": "Oui. Taxi Ayud couvre Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza et d'autres villages de la comarca."
+      },
+      {
+        "question": "Pouvez-vous récupérer des passagers après une panne près de Calatayud ?",
+        "answer": "Oui, comme service de taxi pour passagers. Pour dépanneuse ou assistance mécanique, contactez votre assurance séparément. Pour le taxi, envoyez votre position par WhatsApp."
       }
     ]
   },
@@ -170,12 +210,20 @@
     ],
     "faq": [
       {
-        "question": "Puc reservar un taxi en català?",
-        "answer": "Sí. El missatge de WhatsApp pot indicar l'idioma del client per facilitar la resposta."
+        "question": "Puc reservar un taxi en català a Calatayud?",
+        "answer": "Sí. El web i el missatge de WhatsApp poden indicar l'idioma del client per facilitar la confirmació de recollida, destinació, hora i disponibilitat."
       },
       {
-        "question": "Puc enviar la meva ubicació?",
-        "answer": "Sí. Pots compartir ubicació o escriure l'adreça completa per WhatsApp."
+        "question": "Puc demanar un taxi prop meu a Calatayud?",
+        "answer": "Sí. Pots compartir ubicació o enviar l'adreça completa per WhatsApp. Taxi Ayud confirma disponibilitat i preu orientatiu directament."
+      },
+      {
+        "question": "Feu trasllats a Monasterio de Piedra, balnearis i pobles propers?",
+        "answer": "Sí. Taxi Ayud cobreix Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza i altres pobles de la comarca."
+      },
+      {
+        "question": "Podeu recollir passatgers per una avaria prop de Calatayud?",
+        "answer": "Sí, com a servei de taxi per a passatgers. Per grua o assistència mecànica, contacta amb l'asseguradora a part. Per al taxi, envia ubicació per WhatsApp."
       }
     ]
   },
@@ -206,12 +254,20 @@
     ],
     "faq": [
       {
-        "question": "Kann ich ein Taxi auf Deutsch buchen?",
-        "answer": "Ja. Die WhatsApp-Nachricht kann die Sprache des Kunden anzeigen, damit die Antwort leichter verständlich ist."
+        "question": "Kann ich in Calatayud ein Taxi auf Deutsch buchen?",
+        "answer": "Ja. Website und WhatsApp-Nachricht können die Sprache des Kunden anzeigen, damit Abholung, Ziel, Uhrzeit und Verfügbarkeit leichter bestätigt werden."
       },
       {
-        "question": "Kann ich meinen Standort senden?",
-        "answer": "Ja. Sie können Ihren Standort teilen oder die vollständige Adresse per WhatsApp schreiben."
+        "question": "Kann ich ein Taxi in meiner Nähe in Calatayud anfragen?",
+        "answer": "Ja. Sie können Ihren Standort teilen oder die vollständige Adresse per WhatsApp senden. Taxi Ayud bestätigt Verfügbarkeit und Orientierungspreis direkt."
+      },
+      {
+        "question": "Fahren Sie zum Monasterio de Piedra, zu Thermalbädern und nahen Orten?",
+        "answer": "Ja. Taxi Ayud fährt zum Monasterio de Piedra, nach Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza und in weitere Orte der Region."
+      },
+      {
+        "question": "Können Fahrgäste nach einer Panne bei Calatayud abgeholt werden?",
+        "answer": "Ja, als Taxi für Fahrgäste. Für Abschleppen oder mechanische Hilfe bitte Versicherung oder Pannenhilfe separat kontaktieren. Für das Taxi den Standort per WhatsApp senden."
       }
     ]
   },
@@ -242,12 +298,20 @@
     ],
     "faq": [
       {
-        "question": "Posso prenotare un taxi in italiano?",
-        "answer": "Sì. Il messaggio WhatsApp può indicare la lingua del cliente per facilitare la risposta."
+        "question": "Posso prenotare un taxi in italiano a Calatayud?",
+        "answer": "Sì. Il sito e il messaggio WhatsApp possono indicare la lingua del cliente per confermare meglio ritiro, destinazione, ora e disponibilità."
       },
       {
-        "question": "Posso inviare la mia posizione?",
-        "answer": "Sì. Puoi condividere la posizione o scrivere l'indirizzo completo su WhatsApp."
+        "question": "Posso chiedere un taxi vicino a me a Calatayud?",
+        "answer": "Sì. Puoi condividere la posizione o inviare l'indirizzo completo via WhatsApp. Taxi Ayud conferma disponibilità e prezzo indicativo direttamente."
+      },
+      {
+        "question": "Fate trasferimenti a Monasterio de Piedra, terme e paesi vicini?",
+        "answer": "Sì. Taxi Ayud copre Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza e altri paesi della comarca."
+      },
+      {
+        "question": "Potete ritirare passeggeri dopo un guasto vicino a Calatayud?",
+        "answer": "Sì, come taxi per passeggeri. Per carro attrezzi o assistenza meccanica, contatta assicurazione o assistenza stradale a parte. Per il taxi, invia posizione via WhatsApp."
       }
     ]
   },
@@ -278,12 +342,20 @@
     ],
     "faq": [
       {
-        "question": "Posso reservar um táxi em português?",
-        "answer": "Sim. A mensagem de WhatsApp pode indicar o idioma do cliente para facilitar a resposta."
+        "question": "Posso reservar um táxi em português em Calatayud?",
+        "answer": "Sim. O site e a mensagem de WhatsApp podem indicar o idioma do cliente para facilitar a confirmação de recolha, destino, hora e disponibilidade."
       },
       {
-        "question": "Posso enviar a minha localização?",
-        "answer": "Sim. Pode partilhar a localização ou escrever a morada completa por WhatsApp."
+        "question": "Posso pedir um táxi perto de mim em Calatayud?",
+        "answer": "Sim. Pode partilhar localização ou enviar a morada completa por WhatsApp. Taxi Ayud confirma disponibilidade e preço indicativo diretamente."
+      },
+      {
+        "question": "Fazem transfers para Monasterio de Piedra, termas e aldeias próximas?",
+        "answer": "Sim. Taxi Ayud cobre Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza e outras aldeias da comarca."
+      },
+      {
+        "question": "Podem recolher passageiros depois de uma avaria perto de Calatayud?",
+        "answer": "Sim, como táxi para passageiros. Para reboque ou assistência mecânica, contacte o seguro separadamente. Para o táxi, envie a localização por WhatsApp."
       }
     ]
   },
@@ -314,12 +386,20 @@
     ],
     "faq": [
       {
-        "question": "Kan ik een taxi in het Nederlands boeken?",
-        "answer": "Ja. Het WhatsApp-bericht kan de taal van de klant vermelden zodat het antwoord duidelijker is."
+        "question": "Kan ik in Calatayud een taxi in het Nederlands boeken?",
+        "answer": "Ja. De website en WhatsApp-tekst kunnen de taal van de klant tonen, zodat ophalen, bestemming, tijd en beschikbaarheid gemakkelijker bevestigd worden."
       },
       {
-        "question": "Kan ik mijn locatie sturen?",
-        "answer": "Ja. U kunt uw locatie delen of het volledige adres via WhatsApp sturen."
+        "question": "Kan ik een taxi in mijn buurt in Calatayud aanvragen?",
+        "answer": "Ja. U kunt uw locatie delen of het volledige adres via WhatsApp sturen. Taxi Ayud bevestigt beschikbaarheid en richtprijs direct."
+      },
+      {
+        "question": "Rijden jullie naar Monasterio de Piedra, kuuroorden en dorpen in de buurt?",
+        "answer": "Ja. Taxi Ayud rijdt naar Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza en andere dorpen in de comarca."
+      },
+      {
+        "question": "Kunnen passagiers na pech bij Calatayud worden opgehaald?",
+        "answer": "Ja, als taxi voor passagiers. Voor sleepdienst of mechanische hulp neemt u apart contact op met verzekering of pechhulp. Voor de taxi stuurt u uw locatie via WhatsApp."
       }
     ]
   },
@@ -350,12 +430,20 @@
     ],
     "faq": [
       {
-        "question": "هل يمكنني حجز تاكسي بالعربية؟",
-        "answer": "نعم. رسالة واتساب يمكن أن تذكر لغة العميل لتسهيل الرد."
+        "question": "هل يمكنني حجز تاكسي بالعربية في كالاتايود؟",
+        "answer": "نعم. يمكن للموقع ورسالة واتساب إظهار لغة العميل لتسهيل تأكيد موقع الاستلام والوجهة والوقت والتوفر."
       },
       {
-        "question": "هل يمكنني إرسال موقعي؟",
-        "answer": "نعم. يمكنك مشاركة الموقع أو كتابة العنوان الكامل عبر واتساب."
+        "question": "هل يمكنني طلب تاكسي قريب مني في كالاتايود؟",
+        "answer": "نعم. يمكنك مشاركة موقعك أو إرسال العنوان الكامل عبر واتساب. يؤكد Taxi Ayud التوفر والسعر التقديري مباشرة."
+      },
+      {
+        "question": "هل توجد رحلات إلى Monasterio de Piedra والمنتجعات والقرى القريبة؟",
+        "answer": "نعم. يغطي Taxi Ayud رحلات إلى Monasterio de Piedra و Nuévalos و Jaraba و Alhama de Aragón و Ateca و Ariza وقرى أخرى في المنطقة."
+      },
+      {
+        "question": "هل يمكن نقل الركاب بعد عطل قرب كالاتايود؟",
+        "answer": "نعم، كخدمة تاكسي للركاب. بالنسبة للسحب أو المساعدة الميكانيكية، تواصل مع التأمين أو مساعدة الطريق بشكل منفصل. للتاكسي، أرسل الموقع عبر واتساب."
       }
     ]
   },
@@ -499,11 +587,19 @@
     "faq": [
       {
         "question": "¿Cuánto cuesta el taxi al Monasterio de Piedra?",
-        "answer": "La calculadora muestra un presupuesto orientativo con tarifa oficial. La confirmación final se hace por teléfono o WhatsApp."
+        "answer": "La web puede mostrar un precio orientativo desde Calatayud. El importe final y la disponibilidad se confirman por WhatsApp o llamada según horario, ruta y posibles esperas."
       },
       {
-        "question": "¿Puedo pedir ida y vuelta?",
-        "answer": "Sí. Indica la hora aproximada de regreso para confirmar disponibilidad."
+        "question": "¿Puedo pedir ida y vuelta al Monasterio de Piedra?",
+        "answer": "Sí. Puedes reservar recogida en Calatayud y vuelta desde Monasterio de Piedra o Nuévalos. Indica horarios aproximados por WhatsApp."
+      },
+      {
+        "question": "¿Recogéis en hoteles de Calatayud para ir al Monasterio de Piedra?",
+        "answer": "Sí. Puedes indicar hotel, hora, pasajeros y si llevas equipaje. Si tienes dudas, consulta por WhatsApp antes de reservar."
+      },
+      {
+        "question": "¿Es mejor reservar con antelación para turismo?",
+        "answer": "Sí. En temporada, fines de semana o festivos conviene reservar con antelación para asegurar disponibilidad y coordinar la vuelta."
       }
     ]
   },
@@ -535,11 +631,19 @@
     "faq": [
       {
         "question": "¿Puedo reservar taxi para un tratamiento o cita en balneario?",
-        "answer": "Sí. Indica hora de entrada, balneario, pasajeros y si necesitas vuelta."
+        "answer": "Sí. Indica balneario, hora de entrada o cita, punto de recogida y si necesitas vuelta. Taxi Ayud confirma disponibilidad por WhatsApp o llamada."
+      },
+      {
+        "question": "¿Hay taxi para Jaraba, Alhama de Aragón y Paracuellos de Jiloca?",
+        "answer": "Sí. Son destinos habituales desde Calatayud, estación, hoteles o domicilios. Puedes consultar precio orientativo en la web."
       },
       {
         "question": "¿Hay espacio para maletas?",
-        "answer": "El vehículo dispone de maletero amplio. Para mucho equipaje, conviene avisarlo en el mensaje."
+        "answer": "El Peugeot 408 hybrid tiene maletero amplio para equipaje habitual. Si llevas maletas grandes o material especial, indícalo por WhatsApp."
+      },
+      {
+        "question": "¿Puedo reservar recogida de vuelta desde el balneario?",
+        "answer": "Sí. Es recomendable dejar la vuelta acordada si tienes tren, tratamiento, comida o salida del hotel a una hora concreta."
       }
     ]
   },
@@ -571,11 +675,19 @@
     "faq": [
       {
         "question": "¿Con cuánta antelación reservo para el aeropuerto?",
-        "answer": "Lo ideal es confirmar cuanto antes la hora, el vuelo, pasajeros y equipaje para ajustar la salida."
+        "answer": "Lo recomendable es reservar con antelación, indicando hora de vuelo, terminal si procede, pasajeros, equipaje y dirección de recogida."
       },
       {
-        "question": "¿Se puede reservar la vuelta desde Zaragoza?",
-        "answer": "Sí. Indica fecha, hora y punto exacto de recogida para confirmar disponibilidad."
+        "question": "¿Se puede reservar la vuelta desde Zaragoza o aeropuerto?",
+        "answer": "Sí. Puedes consultar la vuelta desde Aeropuerto de Zaragoza, estación Delicias, hospitales o cualquier dirección de Zaragoza."
+      },
+      {
+        "question": "¿El precio a Zaragoza o aeropuerto es cerrado?",
+        "answer": "La web muestra presupuesto orientativo. El importe final se confirma directamente según disponibilidad, hora, ruta, espera y suplementos oficiales."
+      },
+      {
+        "question": "¿Puedo enviar datos del vuelo por WhatsApp?",
+        "answer": "Sí. Enviar número de vuelo, hora, pasajeros y equipaje ayuda a coordinar mejor la recogida y evitar esperas innecesarias."
       }
     ]
   },
@@ -606,12 +718,20 @@
     ],
     "faq": [
       {
-        "question": "¿Por qué no aparecen todos los pueblos en una página separada?",
-        "answer": "Para evitar páginas repetidas. La información se concentra en una página útil y en la tabla de destinos."
+        "question": "¿Puedo pedir taxi a un pueblo que no aparece en la tabla?",
+        "answer": "Sí. Escribe el pueblo o dirección completa por WhatsApp y Taxi Ayud confirma disponibilidad y precio orientativo."
       },
       {
-        "question": "¿Puedo pedir taxi a un pueblo que no aparece?",
-        "answer": "Sí. Escribe el origen y destino por WhatsApp para confirmar disponibilidad y presupuesto."
+        "question": "¿Qué pueblos de la comarca tienen servicio habitual?",
+        "answer": "Se atienden destinos como Ateca, Ariza, Maluenda, Cetina, Miedes, Jaraba, Alhama de Aragón, Nuévalos, Munébrega, Ibdes y otros pueblos cercanos."
+      },
+      {
+        "question": "¿Puedo reservar desde un pueblo hacia la estación de Calatayud?",
+        "answer": "Sí. Indica pueblo, dirección, hora del tren, pasajeros y equipaje. Para horarios ajustados, reserva con antelación por WhatsApp."
+      },
+      {
+        "question": "¿La calculadora funciona para rutas entre pueblos?",
+        "answer": "Puede estimar muchas rutas, pero si una ruta no calcula bien, envíala por WhatsApp y se confirma de forma directa."
       }
     ]
   },
@@ -643,15 +763,23 @@
     "faq": [
       {
         "question": "¿Cómo pido un taxi cerca de mí en Calatayud?",
-        "answer": "Pulsa llamada o WhatsApp directo y envía tu ubicación, dirección o punto de recogida. Se confirma disponibilidad directamente."
+        "answer": "Pulsa WhatsApp, comparte ubicación o escribe la dirección completa. Taxi Ayud confirma disponibilidad, punto de recogida y precio orientativo directamente."
       },
       {
-        "question": "¿Puedo pedir taxi desde un hotel o restaurante?",
-        "answer": "Sí. Indica el nombre del hotel, restaurante o dirección exacta para facilitar la recogida."
+        "question": "¿Sirve si estoy en un hotel, restaurante, balneario o estación?",
+        "answer": "Sí. Puedes pedir recogida en hoteles de Calatayud, restaurantes, estación AVE, balnearios de la comarca o cualquier dirección clara."
       },
       {
-        "question": "¿Sirve para pueblos cercanos?",
-        "answer": "Sí. Puedes pedir recogida en pueblos de la comarca y confirmar precio o disponibilidad por WhatsApp."
+        "question": "¿Puedo pedir taxi cerca de mí desde un pueblo de la comarca?",
+        "answer": "Sí. Indica municipio, calle, ubicación compartida o referencia cercana. Si hay dudas con la dirección, consulta por WhatsApp."
+      },
+      {
+        "question": "¿La ubicación del móvil calcula el precio exacto?",
+        "answer": "La ubicación ayuda a estimar la ruta, pero el precio final se confirma por WhatsApp o llamada según disponibilidad, horario, espera y suplementos oficiales."
+      },
+      {
+        "question": "¿Qué hago si no sé la dirección exacta?",
+        "answer": "Envía una referencia como hotel, gasolinera, salida de autovía, restaurante o ubicación de Google Maps. Taxi Ayud te orienta por WhatsApp."
       }
     ]
   },
@@ -683,15 +811,23 @@
     "faq": [
       {
         "question": "¿Puedo pedir taxi si me he quedado tirado cerca de Calatayud?",
-        "answer": "Sí, siempre que la recogida pueda hacerse en un punto seguro. Envía ubicación, pasajeros y destino por WhatsApp para confirmar disponibilidad."
+        "answer": "Sí. Taxi Ayud puede recoger pasajeros cerca de la A-2, N-II, N-234 o carreteras de la comarca y llevarlos a Calatayud, hotel, estación, taller o destino indicado."
       },
       {
         "question": "¿Taxi Ayud es asistencia en carretera o grúa?",
-        "answer": "No. Es servicio de taxi para pasajeros. Para grúa, reparación, accidente o peligro en la vía, contacta con asistencia en carretera o emergencias."
+        "answer": "No. Es taxi para pasajeros, no grúa ni asistencia mecánica. Si hay peligro llama al 112 y, si el vehículo necesita grúa, contacta con tu aseguradora o asistencia en carretera."
+      },
+      {
+        "question": "¿Qué datos envío por WhatsApp si estoy en carretera?",
+        "answer": "Envía ubicación de Google Maps, carretera, sentido, salida o kilómetro, número de pasajeros y destino. Si no sabes el punto exacto, escribe la referencia más cercana."
       },
       {
         "question": "¿Me podéis llevar a un taller, hotel o estación?",
-        "answer": "Sí. Puedes indicar taller, hotel, estación de Calatayud, Zaragoza u otro destino para preparar el traslado."
+        "answer": "Sí. Puedes pedir traslado de pasajeros a un taller, hotel, estación de Calatayud, Zaragoza, domicilio o punto seguro. El destino final se confirma por WhatsApp."
+      },
+      {
+        "question": "¿Se puede calcular precio para una recogida por avería?",
+        "answer": "Puede prepararse un presupuesto orientativo, pero en carretera es mejor confirmar por WhatsApp porque influyen ubicación exacta, horario, espera y destino."
       }
     ]
   },
@@ -722,16 +858,24 @@
     ],
     "faq": [
       {
-        "question": "¿Qué envío si necesito taxi en la A-2?",
-        "answer": "Envía ubicación por WhatsApp, kilómetro o salida aproximada, número de pasajeros, equipaje y destino."
+        "question": "¿Qué envío si necesito taxi en la A-2 cerca de Calatayud?",
+        "answer": "Envía ubicación, sentido de la marcha, salida o kilómetro aproximado, número de pasajeros y destino. Si tienes dudas, usa el botón de WhatsApp urgente."
       },
       {
         "question": "¿Podéis recoger en el arcén?",
-        "answer": "La recogida debe hacerse en un punto seguro: gasolinera, salida, área de servicio, taller o lugar indicado por asistencia."
+        "answer": "Por seguridad, lo ideal es quedar en un punto seguro: gasolinera, área de servicio, salida, taller o ubicación indicada por asistencia. Si hay peligro, llama primero al 112."
       },
       {
         "question": "¿Es servicio de grúa?",
-        "answer": "No. Es taxi para pasajeros. Para mover el vehículo o asistencia mecánica hay que contactar con grúa o seguro."
+        "answer": "No. Taxi Ayud traslada pasajeros. La grúa o asistencia mecánica debe gestionarse aparte con aseguradora o asistencia en carretera."
+      },
+      {
+        "question": "¿Se hacen traslados desde A-2 a Calatayud o Zaragoza?",
+        "answer": "Sí. Se puede consultar traslado de pasajeros desde la A-2 a Calatayud, Zaragoza, estación, hotel, taller o destino necesario, siempre con disponibilidad confirmada."
+      },
+      {
+        "question": "¿Puedo mandar mi ubicación por WhatsApp?",
+        "answer": "Sí. Es la forma más rápida para confirmar recogida en carretera. También puedes escribir salida, kilómetro, gasolinera o pueblo cercano."
       }
     ]
   },
@@ -763,11 +907,19 @@
     "faq": [
       {
         "question": "¿Hay taxi 24 horas en Calatayud?",
-        "answer": "Puedes consultar disponibilidad por teléfono o WhatsApp para viajes inmediatos o reservas programadas a cualquier hora."
+        "answer": "Puedes solicitar taxi a cualquier hora por llamada o WhatsApp, pero la disponibilidad debe confirmarse directamente, sobre todo de madrugada, festivos o para trayectos largos."
       },
       {
         "question": "¿Conviene reservar de madrugada?",
-        "answer": "Sí. Para madrugada, festivos, trenes o vuelos, es recomendable confirmar con antelación."
+        "answer": "Sí. Para trenes, vuelos, trabajo, citas médicas o viajes largos, lo mejor es reservar con antelación por WhatsApp con hora, origen y destino."
+      },
+      {
+        "question": "¿Se aplica tarifa nocturna o festiva?",
+        "answer": "La calculadora muestra precio orientativo según tarifa y horario. El importe final se confirma directamente con Taxi Ayud antes del servicio."
+      },
+      {
+        "question": "¿Puedo consultar disponibilidad inmediata por WhatsApp?",
+        "answer": "Sí. El WhatsApp directo está pensado para preguntar rápido si hay taxi disponible ahora, sin obligarte a calcular ruta."
       }
     ]
   },
@@ -1014,12 +1166,24 @@
     ],
     "faq": [
       {
-        "question": "¿Qué mensaje mando para reservar?",
-        "answer": "Fecha, hora, origen, destino, pasajeros y notas como equipaje, tren, vuelo o vuelta."
+        "question": "¿Qué mensaje mando para reservar taxi en Calatayud?",
+        "answer": "Envía origen, destino, fecha, hora, número de pasajeros, equipaje y si necesitas ida y vuelta. Si tienes dudas, escribe por WhatsApp y se completa la información contigo."
+      },
+      {
+        "question": "¿Puedo contactar sin calcular ruta?",
+        "answer": "Sí. El WhatsApp directo sirve para consultar disponibilidad rápida sin pasar por la calculadora."
       },
       {
         "question": "¿Puedo enviar mi ubicación?",
-        "answer": "Sí. La web permite preparar un mensaje con ubicación si el navegador lo permite."
+        "answer": "Sí. Compartir ubicación ayuda en hoteles, estación, carretera, pueblos o zonas donde no sabes la dirección exacta."
+      },
+      {
+        "question": "¿Es mejor llamar o escribir por WhatsApp?",
+        "answer": "Para urgencias o disponibilidad inmediata, llama. Para dejar datos completos de una reserva, WhatsApp suele ser más cómodo."
+      },
+      {
+        "question": "¿Necesito correo electrónico para reservar?",
+        "answer": "No. Para taxi local lo más rápido es teléfono o WhatsApp. Si hace falta enviar información adicional, se puede coordinar directamente."
       }
     ]
   },
@@ -1058,8 +1222,16 @@
         "answer": "Sí. Puedes enviar un mensaje directo o usar la calculadora si quieres añadir ruta y presupuesto orientativo."
       },
       {
+        "question": "¿Qué digo cuando llamo para pedir taxi?",
+        "answer": "Indica dónde estás, destino, hora, pasajeros y si llevas equipaje. Para ubicaciones complicadas, envía después la ubicación por WhatsApp."
+      },
+      {
         "question": "¿Puedo enviar ubicación para recogida?",
         "answer": "Sí. Si tu navegador lo permite, puedes compartir ubicación o escribir la dirección completa."
+      },
+      {
+        "question": "¿El teléfono sirve para taxis urgentes cerca de mí?",
+        "answer": "Sí. Si necesitas disponibilidad inmediata en Calatayud o alrededores, llama o escribe por WhatsApp para confirmar si hay taxi disponible."
       }
     ]
   },
@@ -1090,16 +1262,52 @@
     ],
     "faq": [
       {
+        "question": "¿Cómo encuentro taxi cerca de mí en Calatayud?",
+        "answer": "Puedes usar WhatsApp directo, compartir ubicación o escribir la dirección completa. Taxi Ayud confirma recogida, disponibilidad y precio orientativo directamente."
+      },
+      {
         "question": "¿El precio de la calculadora es definitivo?",
-        "answer": "No. Es orientativo y se basa en tarifa oficial y distancia estimada. La reserva se confirma por teléfono o WhatsApp."
+        "answer": "No. Es un presupuesto orientativo basado en tarifa oficial y distancia estimada. La reserva, disponibilidad e importe final se confirman por teléfono o WhatsApp."
       },
       {
         "question": "¿Puedo reservar taxi ahora mismo?",
-        "answer": "Sí. Usa llamada o WhatsApp directo para consultar disponibilidad inmediata."
+        "answer": "Sí. Usa llamada o WhatsApp directo para consultar disponibilidad inmediata sin calcular ruta."
+      },
+      {
+        "question": "¿Hay taxi de madrugada, fines de semana o festivos?",
+        "answer": "Puedes consultar disponibilidad a cualquier hora, pero para madrugada, festivos, vuelos o trenes es recomendable reservar con antelación por WhatsApp."
+      },
+      {
+        "question": "¿Taxi Ayud recoge en la estación AVE de Calatayud?",
+        "answer": "Sí. Indica tren, hora de llegada, pasajeros y destino. Si viajas con equipaje, también conviene indicarlo."
+      },
+      {
+        "question": "¿Se hacen traslados al Monasterio de Piedra y Nuévalos?",
+        "answer": "Sí. Puedes reservar ida, vuelta o recogida programada desde Calatayud, estación, hotel o domicilio."
+      },
+      {
+        "question": "¿Hay taxi para balnearios de Jaraba, Alhama de Aragón o Paracuellos?",
+        "answer": "Sí. Son destinos habituales para tratamientos, estancias, turismo y traslados desde estación u hoteles."
+      },
+      {
+        "question": "¿Puedo pedir taxi a pueblos de la comarca de Calatayud?",
+        "answer": "Sí. Se atienden pueblos como Ateca, Ariza, Maluenda, Cetina, Miedes, Nuévalos, Jaraba, Alhama de Aragón y otros destinos cercanos. Consulta por WhatsApp si no aparece tu pueblo."
+      },
+      {
+        "question": "¿Taxi Ayud puede recogerme por avería en la A-2, N-II o N-234?",
+        "answer": "Sí, como taxi para pasajeros. No es grúa ni asistencia mecánica. Si hay peligro, llama primero al 112; para taxi, envía ubicación, salida o kilómetro por WhatsApp."
+      },
+      {
+        "question": "¿Se hacen viajes a Zaragoza, aeropuerto o estación Delicias?",
+        "answer": "Sí. Puedes consultar traslados desde Calatayud a Zaragoza, Aeropuerto de Zaragoza, estación Delicias, hospitales o cualquier dirección concreta."
       },
       {
         "question": "¿Se atienden turistas en otros idiomas?",
         "answer": "La web detecta varios idiomas y el mensaje de WhatsApp indica el idioma usado por el cliente para facilitar la respuesta."
+      },
+      {
+        "question": "¿Qué hago si tengo una duda antes de reservar?",
+        "answer": "Escribe por WhatsApp con tu pregunta, origen, destino y hora aproximada. Taxi Ayud te confirma disponibilidad, precio orientativo y la mejor forma de organizar el servicio."
       }
     ]
   }
