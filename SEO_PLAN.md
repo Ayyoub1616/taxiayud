@@ -9,6 +9,7 @@ Mejorar la visibilidad de Taxi Ayud para búsquedas locales reales relacionadas 
 - `/`: portada principal y reserva rápida.
 - `/taxi-calatayud/`: intención general “taxi en Calatayud”.
 - `/taxi-desde-calatayud/`: búsquedas de salida desde Calatayud a comarca, estación, balnearios, Zaragoza y aeropuerto.
+- `/taxi-autovia-calatayud/`: recogida de pasajeros por avería o incidencia en A-2, N-II y carreteras cercanas.
 - `/servicios/`: resumen de servicios reales.
 - `/taxi-estacion-ave-calatayud/`: recogidas en estación y tren.
 - `/taxi-monasterio-de-piedra/`: traslado turístico específico.

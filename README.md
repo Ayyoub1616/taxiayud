@@ -7,6 +7,7 @@ Web moderna para Taxi Ayud Calatayud, lista para desplegar en Vercel sin WordPre
 - Portada con imagen optimizada y llamadas directas.
 - Calculadora de tarifas desde Calatayud con mensaje de WhatsApp preparado.
 - Modo "Taxi ahora" con opción de enviar ubicación del cliente.
+- Modo carretera para pasajeros que se quedan tirados por avería cerca de Calatayud, A-2, N-II o N-234.
 - Bloque de reseñas públicas de Google con actualización automática opcional.
 - Tabla de destinos frecuentes.
 - Servicios, vehículo, métodos de pago y contacto.

@@ -224,6 +224,18 @@ const TrainFrontNode = [
   ["path", { d: "m16 19 2 3", key: "xo31yx" }],
 ] as const;
 
+const TriangleAlertNode = [
+  [
+    "path",
+    {
+      d: "m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",
+      key: "wmoenq",
+    },
+  ],
+  ["path", { d: "M12 9v4", key: "juzpu7" }],
+  ["path", { d: "M12 17h.01", key: "p32p05" }],
+] as const;
+
 const UsersNode = [
   ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
   ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }],
@@ -264,5 +276,6 @@ export const Sparkles = createIcon("Sparkles", SparklesNode);
 export const Star = createIcon("Star", StarNode);
 export const TimerReset = createIcon("TimerReset", TimerResetNode);
 export const TrainFront = createIcon("TrainFront", TrainFrontNode);
+export const TriangleAlert = createIcon("TriangleAlert", TriangleAlertNode);
 export const Users = createIcon("Users", UsersNode);
 export const WalletCards = createIcon("WalletCards", WalletCardsNode);

@@ -65,6 +65,36 @@ const COMMON_POINTS = [
     lng: -1.7939,
   },
   {
+    keys: ["A2 CALATAYUD", "A 2 CALATAYUD", "AUTOVIA A2 CALATAYUD", "AUTOVÍA A2 CALATAYUD"],
+    label: "Autovía A-2 cerca de Calatayud, Zaragoza, España",
+    lat: 41.3253,
+    lng: -1.6678,
+  },
+  {
+    keys: ["VALDEHERRERA", "A2 KM 231", "A-2 KM 231"],
+    label: "E.S. Valdeherrera, Autovía A-2 km 231, Calatayud, Zaragoza, España",
+    lat: 41.3253,
+    lng: -1.6678,
+  },
+  {
+    keys: ["ATECA A2", "ATECA A-2", "SALIDA 218", "LA RUBIA"],
+    label: "Ateca salida 218, Autovía A-2, Zaragoza, España",
+    lat: 41.3301,
+    lng: -1.7939,
+  },
+  {
+    keys: ["ARIZA A2", "ARIZA A-2", "A2 KM 197", "A-2 KM 197"],
+    label: "Ariza, Autovía A-2 km 197, Zaragoza, España",
+    lat: 41.3131,
+    lng: -2.0536,
+  },
+  {
+    keys: ["N234 CALATAYUD", "N 234 CALATAYUD", "N-234 CALATAYUD"],
+    label: "N-234 cerca de Calatayud, Zaragoza, España",
+    lat: 41.3377,
+    lng: -1.642,
+  },
+  {
     keys: ["DAROCA"],
     label: "Daroca, Zaragoza, España",
     lat: 41.1146,

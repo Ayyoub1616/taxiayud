@@ -368,6 +368,46 @@
     ]
   },
   {
+    "path": "/taxi-autovia-calatayud/",
+    "title": "Taxi avería autovía Calatayud | Recogida urgente",
+    "description": "Taxi para pasajeros por avería o incidencia en autovía A-2, N-II, N-234 y carreteras cerca de Calatayud. Envía ubicación por WhatsApp.",
+    "breadcrumb": "Taxi autovía Calatayud",
+    "navLabel": "Avería carretera",
+    "eyebrow": "Recogida en carretera",
+    "h1": "Taxi por avería en autovía cerca de Calatayud",
+    "intro": "Si te has quedado tirado por una avería o incidencia cerca de Calatayud, Taxi Ayud puede recoger pasajeros en un punto seguro de la A-2, N-II, N-234 o carreteras de la comarca.",
+    "h2": "Recogida urgente de pasajeros, no grúa",
+    "body": "Servicio de taxi para llevar personas a Calatayud, taller, hotel, estación, Zaragoza o un destino seguro. Comparte ubicación por WhatsApp y confirma disponibilidad. Si hay peligro, accidente o emergencia médica, llama primero al 112 o a tu asistencia en carretera.",
+    "sections": [
+      {
+        "heading": "A-2, N-II, N-234 y salidas cercanas",
+        "text": "Recogida en áreas de servicio, gasolineras, salidas, talleres o puntos seguros próximos a Calatayud, Valdeherrera, Ateca o Ariza."
+      },
+      {
+        "heading": "Ubicación por WhatsApp",
+        "text": "Envía ubicación, número de pasajeros, equipaje y destino: Calatayud, taller, hotel, estación o ciudad cercana."
+      },
+      {
+        "heading": "Pasajeros y equipaje",
+        "text": "Taxi para hasta 4 pasajeros y equipaje razonable. No es servicio de grúa ni reparación mecánica."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo pedir taxi si me he quedado tirado cerca de Calatayud?",
+        "answer": "Sí, siempre que la recogida pueda hacerse en un punto seguro. Envía ubicación, pasajeros y destino por WhatsApp para confirmar disponibilidad."
+      },
+      {
+        "question": "¿Taxi Ayud es asistencia en carretera o grúa?",
+        "answer": "No. Es servicio de taxi para pasajeros. Para grúa, reparación, accidente o peligro en la vía, contacta con asistencia en carretera o emergencias."
+      },
+      {
+        "question": "¿Me podéis llevar a un taller, hotel o estación?",
+        "answer": "Sí. Puedes indicar taller, hotel, estación de Calatayud, Zaragoza u otro destino para preparar el traslado."
+      }
+    ]
+  },
+  {
     "path": "/taxi-24-horas-calatayud/",
     "title": "Taxi 24 horas en Calatayud | Taxi Ayud",
     "description": "Taxi 24 horas en Calatayud para reservas, recogidas programadas, trenes, aeropuerto, pueblos, balnearios y urgencias de transporte.",

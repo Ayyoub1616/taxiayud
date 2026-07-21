@@ -28,6 +28,7 @@ import {
   Star,
   TimerReset,
   TrainFront,
+  TriangleAlert,
   Users,
   WalletCards,
 } from "./icons";
@@ -419,6 +420,11 @@ const BASE_COPY = {
         text: "Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes y muchos otros destinos.",
         detail: "Consulta el destino en la calculadora o en la tabla para ver un precio orientativo.",
       },
+      {
+        title: "Recogida por avería en carretera",
+        text: "Taxi para pasajeros que se han quedado tirados cerca de Calatayud, A-2, N-II o carreteras de la comarca.",
+        detail: "Servicio de taxi para llevarte a un punto seguro, taller, hotel, estación o destino indicado. No es servicio de grúa ni asistencia mecánica.",
+      },
     ],
     moreServices: "Ver más servicios",
     vehicleEyebrow: "Vehículo",
@@ -581,6 +587,11 @@ const BASE_COPY = {
         title: "Local villages",
         text: "Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes and many more destinations.",
         detail: "Check the calculator or fare table for an estimated price.",
+      },
+      {
+        title: "Road breakdown passenger pick-up",
+        text: "Taxi for passengers stranded near Calatayud, the A-2, N-II or nearby roads.",
+        detail: "Passenger taxi to a safe point, garage, hotel, station or chosen destination. This is not a tow truck or mechanical assistance service.",
       },
     ],
     moreServices: "See more services",
@@ -1254,6 +1265,7 @@ const touristSearchCopy: Record<LangCode, { eyebrow: string; title: string; text
 const touristSearchPhrases = [
   { language: "Cerca", query: "Taxi cerca de mi en Calatayud con recogida por ubicación" },
   { language: "Desde", query: "Taxi desde Calatayud a pueblos, estación, balnearios y Zaragoza" },
+  { language: "Autovía", query: "Taxi por avería en A-2, N-II o carretera cerca de Calatayud" },
   { language: "Hoteles", query: "Recogida en hoteles de Calatayud y la comarca" },
   { language: "Balnearios", query: "Jaraba, Alhama de Aragón y Paracuellos de Jiloca" },
   { language: "Turismo", query: "Monasterio de Piedra, Nuévalos y rutas cercanas" },
@@ -1268,6 +1280,7 @@ const HOME_SEO_PAGE = SEO_PAGES.find((page) => page.path === "/") ?? SEO_PAGES[0
 const DEFAULT_SEO_LINKS = [
   "/taxi-calatayud/",
   "/taxi-cerca-de-mi-calatayud/",
+  "/taxi-autovia-calatayud/",
   "/taxi-desde-calatayud/",
   "/taxi-24-horas-calatayud/",
   "/taxi-estacion-ave-calatayud/",
@@ -1295,6 +1308,7 @@ const serviceIcons = [
   HeartPulse,
   BriefcaseBusiness,
   MapPin,
+  TriangleAlert,
 ];
 
 const featuredDestinations = [
@@ -1396,6 +1410,41 @@ const knownRoutePoints: KnownRoutePoint[] = [
     detail: "Municipio · Comarca de Calatayud",
     lat: 41.3131,
     lng: -2.0536,
+  },
+  {
+    keys: ["A2 CALATAYUD", "A 2 CALATAYUD", "AUTOVIA A2 CALATAYUD", "AUTOVÍA A2 CALATAYUD"],
+    label: "Autovía A-2 cerca de Calatayud, Zaragoza, España",
+    detail: "Carretera · Indica km, salida o gasolinera",
+    lat: 41.3253,
+    lng: -1.6678,
+  },
+  {
+    keys: ["VALDEHERRERA", "A2 KM 231", "A-2 KM 231"],
+    label: "E.S. Valdeherrera, Autovía A-2 km 231, Calatayud, Zaragoza, España",
+    detail: "Gasolinera · A-2 · Calatayud",
+    lat: 41.3253,
+    lng: -1.6678,
+  },
+  {
+    keys: ["ATECA A2", "ATECA A-2", "SALIDA 218", "LA RUBIA"],
+    label: "Ateca salida 218, Autovía A-2, Zaragoza, España",
+    detail: "Salida A-2 · Ateca",
+    lat: 41.3301,
+    lng: -1.7939,
+  },
+  {
+    keys: ["ARIZA A2", "ARIZA A-2", "A2 KM 197", "A-2 KM 197"],
+    label: "Ariza, Autovía A-2 km 197, Zaragoza, España",
+    detail: "A-2 · Ariza",
+    lat: 41.3131,
+    lng: -2.0536,
+  },
+  {
+    keys: ["N234 CALATAYUD", "N 234 CALATAYUD", "N-234 CALATAYUD"],
+    label: "N-234 cerca de Calatayud, Zaragoza, España",
+    detail: "Carretera · Calatayud",
+    lat: 41.3377,
+    lng: -1.642,
   },
   {
     keys: ["DAROCA"],
@@ -2097,6 +2146,63 @@ function whatsappDirectUrl(language: LangCode) {
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
+function roadAssistanceWhatsappUrl({
+  language,
+  passengers,
+  pickupLocation,
+}: {
+  language: LangCode;
+  passengers: number;
+  pickupLocation: PickupLocation;
+}) {
+  const fallbackLocationLine =
+    language === "en"
+      ? "Location: I will share it from WhatsApp or send my current location now."
+      : language === "fr"
+        ? "Position : je l'envoie depuis WhatsApp ou je partage ma position maintenant."
+        : "Ubicación: la envío desde WhatsApp o comparto mi ubicación al momento.";
+  const locationLine = pickupLocation ? pickupLocationLine(pickupLocation) : fallbackLocationLine;
+  const linesByLanguage: Partial<Record<LangCode, string[]>> = {
+    es: [
+      "Hola Taxi Ayud, necesito recogida urgente de pasajeros en carretera cerca de Calatayud.",
+      "Situación: avería, incidencia o me he quedado tirado en la autovía/carretera.",
+      locationLine,
+      `Pasajeros: ${passengers}`,
+      "Destino: punto seguro, Calatayud, taller, hotel o destino por confirmar.",
+      "Estoy en zona segura y puedo enviar más detalles por aquí.",
+      "Importante: necesito taxi para pasajeros, no grúa.",
+      "¿Me confirmas disponibilidad?",
+    ],
+    en: [
+      "Hello Taxi Ayud, I need an urgent passenger pick-up on the road near Calatayud.",
+      "Situation: breakdown, incident or stranded on the motorway/road.",
+      locationLine,
+      `Passengers: ${passengers}`,
+      "Destination: safe point, Calatayud, garage, hotel or destination to confirm.",
+      "I am in a safe place and can send more details here.",
+      "Important: I need a taxi for passengers, not a tow truck.",
+      "Can you confirm availability?",
+    ],
+    fr: [
+      "Bonjour Taxi Ayud, j'ai besoin d'une prise en charge urgente de passagers sur la route près de Calatayud.",
+      "Situation : panne, incident ou bloqué sur l'autoroute/la route.",
+      locationLine,
+      `Passagers : ${passengers}`,
+      "Destination : point sûr, Calatayud, garage, hôtel ou destination à confirmer.",
+      "Je suis dans un endroit sûr et je peux envoyer plus de détails ici.",
+      "Important : j'ai besoin d'un taxi pour passagers, pas d'une dépanneuse.",
+      "Pouvez-vous confirmer la disponibilité ?",
+    ],
+  };
+  const text = [
+    languageNotice(language),
+    "",
+    ...(linesByLanguage[language] ?? linesByLanguage.es!),
+  ].join("\n");
+
+  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
+}
+
 function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
   const destination =
     options.result?.destination || options.destination.trim() || "destino por confirmar";
@@ -2558,6 +2664,11 @@ function App() {
     notes,
     pickupLocation,
   }, language);
+  const roadUrl = roadAssistanceWhatsappUrl({
+    language,
+    passengers,
+    pickupLocation,
+  });
 
   useEffect(() => {
     const page = currentSeoPage ?? HOME_SEO_PAGE;
@@ -2744,6 +2855,24 @@ function App() {
   function useLookupDestination(key: string) {
     chooseDestination(key);
     document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function prepareRoadPickup() {
+    setBookingMode("now");
+    setOrigin(pickupLocation ? "Mi ubicación actual" : "A-2 / carretera cerca de Calatayud");
+    setQuery("Punto seguro o destino por confirmar");
+    setSelectedOriginPoint(null);
+    setSelectedDestinationPoint(null);
+    setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros. No es servicio de grúa.");
+    setResult(null);
+    setRouteError("");
+    trackEvent("clic_reserva", { source: "road_pickup" });
+    document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function requestRoadPickupLocation() {
+    prepareRoadPickup();
+    requestPickupLocation();
   }
 
   async function calculate() {
@@ -2997,6 +3126,10 @@ function App() {
                 <LocateFixed aria-hidden="true" />
                 {t.taxiNow}
               </span>
+              <span>
+                <TriangleAlert aria-hidden="true" />
+                Avería en carretera
+              </span>
             </div>
             <div className="hero-card-actions">
               <a
@@ -3100,6 +3233,58 @@ function App() {
         </section>
 
         <InternalLinksBand />
+
+        <section className="road-assist-section" id="taxi-averia-calatayud" aria-label="Taxi por averia en carretera cerca de Calatayud" data-animate>
+          <div className="road-assist-copy">
+            <p className="eyebrow compact">
+              <TriangleAlert aria-hidden="true" />
+              Recogida urgente en carretera
+            </p>
+            <h2>Taxi si te has quedado tirado cerca de Calatayud</h2>
+            <p>
+              Si tienes una avería o incidencia en la A-2, N-II, N-234 o carreteras de la comarca,
+              puedo ayudarte con recogida de pasajeros para llevarte a Calatayud, taller,
+              hotel, estación o un punto seguro.
+            </p>
+            <div className="road-actions">
+              <button type="button" className="btn btn-primary" onClick={requestRoadPickupLocation}>
+                <LocateFixed aria-hidden="true" />
+                Preparar recogida con ubicación
+              </button>
+              <a
+                className="btn btn-whatsapp"
+                href={roadUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("clic_whatsapp", { source: "road_assist" })}
+              >
+                <MessageCircle aria-hidden="true" />
+                WhatsApp urgente
+              </a>
+            </div>
+            <p className="road-disclaimer">
+              Servicio de taxi para pasajeros. No es grúa ni asistencia mecánica. Si hay peligro,
+              emergencia médica o riesgo en la vía, llama primero al 112 o a tu asistencia en carretera.
+            </p>
+          </div>
+          <div className="road-assist-panel" aria-label="Como pedir taxi desde carretera">
+            <div className="road-step">
+              <span>1</span>
+              <strong>Muévete a zona segura</strong>
+              <p>Arcén protegido, área de servicio, salida, gasolinera o punto indicado por asistencia.</p>
+            </div>
+            <div className="road-step">
+              <span>2</span>
+              <strong>Envía ubicación</strong>
+              <p>Valdeherrera, Ateca, Ariza, N-234 o la salida/km más cercano ayudan mucho.</p>
+            </div>
+            <div className="road-step">
+              <span>3</span>
+              <strong>Confirma destino</strong>
+              <p>Calatayud, taller, hotel, estación, Zaragoza o destino que necesites.</p>
+            </div>
+          </div>
+        </section>
 
         <section className="section calc-section" id="calculadora">
           <div className="section-heading">
@@ -3319,6 +3504,17 @@ function App() {
                   {t.sendMyLocation}
                 </button>
                 {locationStatus ? <span>{locationStatus}</span> : null}
+              </div>
+
+              <div className="road-quick-card">
+                <TriangleAlert aria-hidden="true" />
+                <div>
+                  <strong>Avería o incidencia en carretera</strong>
+                  <p>Prepara un mensaje urgente con ubicación y pasajeros. Taxi para personas, no grúa.</p>
+                </div>
+                <button type="button" className="btn btn-secondary" onClick={prepareRoadPickup}>
+                  Preparar
+                </button>
               </div>
 
               <div className="calc-actions">

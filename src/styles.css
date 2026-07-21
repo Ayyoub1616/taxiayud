@@ -1011,6 +1011,128 @@ h1 {
   margin-right: auto;
 }
 
+.road-assist-section {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: 20px;
+  align-items: center;
+  padding: 46px 40px;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(255, 112, 90, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(241, 195, 77, 0.07), transparent 70%),
+    #090d13;
+  border-bottom: 1px solid var(--line);
+}
+
+.road-assist-section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 18px 40px;
+  border: 1px solid rgba(241, 195, 77, 0.12);
+  border-radius: 8px;
+  transform: perspective(900px) rotateX(58deg) translateY(42px);
+  transform-origin: center bottom;
+  background:
+    linear-gradient(90deg, transparent 0 48%, rgba(241, 195, 77, 0.22) 49% 51%, transparent 52% 100%),
+    repeating-linear-gradient(90deg, transparent 0 48px, rgba(255, 255, 255, 0.055) 48px 52px, transparent 52px 104px);
+  opacity: 0.7;
+}
+
+.road-assist-copy {
+  justify-self: end;
+  width: min(560px, 100%);
+}
+
+.road-assist-copy h2 {
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 2.35rem;
+  line-height: 1.04;
+}
+
+.road-assist-copy p:not(.eyebrow) {
+  color: #d6deea;
+  margin-bottom: 0;
+}
+
+.road-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 12px;
+}
+
+.road-disclaimer {
+  max-width: 680px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 112, 90, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 112, 90, 0.08);
+  color: #ffd8d1 !important;
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.road-assist-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  perspective: 900px;
+}
+
+.road-step {
+  min-height: 190px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+    var(--panel);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.27);
+  transform: rotateY(-6deg) translateZ(0);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.road-step:hover {
+  transform: rotateY(0deg) translateY(-4px);
+  border-color: var(--line-strong);
+  background:
+    linear-gradient(180deg, rgba(241, 195, 77, 0.12), rgba(255, 255, 255, 0.025)),
+    #111923;
+}
+
+.road-step span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #151007;
+  font-weight: 950;
+}
+
+.road-step strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.road-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .section {
   padding: 58px 40px;
 }
@@ -1320,6 +1442,44 @@ select:focus,
   color: var(--muted);
   font-size: 0.86rem;
   font-weight: 750;
+}
+
+.road-quick-card {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid rgba(255, 112, 90, 0.26);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 112, 90, 0.12), transparent 68%),
+    rgba(255, 255, 255, 0.035);
+}
+
+.road-quick-card > svg {
+  width: 22px;
+  height: 22px;
+  color: var(--red);
+}
+
+.road-quick-card strong {
+  display: block;
+  margin-bottom: 2px;
+  color: #fff;
+  font-size: 0.92rem;
+}
+
+.road-quick-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.road-quick-card .btn {
+  min-height: 38px;
+  padding: 0 12px;
 }
 
 .calc-actions {
@@ -2231,6 +2391,7 @@ tr:hover td {
   .local-seo-section,
   .tourist-search-section,
   .intent-layout,
+  .road-assist-section,
   .reviews-section,
   .tariff-lookup,
   .vehicle-section,
@@ -2243,6 +2404,11 @@ tr:hover td {
   .local-seo-section > div:first-child,
   .tourist-search-copy {
     justify-self: start;
+  }
+
+  .road-assist-copy {
+    justify-self: start;
+    width: min(760px, 100%);
   }
 
   .local-route-grid {
@@ -2350,9 +2516,39 @@ tr:hover td {
   }
 
   .intent-section,
-  .internal-link-band {
+  .internal-link-band,
+  .road-assist-section {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .road-assist-section {
+    gap: 16px;
+    padding-top: 38px;
+    padding-bottom: 38px;
+  }
+
+  .road-assist-section::before {
+    inset: 10px 20px;
+    transform: perspective(780px) rotateX(62deg) translateY(64px);
+  }
+
+  .road-assist-copy h2 {
+    font-size: 1.95rem;
+  }
+
+  .road-actions .btn {
+    width: 100%;
+  }
+
+  .road-assist-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .road-step {
+    min-height: auto;
+    padding: 14px;
+    transform: none;
   }
 
   .intent-layout,
@@ -2512,8 +2708,17 @@ tr:hover td {
   .route-inputs,
   .calc-actions,
   .hero-card-actions,
+  .road-quick-card,
   .review-cards {
     grid-template-columns: 1fr;
+  }
+
+  .road-quick-card > svg {
+    display: none;
+  }
+
+  .road-quick-card .btn {
+    width: 100%;
   }
 
   .suggestions,
