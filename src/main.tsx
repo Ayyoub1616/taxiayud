@@ -4448,9 +4448,13 @@ function App() {
           <Route aria-hidden="true" />
           Calcular
         </a>
-        <button type="button" onClick={requestRoadPickupLocation}>
+        <button
+          type="button"
+          aria-label="Pedir taxi por avería o incidencia en carretera"
+          onClick={requestRoadPickupLocation}
+        >
           <TriangleAlert aria-hidden="true" />
-          A-2
+          Avería
         </button>
       </nav>
     </>
