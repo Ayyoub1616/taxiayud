@@ -981,11 +981,17 @@ const COPY: Record<LangCode, Copy> = {
       "🚕 Ui, aquesta ruta necessita una mirada ràpida. No pateixis: envia-la per WhatsApp i confirmo preu i disponibilitat de seguida.",
     resultDistance: "Distància estimada",
     quoteEstimate: "Pressupost orientatiu",
+    quoteOfficial:
+      "Preu orientatiu subjecte a confirmació directa segons disponibilitat, ruta final, horari, espera i suplements oficials.",
     bookWithMessage: "Reservar amb missatge",
     seeAvailability: "Veure disponibilitat ara",
+    emptyResult:
+      "Prem calcular preu per veure un pressupost orientatiu. La reserva i l'import final es confirmen sempre per WhatsApp o trucada.",
+    exactRouteFallback:
+      "Escriu origen i destinació per consultar disponibilitat i pressupost per WhatsApp.",
     whatsappQuote: "Pressupost per WhatsApp",
     apiPrivateNote:
-      "📲 El WhatsApp ja porta origen, destinació, data i passatgers per ajudar-te ràpid.",
+      "📲 El WhatsApp prepara les dades bàsiques per respondre ràpid. El preu final, disponibilitat i punt exacte es confirmen directament.",
     reviewsEyebrow: "Ressenyes de Google",
     reviewsWith: "amb",
     moreReviews: "Veure més ressenyes",
@@ -1041,11 +1047,17 @@ const COPY: Record<LangCode, Copy> = {
       "🚕 Ups, diese Route braucht einen kurzen manuellen Blick. Keine Sorge: per WhatsApp bestätige ich Preis und Verfügbarkeit sofort.",
     resultDistance: "Geschätzte Entfernung",
     quoteEstimate: "Orientierungspreis",
+    quoteOfficial:
+      "Orientierungspreis vorbehaltlich direkter Bestätigung je nach Verfügbarkeit, endgültiger Route, Uhrzeit, Wartezeit und offiziellen Zuschlägen.",
     bookWithMessage: "Mit Nachricht buchen",
     seeAvailability: "Verfügbarkeit prüfen",
+    emptyResult:
+      "Tippen Sie auf Preis berechnen, um eine Orientierung zu erhalten. Buchung und Endpreis werden immer per WhatsApp oder Anruf bestätigt.",
+    exactRouteFallback:
+      "Geben Sie Abfahrt und Ziel ein, um Verfügbarkeit und Orientierungspreis per WhatsApp anzufragen.",
     whatsappQuote: "WhatsApp-Angebot",
     apiPrivateNote:
-      "📲 Die WhatsApp-Nachricht enthält bereits Abfahrt, Ziel, Datum und Fahrgäste.",
+      "📲 Die WhatsApp-Nachricht bereitet die Basisdaten vor. Endpreis, Verfügbarkeit und genauer Abholpunkt werden direkt bestätigt.",
     reviewsEyebrow: "Google-Bewertungen",
     reviewsWith: "mit",
     moreReviews: "Mehr Bewertungen",
@@ -1090,11 +1102,17 @@ const COPY: Record<LangCode, Copy> = {
       "🚕 Ops, questo percorso ha bisogno di un controllo rapido. Nessun problema: invialo su WhatsApp e confermo prezzo e disponibilità.",
     resultDistance: "Distanza stimata",
     quoteEstimate: "Preventivo orientativo",
+    quoteOfficial:
+      "Prezzo indicativo soggetto a conferma diretta in base a disponibilità, percorso finale, orario, attesa e supplementi ufficiali.",
     bookWithMessage: "Prenota con messaggio",
     seeAvailability: "Verifica disponibilità",
+    emptyResult:
+      "Tocca calcola prezzo per vedere un preventivo orientativo. Prenotazione e importo finale si confermano sempre via WhatsApp o chiamata.",
+    exactRouteFallback:
+      "Inserisci origine e destinazione per chiedere disponibilità e preventivo via WhatsApp.",
     whatsappQuote: "Preventivo WhatsApp",
     apiPrivateNote:
-      "📲 Il messaggio WhatsApp include già origine, destinazione, data e passeggeri.",
+      "📲 Il messaggio WhatsApp prepara i dati base. Prezzo finale, disponibilità e punto esatto si confermano direttamente.",
     reviewsEyebrow: "Recensioni Google",
     reviewsWith: "con",
     moreReviews: "Vedi altre recensioni",
@@ -1137,11 +1155,17 @@ const COPY: Record<LangCode, Copy> = {
       "🚕 Opa, esta rota precisa de uma confirmação rápida. Não se preocupe: envie por WhatsApp e confirmo preço e disponibilidade.",
     resultDistance: "Distância estimada",
     quoteEstimate: "Orçamento estimado",
+    quoteOfficial:
+      "Preço indicativo sujeito a confirmação direta conforme disponibilidade, rota final, horário, espera e suplementos oficiais.",
     bookWithMessage: "Reservar com mensagem",
     seeAvailability: "Ver disponibilidade",
+    emptyResult:
+      "Toque em calcular preço para ver um orçamento estimado. A reserva e o valor final são sempre confirmados por WhatsApp ou chamada.",
+    exactRouteFallback:
+      "Insira origem e destino para consultar disponibilidade e orçamento por WhatsApp.",
     whatsappQuote: "Orçamento por WhatsApp",
     apiPrivateNote:
-      "📲 A mensagem de WhatsApp já inclui origem, destino, data e passageiros.",
+      "📲 A mensagem de WhatsApp prepara os dados básicos. Preço final, disponibilidade e ponto exato são confirmados diretamente.",
     reviewsEyebrow: "Avaliações Google",
     reviewsWith: "com",
     moreReviews: "Ver mais avaliações",
@@ -1184,11 +1208,17 @@ const COPY: Record<LangCode, Copy> = {
       "🚕 Oeps, deze route heeft een snelle check nodig. Geen zorgen: stuur hem via WhatsApp en ik bevestig prijs en beschikbaarheid.",
     resultDistance: "Geschatte afstand",
     quoteEstimate: "Richtprijs",
+    quoteOfficial:
+      "Richtprijs onder voorbehoud van directe bevestiging, afhankelijk van beschikbaarheid, definitieve route, tijd, wachttijd en officiële toeslagen.",
     bookWithMessage: "Boeken met bericht",
     seeAvailability: "Beschikbaarheid controleren",
+    emptyResult:
+      "Tik op prijs berekenen voor een richtprijs. Boeking en definitieve prijs worden altijd via WhatsApp of telefoon bevestigd.",
+    exactRouteFallback:
+      "Vul vertrek en bestemming in om beschikbaarheid en richtprijs via WhatsApp te vragen.",
     whatsappQuote: "WhatsApp-prijs",
     apiPrivateNote:
-      "📲 Het WhatsApp-bericht bevat al vertrek, bestemming, datum en passagiers.",
+      "📲 Het WhatsApp-bericht bereidt de basisgegevens voor. Definitieve prijs, beschikbaarheid en exact ophaalpunt worden rechtstreeks bevestigd.",
     reviewsEyebrow: "Google reviews",
     reviewsWith: "met",
     moreReviews: "Meer reviews",
@@ -1306,7 +1336,7 @@ const UI_COPY: Record<
     roadEyebrow: "Recogida urgente en carretera",
     roadTitle: "Taxi si te has quedado tirado cerca de Calatayud",
     roadText:
-      "Si tienes una avería o incidencia en la A-2, N-II, N-234 o carreteras de la comarca, puedo ayudarte con recogida de pasajeros para llevarte a Calatayud, taller, hotel, estación o un punto seguro. Si el coche necesita grúa o asistencia, avisa también a tu aseguradora.",
+      "Si tienes una avería o incidencia en la A-2, N-II, N-234 o carreteras de la comarca, puedo ayudarte con recogida de pasajeros para llevarte a Calatayud, taller, hotel, estación o un punto seguro. Si el coche necesita grúa o asistencia, contacta también con tu aseguradora.",
     roadLocationButton: "Preparar recogida con ubicación",
     roadWhatsapp: "WhatsApp urgente",
     roadPresetAria: "Puntos habituales de carretera",
@@ -1319,7 +1349,7 @@ const UI_COPY: Record<
       { title: "Envía ubicación y destino", text: "Salida, km, gasolinera o ubicación ayudan a confirmar recogida, precio y disponibilidad." },
     ],
     roadQuickTitle: "Avería o incidencia en carretera",
-    roadQuickText: "Prepara un mensaje con ubicación y pasajeros. Si necesitas grúa o asistencia, avisa también a tu aseguradora.",
+    roadQuickText: "El WhatsApp prepara ubicación y pasajeros. Si necesitas grúa o asistencia, gestiónalo aparte con tu aseguradora.",
     roadQuickButton: "Preparar",
     internalRoutes: "Rutas principales",
     otherLanguages: "Taxi Ayud en otros idiomas",
@@ -1329,20 +1359,20 @@ const UI_COPY: Record<
     roadEyebrow: "Urgent road pick-up",
     roadTitle: "Taxi if you are stranded near Calatayud",
     roadText:
-      "If you have a breakdown or road incident on the A-2, N-II, N-234 or nearby roads, I can pick up passengers and take you to Calatayud, a garage, hotel, station or safe point.",
+      "If you have a breakdown or road incident on the A-2, N-II, N-234 or nearby roads, I can pick up passengers and take you to Calatayud, a garage, hotel, station or safe point. If the vehicle needs towing or assistance, contact your insurance or roadside assistance too.",
     roadLocationButton: "Prepare pick-up with location",
     roadWhatsapp: "Urgent WhatsApp",
     roadPresetAria: "Common road pick-up points",
     roadDisclaimer:
-      "Passenger taxi service only. This is not a tow truck or mechanical assistance. If there is danger, a medical emergency or road risk, call 112 or your roadside assistance first.",
+      "Passenger taxi service only. This is not a tow truck or mechanical assistance. If there is danger, a medical emergency or road risk, call 112 first. If needed, contact your insurance or roadside assistance before moving.",
     roadPanelAria: "How to request a taxi from the road",
     roadSteps: [
-      { title: "Move to a safe place", text: "Protected shoulder, service area, exit, petrol station or a point indicated by assistance." },
-      { title: "Send location", text: "Valdeherrera, Ateca, Ariza, N-234 or the nearest exit/km helps a lot." },
-      { title: "Confirm destination", text: "Calatayud, garage, hotel, station, Zaragoza or the destination you need." },
+      { title: "Get to safety", text: "Move to a safe area. If there is road danger, call 112 before requesting a taxi." },
+      { title: "Contact assistance if needed", text: "If the vehicle cannot continue, contact your insurer or roadside assistance." },
+      { title: "Send location and destination", text: "Exit, km, petrol station or location helps confirm pick-up, price and availability." },
     ],
     roadQuickTitle: "Breakdown or road incident",
-    roadQuickText: "Prepare an urgent message with location and passengers. Taxi for people, not a tow truck.",
+    roadQuickText: "WhatsApp prepares location and passengers. If you need towing or assistance, arrange it separately with your insurer.",
     roadQuickButton: "Prepare",
     internalRoutes: "Main routes",
     otherLanguages: "Taxi Ayud in other languages",
@@ -1352,20 +1382,20 @@ const UI_COPY: Record<
     roadEyebrow: "Prise en charge urgente sur route",
     roadTitle: "Taxi si vous êtes bloqué près de Calatayud",
     roadText:
-      "En cas de panne ou d'incident sur l'A-2, N-II, N-234 ou routes proches, je peux prendre en charge les passagers vers Calatayud, garage, hôtel, gare ou point sûr.",
+      "En cas de panne ou d'incident sur l'A-2, N-II, N-234 ou routes proches, je peux prendre en charge les passagers vers Calatayud, garage, hôtel, gare ou point sûr. Si le véhicule nécessite une dépanneuse ou assistance, contactez aussi votre assurance.",
     roadLocationButton: "Préparer avec position",
     roadWhatsapp: "WhatsApp urgent",
     roadPresetAria: "Points routiers habituels",
     roadDisclaimer:
-      "Service de taxi pour passagers. Ce n'est pas une dépanneuse ni une assistance mécanique. En cas de danger, urgence médicale ou risque sur la route, appelez d'abord le 112 ou votre assistance.",
+      "Service de taxi pour passagers. Ce n'est pas une dépanneuse ni une assistance mécanique. En cas de danger, urgence médicale ou risque sur la route, appelez d'abord le 112. Si besoin, contactez votre assurance ou assistance routière avant de vous déplacer.",
     roadPanelAria: "Comment demander un taxi depuis la route",
     roadSteps: [
-      { title: "Allez en zone sûre", text: "Bande protégée, aire de service, sortie, station-service ou point indiqué par l'assistance." },
-      { title: "Envoyez la position", text: "Valdeherrera, Ateca, Ariza, N-234 ou la sortie/km le plus proche aide beaucoup." },
-      { title: "Confirmez la destination", text: "Calatayud, garage, hôtel, gare, Saragosse ou destination souhaitée." },
+      { title: "Mettez-vous en sécurité", text: "Placez-vous en zone sûre. En cas de risque sur la route, appelez le 112 avant de demander un taxi." },
+      { title: "Prévenez l'assistance si besoin", text: "Si le véhicule ne peut pas continuer, contactez votre assurance ou assistance routière." },
+      { title: "Envoyez position et destination", text: "Sortie, km, station-service ou position aident à confirmer prise en charge, prix et disponibilité." },
     ],
     roadQuickTitle: "Panne ou incident sur route",
-    roadQuickText: "Préparez un message urgent avec position et passagers. Taxi pour personnes, pas dépanneuse.",
+    roadQuickText: "Le WhatsApp prépare position et passagers. Si vous avez besoin d'une dépanneuse ou assistance, gérez-le séparément avec votre assurance.",
     roadQuickButton: "Préparer",
     internalRoutes: "Routes principales",
     otherLanguages: "Taxi Ayud en plusieurs langues",
@@ -1375,20 +1405,20 @@ const UI_COPY: Record<
     roadEyebrow: "Recollida urgent en carretera",
     roadTitle: "Taxi si t'has quedat tirat prop de Calatayud",
     roadText:
-      "Si tens una avaria o incidència a l'A-2, N-II, N-234 o carreteres properes, puc recollir passatgers i portar-los a Calatayud, taller, hotel, estació o punt segur.",
+      "Si tens una avaria o incidència a l'A-2, N-II, N-234 o carreteres properes, puc recollir passatgers i portar-los a Calatayud, taller, hotel, estació o punt segur. Si el vehicle necessita grua o assistència, avisa també l'asseguradora.",
     roadLocationButton: "Preparar recollida amb ubicació",
     roadWhatsapp: "WhatsApp urgent",
     roadPresetAria: "Punts habituals de carretera",
     roadDisclaimer:
-      "Servei de taxi per a passatgers. No és grua ni assistència mecànica. Si hi ha perill o emergència, truca primer al 112 o a l'assistència en carretera.",
+      "Servei de taxi per a passatgers. No és grua ni assistència mecànica. Si hi ha perill, emergència mèdica o risc a la via, truca primer al 112. Si cal, avisa l'asseguradora o assistència en carretera abans de moure't.",
     roadPanelAria: "Com demanar taxi des de carretera",
     roadSteps: [
-      { title: "Ves a una zona segura", text: "Vorera protegida, àrea de servei, sortida, gasolinera o punt indicat per assistència." },
-      { title: "Envia ubicació", text: "Valdeherrera, Ateca, Ariza, N-234 o la sortida/km més propera ajuda molt." },
-      { title: "Confirma destinació", text: "Calatayud, taller, hotel, estació, Saragossa o destinació que necessitis." },
+      { title: "Posa't a salvo", text: "Col·loca't en una zona segura. Si hi ha risc a la via, truca al 112 abans de demanar taxi." },
+      { title: "Avisa si necessites grua", text: "Si el vehicle no pot continuar, contacta amb l'asseguradora o assistència en carretera." },
+      { title: "Envia ubicació i destinació", text: "Sortida, km, gasolinera o ubicació ajuden a confirmar recollida, preu i disponibilitat." },
     ],
     roadQuickTitle: "Avaria o incidència en carretera",
-    roadQuickText: "Prepara un missatge urgent amb ubicació i passatgers. Taxi per a persones, no grua.",
+    roadQuickText: "El WhatsApp prepara ubicació i passatgers. Si necessites grua o assistència, gestiona-ho a part amb l'asseguradora.",
     roadQuickButton: "Preparar",
     internalRoutes: "Rutes principals",
     otherLanguages: "Taxi Ayud en altres idiomes",
@@ -1398,20 +1428,20 @@ const UI_COPY: Record<
     roadEyebrow: "Dringende Abholung auf der Straße",
     roadTitle: "Taxi, wenn Sie bei Calatayud liegen geblieben sind",
     roadText:
-      "Bei Panne oder Vorfall auf A-2, N-II, N-234 oder nahen Straßen kann ich Fahrgäste nach Calatayud, Werkstatt, Hotel, Bahnhof oder zu einem sicheren Punkt bringen.",
+      "Bei Panne oder Vorfall auf A-2, N-II, N-234 oder nahen Straßen kann ich Fahrgäste nach Calatayud, Werkstatt, Hotel, Bahnhof oder zu einem sicheren Punkt bringen. Wenn das Fahrzeug Abschleppen oder Pannenhilfe braucht, kontaktieren Sie auch Ihre Versicherung oder Hilfeleistung.",
     roadLocationButton: "Abholung mit Standort vorbereiten",
     roadWhatsapp: "Dringend per WhatsApp",
     roadPresetAria: "Häufige Straßen-Abholpunkte",
     roadDisclaimer:
-      "Nur Taxi für Fahrgäste. Kein Abschleppdienst und keine Pannenhilfe. Bei Gefahr, medizinischem Notfall oder Risiko auf der Straße zuerst 112 oder Pannenhilfe anrufen.",
+      "Nur Taxi für Fahrgäste. Kein Abschleppdienst und keine Pannenhilfe. Bei Gefahr, medizinischem Notfall oder Risiko auf der Straße zuerst 112 anrufen. Falls nötig, kontaktieren Sie Versicherung oder Pannenhilfe vor dem Weiterfahren.",
     roadPanelAria: "Taxi von der Straße anfragen",
     roadSteps: [
-      { title: "Sicheren Ort aufsuchen", text: "Geschützter Seitenstreifen, Rastplatz, Ausfahrt, Tankstelle oder von Hilfe genannter Punkt." },
-      { title: "Standort senden", text: "Valdeherrera, Ateca, Ariza, N-234 oder nächste Ausfahrt/km helfen sehr." },
-      { title: "Ziel bestätigen", text: "Calatayud, Werkstatt, Hotel, Bahnhof, Zaragoza oder gewünschtes Ziel." },
+      { title: "In Sicherheit gehen", text: "Gehen Sie an einen sicheren Ort. Bei Gefahr auf der Straße zuerst 112 anrufen." },
+      { title: "Hilfe informieren, falls nötig", text: "Wenn das Fahrzeug nicht weiterfahren kann, Versicherung oder Pannenhilfe kontaktieren." },
+      { title: "Standort und Ziel senden", text: "Ausfahrt, km, Tankstelle oder Standort helfen, Abholung, Preis und Verfügbarkeit zu bestätigen." },
     ],
     roadQuickTitle: "Panne oder Straßenereignis",
-    roadQuickText: "Dringende Nachricht mit Standort und Fahrgästen vorbereiten. Taxi für Personen, kein Abschleppdienst.",
+    roadQuickText: "WhatsApp bereitet Standort und Fahrgäste vor. Falls Abschleppen oder Hilfe nötig ist, separat mit Versicherung oder Pannenhilfe klären.",
     roadQuickButton: "Vorbereiten",
     internalRoutes: "Wichtige Routen",
     otherLanguages: "Taxi Ayud in anderen Sprachen",
@@ -1421,20 +1451,20 @@ const UI_COPY: Record<
     roadEyebrow: "Ritiro urgente su strada",
     roadTitle: "Taxi se sei rimasto bloccato vicino a Calatayud",
     roadText:
-      "In caso di guasto o incidente su A-2, N-II, N-234 o strade vicine, posso ritirare i passeggeri verso Calatayud, officina, hotel, stazione o punto sicuro.",
+      "In caso di guasto o incidente su A-2, N-II, N-234 o strade vicine, posso ritirare i passeggeri verso Calatayud, officina, hotel, stazione o punto sicuro. Se il veicolo richiede carro attrezzi o assistenza, contatta anche assicurazione o assistenza stradale.",
     roadLocationButton: "Prepara ritiro con posizione",
     roadWhatsapp: "WhatsApp urgente",
     roadPresetAria: "Punti stradali abituali",
     roadDisclaimer:
-      "Servizio taxi per passeggeri. Non è carro attrezzi né assistenza meccanica. In caso di pericolo o emergenza chiama prima il 112 o l'assistenza stradale.",
+      "Servizio taxi per passeggeri. Non è carro attrezzi né assistenza meccanica. In caso di pericolo, emergenza medica o rischio sulla strada chiama prima il 112. Se serve, contatta assicurazione o assistenza stradale prima di muoverti.",
     roadPanelAria: "Come chiedere taxi dalla strada",
     roadSteps: [
-      { title: "Spostati in zona sicura", text: "Corsia protetta, area di servizio, uscita, benzinaio o punto indicato dall'assistenza." },
-      { title: "Invia posizione", text: "Valdeherrera, Ateca, Ariza, N-234 o uscita/km più vicino aiutano molto." },
-      { title: "Conferma destinazione", text: "Calatayud, officina, hotel, stazione, Saragozza o destinazione necessaria." },
+      { title: "Mettiti al sicuro", text: "Raggiungi una zona sicura. Se c'è rischio sulla strada, chiama il 112 prima del taxi." },
+      { title: "Avvisa l'assistenza se serve", text: "Se il veicolo non può continuare, contatta assicurazione o assistenza stradale." },
+      { title: "Invia posizione e destinazione", text: "Uscita, km, benzinaio o posizione aiutano a confermare ritiro, prezzo e disponibilità." },
     ],
     roadQuickTitle: "Guasto o incidente su strada",
-    roadQuickText: "Prepara un messaggio urgente con posizione e passeggeri. Taxi per persone, non carro attrezzi.",
+    roadQuickText: "WhatsApp prepara posizione e passeggeri. Se serve carro attrezzi o assistenza, gestiscilo a parte con assicurazione o assistenza stradale.",
     roadQuickButton: "Preparare",
     internalRoutes: "Rotte principali",
     otherLanguages: "Taxi Ayud in altre lingue",
@@ -1444,20 +1474,20 @@ const UI_COPY: Record<
     roadEyebrow: "Recolha urgente na estrada",
     roadTitle: "Táxi se ficou parado perto de Calatayud",
     roadText:
-      "Se tiver avaria ou incidente na A-2, N-II, N-234 ou estradas próximas, posso recolher passageiros para Calatayud, oficina, hotel, estação ou ponto seguro.",
+      "Se tiver avaria ou incidente na A-2, N-II, N-234 ou estradas próximas, posso recolher passageiros para Calatayud, oficina, hotel, estação ou ponto seguro. Se o veículo precisar de reboque ou assistência, contacte também o seguro ou assistência rodoviária.",
     roadLocationButton: "Preparar recolha com localização",
     roadWhatsapp: "WhatsApp urgente",
     roadPresetAria: "Pontos habituais de estrada",
     roadDisclaimer:
-      "Serviço de táxi para passageiros. Não é reboque nem assistência mecânica. Em caso de perigo ou emergência, ligue primeiro 112 ou assistência rodoviária.",
+      "Serviço de táxi para passageiros. Não é reboque nem assistência mecânica. Em caso de perigo, emergência médica ou risco na estrada, ligue primeiro 112. Se necessário, contacte o seguro ou assistência rodoviária antes de se mover.",
     roadPanelAria: "Como pedir táxi desde a estrada",
     roadSteps: [
-      { title: "Vá para zona segura", text: "Berma protegida, área de serviço, saída, bomba de gasolina ou ponto indicado pela assistência." },
-      { title: "Envie localização", text: "Valdeherrera, Ateca, Ariza, N-234 ou saída/km mais próximo ajudam muito." },
-      { title: "Confirme destino", text: "Calatayud, oficina, hotel, estação, Zaragoza ou destino necessário." },
+      { title: "Vá para zona segura", text: "Coloque-se numa zona segura. Se houver risco na estrada, ligue 112 antes de pedir táxi." },
+      { title: "Avise a assistência se necessário", text: "Se o veículo não puder continuar, contacte o seguro ou assistência rodoviária." },
+      { title: "Envie localização e destino", text: "Saída, km, bomba de gasolina ou localização ajudam a confirmar recolha, preço e disponibilidade." },
     ],
     roadQuickTitle: "Avaria ou incidente na estrada",
-    roadQuickText: "Prepare uma mensagem urgente com localização e passageiros. Táxi para pessoas, não reboque.",
+    roadQuickText: "O WhatsApp prepara localização e passageiros. Se precisar de reboque ou assistência, trate disso à parte com o seguro.",
     roadQuickButton: "Preparar",
     internalRoutes: "Rotas principais",
     otherLanguages: "Taxi Ayud noutros idiomas",
@@ -1467,20 +1497,20 @@ const UI_COPY: Record<
     roadEyebrow: "Dringend ophalen langs de weg",
     roadTitle: "Taxi als u gestrand bent bij Calatayud",
     roadText:
-      "Bij pech of een incident op de A-2, N-II, N-234 of nabijgelegen wegen kan ik passagiers ophalen naar Calatayud, garage, hotel, station of veilige plek.",
+      "Bij pech of een incident op de A-2, N-II, N-234 of nabijgelegen wegen kan ik passagiers ophalen naar Calatayud, garage, hotel, station of veilige plek. Als het voertuig sleepdienst of pechhulp nodig heeft, neem ook contact op met verzekering of pechhulp.",
     roadLocationButton: "Ophalen met locatie voorbereiden",
     roadWhatsapp: "Dringend WhatsApp",
     roadPresetAria: "Veelgebruikte ophaalpunten langs de weg",
     roadDisclaimer:
-      "Alleen taxiservice voor passagiers. Geen sleepwagen of mechanische hulp. Bij gevaar of nood eerst 112 of pechhulp bellen.",
+      "Alleen taxiservice voor passagiers. Geen sleepwagen of mechanische hulp. Bij gevaar, medische nood of risico op de weg eerst 112 bellen. Neem indien nodig contact op met verzekering of pechhulp voordat u zich verplaatst.",
     roadPanelAria: "Taxi vanaf de weg aanvragen",
     roadSteps: [
-      { title: "Ga naar een veilige plek", text: "Beschermde berm, servicegebied, afrit, tankstation of punt aangegeven door hulp." },
-      { title: "Stuur locatie", text: "Valdeherrera, Ateca, Ariza, N-234 of dichtstbijzijnde afrit/km helpt veel." },
-      { title: "Bevestig bestemming", text: "Calatayud, garage, hotel, station, Zaragoza of gewenste bestemming." },
+      { title: "Ga naar veiligheid", text: "Ga naar een veilige plek. Bij risico op de weg eerst 112 bellen voordat u een taxi vraagt." },
+      { title: "Bel hulp indien nodig", text: "Als het voertuig niet verder kan, neem contact op met verzekering of pechhulp." },
+      { title: "Stuur locatie en bestemming", text: "Afrit, km, tankstation of locatie helpt om ophalen, prijs en beschikbaarheid te bevestigen." },
     ],
     roadQuickTitle: "Pech of incident onderweg",
-    roadQuickText: "Maak een dringend bericht met locatie en passagiers. Taxi voor mensen, geen sleepwagen.",
+    roadQuickText: "WhatsApp bereidt locatie en passagiers voor. Als sleepdienst of pechhulp nodig is, regel dit apart met verzekering of pechhulp.",
     roadQuickButton: "Voorbereiden",
     internalRoutes: "Belangrijke routes",
     otherLanguages: "Taxi Ayud in andere talen",
@@ -1490,20 +1520,20 @@ const UI_COPY: Record<
     roadEyebrow: "استلام عاجل على الطريق",
     roadTitle: "تاكسي إذا تعطلت قرب كالاتايود",
     roadText:
-      "إذا حدث عطل أو مشكلة على A-2 أو N-II أو N-234 أو الطرق القريبة، يمكن نقل الركاب إلى كالاتايود أو ورشة أو فندق أو محطة أو نقطة آمنة.",
+      "إذا حدث عطل أو مشكلة على A-2 أو N-II أو N-234 أو الطرق القريبة، يمكن نقل الركاب إلى كالاتايود أو ورشة أو فندق أو محطة أو نقطة آمنة. إذا كانت السيارة تحتاج إلى سحب أو مساعدة طريق، تواصل أيضا مع التأمين أو خدمة المساعدة.",
     roadLocationButton: "تجهيز الاستلام مع الموقع",
     roadWhatsapp: "واتساب عاجل",
     roadPresetAria: "نقاط استلام شائعة على الطريق",
     roadDisclaimer:
-      "خدمة تاكسي للركاب فقط. ليست شاحنة سحب ولا مساعدة ميكانيكية. إذا كان هناك خطر أو طارئ اتصل أولا ب 112 أو مساعدة الطريق.",
+      "خدمة تاكسي للركاب فقط. ليست شاحنة سحب ولا مساعدة ميكانيكية. إذا كان هناك خطر أو طارئ طبي أو خطر على الطريق، اتصل أولا ب 112. إذا لزم الأمر، تواصل مع التأمين أو مساعدة الطريق قبل التحرك.",
     roadPanelAria: "كيفية طلب تاكسي من الطريق",
     roadSteps: [
-      { title: "انتقل إلى مكان آمن", text: "منطقة آمنة، محطة خدمة، مخرج، محطة وقود أو نقطة تحددها المساعدة." },
-      { title: "أرسل الموقع", text: "Valdeherrera أو Ateca أو Ariza أو N-234 أو أقرب مخرج/كم يساعد كثيرا." },
-      { title: "أكد الوجهة", text: "كالاتايود، ورشة، فندق، محطة، سرقسطة أو الوجهة المطلوبة." },
+      { title: "انتقل إلى مكان آمن", text: "ابق في منطقة آمنة. إذا كان هناك خطر على الطريق، اتصل ب 112 قبل طلب التاكسي." },
+      { title: "أبلغ المساعدة إذا لزم", text: "إذا كانت السيارة لا تستطيع المتابعة، تواصل مع التأمين أو مساعدة الطريق." },
+      { title: "أرسل الموقع والوجهة", text: "المخرج أو الكيلومتر أو محطة الوقود أو الموقع يساعد في تأكيد الاستلام والسعر والتوفر." },
     ],
     roadQuickTitle: "عطل أو مشكلة على الطريق",
-    roadQuickText: "جهز رسالة عاجلة بالموقع وعدد الركاب. تاكسي للأشخاص، وليس سحب سيارة.",
+    roadQuickText: "واتساب يجهز الموقع وعدد الركاب. إذا كنت تحتاج إلى سحب أو مساعدة طريق، رتب ذلك بشكل منفصل مع التأمين أو المساعدة.",
     roadQuickButton: "تجهيز",
     internalRoutes: "الطرق الرئيسية",
     otherLanguages: "Taxi Ayud بلغات أخرى",
@@ -2434,9 +2464,20 @@ function localAddressMatches(value: string) {
     .map(({ keys: _keys, ...suggestion }) => suggestion);
 }
 
-function pickupLocationLine(pickupLocation: PickupLocation) {
+function pickupLocationLine(pickupLocation: PickupLocation, language: LangCode = "es") {
   if (!pickupLocation) return "";
-  return `📍 Ubicación exacta de recogida: https://maps.google.com/?q=${pickupLocation.lat.toFixed(
+  const labels: Partial<Record<LangCode, string>> = {
+    es: "Ubicación exacta de recogida",
+    en: "Exact pick-up location",
+    fr: "Position exacte de prise en charge",
+    ca: "Ubicació exacta de recollida",
+    de: "Genauer Abholstandort",
+    it: "Posizione esatta di ritiro",
+    pt: "Localização exata de recolha",
+    nl: "Exacte ophaallocatie",
+    ar: "موقع الاستلام الدقيق",
+  };
+  return `📍 ${labels[language] ?? labels.es}: https://maps.google.com/?q=${pickupLocation.lat.toFixed(
     6,
   )},${pickupLocation.lng.toFixed(6)}`;
 }
@@ -2536,7 +2577,7 @@ function roadAssistanceWhatsappUrl({
     ar: "📍 الموقع: سأرسله عبر واتساب أو أشارك موقعي الحالي الآن.",
   };
   const fallbackLocationLine = fallbackLocationLines[language] ?? fallbackLocationLines.es!;
-  const locationLine = pickupLocation ? pickupLocationLine(pickupLocation) : fallbackLocationLine;
+  const locationLine = pickupLocation ? pickupLocationLine(pickupLocation, language) : fallbackLocationLine;
   const linesByLanguage: Partial<Record<LangCode, string[]>> = {
     es: [
       "⚠️ Hola Taxi Ayud, necesito recogida urgente de pasajeros en carretera cerca de Calatayud.",
@@ -2544,9 +2585,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 Pasajeros: ${passengers}`,
       "🏁 Destino: punto seguro, Calatayud, taller, hotel o destino por confirmar.",
-      "✅ Estoy en una zona segura y puedo enviar más detalles por aquí.",
-      "🛟 Si necesito grúa o asistencia, aviso también a mi aseguradora/asistencia en carretera.",
-      "ℹ️ Importante: necesito taxi para pasajeros, no grúa.",
+      "✅ Intento situarme en un punto seguro. Puedo indicar salida, km, gasolinera o referencia por aquí.",
+      "ℹ️ Solicito taxi para pasajeros. Si el vehículo necesita grúa, se gestiona aparte.",
       "💶 Entiendo que el precio es orientativo hasta confirmación directa.",
       "¿Me confirmas disponibilidad, por favor?",
     ],
@@ -2556,9 +2596,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 Passengers: ${passengers}`,
       "🏁 Destination: safe point, Calatayud, garage, hotel or destination to confirm.",
-      "✅ I am in a safe place and can send more details here.",
-      "🛟 If I need towing or roadside assistance, I will also contact my insurance/assistance service.",
-      "ℹ️ Important: I need a taxi for passengers, not a tow truck.",
+      "✅ I will try to be at a safe pick-up point. I can send exit, km, petrol station or reference details here.",
+      "ℹ️ I am requesting a passenger taxi. If the vehicle needs towing, that is handled separately.",
       "💶 I understand the price is indicative until direct confirmation.",
       "Can you confirm availability, please?",
     ],
@@ -2568,9 +2607,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 Passagers : ${passengers}`,
       "🏁 Destination : point sûr, Calatayud, garage, hôtel ou destination à confirmer.",
-      "✅ Je suis dans un endroit sûr et je peux envoyer plus de détails ici.",
-      "🛟 Si j'ai besoin d'une dépanneuse ou assistance, je contacte aussi mon assurance/assistance.",
-      "ℹ️ Important : j'ai besoin d'un taxi pour passagers, pas d'une dépanneuse.",
+      "✅ J'essaie de me placer à un point de prise en charge sûr. Je peux envoyer sortie, km, station-service ou repère ici.",
+      "ℹ️ Je demande un taxi pour passagers. Si le véhicule nécessite une dépanneuse, cela se gère séparément.",
       "💶 Je comprends que le prix est indicatif jusqu'à confirmation directe.",
       "Pouvez-vous confirmer la disponibilité, s'il vous plaît ?",
     ],
@@ -2580,9 +2618,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 Passatgers: ${passengers}`,
       "🏁 Destinació: punt segur, Calatayud, taller, hotel o destinació per confirmar.",
-      "✅ Estic en una zona segura i puc enviar més detalls per aquí.",
-      "🛟 Si necessito grua o assistència, aviso també a l'asseguradora/assistència.",
-      "ℹ️ Important: necessito taxi per a passatgers, no grua.",
+      "✅ Intento situar-me en un punt de recollida segur. Puc indicar sortida, km, gasolinera o referència per aquí.",
+      "ℹ️ Sol·licito taxi per a passatgers. Si el vehicle necessita grua, es gestiona a part.",
       "💶 Entenc que el preu és orientatiu fins a confirmació directa.",
       "Em confirmes disponibilitat, si us plau?",
     ],
@@ -2592,9 +2629,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 Fahrgäste: ${passengers}`,
       "🏁 Ziel: sicherer Punkt, Calatayud, Werkstatt, Hotel oder noch zu bestätigen.",
-      "✅ Ich bin an einem sicheren Ort und kann hier weitere Details senden.",
-      "🛟 Wenn ich Abschleppen oder Pannenhilfe brauche, kontaktiere ich auch Versicherung/Pannenhilfe.",
-      "ℹ️ Wichtig: Ich brauche ein Taxi für Personen, keinen Abschleppdienst.",
+      "✅ Ich versuche, an einem sicheren Abholpunkt zu sein. Ich kann Ausfahrt, km, Tankstelle oder Orientierungspunkt hier senden.",
+      "ℹ️ Ich bitte um ein Taxi für Fahrgäste. Wenn das Fahrzeug Abschleppen braucht, wird das separat geregelt.",
       "💶 Ich verstehe, dass der Preis bis zur direkten Bestätigung nur eine Orientierung ist.",
       "Können Sie die Verfügbarkeit bitte bestätigen?",
     ],
@@ -2604,9 +2640,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 Passeggeri: ${passengers}`,
       "🏁 Destinazione: punto sicuro, Calatayud, officina, hotel o destinazione da confermare.",
-      "✅ Sono in una zona sicura e posso inviare altri dettagli qui.",
-      "🛟 Se ho bisogno di carro attrezzi o assistenza, contatto anche assicurazione/assistenza stradale.",
-      "ℹ️ Importante: ho bisogno di un taxi per passeggeri, non di un carro attrezzi.",
+      "✅ Cerco di essere in un punto di ritiro sicuro. Posso indicare uscita, km, benzinaio o riferimento qui.",
+      "ℹ️ Richiedo un taxi per passeggeri. Se il veicolo necessita carro attrezzi, si gestisce a parte.",
       "💶 Capisco che il prezzo è indicativo fino a conferma diretta.",
       "Potete confermare la disponibilità, per favore?",
     ],
@@ -2616,9 +2651,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 Passageiros: ${passengers}`,
       "🏁 Destino: ponto seguro, Calatayud, oficina, hotel ou destino a confirmar.",
-      "✅ Estou numa zona segura e posso enviar mais detalhes por aqui.",
-      "🛟 Se precisar de reboque ou assistência, contacto também o seguro/assistência rodoviária.",
-      "ℹ️ Importante: preciso de táxi para passageiros, não reboque.",
+      "✅ Tento ficar num ponto de recolha seguro. Posso indicar saída, km, bomba de gasolina ou referência por aqui.",
+      "ℹ️ Solicito táxi para passageiros. Se o veículo precisar de reboque, isso é tratado separadamente.",
       "💶 Entendo que o preço é indicativo até confirmação direta.",
       "Pode confirmar disponibilidade, por favor?",
     ],
@@ -2628,9 +2662,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 Passagiers: ${passengers}`,
       "🏁 Bestemming: veilige plek, Calatayud, garage, hotel of nog te bevestigen.",
-      "✅ Ik ben op een veilige plek en kan hier meer details sturen.",
-      "🛟 Als ik sleepdienst of pechhulp nodig heb, neem ik ook contact op met verzekering/pechhulp.",
-      "ℹ️ Belangrijk: ik heb een taxi voor passagiers nodig, geen sleepwagen.",
+      "✅ Ik probeer op een veilige ophaalplek te staan. Ik kan afrit, km, tankstation of herkenningspunt hier sturen.",
+      "ℹ️ Ik vraag een taxi voor passagiers. Als het voertuig sleepdienst nodig heeft, wordt dat apart geregeld.",
       "💶 Ik begrijp dat de prijs indicatief is tot directe bevestiging.",
       "Kunt u de beschikbaarheid bevestigen, alstublieft?",
     ],
@@ -2640,9 +2673,8 @@ function roadAssistanceWhatsappUrl({
       locationLine,
       `👥 عدد الركاب: ${passengers}`,
       "🏁 الوجهة: نقطة آمنة، كالاتايود، ورشة، فندق أو وجهة للتأكيد.",
-      "✅ أنا في مكان آمن ويمكنني إرسال تفاصيل أكثر هنا.",
-      "🛟 إذا احتجت إلى سحب أو مساعدة طريق، سأتواصل أيضا مع التأمين/المساعدة.",
-      "ℹ️ مهم: أحتاج تاكسي للركاب، وليس شاحنة سحب.",
+      "✅ أحاول أن أكون في نقطة استلام آمنة. يمكنني إرسال المخرج أو الكيلومتر أو محطة الوقود أو علامة قريبة هنا.",
+      "ℹ️ أطلب تاكسي للركاب. إذا كانت السيارة تحتاج إلى سحب، يتم ترتيب ذلك بشكل منفصل.",
       "💶 أفهم أن السعر تقديري حتى التأكيد المباشر.",
       "هل يمكنك تأكيد التوفر من فضلك؟",
     ],
@@ -2675,9 +2707,9 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarifa",
       priceNotice:
         "💶 Precio orientativo sujeto a confirmación directa según disponibilidad, ruta final, horario, espera y suplementos oficiales.",
-      askPrice: "Necesito que me confirmes precio y disponibilidad.",
+      askPrice: "Necesito confirmación de disponibilidad y precio orientativo.",
       notCalculated:
-        "🚕 La web no ha cerrado el precio exacto, pero no pasa nada: te envío la ruta para que me confirmes precio final y disponibilidad.",
+        "🚕 Te envío los datos para que Taxi Ayud confirme disponibilidad, precio orientativo y detalles del servicio.",
       confirm: "¿Me confirmas disponibilidad?",
       thanks: "Gracias.",
     },
@@ -2695,9 +2727,9 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Fare",
       priceNotice:
         "💶 Indicative price subject to direct confirmation depending on availability, final route, time, waiting time and official supplements.",
-      askPrice: "Please confirm price and availability.",
+      askPrice: "Please confirm availability and indicative price.",
       notCalculated:
-        "🚕 The website did not finish the exact fare, but no worries: I am sending the route so you can confirm price and availability.",
+        "🚕 I am sending the trip details so Taxi Ayud can confirm availability, indicative price and service details.",
       confirm: "Can you confirm availability?",
       thanks: "Thank you.",
     },
@@ -2715,9 +2747,9 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarif",
       priceNotice:
         "💶 Prix indicatif soumis à confirmation directe selon disponibilité, itinéraire final, horaire, attente et suppléments officiels.",
-      askPrice: "Merci de confirmer le prix et la disponibilité.",
+      askPrice: "Merci de confirmer la disponibilité et le prix indicatif.",
       notCalculated:
-        "🚕 Le site n'a pas finalisé le prix exact, mais pas d'inquiétude : j'envoie l'itinéraire pour confirmer le prix et la disponibilité.",
+        "🚕 J'envoie les détails du trajet pour que Taxi Ayud confirme disponibilité, prix indicatif et détails du service.",
       confirm: "Pouvez-vous confirmer la disponibilité ?",
       thanks: "Merci.",
     },
@@ -2735,9 +2767,9 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarifa",
       priceNotice:
         "💶 Preu orientatiu subjecte a confirmació directa segons disponibilitat, ruta final, horari, espera i suplements oficials.",
-      askPrice: "Si us plau, confirma preu i disponibilitat.",
+      askPrice: "Si us plau, confirma disponibilitat i preu orientatiu.",
       notCalculated:
-        "🚕 El web no ha tancat el preu exacte, però no passa res: envio la ruta per confirmar preu i disponibilitat.",
+        "🚕 Envio les dades del trajecte perquè Taxi Ayud confirmi disponibilitat, preu orientatiu i detalls del servei.",
       confirm: "Em confirmes disponibilitat?",
       thanks: "Gràcies.",
     },
@@ -2755,9 +2787,9 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarif",
       priceNotice:
         "💶 Orientierungspreis vorbehaltlich direkter Bestätigung je nach Verfügbarkeit, endgültiger Route, Uhrzeit, Wartezeit und offiziellen Zuschlägen.",
-      askPrice: "Bitte Preis und Verfügbarkeit bestätigen.",
+      askPrice: "Bitte Verfügbarkeit und Orientierungspreis bestätigen.",
       notCalculated:
-        "🚕 Die Website konnte den genauen Preis nicht abschliessen, aber kein Problem: Ich sende die Route zur Bestätigung von Preis und Verfügbarkeit.",
+        "🚕 Ich sende die Fahrtdaten, damit Taxi Ayud Verfügbarkeit, Orientierungspreis und Servicedetails bestätigen kann.",
       confirm: "Können Sie die Verfügbarkeit bestätigen?",
       thanks: "Danke.",
     },
@@ -2775,9 +2807,9 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tariffa",
       priceNotice:
         "💶 Prezzo indicativo soggetto a conferma diretta in base a disponibilità, percorso finale, orario, attesa e supplementi ufficiali.",
-      askPrice: "Per favore confermate prezzo e disponibilità.",
+      askPrice: "Per favore confermate disponibilità e prezzo indicativo.",
       notCalculated:
-        "🚕 Il sito non ha chiuso il prezzo esatto, ma nessun problema: invio il percorso per confermare prezzo e disponibilità.",
+        "🚕 Invio i dati del viaggio così Taxi Ayud può confermare disponibilità, prezzo indicativo e dettagli del servizio.",
       confirm: "Potete confermare la disponibilità?",
       thanks: "Grazie.",
     },
@@ -2795,9 +2827,9 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarifa",
       priceNotice:
         "💶 Preço indicativo sujeito a confirmação direta conforme disponibilidade, rota final, horário, espera e suplementos oficiais.",
-      askPrice: "Por favor confirme preço e disponibilidade.",
+      askPrice: "Por favor confirme disponibilidade e preço indicativo.",
       notCalculated:
-        "🚕 O site não fechou o preço exato, mas não há problema: envio a rota para confirmar preço e disponibilidade.",
+        "🚕 Envio os dados da viagem para que Taxi Ayud confirme disponibilidade, preço indicativo e detalhes do serviço.",
       confirm: "Pode confirmar disponibilidade?",
       thanks: "Obrigado.",
     },
@@ -2815,9 +2847,9 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarief",
       priceNotice:
         "💶 Richtprijs onder voorbehoud van directe bevestiging, afhankelijk van beschikbaarheid, definitieve route, tijd, wachttijd en officiële toeslagen.",
-      askPrice: "Kunt u prijs en beschikbaarheid bevestigen?",
+      askPrice: "Kunt u beschikbaarheid en richtprijs bevestigen?",
       notCalculated:
-        "🚕 De website kon de exacte prijs niet afronden, maar geen zorgen: ik stuur de route om prijs en beschikbaarheid te bevestigen.",
+        "🚕 Ik stuur de ritgegevens zodat Taxi Ayud beschikbaarheid, richtprijs en servicedetails kan bevestigen.",
       confirm: "Kunt u de beschikbaarheid bevestigen?",
       thanks: "Dank u.",
     },
@@ -2834,15 +2866,15 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "السعر التقديري",
       fare: "التعرفة",
       priceNotice: "💶 السعر تقديري ويخضع للتأكيد المباشر حسب التوفر والمسار النهائي والوقت والانتظار والرسوم الرسمية.",
-      askPrice: "يرجى تأكيد السعر والتوفر.",
-      notCalculated: "🚕 لم يغلق الموقع السعر الدقيق، لا تقلق: أرسل المسار لتأكيد السعر والتوفر.",
+      askPrice: "يرجى تأكيد التوفر والسعر التقديري.",
+      notCalculated: "🚕 أرسل تفاصيل الرحلة حتى يؤكد Taxi Ayud التوفر والسعر التقديري وتفاصيل الخدمة.",
       confirm: "هل يمكنك تأكيد التوفر؟",
       thanks: "شكرا.",
     },
   };
   const whatsappCopy = whatsappCopies[language] ?? whatsappCopies.en;
   const modeLine = options.mode === "now" ? whatsappCopy.now : whatsappCopy.later;
-  const locationLine = pickupLocationLine(options.pickupLocation);
+  const locationLine = pickupLocationLine(options.pickupLocation, language);
   const notesLine = options.notes.trim() ? `📝 ${whatsappCopy.notes}: ${options.notes.trim()}` : "";
 
   const priceLines = options.result
@@ -3355,7 +3387,7 @@ function App() {
     setQuery("Punto seguro o destino por confirmar");
     setSelectedOriginPoint(null);
     setSelectedDestinationPoint(null);
-    setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros. Si hace falta grúa/asistencia, aviso también a mi aseguradora. Precio sujeto a confirmación directa.");
+    setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros desde un punto seguro. Taxi para pasajeros, no grúa. Precio sujeto a confirmación directa.");
     setResult(null);
     setRouteError("");
     trackEvent("clic_reserva", { source: "road_pickup" });
@@ -3373,7 +3405,7 @@ function App() {
       lat: 41.3535,
       lng: -1.6434,
     });
-    setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros en un punto seguro. Si hace falta grúa/asistencia, aviso también a mi aseguradora. Precio sujeto a confirmación directa.");
+    setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros en un punto seguro. Taxi para pasajeros, no grúa. Precio sujeto a confirmación directa.");
     setResult(null);
     setRouteError("");
     trackEvent("clic_reserva", { source: "road_preset" });
