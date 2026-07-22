@@ -619,7 +619,7 @@ h1 {
   color: #141414;
 }
 
-.trust-strip div {
+.trust-strip > div {
   display: grid;
   grid-template-columns: 22px 1fr;
   column-gap: 10px;
@@ -629,13 +629,13 @@ h1 {
   background: rgba(255, 255, 255, 0.52);
 }
 
-.trust-strip svg {
+.trust-strip > div > svg {
   grid-row: span 2;
   margin-top: 2px;
   color: #8a610f;
 }
 
-.trust-strip span {
+.trust-strip > div > span:not(.payment-logos) {
   font-weight: 950;
 }
 
@@ -645,6 +645,64 @@ h1 {
   color: #5d5649;
   font-size: 0.88rem;
   font-weight: 700;
+}
+
+.payment-logos {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.payment-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 25px;
+  padding: 4px 8px;
+  border: 1px solid rgba(20, 20, 20, 0.1);
+  border-radius: 6px;
+  background: #fff;
+  color: #141414;
+  box-shadow: 0 7px 18px rgba(20, 20, 20, 0.08);
+  font-size: 0.72rem;
+  font-weight: 950;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.payment-logo svg {
+  width: 14px;
+  height: 14px;
+}
+
+.payment-logo-cash {
+  background: #f7fff5;
+  color: #1f6f3b;
+}
+
+.payment-logo-card {
+  background: #f3f8ff;
+  color: #164a8a;
+}
+
+.payment-logo-bizum {
+  background: #ecfff7;
+  color: #008a74;
+  letter-spacing: 0;
+}
+
+.payment-logo-apple {
+  background: #111;
+  color: #fff;
+}
+
+.payment-logo-google {
+  border-color: rgba(66, 133, 244, 0.22);
+  background: linear-gradient(90deg, #4285f4 0 20%, #34a853 20% 45%, #fbbc05 45% 70%, #ea4335 70%);
+  color: #fff;
 }
 
 .region-band {
@@ -2869,8 +2927,18 @@ tr:hover td {
     grid-template-columns: 1fr;
   }
 
-  .trust-strip div {
+  .trust-strip > div {
     padding: 16px 20px;
+  }
+
+  .payment-logos {
+    gap: 5px;
+  }
+
+  .payment-logo {
+    min-height: 24px;
+    padding: 4px 7px;
+    font-size: 0.68rem;
   }
 
   .section {
@@ -2905,6 +2973,12 @@ tr:hover td {
   .road-quick-card,
   .review-cards {
     grid-template-columns: 1fr;
+  }
+
+  .address-suggestions {
+    position: static;
+    margin-top: 8px;
+    max-height: 190px;
   }
 
   .road-quick-card > svg {

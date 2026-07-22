@@ -2268,7 +2268,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   es: {
     reserveWhatsapp: "Reservar por WhatsApp",
     officialNotice: "Tarifas interurbanas oficiales 2026 · B.O.A. n.º 238 del 10-12-2025",
-    paymentShort: "Efectivo · Tarjeta · Bizum",
+    paymentShort: "Efectivo · Tarjeta · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "Aviso de cookies",
       title: "Privacidad y cookies",
@@ -2348,7 +2348,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   en: {
     reserveWhatsapp: "Book by WhatsApp",
     officialNotice: "Official intercity taxi fares 2026 · B.O.A. no. 238, 10-12-2025",
-    paymentShort: "Cash · Card · Bizum",
+    paymentShort: "Cash · Card · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "Cookie notice",
       title: "Privacy and cookies",
@@ -2428,7 +2428,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   fr: {
     reserveWhatsapp: "Réserver par WhatsApp",
     officialNotice: "Tarifs interurbains officiels 2026 · B.O.A. n.º 238 du 10-12-2025",
-    paymentShort: "Espèces · Carte · Bizum",
+    paymentShort: "Espèces · Carte · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "Avis sur les cookies",
       title: "Confidentialité et cookies",
@@ -2508,7 +2508,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   ca: {
     reserveWhatsapp: "Reservar per WhatsApp",
     officialNotice: "Tarifes interurbanes oficials 2026 · B.O.A. núm. 238 del 10-12-2025",
-    paymentShort: "Efectiu · Targeta · Bizum",
+    paymentShort: "Efectiu · Targeta · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "Avís de cookies",
       title: "Privacitat i cookies",
@@ -2588,7 +2588,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   de: {
     reserveWhatsapp: "Per WhatsApp buchen",
     officialNotice: "Offizielle Überlandtarife 2026 · B.O.A. Nr. 238 vom 10.12.2025",
-    paymentShort: "Bar · Karte · Bizum",
+    paymentShort: "Bar · Karte · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "Cookie-Hinweis",
       title: "Datenschutz und Cookies",
@@ -2668,7 +2668,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   it: {
     reserveWhatsapp: "Prenota su WhatsApp",
     officialNotice: "Tariffe interurbane ufficiali 2026 · B.O.A. n. 238 del 10-12-2025",
-    paymentShort: "Contanti · Carta · Bizum",
+    paymentShort: "Contanti · Carta · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "Avviso cookie",
       title: "Privacy e cookie",
@@ -2748,7 +2748,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   pt: {
     reserveWhatsapp: "Reservar por WhatsApp",
     officialNotice: "Tarifas interurbanas oficiais 2026 · B.O.A. n.º 238 de 10-12-2025",
-    paymentShort: "Dinheiro · Cartão · Bizum",
+    paymentShort: "Dinheiro · Cartão · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "Aviso de cookies",
       title: "Privacidade e cookies",
@@ -2828,7 +2828,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   nl: {
     reserveWhatsapp: "Boeken via WhatsApp",
     officialNotice: "Officiële interlokale tarieven 2026 · B.O.A. nr. 238 van 10-12-2025",
-    paymentShort: "Contant · Kaart · Bizum",
+    paymentShort: "Contant · Kaart · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "Cookiebericht",
       title: "Privacy en cookies",
@@ -2908,7 +2908,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   ar: {
     reserveWhatsapp: "الحجز عبر واتساب",
     officialNotice: "تعرفات بين المدن الرسمية 2026 · B.O.A. رقم 238 بتاريخ 10-12-2025",
-    paymentShort: "نقدا · بطاقة · Bizum",
+    paymentShort: "نقدا · بطاقة · Bizum · Apple Pay · Google Pay",
     cookie: {
       aria: "إشعار ملفات تعريف الارتباط",
       title: "الخصوصية وملفات الارتباط",
@@ -4700,6 +4700,27 @@ function CookieBanner({
   );
 }
 
+function PaymentLogos({ language }: { language: LangCode }) {
+  const [cash, card, bizum = "Bizum", applePay = "Apple Pay", googlePay = "Google Pay"] =
+    COPY[language].paymentText.split(" · ");
+
+  return (
+    <span className="payment-logos" aria-label={COPY[language].paymentText}>
+      <span className="payment-logo payment-logo-cash">
+        <WalletCards aria-hidden="true" />
+        {cash}
+      </span>
+      <span className="payment-logo payment-logo-card">
+        <CreditCard aria-hidden="true" />
+        {card}
+      </span>
+      <span className="payment-logo payment-logo-bizum">{bizum}</span>
+      <span className="payment-logo payment-logo-apple">{applePay}</span>
+      <span className="payment-logo payment-logo-google">{googlePay}</span>
+    </span>
+  );
+}
+
 function LegalFooter({ language }: { language: LangCode }) {
   const global = GLOBAL_COPY[language];
 
@@ -5028,6 +5049,14 @@ function App() {
     return t.passengerOptions[count - 1] ?? `${count} ${t.passengers.toLowerCase()}`;
   }
 
+  function selectSearchField(event: React.FocusEvent<HTMLInputElement>) {
+    const input = event.currentTarget;
+
+    window.setTimeout(() => {
+      input.select();
+    }, 0);
+  }
+
   function useLookupDestination(key: string) {
     chooseDestination(key);
     document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
@@ -5334,6 +5363,7 @@ function App() {
             <WalletCards aria-hidden="true" />
             <span>{t.paymentTitle}</span>
             <p>{t.paymentText}</p>
+            <PaymentLogos language={language} />
           </div>
           <div>
             <TimerReset aria-hidden="true" />
@@ -5520,7 +5550,11 @@ function App() {
                       aria-expanded={activeAddressField === "origin" && originSuggestions.length > 0}
                       value={origin}
                       placeholder={t.originPlaceholder}
-                      onFocus={() => setActiveAddressField("origin")}
+                      onFocus={(event) => {
+                        setActiveAddressField("origin");
+                        setDestinationSuggestions([]);
+                        selectSearchField(event);
+                      }}
                       onBlur={closeAddressSuggestionsSoon}
                       onChange={(event) => {
                         setOrigin(event.target.value);
@@ -5562,14 +5596,16 @@ function App() {
                       }
                       value={destinationSearchValue}
                       placeholder={destinationPlaceholder}
-                      onFocus={() => {
+                      onFocus={(event) => {
                         setActiveAddressField("destination");
+                        setOriginSuggestions([]);
                         if (isRoadDestinationDraft(query)) {
                           setQuery("");
                           setSelectedKey("");
                           setSelectedDestinationPoint(null);
                           setDestinationSuggestions([]);
                         }
+                        selectSearchField(event);
                       }}
                       onBlur={closeAddressSuggestionsSoon}
                       onChange={(event) => {
