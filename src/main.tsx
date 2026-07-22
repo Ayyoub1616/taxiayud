@@ -76,6 +76,7 @@ type ResultInput = {
   passengers: number;
   waitMinutes: number;
   mode: BookingMode;
+  language?: LangCode;
 };
 
 type ExactRouteResponse = {
@@ -139,6 +140,82 @@ type WhatsAppOptions = {
 };
 
 type LangCode = "es" | "en" | "fr" | "ca" | "de" | "it" | "pt" | "nl" | "ar";
+
+type GlobalCopy = {
+  reserveWhatsapp: string;
+  officialNotice: string;
+  paymentShort: string;
+  cookie: {
+    aria: string;
+    title: string;
+    text: string;
+    privacy: string;
+    cookies: string;
+    necessary: string;
+    accept: string;
+  };
+  legal: {
+    aria: string;
+    legalTitle: string;
+    legalText: string;
+    privacyTitle: string;
+    privacyText: string;
+    cookiesTitle: string;
+    cookiesText: string;
+  };
+  route: {
+    dayLabel: string;
+    premiumLabel: string;
+    businessDay: string;
+    night: string;
+    holiday: string;
+    calculated: string;
+    estimated: string;
+    habitual: string;
+    dateEmpty: string;
+    originFallback: string;
+    destinationFallback: string;
+  };
+  location: {
+    current: string;
+    currentDetail: string;
+    roadFallbackOrigin: string;
+    roadNotes: string;
+    unsupported: string;
+    requesting: string;
+    ready: string;
+    failed: string;
+  };
+  media: {
+    roadPhotoAlt: string;
+    roadPhotoCaption: string;
+  };
+  aria: {
+    brandHome: string;
+    mainNav: string;
+    language: string;
+    relatedLinks: string;
+    internalRoutes: string;
+    languageVersions: string;
+    serviceHighlights: string;
+    bookingCard: string;
+    quickContact: string;
+    trustData: string;
+    region: string;
+    comfort: string;
+    localSeo: string;
+    tourist: string;
+    bookingType: string;
+    originSuggestions: string;
+    destinationSuggestions: string;
+    suggestedDestinations: string;
+    reviewSignals: string;
+    quickDestinations: string;
+    mobileActions: string;
+    roadMobile: string;
+  };
+  starsLabel: (rating: number) => string;
+};
 
 type Copy = {
   nav: string[];
@@ -955,15 +1032,41 @@ const COPY: Record<LangCode, Copy> = {
     sendWhatsapp: "Enviar WhatsApp",
     seeQuote: "Veure pressupost",
     paymentTitle: "Pagament flexible",
+    paymentText: "Efectiu · Targeta · Bizum · Apple Pay · Google Pay",
     officialFare: "Tarifa oficial",
     googleText: "públiques al perfil d'empresa",
     googleRating: "a Google",
+    regionEyebrow: "Comarca de Calatayud",
     regionTitle: "Calatayud, pobles de la comarca, balnearis i Saragossa sense complicacions",
+    regionText:
+      "Servei puntual, còmode i discret per moure't per Calatayud, Saragossa i tota la comarca amb maletes, família o visites turístiques.",
     comfort: ["Conducció tranquil·la", "Maleter ampli", "Taxi oficial", "Reserva per WhatsApp"],
+    seoEyebrow: "Taxi local premium",
     seoTitle: "El taxi de confiança per a Calatayud i la zona",
     seoText:
       "Rutes freqüents amb recollida a estació, hotels, Plaza del Fuerte, pobles de la comarca, Monasterio de Piedra, balnearis, Saragossa i aeroport.",
+    seoRoutes: [
+      {
+        title: "Taxi estació AVE Calatayud",
+        text: "Recollides puntuals a l'estació, hotels i Plaza del Fuerte.",
+      },
+      {
+        title: "Monasterio de Piedra i Nuévalos",
+        text: "Trasllat directe des de Calatayud amb tornada programada opcional.",
+      },
+      {
+        title: "Saragossa, aeroport i Delicias",
+        text: "Viatges a Saragossa-Delicias, Aeroport de Saragossa, hospitals i centre.",
+      },
+      {
+        title: "Balnearis i comarca",
+        text: "Jaraba, Alhama de Aragón, Paracuellos, Ateca, Maluenda i pobles propers.",
+      },
+    ],
+    calcEyebrow: "Reserva i pressupost",
     calcTitle: "Calcula la ruta i envia el missatge preparat",
+    calcText:
+      "Introdueix origen, destinació, data i passatgers per preparar un pressupost orientatiu i enviar la reserva per WhatsApp.",
     schedule: "Programar",
     now: "Ara",
     origin: "Origen",
@@ -975,8 +1078,15 @@ const COPY: Record<LangCode, Copy> = {
     time: "Hora",
     passengers: "Passatgers",
     passengerOptions: ["1 passatger", "2 passatgers", "3 passatgers", "4 passatgers"],
+    optionalWait: "Espera opcional",
+    notes: "Notes",
+    notesPlaceholder: "Tren, maletes, hotel, tornada...",
     sendMyLocation: "Enviar la meva ubicació",
+    immediate: "S'enviarà com a disponibilitat immediata.",
     calculating: "Calculant...",
+    locationHint:
+      "Escriu un carrer, hotel, estació o municipi. Si tries una suggerència, el càlcul serà més precís.",
+    routeMissing: "Indica origen i destinació per calcular una ruta exacta.",
     routeError:
       "🚕 Ui, aquesta ruta necessita una mirada ràpida. No pateixis: envia-la per WhatsApp i confirmo preu i disponibilitat de seguida.",
     resultDistance: "Distància estimada",
@@ -993,15 +1103,81 @@ const COPY: Record<LangCode, Copy> = {
     apiPrivateNote:
       "📲 El WhatsApp prepara les dades bàsiques per respondre ràpid. El preu final, disponibilitat i punt exacte es confirmen directament.",
     reviewsEyebrow: "Ressenyes de Google",
+    reviewsText:
+      "Destaquem l'experiència de Raquel a Google: puntualitat, taxi net i tracte proper. La resta d'opinions queda disponible a Google.",
     reviewsWith: "amb",
+    featuredReview: "Ressenya principal",
     moreReviews: "Veure més ressenyes",
+    viewGoogle: "Veure més ressenyes a Google",
+    servicesEyebrow: "Serveis",
     servicesTitle: "Pobles, balnearis i Saragossa des de Calatayud",
     servicesText:
       "Servei còmode per moure't per la comarca: pobles propers, balnearis, estació, Saragossa, aeroport, cites mèdiques i viatges programats.",
+    serviceItems: [
+      {
+        title: "Monasterio de Piedra",
+        text: "Trasllat directe des de Calatayud al parc natural, amb recollida programada per a la tornada.",
+        detail: "Ideal per a visitants que arriben en tren o s'allotgen a Calatayud i volen aprofitar el dia sense aparcar.",
+      },
+      {
+        title: "Balnearis termals",
+        text: "Alhama de Aragón, Jaraba, Paracuellos de Jiloca i complexos termals de la comarca.",
+        detail: "Recollides a domicili, estació o hotel per a estades de descans, tractaments i escapades.",
+      },
+      {
+        title: "Saragossa i aeroport",
+        text: "Estació Delicias, Aeroport de Saragossa, hospitals, centre i qualsevol punt de la ciutat.",
+        detail: "Viatge porta a porta per a trens, vols, cites mèdiques, gestions o compres sense transbordaments.",
+      },
+      {
+        title: "Estacions i tren",
+        text: "Connexions amb l'estació de Calatayud, Delicias i altres punts de recollida.",
+        detail: "Reserva amb hora tancada per arribar tranquil, fins i tot de matinada o en festius.",
+      },
+      {
+        title: "Rutes turístiques",
+        text: "Art mudèjar, Augusta Bilbilis, bodegues D.O. Calatayud i recorreguts per la comarca.",
+        detail: "Disponibilitat per hores per fer diverses parades i adaptar l'itinerari al teu ritme.",
+      },
+      {
+        title: "Trasllats mèdics",
+        text: "Centres de salut, clíniques i hospitals de Calatayud i Saragossa.",
+        detail: "Servei discret i puntual, amb possibilitat de coordinar la tornada després de la cita.",
+      },
+      {
+        title: "Empreses i esdeveniments",
+        text: "Reunions, hotels, proveïdors, casaments, comunions i celebracions.",
+        detail: "Reserves programades per a clients, treballadors o convidats amb fins a 4 passatgers.",
+      },
+      {
+        title: "Pobles de la comarca",
+        text: "Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes i molts altres destins.",
+        detail: "Consulta el destí a la calculadora o a la taula per veure un preu orientatiu.",
+      },
+      {
+        title: "Recollida per avaria en carretera",
+        text: "Taxi per a passatgers que s'han quedat tirats prop de Calatayud, A-2, N-II o carreteres de la comarca.",
+        detail: "Servei de taxi per portar-te a un punt segur, taller, hotel, estació o destinació indicada. No és servei de grua.",
+      },
+    ],
     tariffsEyebrow: "Tarifes",
     tariffsTitle: "Destinacions freqüents",
+    tariffsText:
+      "Busca un municipi o ciutat per revisar quilòmetres i preus orientatius. Les reserves es confirmen per telèfon o WhatsApp.",
+    chooseDestination: "Tria destinació",
+    estimatedFare: "Tarifa orientativa",
+    oneWayKm: "Km anada",
+    dayFare: "Diürna",
+    nightFare: "Nocturna / festiva",
+    calcDestination: "Calcular aquest destí",
+    fullTable: "Veure taula completa de destins",
+    filterTable: "Filtrar taula",
+    closingEyebrow: "Reserva directa",
     closingTitle: "Taxi disponible a Calatayud",
+    closingText:
+      "Per a horaris exactes, viatges de matinada, trajectes llargs o recollides especials, confirma disponibilitat directament.",
     footerText: "Taxi oficial a Calatayud.",
+    footerLinks: ["Monasterio de Piedra", "Balnearis", "Saragossa i aeroport", "Pobles de la comarca"],
     floatingWhatsapp: "Reservar per WhatsApp",
   },
   de: {
@@ -1022,27 +1198,61 @@ const COPY: Record<LangCode, Copy> = {
     sendWhatsapp: "WhatsApp senden",
     seeQuote: "Preis ansehen",
     paymentTitle: "Flexible Zahlung",
+    paymentText: "Bar · Karte · Bizum · Apple Pay · Google Pay",
     officialFare: "Offizieller Tarif",
     googleText: "öffentlich im Unternehmensprofil",
     googleRating: "bei Google",
+    regionEyebrow: "Region Calatayud",
     regionTitle: "Calatayud, Dörfer, Thermalbäder und Zaragoza bequem erreichen",
+    regionText:
+      "Pünktlicher, komfortabler und diskreter Service für Calatayud, Zaragoza und die ganze Region mit Gepäck, Familie oder Ausflügen.",
     comfort: ["Ruhige Fahrt", "Großer Kofferraum", "Offizielles Taxi", "Buchung per WhatsApp"],
+    seoEyebrow: "Premium-Taxi vor Ort",
     seoTitle: "Ihr zuverlässiges Taxi in Calatayud und Umgebung",
     seoText:
       "Häufige Fahrten ab Bahnhof, Hotels, Plaza del Fuerte, Dörfern der Region, Monasterio de Piedra, Thermalbädern, Zaragoza und Flughafen.",
+    seoRoutes: [
+      {
+        title: "Taxi Bahnhof Calatayud",
+        text: "Pünktliche Abholung am Bahnhof, an Hotels und an der Plaza del Fuerte.",
+      },
+      {
+        title: "Monasterio de Piedra und Nuévalos",
+        text: "Direkter Transfer ab Calatayud mit optional geplanter Rückfahrt.",
+      },
+      {
+        title: "Zaragoza, Flughafen und Delicias",
+        text: "Fahrten nach Zaragoza-Delicias, zum Flughafen Zaragoza, zu Krankenhäusern und ins Zentrum.",
+      },
+      {
+        title: "Thermalbäder und Umgebung",
+        text: "Jaraba, Alhama de Aragón, Paracuellos, Ateca, Maluenda und nahe Orte.",
+      },
+    ],
+    calcEyebrow: "Buchung und Preis",
     calcTitle: "Route berechnen und fertige Nachricht senden",
+    calcText:
+      "Geben Sie Start, Ziel, Datum und Fahrgäste ein, um einen Orientierungspreis vorzubereiten und per WhatsApp zu senden.",
     schedule: "Planen",
     now: "Jetzt",
     origin: "Abfahrt",
     destination: "Ziel",
     originPlaceholder: "Straße, Hotel, Bahnhof, Ort...",
     destinationPlaceholder: "Straße, Hotel, Stadt, Flughafen...",
+    habitualDestination: "Häufiges Ziel",
     date: "Datum",
     time: "Uhrzeit",
     passengers: "Fahrgäste",
     passengerOptions: ["1 Fahrgast", "2 Fahrgäste", "3 Fahrgäste", "4 Fahrgäste"],
+    optionalWait: "Optionale Wartezeit",
+    notes: "Hinweise",
+    notesPlaceholder: "Zug, Gepäck, Hotel, Rückfahrt...",
     sendMyLocation: "Meinen Standort senden",
+    immediate: "Wird als sofortige Verfügbarkeit gesendet.",
     calculating: "Berechnung...",
+    locationHint:
+      "Geben Sie Straße, Hotel, Bahnhof oder Ort ein. Eine ausgewählte Vorschlagadresse verbessert die Genauigkeit.",
+    routeMissing: "Geben Sie Start und Ziel ein, um eine genaue Route zu berechnen.",
     routeError:
       "🚕 Ups, diese Route braucht einen kurzen manuellen Blick. Keine Sorge: per WhatsApp bestätige ich Preis und Verfügbarkeit sofort.",
     resultDistance: "Geschätzte Entfernung",
@@ -1059,15 +1269,87 @@ const COPY: Record<LangCode, Copy> = {
     apiPrivateNote:
       "📲 Die WhatsApp-Nachricht bereitet die Basisdaten vor. Endpreis, Verfügbarkeit und genauer Abholpunkt werden direkt bestätigt.",
     reviewsEyebrow: "Google-Bewertungen",
+    reviewsText:
+      "Raquels Google-Bewertung wird wegen Pünktlichkeit, sauberem Taxi und freundlichem Service hervorgehoben. Weitere Bewertungen sind auf Google verfügbar.",
     reviewsWith: "mit",
+    featuredReview: "Hauptbewertung",
     moreReviews: "Mehr Bewertungen",
+    viewGoogle: "Weitere Bewertungen auf Google ansehen",
+    servicesEyebrow: "Services",
     servicesTitle: "Dörfer, Thermalbäder und Zaragoza ab Calatayud",
     servicesText:
       "Komfortabler Service in der Umgebung: nahe Dörfer, Thermalbäder, Bahnhof, Zaragoza, Flughafen, Arzttermine und geplante Fahrten.",
+    serviceItems: [
+      {
+        title: "Monasterio de Piedra",
+        text: "Direkter Transfer von Calatayud zum Naturpark, mit geplanter Rückabholung bei Bedarf.",
+        detail: "Ideal für Besucher, die mit dem Zug ankommen oder in Calatayud übernachten und den Tag entspannt nutzen möchten.",
+      },
+      {
+        title: "Thermalbäder",
+        text: "Alhama de Aragón, Jaraba, Paracuellos de Jiloca und Thermalresorts der Region.",
+        detail: "Abholung zu Hause, am Bahnhof oder Hotel für Erholung, Behandlungen und Kurzaufenthalte.",
+      },
+      {
+        title: "Zaragoza und Flughafen",
+        text: "Bahnhof Delicias, Flughafen Zaragoza, Krankenhäuser, Zentrum und jede Adresse in der Stadt.",
+        detail: "Tür-zu-Tür-Fahrten für Züge, Flüge, Arzttermine, Erledigungen oder Einkäufe.",
+      },
+      {
+        title: "Bahnhöfe und Züge",
+        text: "Verbindungen zum Bahnhof Calatayud, Delicias und anderen Abholpunkten.",
+        detail: "Feste Uhrzeit buchen und ruhig ankommen, auch früh morgens oder an Feiertagen.",
+      },
+      {
+        title: "Touristische Routen",
+        text: "Mudéjar-Kunst, Augusta Bilbilis, Weinrouten D.O. Calatayud und Dörfer der Region.",
+        detail: "Stundenweise Verfügbarkeit für mehrere Stopps und eine Route in Ihrem Tempo.",
+      },
+      {
+        title: "Medizinische Fahrten",
+        text: "Gesundheitszentren, Kliniken und Krankenhäuser in Calatayud und Zaragoza.",
+        detail: "Diskreter und pünktlicher Service, mit Rückfahrtkoordination nach dem Termin.",
+      },
+      {
+        title: "Unternehmen und Events",
+        text: "Meetings, Hotels, Lieferanten, Hochzeiten, Kommunionen und Feiern.",
+        detail: "Geplante Buchungen für Kunden, Mitarbeiter oder Gäste mit bis zu 4 Fahrgästen.",
+      },
+      {
+        title: "Dörfer der Region",
+        text: "Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes und viele weitere Ziele.",
+        detail: "Nutzen Sie den Rechner oder die Tariftabelle für einen Orientierungspreis.",
+      },
+      {
+        title: "Abholung bei Panne",
+        text: "Taxi für Fahrgäste, die nahe Calatayud, A-2, N-II oder Straßen der Region liegen geblieben sind.",
+        detail: "Taxi zu einem sicheren Ort, Werkstatt, Hotel, Bahnhof oder Wunschziel. Kein Abschlepp- oder Pannendienst.",
+      },
+    ],
+    moreServices: "Weitere Services anzeigen",
+    vehicleEyebrow: "Fahrzeug",
+    vehicleText:
+      "Ein weißer Peugeot 408 Hybrid: modern, leise und geräumig für komfortable Transfers, mit Klimaanlage, Gepäckraum und offizieller Lizenz.",
+    vehicleSpecs: ["Großer Kofferraum", "Bis zu 4 Fahrgäste", "Fahrgastversicherung", "Einfache Zahlung", "Gepflegter Innenraum", "Pünktliche Abholung"],
     tariffsEyebrow: "Tarife",
     tariffsTitle: "Häufige Ziele",
+    tariffsText:
+      "Suchen Sie einen Ort oder eine Stadt, um Kilometer und Orientierungspreise zu prüfen. Buchungen werden per Telefon oder WhatsApp bestätigt.",
+    chooseDestination: "Ziel auswählen",
+    estimatedFare: "Orientierungstarif",
+    oneWayKm: "Km einfache Strecke",
+    dayFare: "Tag",
+    nightFare: "Nacht / Feiertag",
+    calcDestination: "Dieses Ziel berechnen",
+    fullTable: "Komplette Zieltabelle ansehen",
+    filterTable: "Tabelle filtern",
+    closingEyebrow: "Direkt buchen",
     closingTitle: "Taxi verfügbar in Calatayud",
+    closingText:
+      "Für genaue Uhrzeiten, Nachtfahrten, lange Strecken oder besondere Abholungen bestätigen Sie die Verfügbarkeit direkt.",
     footerText: "Offizielles Taxi in Calatayud.",
+    footerLinks: ["Monasterio de Piedra", "Thermalbäder", "Zaragoza und Flughafen", "Dörfer der Region"],
+    floatingWhatsapp: "Per WhatsApp buchen",
   },
   it: {
     ...BASE_COPY.en,
@@ -1079,25 +1361,69 @@ const COPY: Record<LangCode, Copy> = {
     heroSubtitle:
       "Taxi da Calatayud verso paesi della comarca, terme, Monasterio de Piedra, Saragozza, aeroporto e stazione.",
     bookTitle: "Prenotazione diretta, senza moduli lunghi",
+    bookText:
+      "Invia un messaggio diretto per verificare disponibilità o chiedere un taxi subito. Il calcolatore sotto prepara un preventivo orientativo.",
     noRoute: "Senza calcolare percorso",
     fastReply: "Risposta rapida",
     taxiNow: "Taxi ora",
     sendWhatsapp: "Invia WhatsApp",
     seeQuote: "Vedi preventivo",
     paymentTitle: "Pagamento flessibile",
+    paymentText: "Contanti · Carta · Bizum · Apple Pay · Google Pay",
     officialFare: "Tariffa ufficiale",
     googleText: "pubbliche sul profilo aziendale",
     googleRating: "su Google",
+    regionEyebrow: "Zona di Calatayud",
     regionTitle: "Calatayud, paesi, terme e Saragozza senza complicazioni",
+    regionText:
+      "Servizio puntuale, comodo e discreto per muoversi a Calatayud, Saragozza e nella comarca con bagagli, famiglia o visite turistiche.",
     comfort: ["Guida tranquilla", "Bagagliaio ampio", "Taxi ufficiale", "Prenotazione WhatsApp"],
+    seoEyebrow: "Taxi locale premium",
     seoTitle: "Il taxi di fiducia per Calatayud e dintorni",
+    seoText:
+      "Corse frequenti con partenza da stazione, hotel, Plaza del Fuerte, paesi della comarca, Monasterio de Piedra, terme, Saragozza e aeroporto.",
+    seoRoutes: [
+      {
+        title: "Taxi stazione Calatayud",
+        text: "Ritiri puntuali in stazione, hotel e Plaza del Fuerte.",
+      },
+      {
+        title: "Monasterio de Piedra e Nuévalos",
+        text: "Trasferimento diretto da Calatayud con ritorno programmato opzionale.",
+      },
+      {
+        title: "Saragozza, aeroporto e Delicias",
+        text: "Viaggi verso Zaragoza-Delicias, Aeroporto di Saragozza, ospedali e centro.",
+      },
+      {
+        title: "Terme e comarca",
+        text: "Jaraba, Alhama de Aragón, Paracuellos, Ateca, Maluenda e paesi vicini.",
+      },
+    ],
+    calcEyebrow: "Prenotazione e preventivo",
     calcTitle: "Calcola il percorso e invia il messaggio pronto",
+    calcText:
+      "Inserisci origine, destinazione, data e passeggeri per preparare un preventivo orientativo e inviare la prenotazione su WhatsApp.",
     schedule: "Programmare",
     now: "Ora",
     origin: "Origine",
     destination: "Destinazione",
+    originPlaceholder: "Via, hotel, stazione, comune...",
+    destinationPlaceholder: "Via, hotel, città, aeroporto...",
+    habitualDestination: "Destinazione abituale",
+    date: "Data",
+    time: "Ora",
     passengers: "Passeggeri",
     passengerOptions: ["1 passeggero", "2 passeggeri", "3 passeggeri", "4 passeggeri"],
+    optionalWait: "Attesa opzionale",
+    notes: "Note",
+    notesPlaceholder: "Treno, bagagli, hotel, ritorno...",
+    sendMyLocation: "Invia la mia posizione",
+    immediate: "Sarà inviato come disponibilità immediata.",
+    calculating: "Calcolo...",
+    locationHint:
+      "Scrivi una via, hotel, stazione o comune. Se scegli un suggerimento, il calcolo sarà più preciso.",
+    routeMissing: "Indica origine e destinazione per calcolare un percorso esatto.",
     routeError:
       "🚕 Ops, questo percorso ha bisogno di un controllo rapido. Nessun problema: invialo su WhatsApp e confermo prezzo e disponibilità.",
     resultDistance: "Distanza stimata",
@@ -1114,13 +1440,87 @@ const COPY: Record<LangCode, Copy> = {
     apiPrivateNote:
       "📲 Il messaggio WhatsApp prepara i dati base. Prezzo finale, disponibilità e punto esatto si confermano direttamente.",
     reviewsEyebrow: "Recensioni Google",
+    reviewsText:
+      "Mettiamo in evidenza la recensione di Raquel su Google: puntualità, taxi pulito e servizio gentile. Le altre recensioni sono disponibili su Google.",
     reviewsWith: "con",
+    featuredReview: "Recensione principale",
     moreReviews: "Vedi altre recensioni",
+    viewGoogle: "Vedi altre recensioni su Google",
+    servicesEyebrow: "Servizi",
     servicesTitle: "Paesi, terme e Saragozza da Calatayud",
+    servicesText:
+      "Servizio comodo nella zona: paesi vicini, terme, stazione, Saragozza, aeroporto, visite mediche e viaggi programmati.",
+    serviceItems: [
+      {
+        title: "Monasterio de Piedra",
+        text: "Trasferimento diretto da Calatayud al parco naturale, con ritorno programmato se necessario.",
+        detail: "Ideale per visitatori che arrivano in treno o soggiornano a Calatayud e vogliono godersi la giornata senza parcheggio.",
+      },
+      {
+        title: "Terme",
+        text: "Alhama de Aragón, Jaraba, Paracuellos de Jiloca e complessi termali della comarca.",
+        detail: "Ritiro a domicilio, stazione o hotel per soggiorni di riposo, trattamenti e fughe brevi.",
+      },
+      {
+        title: "Saragozza e aeroporto",
+        text: "Stazione Delicias, Aeroporto di Saragozza, ospedali, centro e qualsiasi punto della città.",
+        detail: "Viaggio porta a porta per treni, voli, visite mediche, commissioni o acquisti.",
+      },
+      {
+        title: "Stazioni e treni",
+        text: "Collegamenti con la stazione di Calatayud, Delicias e altri punti di ritiro.",
+        detail: "Prenota un orario preciso per viaggiare tranquillo, anche di notte o nei festivi.",
+      },
+      {
+        title: "Percorsi turistici",
+        text: "Arte mudéjar, Augusta Bilbilis, vini D.O. Calatayud e paesi della comarca.",
+        detail: "Disponibilità a ore per fare più fermate e adattare l'itinerario al tuo ritmo.",
+      },
+      {
+        title: "Trasferimenti medici",
+        text: "Centri sanitari, cliniche e ospedali di Calatayud e Saragozza.",
+        detail: "Servizio discreto e puntuale, con possibilità di coordinare il ritorno dopo la visita.",
+      },
+      {
+        title: "Aziende ed eventi",
+        text: "Riunioni, hotel, fornitori, matrimoni, comunioni e celebrazioni.",
+        detail: "Prenotazioni programmate per clienti, lavoratori o invitati fino a 4 passeggeri.",
+      },
+      {
+        title: "Paesi della comarca",
+        text: "Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes e molti altri luoghi.",
+        detail: "Consulta il calcolatore o la tabella tariffe per un prezzo orientativo.",
+      },
+      {
+        title: "Ritiro per guasto su strada",
+        text: "Taxi per passeggeri rimasti bloccati vicino a Calatayud, A-2, N-II o strade della comarca.",
+        detail: "Taxi verso un punto sicuro, officina, hotel, stazione o destinazione indicata. Non è carro attrezzi né assistenza meccanica.",
+      },
+    ],
+    moreServices: "Vedi altri servizi",
+    vehicleEyebrow: "Veicolo",
+    vehicleText:
+      "Peugeot 408 Hybrid bianco, moderno, silenzioso e spazioso per trasferimenti comodi, con climatizzazione, spazio bagagli e licenza ufficiale.",
+    vehicleSpecs: ["Bagagliaio ampio", "Fino a 4 passeggeri", "Assicurazione passeggeri", "Pagamento facile", "Interni curati", "Ritiro puntuale"],
     tariffsEyebrow: "Tariffe",
     tariffsTitle: "Destinazioni frequenti",
+    tariffsText:
+      "Cerca un comune o una città per vedere chilometri e prezzi orientativi. Le prenotazioni si confermano per telefono o WhatsApp.",
+    chooseDestination: "Scegli destinazione",
+    estimatedFare: "Tariffa orientativa",
+    oneWayKm: "Km andata",
+    dayFare: "Diurna",
+    nightFare: "Notturna / festiva",
+    calcDestination: "Calcola questa destinazione",
+    fullTable: "Vedi tabella completa",
+    filterTable: "Filtra tabella",
+    closingEyebrow: "Prenotazione diretta",
     closingTitle: "Taxi disponibile a Calatayud",
+    closingText:
+      "Per orari esatti, viaggi notturni, tratte lunghe o ritiri speciali, conferma direttamente la disponibilità.",
     footerText: "Taxi ufficiale a Calatayud.",
+    footerLinks: ["Monasterio de Piedra", "Terme", "Saragozza e aeroporto", "Paesi della comarca"],
+    floatingWhatsapp: "Prenota su WhatsApp",
   },
   pt: {
     ...BASE_COPY.en,
@@ -1132,25 +1532,69 @@ const COPY: Record<LangCode, Copy> = {
     heroSubtitle:
       "Táxi desde Calatayud para aldeias da comarca, termas, Monasterio de Piedra, Zaragoza, aeroporto e estação.",
     bookTitle: "Reserva direta, sem formulários longos",
+    bookText:
+      "Envie uma mensagem direta para consultar disponibilidade ou pedir táxi agora. A calculadora abaixo prepara um orçamento indicativo.",
     noRoute: "Sem calcular rota",
     fastReply: "Resposta rápida",
     taxiNow: "Táxi agora",
     sendWhatsapp: "Enviar WhatsApp",
     seeQuote: "Ver orçamento",
     paymentTitle: "Pagamento flexível",
+    paymentText: "Dinheiro · Cartão · Bizum · Apple Pay · Google Pay",
     officialFare: "Tarifa oficial",
     googleText: "públicas no perfil da empresa",
     googleRating: "no Google",
+    regionEyebrow: "Comarca de Calatayud",
     regionTitle: "Calatayud, aldeias, termas e Zaragoza sem complicações",
+    regionText:
+      "Serviço pontual, cómodo e discreto para circular por Calatayud, Zaragoza e toda a comarca com bagagem, família ou visitas turísticas.",
     comfort: ["Condução tranquila", "Bagageira ampla", "Táxi oficial", "Reserva por WhatsApp"],
+    seoEyebrow: "Táxi local premium",
     seoTitle: "O táxi de confiança em Calatayud e arredores",
+    seoText:
+      "Percursos frequentes com recolha na estação, hotéis, Plaza del Fuerte, aldeias da comarca, Monasterio de Piedra, termas, Zaragoza e aeroporto.",
+    seoRoutes: [
+      {
+        title: "Táxi estação Calatayud",
+        text: "Recolhas pontuais na estação, hotéis e Plaza del Fuerte.",
+      },
+      {
+        title: "Monasterio de Piedra e Nuévalos",
+        text: "Transfer direto desde Calatayud com regresso programado opcional.",
+      },
+      {
+        title: "Zaragoza, aeroporto e Delicias",
+        text: "Viagens para Zaragoza-Delicias, Aeroporto de Zaragoza, hospitais e centro.",
+      },
+      {
+        title: "Termas e comarca",
+        text: "Jaraba, Alhama de Aragón, Paracuellos, Ateca, Maluenda e aldeias próximas.",
+      },
+    ],
+    calcEyebrow: "Reserva e orçamento",
     calcTitle: "Calcule a rota e envie a mensagem pronta",
+    calcText:
+      "Introduza origem, destino, data e passageiros para preparar um orçamento indicativo e enviar a reserva por WhatsApp.",
     schedule: "Agendar",
     now: "Agora",
     origin: "Origem",
     destination: "Destino",
+    originPlaceholder: "Rua, hotel, estação, município...",
+    destinationPlaceholder: "Rua, hotel, cidade, aeroporto...",
+    habitualDestination: "Destino habitual",
+    date: "Data",
+    time: "Hora",
     passengers: "Passageiros",
     passengerOptions: ["1 passageiro", "2 passageiros", "3 passageiros", "4 passageiros"],
+    optionalWait: "Espera opcional",
+    notes: "Notas",
+    notesPlaceholder: "Comboio, bagagem, hotel, regresso...",
+    sendMyLocation: "Enviar a minha localização",
+    immediate: "Será enviado como disponibilidade imediata.",
+    calculating: "A calcular...",
+    locationHint:
+      "Escreva uma rua, hotel, estação ou município. Se escolher uma sugestão, o cálculo será mais preciso.",
+    routeMissing: "Indique origem e destino para calcular uma rota exata.",
     routeError:
       "🚕 Opa, esta rota precisa de uma confirmação rápida. Não se preocupe: envie por WhatsApp e confirmo preço e disponibilidade.",
     resultDistance: "Distância estimada",
@@ -1167,13 +1611,87 @@ const COPY: Record<LangCode, Copy> = {
     apiPrivateNote:
       "📲 A mensagem de WhatsApp prepara os dados básicos. Preço final, disponibilidade e ponto exato são confirmados diretamente.",
     reviewsEyebrow: "Avaliações Google",
+    reviewsText:
+      "Destacamos a avaliação da Raquel no Google: pontualidade, táxi limpo e atendimento próximo. As restantes avaliações estão disponíveis no Google.",
     reviewsWith: "com",
+    featuredReview: "Avaliação principal",
     moreReviews: "Ver mais avaliações",
+    viewGoogle: "Ver mais avaliações no Google",
+    servicesEyebrow: "Serviços",
     servicesTitle: "Aldeias, termas e Zaragoza desde Calatayud",
+    servicesText:
+      "Serviço cómodo pela zona: aldeias próximas, termas, estação, Zaragoza, aeroporto, consultas médicas e viagens programadas.",
+    serviceItems: [
+      {
+        title: "Monasterio de Piedra",
+        text: "Transfer direto desde Calatayud para o parque natural, com recolha de regresso programada se necessário.",
+        detail: "Ideal para visitantes que chegam de comboio ou ficam alojados em Calatayud e querem aproveitar o dia sem estacionar.",
+      },
+      {
+        title: "Termas",
+        text: "Alhama de Aragón, Jaraba, Paracuellos de Jiloca e complexos termais da comarca.",
+        detail: "Recolhas em casa, estação ou hotel para estadias de descanso, tratamentos e escapadas.",
+      },
+      {
+        title: "Zaragoza e aeroporto",
+        text: "Estação Delicias, Aeroporto de Zaragoza, hospitais, centro e qualquer ponto da cidade.",
+        detail: "Viagem porta a porta para comboios, voos, consultas médicas, compras ou gestões.",
+      },
+      {
+        title: "Estações e comboios",
+        text: "Ligações com a estação de Calatayud, Delicias e outros pontos de recolha.",
+        detail: "Reserva com hora marcada para chegar tranquilo, inclusive de madrugada ou em feriados.",
+      },
+      {
+        title: "Rotas turísticas",
+        text: "Arte mudéjar, Augusta Bilbilis, vinhos D.O. Calatayud e aldeias da comarca.",
+        detail: "Disponibilidade por horas para várias paragens e itinerário adaptado ao seu ritmo.",
+      },
+      {
+        title: "Transferes médicos",
+        text: "Centros de saúde, clínicas e hospitais de Calatayud e Zaragoza.",
+        detail: "Serviço discreto e pontual, com possibilidade de coordenar o regresso depois da consulta.",
+      },
+      {
+        title: "Empresas e eventos",
+        text: "Reuniões, hotéis, fornecedores, casamentos, comunhões e celebrações.",
+        detail: "Reservas programadas para clientes, trabalhadores ou convidados até 4 passageiros.",
+      },
+      {
+        title: "Aldeias da comarca",
+        text: "Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes e muitos outros destinos.",
+        detail: "Consulte a calculadora ou a tabela de tarifas para ver um preço indicativo.",
+      },
+      {
+        title: "Recolha por avaria na estrada",
+        text: "Táxi para passageiros que ficaram parados perto de Calatayud, A-2, N-II ou estradas da comarca.",
+        detail: "Serviço de táxi para um local seguro, oficina, hotel, estação ou destino indicado. Não é reboque nem assistência mecânica.",
+      },
+    ],
+    moreServices: "Ver mais serviços",
+    vehicleEyebrow: "Veículo",
+    vehicleText:
+      "Peugeot 408 Hybrid branco, moderno, silencioso e espaçoso para transferes confortáveis, com climatização, espaço para bagagem e licença oficial.",
+    vehicleSpecs: ["Bagageira ampla", "Até 4 passageiros", "Seguro de passageiros", "Pagamento fácil", "Interior cuidado", "Recolha pontual"],
     tariffsEyebrow: "Tarifas",
     tariffsTitle: "Destinos frequentes",
+    tariffsText:
+      "Pesquise um município ou cidade para ver quilómetros e preços indicativos. As reservas confirmam-se por telefone ou WhatsApp.",
+    chooseDestination: "Escolher destino",
+    estimatedFare: "Tarifa indicativa",
+    oneWayKm: "Km ida",
+    dayFare: "Diurna",
+    nightFare: "Noturna / feriado",
+    calcDestination: "Calcular este destino",
+    fullTable: "Ver tabela completa de destinos",
+    filterTable: "Filtrar tabela",
+    closingEyebrow: "Reserva direta",
     closingTitle: "Táxi disponível em Calatayud",
+    closingText:
+      "Para horários exatos, viagens de madrugada, trajetos longos ou recolhas especiais, confirme disponibilidade diretamente.",
     footerText: "Táxi oficial em Calatayud.",
+    footerLinks: ["Monasterio de Piedra", "Termas", "Zaragoza e aeroporto", "Aldeias da comarca"],
+    floatingWhatsapp: "Reservar por WhatsApp",
   },
   nl: {
     ...BASE_COPY.en,
@@ -1185,25 +1703,69 @@ const COPY: Record<LangCode, Copy> = {
     heroSubtitle:
       "Taxi vanaf Calatayud naar dorpen in de regio, kuuroorden, Monasterio de Piedra, Zaragoza, luchthaven en station.",
     bookTitle: "Direct boeken, zonder lange formulieren",
+    bookText:
+      "Stuur direct een bericht om beschikbaarheid te vragen of nu een taxi aan te vragen. De calculator hieronder maakt een richtprijs.",
     noRoute: "Geen route nodig",
     fastReply: "Snelle reactie",
     taxiNow: "Taxi nu",
     sendWhatsapp: "WhatsApp sturen",
     seeQuote: "Prijs bekijken",
     paymentTitle: "Flexibel betalen",
+    paymentText: "Contant · Kaart · Bizum · Apple Pay · Google Pay",
     officialFare: "Officieel tarief",
     googleText: "openbaar op het bedrijfsprofiel",
     googleRating: "op Google",
+    regionEyebrow: "Regio Calatayud",
     regionTitle: "Calatayud, dorpen, kuuroorden en Zaragoza zonder gedoe",
+    regionText:
+      "Punctuele, comfortabele en discrete service voor Calatayud, Zaragoza en de hele regio met bagage, familie of toeristische plannen.",
     comfort: ["Rustige rit", "Ruime kofferbak", "Officiële taxi", "Boeken via WhatsApp"],
+    seoEyebrow: "Premium lokale taxi",
     seoTitle: "De betrouwbare taxi voor Calatayud en omgeving",
+    seoText:
+      "Veelgebruikte ritten met ophaling bij station, hotels, Plaza del Fuerte, dorpen in de regio, Monasterio de Piedra, kuuroorden, Zaragoza en luchthaven.",
+    seoRoutes: [
+      {
+        title: "Taxi station Calatayud",
+        text: "Punctuele ophaling bij station, hotels en Plaza del Fuerte.",
+      },
+      {
+        title: "Monasterio de Piedra en Nuévalos",
+        text: "Directe transfer vanaf Calatayud met optionele geplande terugrit.",
+      },
+      {
+        title: "Zaragoza, luchthaven en Delicias",
+        text: "Ritten naar Zaragoza-Delicias, luchthaven Zaragoza, ziekenhuizen en centrum.",
+      },
+      {
+        title: "Kuuroorden en regio",
+        text: "Jaraba, Alhama de Aragón, Paracuellos, Ateca, Maluenda en nabijgelegen dorpen.",
+      },
+    ],
+    calcEyebrow: "Boeking en prijs",
     calcTitle: "Bereken de route en stuur een kant-en-klaar bericht",
+    calcText:
+      "Voer vertrek, bestemming, datum en passagiers in om een richtprijs te maken en de boeking via WhatsApp te sturen.",
     schedule: "Plannen",
     now: "Nu",
     origin: "Vertrek",
     destination: "Bestemming",
+    originPlaceholder: "Straat, hotel, station, gemeente...",
+    destinationPlaceholder: "Straat, hotel, stad, luchthaven...",
+    habitualDestination: "Veelgebruikte bestemming",
+    date: "Datum",
+    time: "Tijd",
     passengers: "Passagiers",
     passengerOptions: ["1 passagier", "2 passagiers", "3 passagiers", "4 passagiers"],
+    optionalWait: "Optionele wachttijd",
+    notes: "Opmerkingen",
+    notesPlaceholder: "Trein, bagage, hotel, terugrit...",
+    sendMyLocation: "Mijn locatie sturen",
+    immediate: "Dit wordt als directe beschikbaarheid verzonden.",
+    calculating: "Berekenen...",
+    locationHint:
+      "Typ een straat, hotel, station of plaats. Een gekozen suggestie maakt de berekening nauwkeuriger.",
+    routeMissing: "Vul vertrek en bestemming in om een exacte route te berekenen.",
     routeError:
       "🚕 Oeps, deze route heeft een snelle check nodig. Geen zorgen: stuur hem via WhatsApp en ik bevestig prijs en beschikbaarheid.",
     resultDistance: "Geschatte afstand",
@@ -1220,22 +1782,101 @@ const COPY: Record<LangCode, Copy> = {
     apiPrivateNote:
       "📲 Het WhatsApp-bericht bereidt de basisgegevens voor. Definitieve prijs, beschikbaarheid en exact ophaalpunt worden rechtstreeks bevestigd.",
     reviewsEyebrow: "Google reviews",
+    reviewsText:
+      "Raquels Google-review wordt uitgelicht vanwege punctualiteit, een schone taxi en vriendelijke service. De overige reviews staan op Google.",
     reviewsWith: "met",
+    featuredReview: "Belangrijkste review",
     moreReviews: "Meer reviews",
+    viewGoogle: "Meer reviews op Google bekijken",
+    servicesEyebrow: "Diensten",
     servicesTitle: "Dorpen, kuuroorden en Zaragoza vanaf Calatayud",
+    servicesText:
+      "Comfortabele service in de omgeving: nabijgelegen dorpen, kuuroorden, station, Zaragoza, luchthaven, medische afspraken en geplande ritten.",
+    serviceItems: [
+      {
+        title: "Monasterio de Piedra",
+        text: "Directe transfer vanaf Calatayud naar het natuurpark, met geplande terugrit indien nodig.",
+        detail: "Ideaal voor bezoekers die met de trein aankomen of in Calatayud verblijven en de dag zonder parkeren willen benutten.",
+      },
+      {
+        title: "Kuuroorden",
+        text: "Alhama de Aragón, Jaraba, Paracuellos de Jiloca en thermale resorts in de regio.",
+        detail: "Ophaling thuis, bij station of hotel voor ontspanning, behandelingen en korte verblijven.",
+      },
+      {
+        title: "Zaragoza en luchthaven",
+        text: "Station Delicias, luchthaven Zaragoza, ziekenhuizen, centrum en elk adres in de stad.",
+        detail: "Deur-tot-deur ritten voor treinen, vluchten, medische bezoeken, afspraken of boodschappen.",
+      },
+      {
+        title: "Stations en treinen",
+        text: "Verbindingen met station Calatayud, Delicias en andere ophaalpunten.",
+        detail: "Boek een vaste tijd om rustig te reizen, ook vroeg in de ochtend of op feestdagen.",
+      },
+      {
+        title: "Toeristische routes",
+        text: "Mudéjar-kunst, Augusta Bilbilis, D.O. Calatayud-wijnroutes en dorpen in de regio.",
+        detail: "Beschikbaarheid per uur voor meerdere stops en een route op uw tempo.",
+      },
+      {
+        title: "Medische transfers",
+        text: "Gezondheidscentra, klinieken en ziekenhuizen in Calatayud en Zaragoza.",
+        detail: "Discrete en punctuele service, met mogelijkheid om de terugrit na de afspraak te plannen.",
+      },
+      {
+        title: "Bedrijven en events",
+        text: "Vergaderingen, hotels, leveranciers, bruiloften, communies en vieringen.",
+        detail: "Geplande boekingen voor klanten, medewerkers of gasten tot 4 passagiers.",
+      },
+      {
+        title: "Dorpen in de regio",
+        text: "Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes en veel meer bestemmingen.",
+        detail: "Gebruik de calculator of tarieftabel voor een richtprijs.",
+      },
+      {
+        title: "Ophaling bij pech onderweg",
+        text: "Taxi voor passagiers die gestrand zijn bij Calatayud, A-2, N-II of wegen in de regio.",
+        detail: "Taxi naar een veilige plek, garage, hotel, station of gekozen bestemming. Geen sleepdienst of mechanische hulp.",
+      },
+    ],
+    moreServices: "Meer diensten bekijken",
+    vehicleEyebrow: "Voertuig",
+    vehicleText:
+      "Witte Peugeot 408 Hybrid, modern, stil en ruim voor comfortabele transfers, met airco, bagageruimte en officiële vergunning.",
+    vehicleSpecs: ["Ruime kofferbak", "Tot 4 passagiers", "Passagiersverzekering", "Makkelijk betalen", "Verzorgd interieur", "Punctuele ophaling"],
     tariffsEyebrow: "Tarieven",
     tariffsTitle: "Veelgebruikte bestemmingen",
+    tariffsText:
+      "Zoek een plaats of stad om kilometers en richtprijzen te bekijken. Boekingen worden bevestigd per telefoon of WhatsApp.",
+    chooseDestination: "Bestemming kiezen",
+    estimatedFare: "Richttarief",
+    oneWayKm: "Km enkele reis",
+    dayFare: "Dag",
+    nightFare: "Nacht / feestdag",
+    calcDestination: "Deze bestemming berekenen",
+    fullTable: "Volledige bestemmingstabel bekijken",
+    filterTable: "Tabel filteren",
+    closingEyebrow: "Direct boeken",
     closingTitle: "Taxi beschikbaar in Calatayud",
+    closingText:
+      "Voor exacte tijden, nachtritten, lange ritten of speciale ophalingen kunt u de beschikbaarheid direct bevestigen.",
     footerText: "Officiële taxi in Calatayud.",
+    footerLinks: ["Monasterio de Piedra", "Kuuroorden", "Zaragoza en luchthaven", "Dorpen in de regio"],
+    floatingWhatsapp: "Boeken via WhatsApp",
   },
 };
 
-const regionHighlights = [
-  "Calatayud",
-  "Pueblos",
-  "Balnearios",
-  "Zaragoza",
-];
+const regionHighlights: Record<LangCode, string[]> = {
+  es: ["Calatayud", "Pueblos", "Balnearios", "Zaragoza"],
+  en: ["Calatayud", "Villages", "Spas", "Zaragoza"],
+  fr: ["Calatayud", "Villages", "Thermes", "Saragosse"],
+  ca: ["Calatayud", "Pobles", "Balnearis", "Saragossa"],
+  de: ["Calatayud", "Dörfer", "Thermalbäder", "Zaragoza"],
+  it: ["Calatayud", "Paesi", "Terme", "Saragozza"],
+  pt: ["Calatayud", "Aldeias", "Termas", "Zaragoza"],
+  nl: ["Calatayud", "Dorpen", "Kuuroorden", "Zaragoza"],
+  ar: ["كالاتايود", "القرى", "المنتجعات", "سرقسطة"],
+};
 
 const heroStatLabels: Record<LangCode, [string, string, string]> = {
   es: ["reservas", "licencia", "destinos"],
@@ -1297,19 +1938,98 @@ const touristSearchCopy: Record<LangCode, { eyebrow: string; title: string; text
   },
 };
 
-const touristSearchPhrases = [
-  { language: "Cerca", query: "Taxi cerca de mi en Calatayud con recogida por ubicación" },
-  { language: "Desde", query: "Taxi desde Calatayud a pueblos, estación, balnearios y Zaragoza" },
-  { language: "Autovía", query: "Taxi por avería en A-2, N-II o carretera cerca de Calatayud" },
-  { language: "A-2", query: "Recogida urgente en A-2 Valdeherrera, Ateca, Ariza y Calatayud" },
-  { language: "Hoteles", query: "Recogida en hoteles de Calatayud y la comarca" },
-  { language: "Balnearios", query: "Jaraba, Alhama de Aragón y Paracuellos de Jiloca" },
-  { language: "Turismo", query: "Monasterio de Piedra, Nuévalos y rutas cercanas" },
-  { language: "Pueblos", query: "Ateca, Maluenda, Ariza, Cetina, Miedes y más" },
-  { language: "Tren", query: "Estación de Calatayud y conexión con AVE" },
-  { language: "Teléfono", query: "Teléfono taxi Calatayud y WhatsApp directo" },
-  { language: "Zaragoza", query: "Aeropuerto, Delicias, hospitales y direcciones concretas" },
-];
+const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: string }>> = {
+  es: [
+    { language: "Cerca", query: "Taxi cerca de mi en Calatayud con recogida por ubicación" },
+    { language: "Desde", query: "Taxi desde Calatayud a pueblos, estación, balnearios y Zaragoza" },
+    { language: "Autovía", query: "Taxi por avería en A-2, N-II o carretera cerca de Calatayud" },
+    { language: "Hoteles", query: "Recogida en hoteles de Calatayud y la comarca" },
+    { language: "Balnearios", query: "Jaraba, Alhama de Aragón y Paracuellos de Jiloca" },
+    { language: "Turismo", query: "Monasterio de Piedra, Nuévalos y rutas cercanas" },
+    { language: "Tren", query: "Estación de Calatayud y conexión con AVE" },
+    { language: "WhatsApp", query: "Teléfono taxi Calatayud y reserva directa" },
+  ],
+  en: [
+    { language: "Near me", query: "Taxi near me in Calatayud with location pick-up" },
+    { language: "From", query: "Taxi from Calatayud to villages, station, spas and Zaragoza" },
+    { language: "Motorway", query: "Taxi after breakdown on A-2, N-II or roads near Calatayud" },
+    { language: "Hotels", query: "Pick-up at hotels in Calatayud and the surrounding area" },
+    { language: "Spas", query: "Jaraba, Alhama de Aragon and Paracuellos de Jiloca" },
+    { language: "Tourism", query: "Monasterio de Piedra, Nuevalos and nearby routes" },
+    { language: "Train", query: "Calatayud train station and AVE connection" },
+    { language: "WhatsApp", query: "Calatayud taxi phone and direct booking" },
+  ],
+  fr: [
+    { language: "Proche", query: "Taxi près de moi à Calatayud avec prise en charge par position" },
+    { language: "Depuis", query: "Taxi depuis Calatayud vers villages, gare, thermes et Saragosse" },
+    { language: "Autoroute", query: "Taxi après panne sur A-2, N-II ou routes près de Calatayud" },
+    { language: "Hôtels", query: "Prise en charge dans les hôtels de Calatayud et de la région" },
+    { language: "Thermes", query: "Jaraba, Alhama de Aragon et Paracuellos de Jiloca" },
+    { language: "Tourisme", query: "Monasterio de Piedra, Nuevalos et itinéraires proches" },
+    { language: "Train", query: "Gare de Calatayud et connexion AVE" },
+    { language: "WhatsApp", query: "Téléphone taxi Calatayud et réservation directe" },
+  ],
+  ca: [
+    { language: "A prop", query: "Taxi a prop meu a Calatayud amb recollida per ubicació" },
+    { language: "Des de", query: "Taxi des de Calatayud a pobles, estació, balnearis i Saragossa" },
+    { language: "Autovia", query: "Taxi per avaria a l'A-2, N-II o carretera prop de Calatayud" },
+    { language: "Hotels", query: "Recollida en hotels de Calatayud i la comarca" },
+    { language: "Balnearis", query: "Jaraba, Alhama de Aragón i Paracuellos de Jiloca" },
+    { language: "Turisme", query: "Monasterio de Piedra, Nuévalos i rutes properes" },
+    { language: "Tren", query: "Estació de Calatayud i connexió amb AVE" },
+    { language: "WhatsApp", query: "Telèfon taxi Calatayud i reserva directa" },
+  ],
+  de: [
+    { language: "In der Nähe", query: "Taxi in meiner Nähe in Calatayud mit Standortabholung" },
+    { language: "Ab", query: "Taxi ab Calatayud zu Dörfern, Bahnhof, Thermalbädern und Zaragoza" },
+    { language: "Autobahn", query: "Taxi nach Panne auf A-2, N-II oder Straßen bei Calatayud" },
+    { language: "Hotels", query: "Abholung an Hotels in Calatayud und Umgebung" },
+    { language: "Thermalbäder", query: "Jaraba, Alhama de Aragon und Paracuellos de Jiloca" },
+    { language: "Tourismus", query: "Monasterio de Piedra, Nuevalos und nahe Routen" },
+    { language: "Zug", query: "Bahnhof Calatayud und AVE-Verbindung" },
+    { language: "WhatsApp", query: "Taxi-Telefon Calatayud und Direktbuchung" },
+  ],
+  it: [
+    { language: "Vicino", query: "Taxi vicino a me a Calatayud con ritiro tramite posizione" },
+    { language: "Da", query: "Taxi da Calatayud a paesi, stazione, terme e Saragozza" },
+    { language: "Autostrada", query: "Taxi per guasto su A-2, N-II o strada vicino a Calatayud" },
+    { language: "Hotel", query: "Ritiro negli hotel di Calatayud e della comarca" },
+    { language: "Terme", query: "Jaraba, Alhama de Aragon e Paracuellos de Jiloca" },
+    { language: "Turismo", query: "Monasterio de Piedra, Nuevalos e percorsi vicini" },
+    { language: "Treno", query: "Stazione di Calatayud e collegamento AVE" },
+    { language: "WhatsApp", query: "Telefono taxi Calatayud e prenotazione diretta" },
+  ],
+  pt: [
+    { language: "Perto", query: "Táxi perto de mim em Calatayud com recolha por localização" },
+    { language: "Desde", query: "Táxi desde Calatayud para aldeias, estação, termas e Zaragoza" },
+    { language: "Autoestrada", query: "Táxi por avaria na A-2, N-II ou estrada perto de Calatayud" },
+    { language: "Hotéis", query: "Recolha em hotéis de Calatayud e da comarca" },
+    { language: "Termas", query: "Jaraba, Alhama de Aragon e Paracuellos de Jiloca" },
+    { language: "Turismo", query: "Monasterio de Piedra, Nuevalos e rotas próximas" },
+    { language: "Comboio", query: "Estação de Calatayud e ligação AVE" },
+    { language: "WhatsApp", query: "Telefone táxi Calatayud e reserva direta" },
+  ],
+  nl: [
+    { language: "Dichtbij", query: "Taxi in de buurt in Calatayud met ophalen via locatie" },
+    { language: "Vanaf", query: "Taxi vanaf Calatayud naar dorpen, station, kuuroorden en Zaragoza" },
+    { language: "Snelweg", query: "Taxi bij pech op A-2, N-II of weg bij Calatayud" },
+    { language: "Hotels", query: "Ophalen bij hotels in Calatayud en de regio" },
+    { language: "Kuuroorden", query: "Jaraba, Alhama de Aragon en Paracuellos de Jiloca" },
+    { language: "Toerisme", query: "Monasterio de Piedra, Nuevalos en nabijgelegen routes" },
+    { language: "Trein", query: "Station Calatayud en AVE-verbinding" },
+    { language: "WhatsApp", query: "Taxi telefoon Calatayud en direct boeken" },
+  ],
+  ar: [
+    { language: "قريب", query: "تاكسي قريب مني في كالاتايود مع استلام بالموقع" },
+    { language: "من", query: "تاكسي من كالاتايود إلى القرى والمحطة والمنتجعات وسرقسطة" },
+    { language: "طريق سريع", query: "تاكسي بعد عطل على A-2 أو N-II قرب كالاتايود" },
+    { language: "فنادق", query: "استلام من فنادق كالاتايود والمنطقة" },
+    { language: "منتجعات", query: "Jaraba وAlhama de Aragon وParacuellos de Jiloca" },
+    { language: "سياحة", query: "Monasterio de Piedra وNuevalos والطرق القريبة" },
+    { language: "قطار", query: "محطة كالاتايود واتصال AVE" },
+    { language: "واتساب", query: "هاتف تاكسي كالاتايود وحجز مباشر" },
+  ],
+};
 
 const UI_COPY: Record<
   LangCode,
@@ -1537,6 +2257,729 @@ const UI_COPY: Record<
     roadQuickButton: "تجهيز",
     internalRoutes: "الطرق الرئيسية",
     otherLanguages: "Taxi Ayud بلغات أخرى",
+  },
+};
+
+const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
+  es: {
+    reserveWhatsapp: "Reservar por WhatsApp",
+    officialNotice: "Tarifas interurbanas oficiales 2026 · B.O.A. n.º 238 del 10-12-2025",
+    paymentShort: "Efectivo · Tarjeta · Bizum",
+    cookie: {
+      aria: "Aviso de cookies",
+      title: "Privacidad y cookies",
+      text:
+        "Usamos cookies técnicas para que la web funcione. Si aceptas, también podremos medir de forma anónima llamadas, WhatsApp y consultas de tarifa para mejorar el servicio.",
+      privacy: "Privacidad",
+      cookies: "Cookies",
+      necessary: "Solo necesarias",
+      accept: "Aceptar",
+    },
+    legal: {
+      aria: "Información legal",
+      legalTitle: "Aviso legal",
+      legalText:
+        `Titular: ${LEGAL.owner}, DNI/NIF ${LEGAL.taxId}, con domicilio en ${LEGAL.address}. Nombre comercial: ${LEGAL.businessName}. Actividad: servicio de taxi y reservas de traslados en Calatayud y comarca. Teléfono de contacto: ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "Protección de datos y privacidad",
+      privacyText:
+        "Los datos que envíes por llamada, WhatsApp o formularios se usan únicamente para atender tu consulta, preparar la reserva, confirmar disponibilidad y gestionar el servicio solicitado. No se venden datos ni se publican datos personales. Puedes solicitar acceso, rectificación o supresión contactando por teléfono o WhatsApp.",
+      cookiesTitle: "Política de cookies",
+      cookiesText:
+        "La web utiliza cookies técnicas necesarias para recordar preferencias básicas. La medición anónima solo se carga si aceptas las cookies y sirve para conocer clics generales en llamada, WhatsApp o consulta de tarifa, sin registrar mensajes, teléfonos ni direcciones personales.",
+    },
+    route: {
+      dayLabel: "Laborable diurna",
+      premiumLabel: "Nocturna / festiva",
+      businessDay: "día laborable",
+      night: "horario nocturno",
+      holiday: "domingo o festivo",
+      calculated: "ruta calculada",
+      estimated: "ruta estimada",
+      habitual: "ruta habitual",
+      dateEmpty: "Fecha sin indicar",
+      originFallback: "origen indicado",
+      destinationFallback: "destino indicado",
+    },
+    location: {
+      current: "Mi ubicación actual",
+      currentDetail: "Ubicación compartida desde el navegador",
+      roadFallbackOrigin: "A-2 / carretera cerca de Calatayud",
+      roadNotes:
+        "Avería o incidencia en carretera. Necesito recogida de pasajeros. Mantengo el teléfono disponible para confirmar la ubicación exacta. Taxi para pasajeros, no grúa. Precio sujeto a confirmación directa.",
+      unsupported: "Tu navegador no permite enviar ubicación.",
+      requesting: "Pidiendo ubicación...",
+      ready: "Ubicación lista para enviar por WhatsApp.",
+      failed: "No se pudo obtener la ubicación. Puedes escribir la dirección.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud recogiendo pasajeros por avería en la A-2 cerca de Calatayud",
+      roadPhotoCaption: "Recogida real en carretera: taxi para pasajeros con avería o incidencia en la A-2 y comarca.",
+    },
+    aria: {
+      brandHome: "Taxi Ayud inicio",
+      mainNav: "Navegación principal",
+      language: "Idioma",
+      relatedLinks: "Enlaces relacionados",
+      internalRoutes: "Rutas principales de Taxi Ayud",
+      languageVersions: "Versiones por idioma",
+      serviceHighlights: "Zonas de servicio destacadas",
+      bookingCard: "Reserva rápida",
+      quickContact: "Opciones de contacto rápido",
+      trustData: "Datos principales",
+      region: "Comarca de Calatayud",
+      comfort: "Comodidad del servicio",
+      localSeo: "Taxi en Calatayud y comarca",
+      tourist: "Taxi para visitantes y alojamientos",
+      bookingType: "Tipo de reserva",
+      originSuggestions: "Sugerencias de origen",
+      destinationSuggestions: "Sugerencias de destino",
+      suggestedDestinations: "Destinos sugeridos",
+      reviewSignals: "Puntos destacados de las reseñas",
+      quickDestinations: "Destinos rápidos",
+      mobileActions: "Acciones rápidas",
+      roadMobile: "Pedir taxi por avería o incidencia en carretera",
+    },
+    starsLabel: (rating) => `${rating} estrellas`,
+  },
+  en: {
+    reserveWhatsapp: "Book by WhatsApp",
+    officialNotice: "Official intercity taxi fares 2026 · B.O.A. no. 238, 10-12-2025",
+    paymentShort: "Cash · Card · Bizum",
+    cookie: {
+      aria: "Cookie notice",
+      title: "Privacy and cookies",
+      text:
+        "We use technical cookies so the website works. If you accept, we may also measure calls, WhatsApp clicks and fare requests anonymously to improve the service.",
+      privacy: "Privacy",
+      cookies: "Cookies",
+      necessary: "Necessary only",
+      accept: "Accept",
+    },
+    legal: {
+      aria: "Legal information",
+      legalTitle: "Legal notice",
+      legalText:
+        `Owner: ${LEGAL.owner}, tax ID ${LEGAL.taxId}, based in ${LEGAL.address}. Trading name: ${LEGAL.businessName}. Activity: taxi service and transfer bookings in Calatayud and the surrounding area. Contact phone: ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "Data protection and privacy",
+      privacyText:
+        "The data you send by phone, WhatsApp or forms is used only to answer your request, prepare the booking, confirm availability and manage the requested service. Data is not sold or published. You can request access, correction or deletion by phone or WhatsApp.",
+      cookiesTitle: "Cookie policy",
+      cookiesText:
+        "The website uses necessary technical cookies to remember basic preferences. Anonymous measurement only loads if you accept cookies and is used to understand general call, WhatsApp and fare-query clicks, without recording messages, phone numbers or personal addresses.",
+    },
+    route: {
+      dayLabel: "Weekday daytime",
+      premiumLabel: "Night / holiday",
+      businessDay: "weekday",
+      night: "night time",
+      holiday: "Sunday or public holiday",
+      calculated: "calculated route",
+      estimated: "estimated route",
+      habitual: "common route",
+      dateEmpty: "Date not set",
+      originFallback: "selected origin",
+      destinationFallback: "selected destination",
+    },
+    location: {
+      current: "My current location",
+      currentDetail: "Location shared from the browser",
+      roadFallbackOrigin: "A-2 / road near Calatayud",
+      roadNotes:
+        "Road breakdown or incident. I need passenger pick-up. I will keep my phone available to confirm the exact location. Passenger taxi, not a tow truck. Price subject to direct confirmation.",
+      unsupported: "Your browser cannot send location.",
+      requesting: "Requesting location...",
+      ready: "Location ready to send by WhatsApp.",
+      failed: "Location could not be detected. You can type the address.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud passenger pick-up after an A-2 road breakdown near Calatayud",
+      roadPhotoCaption: "Real road pick-up: passenger taxi for A-2 breakdowns or incidents near Calatayud.",
+    },
+    aria: {
+      brandHome: "Taxi Ayud home",
+      mainNav: "Main navigation",
+      language: "Language",
+      relatedLinks: "Related links",
+      internalRoutes: "Taxi Ayud main routes",
+      languageVersions: "Language versions",
+      serviceHighlights: "Featured service areas",
+      bookingCard: "Quick booking",
+      quickContact: "Quick contact options",
+      trustData: "Main details",
+      region: "Calatayud area",
+      comfort: "Service comfort",
+      localSeo: "Taxi in Calatayud and area",
+      tourist: "Taxi for visitors and accommodation",
+      bookingType: "Booking type",
+      originSuggestions: "Origin suggestions",
+      destinationSuggestions: "Destination suggestions",
+      suggestedDestinations: "Suggested destinations",
+      reviewSignals: "Review highlights",
+      quickDestinations: "Quick destinations",
+      mobileActions: "Quick actions",
+      roadMobile: "Request a taxi for a road breakdown or incident",
+    },
+    starsLabel: (rating) => `${rating} stars`,
+  },
+  fr: {
+    reserveWhatsapp: "Réserver par WhatsApp",
+    officialNotice: "Tarifs interurbains officiels 2026 · B.O.A. n.º 238 du 10-12-2025",
+    paymentShort: "Espèces · Carte · Bizum",
+    cookie: {
+      aria: "Avis sur les cookies",
+      title: "Confidentialité et cookies",
+      text:
+        "Nous utilisons des cookies techniques pour le fonctionnement du site. Si vous acceptez, nous pouvons aussi mesurer anonymement les appels, WhatsApp et demandes de tarif afin d'améliorer le service.",
+      privacy: "Confidentialité",
+      cookies: "Cookies",
+      necessary: "Nécessaires seulement",
+      accept: "Accepter",
+    },
+    legal: {
+      aria: "Informations légales",
+      legalTitle: "Mentions légales",
+      legalText:
+        `Titulaire : ${LEGAL.owner}, DNI/NIF ${LEGAL.taxId}, domicile à ${LEGAL.address}. Nom commercial : ${LEGAL.businessName}. Activité : service de taxi et réservations de transferts à Calatayud et dans la région. Téléphone : ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "Protection des données et confidentialité",
+      privacyText:
+        "Les données envoyées par appel, WhatsApp ou formulaire servent uniquement à répondre à votre demande, préparer la réservation, confirmer la disponibilité et gérer le service demandé. Les données ne sont ni vendues ni publiées. Vous pouvez demander l'accès, la rectification ou la suppression par téléphone ou WhatsApp.",
+      cookiesTitle: "Politique de cookies",
+      cookiesText:
+        "Le site utilise des cookies techniques nécessaires pour mémoriser des préférences de base. La mesure anonyme ne se charge que si vous acceptez les cookies et sert à connaître les clics généraux d'appel, WhatsApp ou consultation de tarif, sans enregistrer messages, téléphones ni adresses personnelles.",
+    },
+    route: {
+      dayLabel: "Jour ouvrable",
+      premiumLabel: "Nuit / férié",
+      businessDay: "jour ouvrable",
+      night: "horaire de nuit",
+      holiday: "dimanche ou jour férié",
+      calculated: "itinéraire calculé",
+      estimated: "itinéraire estimé",
+      habitual: "itinéraire habituel",
+      dateEmpty: "Date non indiquée",
+      originFallback: "départ indiqué",
+      destinationFallback: "destination indiquée",
+    },
+    location: {
+      current: "Ma position actuelle",
+      currentDetail: "Position partagée depuis le navigateur",
+      roadFallbackOrigin: "A-2 / route près de Calatayud",
+      roadNotes:
+        "Panne ou incident sur route. Besoin de prise en charge de passagers. Je garde le téléphone disponible pour confirmer la position exacte. Taxi pour passagers, pas dépanneuse. Prix soumis à confirmation directe.",
+      unsupported: "Votre navigateur ne permet pas d'envoyer la position.",
+      requesting: "Demande de position...",
+      ready: "Position prête à envoyer par WhatsApp.",
+      failed: "Position impossible à obtenir. Vous pouvez écrire l'adresse.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud prenant en charge des passagers après une panne sur l'A-2 près de Calatayud",
+      roadPhotoCaption: "Prise en charge réelle sur route : taxi passagers pour panne ou incident sur l'A-2 et la région.",
+    },
+    aria: {
+      brandHome: "Accueil Taxi Ayud",
+      mainNav: "Navigation principale",
+      language: "Langue",
+      relatedLinks: "Liens associés",
+      internalRoutes: "Routes principales de Taxi Ayud",
+      languageVersions: "Versions par langue",
+      serviceHighlights: "Zones de service mises en avant",
+      bookingCard: "Réservation rapide",
+      quickContact: "Options de contact rapide",
+      trustData: "Informations principales",
+      region: "Région de Calatayud",
+      comfort: "Confort du service",
+      localSeo: "Taxi à Calatayud et région",
+      tourist: "Taxi pour visiteurs et hébergements",
+      bookingType: "Type de réservation",
+      originSuggestions: "Suggestions de départ",
+      destinationSuggestions: "Suggestions de destination",
+      suggestedDestinations: "Destinations suggérées",
+      reviewSignals: "Points forts des avis",
+      quickDestinations: "Destinations rapides",
+      mobileActions: "Actions rapides",
+      roadMobile: "Demander un taxi pour panne ou incident sur route",
+    },
+    starsLabel: (rating) => `${rating} étoiles`,
+  },
+  ca: {
+    reserveWhatsapp: "Reservar per WhatsApp",
+    officialNotice: "Tarifes interurbanes oficials 2026 · B.O.A. núm. 238 del 10-12-2025",
+    paymentShort: "Efectiu · Targeta · Bizum",
+    cookie: {
+      aria: "Avís de cookies",
+      title: "Privacitat i cookies",
+      text:
+        "Fem servir cookies tècniques perquè la web funcioni. Si acceptes, també podrem mesurar de forma anònima trucades, WhatsApp i consultes de tarifa per millorar el servei.",
+      privacy: "Privacitat",
+      cookies: "Cookies",
+      necessary: "Només necessàries",
+      accept: "Acceptar",
+    },
+    legal: {
+      aria: "Informació legal",
+      legalTitle: "Avís legal",
+      legalText:
+        `Titular: ${LEGAL.owner}, DNI/NIF ${LEGAL.taxId}, amb domicili a ${LEGAL.address}. Nom comercial: ${LEGAL.businessName}. Activitat: servei de taxi i reserves de trasllats a Calatayud i comarca. Telèfon de contacte: ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "Protecció de dades i privacitat",
+      privacyText:
+        "Les dades que enviïs per trucada, WhatsApp o formularis s'utilitzen només per atendre la consulta, preparar la reserva, confirmar disponibilitat i gestionar el servei sol·licitat. No es venen dades ni es publiquen dades personals. Pots sol·licitar accés, rectificació o supressió per telèfon o WhatsApp.",
+      cookiesTitle: "Política de cookies",
+      cookiesText:
+        "La web utilitza cookies tècniques necessàries per recordar preferències bàsiques. El mesurament anònim només es carrega si acceptes les cookies i serveix per conèixer clics generals de trucada, WhatsApp o consulta de tarifa, sense registrar missatges, telèfons ni adreces personals.",
+    },
+    route: {
+      dayLabel: "Laborable diürna",
+      premiumLabel: "Nocturna / festiva",
+      businessDay: "dia laborable",
+      night: "horari nocturn",
+      holiday: "diumenge o festiu",
+      calculated: "ruta calculada",
+      estimated: "ruta estimada",
+      habitual: "ruta habitual",
+      dateEmpty: "Data sense indicar",
+      originFallback: "origen indicat",
+      destinationFallback: "destinació indicada",
+    },
+    location: {
+      current: "La meva ubicació actual",
+      currentDetail: "Ubicació compartida des del navegador",
+      roadFallbackOrigin: "A-2 / carretera prop de Calatayud",
+      roadNotes:
+        "Avaria o incidència en carretera. Necessito recollida de passatgers. Mantinc el telèfon disponible per confirmar la ubicació exacta. Taxi per a passatgers, no grua. Preu subjecte a confirmació directa.",
+      unsupported: "El navegador no permet enviar ubicació.",
+      requesting: "Demanant ubicació...",
+      ready: "Ubicació preparada per enviar per WhatsApp.",
+      failed: "No s'ha pogut obtenir la ubicació. Pots escriure l'adreça.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud recollint passatgers per avaria a l'A-2 prop de Calatayud",
+      roadPhotoCaption: "Recollida real en carretera: taxi per a passatgers amb avaria o incidència a l'A-2 i comarca.",
+    },
+    aria: {
+      brandHome: "Inici Taxi Ayud",
+      mainNav: "Navegació principal",
+      language: "Idioma",
+      relatedLinks: "Enllaços relacionats",
+      internalRoutes: "Rutes principals de Taxi Ayud",
+      languageVersions: "Versions per idioma",
+      serviceHighlights: "Zones de servei destacades",
+      bookingCard: "Reserva ràpida",
+      quickContact: "Opcions de contacte ràpid",
+      trustData: "Dades principals",
+      region: "Comarca de Calatayud",
+      comfort: "Comoditat del servei",
+      localSeo: "Taxi a Calatayud i comarca",
+      tourist: "Taxi per a visitants i allotjaments",
+      bookingType: "Tipus de reserva",
+      originSuggestions: "Suggeriments d'origen",
+      destinationSuggestions: "Suggeriments de destinació",
+      suggestedDestinations: "Destinacions suggerides",
+      reviewSignals: "Punts destacats de les ressenyes",
+      quickDestinations: "Destinacions ràpides",
+      mobileActions: "Accions ràpides",
+      roadMobile: "Demanar taxi per avaria o incidència en carretera",
+    },
+    starsLabel: (rating) => `${rating} estrelles`,
+  },
+  de: {
+    reserveWhatsapp: "Per WhatsApp buchen",
+    officialNotice: "Offizielle Überlandtarife 2026 · B.O.A. Nr. 238 vom 10.12.2025",
+    paymentShort: "Bar · Karte · Bizum",
+    cookie: {
+      aria: "Cookie-Hinweis",
+      title: "Datenschutz und Cookies",
+      text:
+        "Wir verwenden technische Cookies, damit die Website funktioniert. Wenn Sie zustimmen, können wir Anrufe, WhatsApp-Klicks und Tarifabfragen anonym messen, um den Service zu verbessern.",
+      privacy: "Datenschutz",
+      cookies: "Cookies",
+      necessary: "Nur notwendige",
+      accept: "Akzeptieren",
+    },
+    legal: {
+      aria: "Rechtliche Informationen",
+      legalTitle: "Impressum",
+      legalText:
+        `Inhaber: ${LEGAL.owner}, DNI/NIF ${LEGAL.taxId}, Sitz in ${LEGAL.address}. Handelsname: ${LEGAL.businessName}. Tätigkeit: Taxi-Service und Transferbuchungen in Calatayud und Umgebung. Telefon: ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "Datenschutz",
+      privacyText:
+        "Daten, die Sie per Anruf, WhatsApp oder Formular senden, werden nur genutzt, um Ihre Anfrage zu beantworten, die Buchung vorzubereiten, Verfügbarkeit zu bestätigen und den gewünschten Service zu verwalten. Daten werden nicht verkauft oder veröffentlicht. Zugang, Berichtigung oder Löschung können per Telefon oder WhatsApp angefragt werden.",
+      cookiesTitle: "Cookie-Richtlinie",
+      cookiesText:
+        "Die Website nutzt notwendige technische Cookies für grundlegende Präferenzen. Anonyme Messung wird nur geladen, wenn Sie Cookies akzeptieren, und erfasst allgemeine Klicks auf Anruf, WhatsApp oder Tarifabfrage, ohne Nachrichten, Telefonnummern oder persönliche Adressen zu speichern.",
+    },
+    route: {
+      dayLabel: "Werktag tagsüber",
+      premiumLabel: "Nacht / Feiertag",
+      businessDay: "Werktag",
+      night: "Nachtzeit",
+      holiday: "Sonntag oder Feiertag",
+      calculated: "berechnete Route",
+      estimated: "geschätzte Route",
+      habitual: "übliche Route",
+      dateEmpty: "Datum nicht angegeben",
+      originFallback: "angegebener Start",
+      destinationFallback: "angegebenes Ziel",
+    },
+    location: {
+      current: "Mein aktueller Standort",
+      currentDetail: "Standort aus dem Browser geteilt",
+      roadFallbackOrigin: "A-2 / Straße bei Calatayud",
+      roadNotes:
+        "Panne oder Vorfall auf der Straße. Ich brauche Abholung für Fahrgäste. Ich halte mein Telefon erreichbar, um den genauen Standort zu bestätigen. Taxi für Fahrgäste, kein Abschleppdienst. Preis vorbehaltlich direkter Bestätigung.",
+      unsupported: "Ihr Browser kann keinen Standort senden.",
+      requesting: "Standort wird angefragt...",
+      ready: "Standort bereit zum Senden per WhatsApp.",
+      failed: "Standort konnte nicht erkannt werden. Sie können die Adresse eingeben.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud holt Fahrgäste nach einer Panne auf der A-2 bei Calatayud ab",
+      roadPhotoCaption: "Echte Abholung auf der Straße: Taxi für Fahrgäste bei Panne oder Vorfall auf der A-2 und in der Region.",
+    },
+    aria: {
+      brandHome: "Taxi Ayud Startseite",
+      mainNav: "Hauptnavigation",
+      language: "Sprache",
+      relatedLinks: "Verwandte Links",
+      internalRoutes: "Wichtige Routen von Taxi Ayud",
+      languageVersions: "Sprachversionen",
+      serviceHighlights: "Hervorgehobene Servicegebiete",
+      bookingCard: "Schnellbuchung",
+      quickContact: "Schnelle Kontaktoptionen",
+      trustData: "Wichtige Angaben",
+      region: "Region Calatayud",
+      comfort: "Servicekomfort",
+      localSeo: "Taxi in Calatayud und Umgebung",
+      tourist: "Taxi für Besucher und Unterkünfte",
+      bookingType: "Buchungsart",
+      originSuggestions: "Vorschläge für Start",
+      destinationSuggestions: "Vorschläge für Ziel",
+      suggestedDestinations: "Vorgeschlagene Ziele",
+      reviewSignals: "Bewertungshighlights",
+      quickDestinations: "Schnelle Ziele",
+      mobileActions: "Schnellaktionen",
+      roadMobile: "Taxi bei Panne oder Vorfall auf der Straße anfragen",
+    },
+    starsLabel: (rating) => `${rating} Sterne`,
+  },
+  it: {
+    reserveWhatsapp: "Prenota su WhatsApp",
+    officialNotice: "Tariffe interurbane ufficiali 2026 · B.O.A. n. 238 del 10-12-2025",
+    paymentShort: "Contanti · Carta · Bizum",
+    cookie: {
+      aria: "Avviso cookie",
+      title: "Privacy e cookie",
+      text:
+        "Usiamo cookie tecnici per il funzionamento del sito. Se accetti, possiamo anche misurare in forma anonima chiamate, WhatsApp e richieste tariffa per migliorare il servizio.",
+      privacy: "Privacy",
+      cookies: "Cookie",
+      necessary: "Solo necessari",
+      accept: "Accetta",
+    },
+    legal: {
+      aria: "Informazioni legali",
+      legalTitle: "Avviso legale",
+      legalText:
+        `Titolare: ${LEGAL.owner}, DNI/NIF ${LEGAL.taxId}, domicilio a ${LEGAL.address}. Nome commerciale: ${LEGAL.businessName}. Attività: servizio taxi e prenotazioni trasferimenti a Calatayud e comarca. Telefono: ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "Protezione dati e privacy",
+      privacyText:
+        "I dati inviati tramite chiamata, WhatsApp o moduli sono usati solo per rispondere alla richiesta, preparare la prenotazione, confermare disponibilità e gestire il servizio. I dati non vengono venduti né pubblicati. Puoi richiedere accesso, rettifica o cancellazione per telefono o WhatsApp.",
+      cookiesTitle: "Politica cookie",
+      cookiesText:
+        "Il sito usa cookie tecnici necessari per ricordare preferenze di base. La misurazione anonima si carica solo se accetti i cookie e serve a conoscere clic generali su chiamata, WhatsApp o consulta tariffa, senza registrare messaggi, telefoni o indirizzi personali.",
+    },
+    route: {
+      dayLabel: "Feriale diurna",
+      premiumLabel: "Notturna / festiva",
+      businessDay: "giorno feriale",
+      night: "orario notturno",
+      holiday: "domenica o festivo",
+      calculated: "percorso calcolato",
+      estimated: "percorso stimato",
+      habitual: "percorso abituale",
+      dateEmpty: "Data non indicata",
+      originFallback: "origine indicata",
+      destinationFallback: "destinazione indicata",
+    },
+    location: {
+      current: "La mia posizione attuale",
+      currentDetail: "Posizione condivisa dal browser",
+      roadFallbackOrigin: "A-2 / strada vicino a Calatayud",
+      roadNotes:
+        "Guasto o incidente su strada. Ho bisogno di ritiro passeggeri. Tengo il telefono disponibile per confermare la posizione esatta. Taxi per passeggeri, non carro attrezzi. Prezzo soggetto a conferma diretta.",
+      unsupported: "Il browser non può inviare la posizione.",
+      requesting: "Richiesta posizione...",
+      ready: "Posizione pronta da inviare su WhatsApp.",
+      failed: "Non è stato possibile ottenere la posizione. Puoi scrivere l'indirizzo.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud ritira passeggeri per guasto sull'A-2 vicino a Calatayud",
+      roadPhotoCaption: "Ritiro reale su strada: taxi per passeggeri in caso di guasto o incidente sull'A-2 e nella zona.",
+    },
+    aria: {
+      brandHome: "Home Taxi Ayud",
+      mainNav: "Navigazione principale",
+      language: "Lingua",
+      relatedLinks: "Link correlati",
+      internalRoutes: "Rotte principali di Taxi Ayud",
+      languageVersions: "Versioni per lingua",
+      serviceHighlights: "Zone di servizio in evidenza",
+      bookingCard: "Prenotazione rapida",
+      quickContact: "Opzioni di contatto rapido",
+      trustData: "Dati principali",
+      region: "Comarca di Calatayud",
+      comfort: "Comfort del servizio",
+      localSeo: "Taxi a Calatayud e comarca",
+      tourist: "Taxi per visitatori e alloggi",
+      bookingType: "Tipo di prenotazione",
+      originSuggestions: "Suggerimenti origine",
+      destinationSuggestions: "Suggerimenti destinazione",
+      suggestedDestinations: "Destinazioni suggerite",
+      reviewSignals: "Punti forti delle recensioni",
+      quickDestinations: "Destinazioni rapide",
+      mobileActions: "Azioni rapide",
+      roadMobile: "Richiedere taxi per guasto o incidente su strada",
+    },
+    starsLabel: (rating) => `${rating} stelle`,
+  },
+  pt: {
+    reserveWhatsapp: "Reservar por WhatsApp",
+    officialNotice: "Tarifas interurbanas oficiais 2026 · B.O.A. n.º 238 de 10-12-2025",
+    paymentShort: "Dinheiro · Cartão · Bizum",
+    cookie: {
+      aria: "Aviso de cookies",
+      title: "Privacidade e cookies",
+      text:
+        "Usamos cookies técnicos para o funcionamento do site. Se aceitar, também poderemos medir anonimamente chamadas, WhatsApp e consultas de tarifa para melhorar o serviço.",
+      privacy: "Privacidade",
+      cookies: "Cookies",
+      necessary: "Só necessários",
+      accept: "Aceitar",
+    },
+    legal: {
+      aria: "Informação legal",
+      legalTitle: "Aviso legal",
+      legalText:
+        `Titular: ${LEGAL.owner}, DNI/NIF ${LEGAL.taxId}, domicílio em ${LEGAL.address}. Nome comercial: ${LEGAL.businessName}. Atividade: serviço de táxi e reservas de transferes em Calatayud e comarca. Telefone: ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "Proteção de dados e privacidade",
+      privacyText:
+        "Os dados enviados por chamada, WhatsApp ou formulários são usados apenas para responder ao pedido, preparar a reserva, confirmar disponibilidade e gerir o serviço solicitado. Os dados não são vendidos nem publicados. Pode solicitar acesso, retificação ou eliminação por telefone ou WhatsApp.",
+      cookiesTitle: "Política de cookies",
+      cookiesText:
+        "O site utiliza cookies técnicos necessários para recordar preferências básicas. A medição anónima só é carregada se aceitar cookies e serve para conhecer cliques gerais em chamada, WhatsApp ou consulta de tarifa, sem registar mensagens, telefones ou moradas pessoais.",
+    },
+    route: {
+      dayLabel: "Dia útil diurno",
+      premiumLabel: "Noite / feriado",
+      businessDay: "dia útil",
+      night: "horário noturno",
+      holiday: "domingo ou feriado",
+      calculated: "rota calculada",
+      estimated: "rota estimada",
+      habitual: "rota habitual",
+      dateEmpty: "Data não indicada",
+      originFallback: "origem indicada",
+      destinationFallback: "destino indicado",
+    },
+    location: {
+      current: "A minha localização atual",
+      currentDetail: "Localização partilhada pelo navegador",
+      roadFallbackOrigin: "A-2 / estrada perto de Calatayud",
+      roadNotes:
+        "Avaria ou incidente na estrada. Preciso de recolha de passageiros. Mantenho o telefone disponível para confirmar a localização exata. Táxi para passageiros, não reboque. Preço sujeito a confirmação direta.",
+      unsupported: "O navegador não permite enviar localização.",
+      requesting: "A pedir localização...",
+      ready: "Localização pronta para enviar por WhatsApp.",
+      failed: "Não foi possível obter a localização. Pode escrever a morada.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud recolhe passageiros por avaria na A-2 perto de Calatayud",
+      roadPhotoCaption: "Recolha real na estrada: táxi para passageiros em caso de avaria ou incidente na A-2 e comarca.",
+    },
+    aria: {
+      brandHome: "Início Taxi Ayud",
+      mainNav: "Navegação principal",
+      language: "Idioma",
+      relatedLinks: "Links relacionados",
+      internalRoutes: "Rotas principais de Taxi Ayud",
+      languageVersions: "Versões por idioma",
+      serviceHighlights: "Zonas de serviço destacadas",
+      bookingCard: "Reserva rápida",
+      quickContact: "Opções de contacto rápido",
+      trustData: "Dados principais",
+      region: "Comarca de Calatayud",
+      comfort: "Conforto do serviço",
+      localSeo: "Táxi em Calatayud e comarca",
+      tourist: "Táxi para visitantes e alojamentos",
+      bookingType: "Tipo de reserva",
+      originSuggestions: "Sugestões de origem",
+      destinationSuggestions: "Sugestões de destino",
+      suggestedDestinations: "Destinos sugeridos",
+      reviewSignals: "Destaques das avaliações",
+      quickDestinations: "Destinos rápidos",
+      mobileActions: "Ações rápidas",
+      roadMobile: "Pedir táxi por avaria ou incidente na estrada",
+    },
+    starsLabel: (rating) => `${rating} estrelas`,
+  },
+  nl: {
+    reserveWhatsapp: "Boeken via WhatsApp",
+    officialNotice: "Officiële interlokale tarieven 2026 · B.O.A. nr. 238 van 10-12-2025",
+    paymentShort: "Contant · Kaart · Bizum",
+    cookie: {
+      aria: "Cookiebericht",
+      title: "Privacy en cookies",
+      text:
+        "We gebruiken technische cookies zodat de website werkt. Als u accepteert, kunnen we ook anoniem oproepen, WhatsApp-klikken en tariefaanvragen meten om de service te verbeteren.",
+      privacy: "Privacy",
+      cookies: "Cookies",
+      necessary: "Alleen noodzakelijke",
+      accept: "Accepteren",
+    },
+    legal: {
+      aria: "Juridische informatie",
+      legalTitle: "Juridische kennisgeving",
+      legalText:
+        `Eigenaar: ${LEGAL.owner}, DNI/NIF ${LEGAL.taxId}, gevestigd in ${LEGAL.address}. Handelsnaam: ${LEGAL.businessName}. Activiteit: taxiservice en transferreserveringen in Calatayud en omgeving. Telefoon: ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "Gegevensbescherming en privacy",
+      privacyText:
+        "Gegevens die u per telefoon, WhatsApp of formulier stuurt, worden alleen gebruikt om uw verzoek te beantwoorden, de boeking voor te bereiden, beschikbaarheid te bevestigen en de gevraagde service te beheren. Gegevens worden niet verkocht of gepubliceerd. U kunt toegang, correctie of verwijdering aanvragen via telefoon of WhatsApp.",
+      cookiesTitle: "Cookiebeleid",
+      cookiesText:
+        "De website gebruikt noodzakelijke technische cookies om basisvoorkeuren te onthouden. Anonieme meting wordt alleen geladen als u cookies accepteert en dient om algemene klikken op bellen, WhatsApp of tariefaanvragen te begrijpen, zonder berichten, telefoonnummers of persoonlijke adressen op te slaan.",
+    },
+    route: {
+      dayLabel: "Werkdag overdag",
+      premiumLabel: "Nacht / feestdag",
+      businessDay: "werkdag",
+      night: "nachturen",
+      holiday: "zondag of feestdag",
+      calculated: "berekende route",
+      estimated: "geschatte route",
+      habitual: "gebruikelijke route",
+      dateEmpty: "Datum niet opgegeven",
+      originFallback: "opgegeven vertrekpunt",
+      destinationFallback: "opgegeven bestemming",
+    },
+    location: {
+      current: "Mijn huidige locatie",
+      currentDetail: "Locatie gedeeld vanuit de browser",
+      roadFallbackOrigin: "A-2 / weg bij Calatayud",
+      roadNotes:
+        "Pech of incident onderweg. Ik heb passagiersvervoer nodig. Ik houd mijn telefoon beschikbaar om de exacte locatie te bevestigen. Taxi voor passagiers, geen sleepwagen. Prijs onder voorbehoud van directe bevestiging.",
+      unsupported: "Uw browser kan geen locatie verzenden.",
+      requesting: "Locatie aanvragen...",
+      ready: "Locatie klaar om via WhatsApp te verzenden.",
+      failed: "Locatie kon niet worden gedetecteerd. U kunt het adres typen.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud haalt passagiers op na pech op de A-2 bij Calatayud",
+      roadPhotoCaption: "Echte ophaalservice langs de weg: taxi voor passagiers bij pech of incident op de A-2 en in de regio.",
+    },
+    aria: {
+      brandHome: "Taxi Ayud startpagina",
+      mainNav: "Hoofdnavigatie",
+      language: "Taal",
+      relatedLinks: "Gerelateerde links",
+      internalRoutes: "Belangrijkste routes van Taxi Ayud",
+      languageVersions: "Taalversies",
+      serviceHighlights: "Uitgelichte servicegebieden",
+      bookingCard: "Snel boeken",
+      quickContact: "Snelle contactopties",
+      trustData: "Belangrijkste gegevens",
+      region: "Regio Calatayud",
+      comfort: "Servicecomfort",
+      localSeo: "Taxi in Calatayud en omgeving",
+      tourist: "Taxi voor bezoekers en accommodaties",
+      bookingType: "Boekingstype",
+      originSuggestions: "Suggesties vertrekpunt",
+      destinationSuggestions: "Suggesties bestemming",
+      suggestedDestinations: "Voorgestelde bestemmingen",
+      reviewSignals: "Hoogtepunten uit beoordelingen",
+      quickDestinations: "Snelle bestemmingen",
+      mobileActions: "Snelle acties",
+      roadMobile: "Taxi aanvragen voor pech of incident onderweg",
+    },
+    starsLabel: (rating) => `${rating} sterren`,
+  },
+  ar: {
+    reserveWhatsapp: "الحجز عبر واتساب",
+    officialNotice: "تعرفات بين المدن الرسمية 2026 · B.O.A. رقم 238 بتاريخ 10-12-2025",
+    paymentShort: "نقدا · بطاقة · Bizum",
+    cookie: {
+      aria: "إشعار ملفات تعريف الارتباط",
+      title: "الخصوصية وملفات الارتباط",
+      text:
+        "نستخدم ملفات ارتباط تقنية حتى يعمل الموقع. إذا وافقت، يمكننا أيضا قياس المكالمات ونقرات واتساب وطلبات السعر بشكل مجهول لتحسين الخدمة.",
+      privacy: "الخصوصية",
+      cookies: "ملفات الارتباط",
+      necessary: "الضرورية فقط",
+      accept: "موافق",
+    },
+    legal: {
+      aria: "معلومات قانونية",
+      legalTitle: "إشعار قانوني",
+      legalText:
+        `المالك: ${LEGAL.owner}، رقم DNI/NIF ${LEGAL.taxId}، العنوان ${LEGAL.address}. الاسم التجاري: ${LEGAL.businessName}. النشاط: خدمة تاكسي وحجوزات تنقلات في كالاتايود والمنطقة. الهاتف: ${CONTACT.phoneDisplay}.`,
+      privacyTitle: "حماية البيانات والخصوصية",
+      privacyText:
+        "تستخدم البيانات التي ترسلها عبر الاتصال أو واتساب أو النماذج فقط للرد على طلبك، إعداد الحجز، تأكيد التوفر وإدارة الخدمة المطلوبة. لا يتم بيع البيانات أو نشرها. يمكنك طلب الوصول أو التصحيح أو الحذف عبر الهاتف أو واتساب.",
+      cookiesTitle: "سياسة ملفات الارتباط",
+      cookiesText:
+        "يستخدم الموقع ملفات ارتباط تقنية ضرورية لتذكر التفضيلات الأساسية. لا يتم تحميل القياس المجهول إلا إذا وافقت على ملفات الارتباط، ويستخدم لمعرفة النقرات العامة على الاتصال وواتساب وطلب السعر، دون تسجيل الرسائل أو الهواتف أو العناوين الشخصية.",
+    },
+    route: {
+      dayLabel: "يوم عمل نهاري",
+      premiumLabel: "ليلي / عطلة",
+      businessDay: "يوم عمل",
+      night: "وقت ليلي",
+      holiday: "الأحد أو عطلة رسمية",
+      calculated: "مسار محسوب",
+      estimated: "مسار تقديري",
+      habitual: "مسار معتاد",
+      dateEmpty: "التاريخ غير محدد",
+      originFallback: "نقطة الانطلاق المحددة",
+      destinationFallback: "الوجهة المحددة",
+    },
+    location: {
+      current: "موقعي الحالي",
+      currentDetail: "موقع تمت مشاركته من المتصفح",
+      roadFallbackOrigin: "A-2 / طريق قرب كالاتايود",
+      roadNotes:
+        "عطل أو مشكلة على الطريق. أحتاج إلى استلام ركاب. سأبقي الهاتف متاحا لتأكيد الموقع الدقيق. تاكسي للركاب وليس شاحنة سحب. السعر يخضع للتأكيد المباشر.",
+      unsupported: "المتصفح لا يسمح بإرسال الموقع.",
+      requesting: "جار طلب الموقع...",
+      ready: "الموقع جاهز للإرسال عبر واتساب.",
+      failed: "تعذر الحصول على الموقع. يمكنك كتابة العنوان.",
+    },
+    media: {
+      roadPhotoAlt: "Taxi Ayud ينقل الركاب بعد عطل على طريق A-2 قرب كالاتايود",
+      roadPhotoCaption: "استلام حقيقي على الطريق: تاكسي للركاب عند حدوث عطل أو مشكلة على A-2 وفي منطقة كالاتايود.",
+    },
+    aria: {
+      brandHome: "الرئيسية Taxi Ayud",
+      mainNav: "التنقل الرئيسي",
+      language: "اللغة",
+      relatedLinks: "روابط ذات صلة",
+      internalRoutes: "الطرق الرئيسية Taxi Ayud",
+      languageVersions: "إصدارات اللغة",
+      serviceHighlights: "مناطق الخدمة المميزة",
+      bookingCard: "حجز سريع",
+      quickContact: "خيارات اتصال سريعة",
+      trustData: "البيانات الرئيسية",
+      region: "منطقة كالاتايود",
+      comfort: "راحة الخدمة",
+      localSeo: "تاكسي في كالاتايود والمنطقة",
+      tourist: "تاكسي للزوار والإقامات",
+      bookingType: "نوع الحجز",
+      originSuggestions: "اقتراحات الانطلاق",
+      destinationSuggestions: "اقتراحات الوجهة",
+      suggestedDestinations: "وجهات مقترحة",
+      reviewSignals: "أبرز التقييمات",
+      quickDestinations: "وجهات سريعة",
+      mobileActions: "إجراءات سريعة",
+      roadMobile: "طلب تاكسي بسبب عطل أو مشكلة على الطريق",
+    },
+    starsLabel: (rating) => `${rating} نجوم`,
   },
 };
 
@@ -1926,21 +3369,22 @@ function isNight(hourValue: string) {
   return hour >= 22 || hour < 6;
 }
 
-function tariffInfo(date: string, hour: string) {
+function tariffInfo(date: string, hour: string, language: LangCode = "es") {
   const night = isNight(hour);
   const holiday = isHoliday(date);
   const premium = night || holiday;
+  const copy = GLOBAL_COPY[language].route;
   const reasons = [];
 
-  if (night) reasons.push("horario nocturno");
-  if (holiday) reasons.push("domingo o festivo");
+  if (night) reasons.push(copy.night);
+  if (holiday) reasons.push(copy.holiday);
 
   return {
     premium,
     rate: premium ? RATES.nightRate : RATES.dayRate,
     waitRate: premium ? RATES.nightWaitRate : RATES.dayWaitRate,
-    label: premium ? "Nocturna / festiva" : "Laborable diurna",
-    reason: reasons.length ? reasons.join(" y ") : "día laborable",
+    label: premium ? copy.premiumLabel : copy.dayLabel,
+    reason: reasons.length ? reasons.join(" · ") : copy.businessDay,
   };
 }
 
@@ -1985,8 +3429,8 @@ function displayRouteLabel(label: string) {
     .replace(/^Calatayud,\s*Aragón/i, "Calatayud, Zaragoza");
 }
 
-function dateLabel(value: string) {
-  if (!value) return "Fecha sin indicar";
+function dateLabel(value: string, language: LangCode = "es") {
+  if (!value) return GLOBAL_COPY[language].route.dateEmpty;
   const [year, month, day] = value.split("-");
   return `${day}/${month}/${year}`;
 }
@@ -2105,7 +3549,8 @@ function destinationKeyFromInput(value: string) {
 
 function makeResultForKey(key: string, input: ResultInput): Result {
   const tariff = TARIFAS[key];
-  const info = tariffInfo(input.date, input.hour);
+  const language = input.language ?? "es";
+  const info = tariffInfo(input.date, input.hour, language);
   const waitMinutes = Math.max(0, input.waitMinutes || 0);
   const waitPrice = (waitMinutes / 60) * info.waitRate;
 
@@ -2119,7 +3564,7 @@ function makeResultForKey(key: string, input: ResultInput): Result {
     price: priceFromKm(tariff.km, info.premium, waitMinutes),
     tariffLabel: info.label,
     reason: info.reason,
-    dateLabel: dateLabel(input.date),
+    dateLabel: dateLabel(input.date, language),
     hour: input.hour,
     passengers: input.passengers,
     mode: input.mode,
@@ -2128,12 +3573,13 @@ function makeResultForKey(key: string, input: ResultInput): Result {
 
 function makeReverseResultForKey(key: string, input: ResultInput, destination: string): Result {
   const result = makeResultForKey(key, input);
+  const language = input.language ?? "es";
 
   return {
     ...result,
     origin: displayName(key),
     destination: destination.trim() || "Calatayud",
-    reason: `${result.reason} · ruta habitual`,
+    reason: `${result.reason} · ${GLOBAL_COPY[language].route.habitual}`,
   };
 }
 
@@ -2142,15 +3588,17 @@ function makeResultFromExactRoute(
   input: ResultInput,
   destination: string,
 ): Result {
-  const info = tariffInfo(input.date, input.hour);
+  const language = input.language ?? "es";
+  const routeCopy = GLOBAL_COPY[language].route;
+  const info = tariffInfo(input.date, input.hour, language);
   const waitMinutes = Math.max(0, input.waitMinutes || 0);
   const waitPrice = (waitMinutes / 60) * info.waitRate;
   const km = Math.max(0, Math.round(route.km * 10) / 10);
-  const routeReason = route.approximate ? "ruta estimada" : "ruta calculada";
+  const routeReason = route.approximate ? routeCopy.estimated : routeCopy.calculated;
 
   return {
-    origin: route.originLabel || input.origin.trim() || "origen indicado",
-    destination: route.destinationLabel || destination.trim() || "destino indicado",
+    origin: route.originLabel || input.origin.trim() || routeCopy.originFallback,
+    destination: route.destinationLabel || destination.trim() || routeCopy.destinationFallback,
     destinationKey: "RUTA_EXACTA",
     km,
     waitMinutes,
@@ -2158,7 +3606,7 @@ function makeResultFromExactRoute(
     price: priceFromKm(km, info.premium, waitMinutes),
     tariffLabel: info.label,
     reason: `${info.reason} · ${routeReason}`,
-    dateLabel: dateLabel(input.date),
+    dateLabel: dateLabel(input.date, language),
     hour: input.hour,
     passengers: input.passengers,
     mode: input.mode,
@@ -2504,12 +3952,16 @@ function pickupLocationLine(pickupLocation: PickupLocation, language: LangCode =
   )},${pickupLocation.lng.toFixed(6)}`;
 }
 
-function pickupLocationSuggestion(pickupLocation: PickupLocation): AddressSuggestion | null {
+function pickupLocationSuggestion(
+  pickupLocation: PickupLocation,
+  language: LangCode = "es",
+): AddressSuggestion | null {
   if (!pickupLocation) return null;
+  const copy = GLOBAL_COPY[language].location;
 
   return {
-    label: "Mi ubicación actual",
-    detail: "Ubicación compartida desde el navegador",
+    label: copy.current,
+    detail: copy.currentDetail,
     lat: pickupLocation.lat,
     lng: pickupLocation.lng,
   };
@@ -2727,7 +4179,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     es: {
       hello: "Hola Taxi Ayud, quiero reservar un taxi.",
       now: "Tipo: taxi ahora / disponibilidad inmediata",
-      later: `Fecha y hora: ${dateLabel(options.date)} a las ${options.hour}h`,
+      later: `Fecha y hora: ${dateLabel(options.date, language)} a las ${options.hour}h`,
       origin: "Origen",
       destination: "Destino",
       passengers: "Pasajeros",
@@ -2747,7 +4199,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     en: {
       hello: "Hello Taxi Ayud, I would like to book a taxi.",
       now: "Type: taxi now / immediate availability",
-      later: `Date and time: ${dateLabel(options.date)} at ${options.hour}`,
+      later: `Date and time: ${dateLabel(options.date, language)} at ${options.hour}`,
       origin: "Origin",
       destination: "Destination",
       passengers: "Passengers",
@@ -2767,7 +4219,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     fr: {
       hello: "Bonjour Taxi Ayud, je souhaite réserver un taxi.",
       now: "Type : taxi maintenant / disponibilité immédiate",
-      later: `Date et heure : ${dateLabel(options.date)} à ${options.hour}`,
+      later: `Date et heure : ${dateLabel(options.date, language)} à ${options.hour}`,
       origin: "Départ",
       destination: "Destination",
       passengers: "Passagers",
@@ -2787,7 +4239,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     ca: {
       hello: "Hola Taxi Ayud, vull reservar un taxi.",
       now: "Tipus: taxi ara / disponibilitat immediata",
-      later: `Data i hora: ${dateLabel(options.date)} a les ${options.hour}h`,
+      later: `Data i hora: ${dateLabel(options.date, language)} a les ${options.hour}h`,
       origin: "Origen",
       destination: "Destinació",
       passengers: "Passatgers",
@@ -2807,7 +4259,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     de: {
       hello: "Hallo Taxi Ayud, ich möchte ein Taxi buchen.",
       now: "Art: Taxi jetzt / sofortige Verfügbarkeit",
-      later: `Datum und Uhrzeit: ${dateLabel(options.date)} um ${options.hour}`,
+      later: `Datum und Uhrzeit: ${dateLabel(options.date, language)} um ${options.hour}`,
       origin: "Abfahrt",
       destination: "Ziel",
       passengers: "Fahrgäste",
@@ -2827,7 +4279,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     it: {
       hello: "Ciao Taxi Ayud, vorrei prenotare un taxi.",
       now: "Tipo: taxi ora / disponibilità immediata",
-      later: `Data e ora: ${dateLabel(options.date)} alle ${options.hour}`,
+      later: `Data e ora: ${dateLabel(options.date, language)} alle ${options.hour}`,
       origin: "Origine",
       destination: "Destinazione",
       passengers: "Passeggeri",
@@ -2847,7 +4299,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     pt: {
       hello: "Olá Taxi Ayud, gostaria de reservar um táxi.",
       now: "Tipo: táxi agora / disponibilidade imediata",
-      later: `Data e hora: ${dateLabel(options.date)} às ${options.hour}`,
+      later: `Data e hora: ${dateLabel(options.date, language)} às ${options.hour}`,
       origin: "Origem",
       destination: "Destino",
       passengers: "Passageiros",
@@ -2867,7 +4319,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     nl: {
       hello: "Hallo Taxi Ayud, ik wil graag een taxi boeken.",
       now: "Type: taxi nu / direct beschikbaar",
-      later: `Datum en tijd: ${dateLabel(options.date)} om ${options.hour}`,
+      later: `Datum en tijd: ${dateLabel(options.date, language)} om ${options.hour}`,
       origin: "Vertrek",
       destination: "Bestemming",
       passengers: "Passagiers",
@@ -2887,7 +4339,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
     ar: {
       hello: "مرحبا Taxi Ayud، أريد حجز تاكسي.",
       now: "النوع: تاكسي الآن / توفر فوري",
-      later: `التاريخ والوقت: ${dateLabel(options.date)} الساعة ${options.hour}`,
+      later: `التاريخ والوقت: ${dateLabel(options.date, language)} الساعة ${options.hour}`,
       origin: "نقطة الانطلاق",
       destination: "الوجهة",
       passengers: "الركاب",
@@ -2956,11 +4408,14 @@ function relatedSeoPages(currentPath: string | null) {
 function SeoIntentSection({
   page,
   directUrl,
+  language,
 }: {
   page: SeoPage;
   directUrl: string;
+  language: LangCode;
 }) {
   const relatedPages = relatedSeoPages(page.path);
+  const global = GLOBAL_COPY[language];
 
   return (
     <section className="intent-section" aria-label={page.h1} data-animate>
@@ -2986,7 +4441,7 @@ function SeoIntentSection({
               onClick={() => trackEvent("clic_whatsapp", { source: "seo_page" })}
             >
               <Send aria-hidden="true" />
-              Reservar por WhatsApp
+              {global.reserveWhatsapp}
             </a>
             <a
               className="btn btn-secondary"
@@ -3018,7 +4473,7 @@ function SeoIntentSection({
           ))}
         </div>
       ) : null}
-      <div className="internal-links" aria-label="Enlaces relacionados">
+      <div className="internal-links" aria-label={global.aria.relatedLinks}>
         {relatedPages.map((relatedPage) => (
           <a href={relatedPage.path} key={relatedPage.path}>
             {relatedPage.navLabel}
@@ -3032,9 +4487,10 @@ function SeoIntentSection({
 function InternalLinksBand({ language }: { language: LangCode }) {
   const pages = relatedSeoPages(null);
   const ui = UI_COPY[language];
+  const global = GLOBAL_COPY[language];
 
   return (
-    <section className="internal-link-band" aria-label="Rutas principales de Taxi Ayud" data-animate>
+    <section className="internal-link-band" aria-label={global.aria.internalRoutes} data-animate>
       <p className="eyebrow compact">
         <Route aria-hidden="true" />
         {ui.internalRoutes}
@@ -3047,7 +4503,7 @@ function InternalLinksBand({ language }: { language: LangCode }) {
         ))}
       </div>
       <p className="language-link-heading">{ui.otherLanguages}</p>
-      <div className="language-link-row" aria-label="Versiones por idioma">
+      <div className="language-link-row" aria-label={global.aria.languageVersions}>
         {localizedTaxiPages.map((page) => (
           <a href={page.path} hrefLang={HTML_LANG[page.lang]} key={page.path}>
             {page.label}
@@ -3059,64 +4515,52 @@ function InternalLinksBand({ language }: { language: LangCode }) {
 }
 
 function CookieBanner({
+  language,
   onAccept,
   onReject,
 }: {
+  language: LangCode;
   onAccept: () => void;
   onReject: () => void;
 }) {
+  const global = GLOBAL_COPY[language];
+
   return (
-    <div className="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+    <div className="cookie-banner" role="dialog" aria-label={global.cookie.aria}>
       <div>
-        <strong>Privacidad y cookies</strong>
-        <p>
-          Usamos cookies técnicas para que la web funcione. Si aceptas, también podremos
-          medir de forma anónima llamadas, WhatsApp y consultas de tarifa para mejorar el servicio.
-        </p>
-        <a href="#privacidad">Privacidad</a>
-        <a href="#cookies">Cookies</a>
+        <strong>{global.cookie.title}</strong>
+        <p>{global.cookie.text}</p>
+        <a href="#privacidad">{global.cookie.privacy}</a>
+        <a href="#cookies">{global.cookie.cookies}</a>
       </div>
       <div className="cookie-actions">
         <button type="button" className="btn btn-secondary" onClick={onReject}>
-          Solo necesarias
+          {global.cookie.necessary}
         </button>
         <button type="button" className="btn btn-primary" onClick={onAccept}>
-          Aceptar
+          {global.cookie.accept}
         </button>
       </div>
     </div>
   );
 }
 
-function LegalFooter() {
+function LegalFooter({ language }: { language: LangCode }) {
+  const global = GLOBAL_COPY[language];
+
   return (
-    <section className="legal-footer" aria-label="Información legal">
+    <section className="legal-footer" aria-label={global.legal.aria}>
       <details id="aviso-legal">
-        <summary>Aviso legal</summary>
-        <p>
-          Titular: {LEGAL.owner}, DNI/NIF {LEGAL.taxId}, con domicilio en {LEGAL.address}.
-          Nombre comercial: {LEGAL.businessName}. Actividad: servicio de taxi y reservas de
-          traslados en Calatayud y comarca. Teléfono de contacto: {CONTACT.phoneDisplay}.
-        </p>
+        <summary>{global.legal.legalTitle}</summary>
+        <p>{global.legal.legalText}</p>
       </details>
       <details id="privacidad">
-        <summary>Protección de datos y privacidad</summary>
-        <p>
-          Responsable: {LEGAL.owner}. Los datos que envíes por llamada, WhatsApp o formularios
-          se usan únicamente para atender tu consulta, preparar la reserva, confirmar
-          disponibilidad y gestionar el servicio solicitado. La base legal es tu solicitud o la
-          relación precontractual/contractual. No se venden datos ni se publican datos personales.
-          Puedes solicitar acceso, rectificación o supresión contactando por teléfono o WhatsApp.
-        </p>
+        <summary>{global.legal.privacyTitle}</summary>
+        <p>{global.legal.privacyText}</p>
       </details>
       <details id="cookies">
-        <summary>Política de cookies</summary>
-        <p>
-          La web utiliza cookies técnicas necesarias para recordar preferencias básicas. La
-          medición anónima de la web solo se carga si aceptas las cookies y sirve para conocer
-          eventos generales como clics en llamada, WhatsApp o consulta de tarifa, sin registrar
-          mensajes, teléfonos ni direcciones personales.
-        </p>
+        <summary>{global.legal.cookiesTitle}</summary>
+        <p>{global.legal.cookiesText}</p>
       </details>
     </section>
   );
@@ -3156,12 +4600,15 @@ function App() {
   const [reviews, setReviews] = useState<ReviewsData>(GOOGLE_REVIEWS);
   const t = COPY[language];
   const ui = UI_COPY[language];
+  const global = GLOBAL_COPY[language];
   const currentSeoPage = activeSeoPage();
   const heroSeoPage = currentSeoPage ?? HOME_SEO_PAGE;
   const statsLabels = heroStatLabels[language];
   const touristCopy = touristSearchCopy[language];
   const destinationSearchValue = isRoadDestinationDraft(query) ? "" : query;
-  const isRoadPickupContext = notes.includes("Avería o incidencia en carretera");
+  const isRoadPickupContext = Object.values(GLOBAL_COPY).some((copy) =>
+    notes.includes(copy.location.roadNotes.slice(0, 18)),
+  );
   const destinationPlaceholder = isRoadPickupContext
     ? roadDestinationPlaceholders[language]
     : t.destinationPlaceholder;
@@ -3386,6 +4833,7 @@ function App() {
       passengers,
       waitMinutes,
       mode: bookingMode,
+      language,
     });
   }
 
@@ -3413,6 +4861,18 @@ function App() {
     setRouteError("");
   }
 
+  function closeAddressSuggestionsSoon() {
+    window.setTimeout(() => {
+      const activeName = document.activeElement?.getAttribute("name");
+      if (activeName === "origin" || activeName === "destination") return;
+      setActiveAddressField(null);
+    }, 120);
+  }
+
+  function passengerSummary(count: number) {
+    return t.passengerOptions[count - 1] ?? `${count} ${t.passengers.toLowerCase()}`;
+  }
+
   function useLookupDestination(key: string) {
     chooseDestination(key);
     document.getElementById("calculadora")?.scrollIntoView({ behavior: "smooth" });
@@ -3420,13 +4880,13 @@ function App() {
 
   function prepareRoadPickup() {
     setBookingMode("now");
-    setOrigin(pickupLocation ? "Mi ubicación actual" : "A-2 / carretera cerca de Calatayud");
+    setOrigin(pickupLocation ? global.location.current : global.location.roadFallbackOrigin);
     setQuery("");
     setSelectedKey("");
     setSelectedOriginPoint(null);
     setSelectedDestinationPoint(null);
     setDestinationSuggestions([]);
-    setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros. Mantengo el teléfono disponible para confirmar ubicación exacta. Taxi para pasajeros, no grúa. Precio sujeto a confirmación directa.");
+    setNotes(global.location.roadNotes);
     setResult(null);
     setRouteError("");
     trackEvent("clic_reserva", { source: "road_pickup" });
@@ -3444,7 +4904,7 @@ function App() {
       lat: 41.3535,
       lng: -1.6434,
     });
-    setNotes("Avería o incidencia en carretera. Necesito recogida de pasajeros. Mantengo el teléfono disponible para confirmar ubicación exacta. Taxi para pasajeros, no grúa. Precio sujeto a confirmación directa.");
+    setNotes(global.location.roadNotes);
     setResult(null);
     setRouteError("");
     trackEvent("clic_reserva", { source: "road_preset" });
@@ -3461,9 +4921,13 @@ function App() {
     const originKey = destinationKeyFromInput(origin);
     const trimmedOrigin = origin.trim();
     const trimmedDestination = destinationSearchValue.trim();
+    const normalizedOrigin = normalize(trimmedOrigin);
+    const normalizedCurrentLocation = normalize(global.location.current);
     const sharedOriginPoint =
-      pickupLocation && normalize(trimmedOrigin).includes("MI UBICACION ACTUAL")
-        ? pickupLocationSuggestion(pickupLocation)
+      pickupLocation &&
+      (normalizedOrigin.includes("MI UBICACION ACTUAL") ||
+        normalizedOrigin === normalizedCurrentLocation)
+        ? pickupLocationSuggestion(pickupLocation, language)
         : null;
     const routeOriginPoint = selectedOriginPoint ?? sharedOriginPoint;
 
@@ -3490,6 +4954,7 @@ function App() {
           passengers,
           waitMinutes,
           mode: bookingMode,
+          language,
         }, trimmedDestination || "Calatayud"),
       );
       scrollToResult();
@@ -3519,6 +4984,7 @@ function App() {
           passengers,
           waitMinutes,
           mode: bookingMode,
+          language,
         }, trimmedDestination),
       );
       scrollToResult();
@@ -3533,55 +4999,23 @@ function App() {
 
   function requestPickupLocation() {
     if (!navigator.geolocation) {
-      setLocationStatus(
-        language === "en"
-          ? "Your browser cannot send location."
-          : language === "fr"
-            ? "Votre navigateur ne permet pas d'envoyer la position."
-            : language === "ar"
-              ? "المتصفح لا يسمح بإرسال الموقع."
-              : "Tu navegador no permite enviar ubicación.",
-      );
+      setLocationStatus(global.location.unsupported);
       return;
     }
 
-    setLocationStatus(
-      language === "en"
-        ? "Requesting location..."
-        : language === "fr"
-          ? "Demande de position..."
-          : language === "ar"
-            ? "جار طلب الموقع..."
-            : "Pidiendo ubicación...",
-    );
+    setLocationStatus(global.location.requesting);
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setPickupLocation({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
-        setOrigin("Mi ubicación actual");
+        setOrigin(global.location.current);
         setResult(null);
-        setLocationStatus(
-          language === "en"
-            ? "Location ready to send by WhatsApp."
-            : language === "fr"
-              ? "Position prête à envoyer par WhatsApp."
-              : language === "ar"
-                ? "الموقع جاهز للإرسال عبر واتساب."
-                : "Ubicación lista para enviar por WhatsApp.",
-        );
+        setLocationStatus(global.location.ready);
       },
       () => {
-        setLocationStatus(
-          language === "en"
-            ? "Location could not be detected. You can type the address."
-            : language === "fr"
-              ? "Position impossible à obtenir. Vous pouvez écrire l'adresse."
-              : language === "ar"
-                ? "تعذر الحصول على الموقع. يمكنك كتابة العنوان."
-                : "No se pudo obtener la ubicación. Puedes escribir la dirección.",
-        );
+        setLocationStatus(global.location.failed);
       },
       { enableHighAccuracy: true, timeout: 10000 },
     );
@@ -3590,13 +5024,13 @@ function App() {
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="/" aria-label="Taxi Ayud inicio">
+        <a className="brand" href="/" aria-label={global.aria.brandHome}>
           <img src="/assets/logo.webp" alt="" width="520" height="520" />
           <span>
             Taxi <strong>Ayud</strong>
           </span>
         </a>
-        <nav className="main-nav" aria-label="Navegacion principal">
+        <nav className="main-nav" aria-label={global.aria.mainNav}>
           <a
             href={directUrl}
             target="_blank"
@@ -3613,7 +5047,7 @@ function App() {
         <div className="language-switcher">
           <Languages aria-hidden="true" />
           <select
-            aria-label="Idioma"
+            aria-label={global.aria.language}
             value={language}
             onChange={(event) => changeLanguage(event.target.value as LangCode)}
           >
@@ -3681,8 +5115,8 @@ function App() {
                 </div>
               ))}
             </dl>
-            <div className="hero-places" aria-label="Zonas de servicio destacadas">
-              {regionHighlights.map((place) => (
+            <div className="hero-places" aria-label={global.aria.serviceHighlights}>
+              {regionHighlights[language].map((place) => (
                 <span key={place}>
                   <MapPin aria-hidden="true" />
                   {place}
@@ -3691,7 +5125,7 @@ function App() {
             </div>
           </div>
 
-          <aside className="hero-booking-card" aria-label="Reserva rapida">
+          <aside className="hero-booking-card" aria-label={global.aria.bookingCard}>
             <div className="rating-badge">
               <Star aria-hidden="true" />
               <strong>{reviews.rating}</strong>
@@ -3699,7 +5133,7 @@ function App() {
             </div>
             <h2>{t.bookTitle}</h2>
             <p>{t.bookText}</p>
-            <div className="hero-direct-options" aria-label="Opciones de contacto rapido">
+            <div className="hero-direct-options" aria-label={global.aria.quickContact}>
               <span>
                 <MessageCircle aria-hidden="true" />
                 {t.noRoute}
@@ -3740,7 +5174,7 @@ function App() {
           </aside>
         </section>
 
-        <section className="trust-strip" aria-label="Datos principales">
+        <section className="trust-strip" aria-label={global.aria.trustData}>
           <div>
             <WalletCards aria-hidden="true" />
             <span>{t.paymentTitle}</span>
@@ -3749,7 +5183,7 @@ function App() {
           <div>
             <TimerReset aria-hidden="true" />
             <span>{t.officialFare}</span>
-            <p>{RATES.officialNotice}</p>
+            <p>{global.officialNotice}</p>
           </div>
           <div>
             <Star aria-hidden="true" />
@@ -3758,9 +5192,11 @@ function App() {
           </div>
         </section>
 
-        {currentSeoPage ? <SeoIntentSection page={currentSeoPage} directUrl={directUrl} /> : null}
+        {currentSeoPage ? (
+          <SeoIntentSection page={currentSeoPage} directUrl={directUrl} language={language} />
+        ) : null}
 
-        <section className="region-band" aria-label="Comarca de Calatayud" data-animate>
+        <section className="region-band" aria-label={global.aria.region} data-animate>
           <div className="region-copy">
             <p className="eyebrow compact">
               <MapPin aria-hidden="true" />
@@ -3769,7 +5205,7 @@ function App() {
             <h2>{t.regionTitle}</h2>
             <p>{t.regionText}</p>
           </div>
-          <div className="comfort-strip" aria-label="Comodidad del servicio">
+          <div className="comfort-strip" aria-label={global.aria.comfort}>
             {[CheckCircle2, Luggage, ShieldCheck, MessageCircle].map((Icon, index) => (
               <div key={t.comfort[index]}>
                 <Icon aria-hidden="true" />
@@ -3779,7 +5215,7 @@ function App() {
           </div>
         </section>
 
-        <section className="local-seo-section" aria-label="Taxi en Calatayud y comarca" data-animate>
+        <section className="local-seo-section" aria-label={global.aria.localSeo} data-animate>
           <div>
             <p className="eyebrow compact">
               <MapPinned aria-hidden="true" />
@@ -3799,7 +5235,7 @@ function App() {
           </div>
         </section>
 
-        <section className="tourist-search-section" aria-label="Taxi para visitantes y alojamientos" data-animate>
+        <section className="tourist-search-section" aria-label={global.aria.tourist} data-animate>
           <div className="tourist-search-copy">
             <p className="eyebrow compact">
               <Languages aria-hidden="true" />
@@ -3809,7 +5245,7 @@ function App() {
             <p>{touristCopy.text}</p>
           </div>
           <div className="tourist-search-grid">
-            {touristSearchPhrases.map((item) => (
+            {touristSearchPhrases[language].map((item) => (
               <span key={item.language}>
                 <strong>{item.language}</strong>
                 {item.query}
@@ -3856,14 +5292,27 @@ function App() {
               {ui.roadDisclaimer}
             </p>
           </div>
-          <div className="road-assist-panel" aria-label={ui.roadPanelAria}>
-            {ui.roadSteps.map((step, index) => (
-              <div className="road-step" key={step.title}>
-                <span>{index + 1}</span>
-                <strong>{step.title}</strong>
-                <p>{step.text}</p>
-              </div>
-            ))}
+          <div className="road-visual-column">
+            <figure className="road-photo-card">
+              <img
+                src="/assets/roadside-pickup-taxi.webp"
+                alt={global.media.roadPhotoAlt}
+                width="738"
+                height="415"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>{global.media.roadPhotoCaption}</figcaption>
+            </figure>
+            <div className="road-assist-panel" aria-label={ui.roadPanelAria}>
+              {ui.roadSteps.map((step, index) => (
+                <div className="road-step" key={step.title}>
+                  <span>{index + 1}</span>
+                  <strong>{step.title}</strong>
+                  <p>{step.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -3879,7 +5328,7 @@ function App() {
 
           <div className="calc-layout" data-animate>
             <div className="calculator-panel">
-              <div className="mode-toggle" role="group" aria-label="Tipo de reserva">
+              <div className="mode-toggle" role="group" aria-label={global.aria.bookingType}>
                 <button
                   type="button"
                   className={bookingMode === "later" ? "active" : ""}
@@ -3917,7 +5366,7 @@ function App() {
                       value={origin}
                       placeholder={t.originPlaceholder}
                       onFocus={() => setActiveAddressField("origin")}
-                      onBlur={() => window.setTimeout(() => setActiveAddressField(null), 120)}
+                      onBlur={closeAddressSuggestionsSoon}
                       onChange={(event) => {
                         setOrigin(event.target.value);
                         setSelectedOriginPoint(null);
@@ -3927,7 +5376,7 @@ function App() {
                     />
                   </div>
                   {activeAddressField === "origin" && originSuggestions.length ? (
-                    <div className="address-suggestions" aria-label="Sugerencias de origen">
+                    <div className="address-suggestions" aria-label={global.aria.originSuggestions}>
                       {originSuggestions.map((item) => (
                         <button
                           type="button"
@@ -3967,7 +5416,7 @@ function App() {
                           setDestinationSuggestions([]);
                         }
                       }}
-                      onBlur={() => window.setTimeout(() => setActiveAddressField(null), 120)}
+                      onBlur={closeAddressSuggestionsSoon}
                       onChange={(event) => {
                         setQuery(event.target.value);
                         setSelectedKey("");
@@ -3978,7 +5427,7 @@ function App() {
                     />
                   </div>
                   {activeAddressField === "destination" && destinationSuggestions.length ? (
-                    <div className="address-suggestions" aria-label="Sugerencias de destino">
+                    <div className="address-suggestions" aria-label={global.aria.destinationSuggestions}>
                       {destinationSuggestions.map((item) => (
                         <button
                           type="button"
@@ -3997,7 +5446,7 @@ function App() {
                 </label>
               </div>
 
-              <div className="suggestions compact" aria-label="Destinos sugeridos">
+              <div className="suggestions compact" aria-label={global.aria.suggestedDestinations}>
                 {suggestions.slice(0, 6).map(([key]) => (
                   <button
                     key={key}
@@ -4165,7 +5614,7 @@ function App() {
                     </li>
                     <li>
                       <Users aria-hidden="true" />
-                      {result.passengers} {t.passengers.toLowerCase()}
+                      {passengerSummary(result.passengers)}
                     </li>
                     {result.waitMinutes ? (
                       <li>
@@ -4205,8 +5654,8 @@ function App() {
                     </a>
                   </div>
                   <p className="small-note">
-                    {result.reason.includes("estimada") ? `${t.quoteEstimate}. ` : ""}
-                    {RATES.officialNotice}.
+                    {result.reason.includes(global.route.estimated) ? `${t.quoteEstimate}. ` : ""}
+                    {global.officialNotice}.
                   </p>
                 </>
               ) : (
@@ -4262,7 +5711,7 @@ function App() {
             </p>
             <h2>{reviews.rating} {t.reviewsWith} {reviews.count}</h2>
             <p>{t.reviewsText}</p>
-            <div className="review-signals" aria-label="Puntos destacados de las reseñas">
+            <div className="review-signals" aria-label={global.aria.reviewSignals}>
               {REVIEW_SIGNALS[language].map((signal) => (
                 <span key={signal}>{signal}</span>
               ))}
@@ -4285,7 +5734,7 @@ function App() {
               return (
                 <article className="review-card featured-review" key={`${review.author}-${review.text}`} data-animate>
                   <span className="review-label">{t.featuredReview}</span>
-                  <div aria-label={`${reviewRating} estrellas`}>
+                  <div aria-label={global.starsLabel(reviewRating)}>
                     {Array.from({ length: 5 }).map((_, index) => (
                       <Star
                         aria-hidden="true"
@@ -4310,7 +5759,7 @@ function App() {
 
                   return (
                     <article className="review-card" key={`${review.author}-${review.text}`} data-animate>
-                      <div aria-label={`${reviewRating} estrellas`}>
+                      <div aria-label={global.starsLabel(reviewRating)}>
                         {Array.from({ length: 5 }).map((_, index) => (
                           <Star
                             aria-hidden="true"
@@ -4438,7 +5887,7 @@ function App() {
                 ))}
               </select>
 
-              <div className="quick-destinations" aria-label="Destinos rápidos">
+              <div className="quick-destinations" aria-label={global.aria.quickDestinations}>
                 {featuredDestinations.slice(0, 6).map((key) => (
                   <button
                     type="button"
@@ -4588,14 +6037,15 @@ function App() {
             {CONTACT.phoneDisplay}
           </a>
           <span>{CONTACT.place}</span>
-          <span>Efectivo · Tarjeta · Bizum</span>
+          <span>{global.paymentShort}</span>
         </address>
       </footer>
 
-      <LegalFooter />
+      <LegalFooter language={language} />
 
       {cookieConsent === "pending" ? (
         <CookieBanner
+          language={language}
           onAccept={() => saveCookieConsent("accepted")}
           onReject={() => saveCookieConsent("necessary")}
         />
@@ -4612,7 +6062,7 @@ function App() {
         <MessageCircle aria-hidden="true" />
       </a>
 
-      <nav className="mobile-action-bar" aria-label="Acciones rápidas">
+      <nav className="mobile-action-bar" aria-label={global.aria.mobileActions}>
         <a
           href={directUrl}
           target="_blank"
@@ -4627,19 +6077,19 @@ function App() {
           onClick={() => trackEvent("clic_llamada", { source: "mobile_bar" })}
         >
           <Phone aria-hidden="true" />
-          Llamar
+          {t.call}
         </a>
         <a href="#calculadora" onClick={() => trackEvent("clic_reserva", { source: "mobile_bar_calc" })}>
           <Route aria-hidden="true" />
-          Calcular
+          {t.nav[1]}
         </a>
         <button
           type="button"
-          aria-label="Pedir taxi por avería o incidencia en carretera"
+          aria-label={global.aria.roadMobile}
           onClick={requestRoadPickupLocation}
         >
           <TriangleAlert aria-hidden="true" />
-          Avería
+          {ui.roadHeroOption}
         </button>
       </nav>
     </>

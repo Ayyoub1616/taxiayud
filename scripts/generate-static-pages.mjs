@@ -45,6 +45,8 @@ const staticCopy = {
     serviceAreasHeading: "Zonas habituales de recogida",
     serviceAreasText:
       "Taxi oficial con recogidas en Calatayud, hoteles, estación, balnearios, pueblos de la comarca y destinos turísticos cercanos.",
+    imageAlt: "Taxi Ayud Calatayud Peugeot 408 Hybrid blanco en la comarca de Calatayud",
+    imageCaption: "Taxi oficial en Calatayud para estación AVE, comarca, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.",
     faqHeading: "Preguntas frecuentes",
     related: "Rutas relacionadas",
   },
@@ -54,6 +56,8 @@ const staticCopy = {
     serviceAreasHeading: "Frequent pick-up areas",
     serviceAreasText:
       "Official taxi pick-ups in Calatayud, hotels, the station, spas, nearby villages and tourist destinations.",
+    imageAlt: "Taxi Ayud Calatayud white Peugeot 408 Hybrid in the Calatayud area",
+    imageCaption: "Official taxi in Calatayud for the AVE station, local villages, spas, Monasterio de Piedra, the A-2, Zaragoza and airport.",
     faqHeading: "Frequently asked questions",
     related: "Related taxi pages",
   },
@@ -63,6 +67,8 @@ const staticCopy = {
     serviceAreasHeading: "Zones de prise en charge habituelles",
     serviceAreasText:
       "Taxi officiel avec prises en charge à Calatayud, hôtels, gare, thermes, villages proches et destinations touristiques.",
+    imageAlt: "Taxi Ayud Calatayud Peugeot 408 Hybrid blanc dans la région de Calatayud",
+    imageCaption: "Taxi officiel à Calatayud pour la gare AVE, villages, thermes, Monasterio de Piedra, A-2, Saragosse et aéroport.",
     faqHeading: "Questions fréquentes",
     related: "Pages taxi liées",
   },
@@ -72,6 +78,8 @@ const staticCopy = {
     serviceAreasHeading: "Zones habituals de recollida",
     serviceAreasText:
       "Taxi oficial amb recollides a Calatayud, hotels, estació, balnearis, pobles propers i destinacions turístiques.",
+    imageAlt: "Taxi Ayud Calatayud Peugeot 408 Hybrid blanc a la comarca de Calatayud",
+    imageCaption: "Taxi oficial a Calatayud per a estació AVE, comarca, balnearis, Monasterio de Piedra, A-2, Saragossa i aeroport.",
     faqHeading: "Preguntes freqüents",
     related: "Pàgines relacionades",
   },
@@ -81,6 +89,8 @@ const staticCopy = {
     serviceAreasHeading: "Häufige Abholbereiche",
     serviceAreasText:
       "Offizielles Taxi mit Abholung in Calatayud, Hotels, Bahnhof, Thermalbädern, nahen Orten und touristischen Zielen.",
+    imageAlt: "Taxi Ayud Calatayud weißer Peugeot 408 Hybrid in der Region Calatayud",
+    imageCaption: "Offizielles Taxi in Calatayud für AVE-Bahnhof, Dörfer, Thermalbäder, Monasterio de Piedra, A-2, Zaragoza und Flughafen.",
     faqHeading: "Häufige Fragen",
     related: "Verwandte Taxiseiten",
   },
@@ -90,6 +100,8 @@ const staticCopy = {
     serviceAreasHeading: "Zone abituali di ritiro",
     serviceAreasText:
       "Taxi ufficiale con ritiri a Calatayud, hotel, stazione, terme, paesi vicini e destinazioni turistiche.",
+    imageAlt: "Taxi Ayud Calatayud Peugeot 408 Hybrid bianco nella comarca di Calatayud",
+    imageCaption: "Taxi ufficiale a Calatayud per stazione AVE, comarca, terme, Monasterio de Piedra, A-2, Saragozza e aeroporto.",
     faqHeading: "Domande frequenti",
     related: "Pagine taxi correlate",
   },
@@ -99,6 +111,8 @@ const staticCopy = {
     serviceAreasHeading: "Áreas habituais de recolha",
     serviceAreasText:
       "Táxi oficial com recolhas em Calatayud, hotéis, estação, termas, aldeias próximas e destinos turísticos.",
+    imageAlt: "Taxi Ayud Calatayud Peugeot 408 Hybrid branco na comarca de Calatayud",
+    imageCaption: "Táxi oficial em Calatayud para estação AVE, comarca, termas, Monasterio de Piedra, A-2, Zaragoza e aeroporto.",
     faqHeading: "Perguntas frequentes",
     related: "Páginas relacionadas",
   },
@@ -108,6 +122,8 @@ const staticCopy = {
     serviceAreasHeading: "Veelgebruikte ophaalgebieden",
     serviceAreasText:
       "Officiële taxi met ophaalservice in Calatayud, hotels, station, kuuroorden, nabijgelegen dorpen en toeristische bestemmingen.",
+    imageAlt: "Taxi Ayud Calatayud witte Peugeot 408 Hybrid in de regio Calatayud",
+    imageCaption: "Officiële taxi in Calatayud voor AVE-station, dorpen, kuuroorden, Monasterio de Piedra, A-2, Zaragoza en luchthaven.",
     faqHeading: "Veelgestelde vragen",
     related: "Gerelateerde taxipagina's",
   },
@@ -117,6 +133,8 @@ const staticCopy = {
     serviceAreasHeading: "مناطق الاستلام الشائعة",
     serviceAreasText:
       "تاكسي رسمي مع استلام في كالاتايود والفنادق والمحطة والمنتجعات والقرى القريبة والوجهات السياحية.",
+    imageAlt: "Taxi Ayud Calatayud Peugeot 408 Hybrid أبيض في منطقة كالاتايود",
+    imageCaption: "تاكسي رسمي في كالاتايود للمحطة والقرى والمنتجعات وMonasterio de Piedra وطريق A-2 وسرقسطة والمطار.",
     faqHeading: "الأسئلة الشائعة",
     related: "صفحات تاكسي ذات صلة",
   },
@@ -172,7 +190,12 @@ const businessGraph = {
     "Aragón",
   ],
   url: `${siteUrl}/`,
-  image: `${siteUrl}/assets/og-image.jpg`,
+  image: [
+    `${siteUrl}/assets/og-image.jpg`,
+    `${siteUrl}/assets/peugeot-408-hybrid.webp`,
+    `${siteUrl}/assets/taxi-calatayud-landscape.webp`,
+    `${siteUrl}/assets/roadside-pickup-taxi.webp`,
+  ],
   logo: `${siteUrl}/assets/logo.webp`,
   priceRange: "€€",
   paymentAccepted: ["Cash", "Credit Card", "Bizum", "Apple Pay", "Google Pay"],
@@ -408,7 +431,9 @@ function staticFallback(page) {
     ? `<section class="static-faq" id="faq"><h2>${escapeHtml(copy.faqHeading)}</h2>${faqItems}</section>`
     : "";
 
-  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p><p><a href="tel:611861041">${escapeHtml(copy.call)}</a> · <a href="https://wa.me/34611861041">${escapeHtml(copy.whatsapp)}</a></p><article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>${escapeHtml(copy.serviceAreasHeading)}</h2><p>${escapeHtml(copy.serviceAreasText)}</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="${escapeHtml(copy.related)}">${links}</nav></main>`;
+  const image = `<figure class="static-local-image"><img src="/assets/taxi-calatayud-landscape.webp" alt="${escapeHtml(copy.imageAlt)}" width="1800" height="1013" loading="eager" decoding="async" /><figcaption>${escapeHtml(copy.imageCaption)}</figcaption></figure>`;
+
+  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${image}<p><a href="tel:611861041">${escapeHtml(copy.call)}</a> · <a href="https://wa.me/34611861041">${escapeHtml(copy.whatsapp)}</a></p><article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>${escapeHtml(copy.serviceAreasHeading)}</h2><p>${escapeHtml(copy.serviceAreasText)}</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="${escapeHtml(copy.related)}">${links}</nav></main>`;
 }
 
 function pageJsonLd(page) {
