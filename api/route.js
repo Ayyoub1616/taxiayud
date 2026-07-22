@@ -165,6 +165,12 @@ const COMMON_POINTS = [
     lng: -3.7038,
   },
 ];
+const CALATAYUD_SERVICE_BASE = {
+  label: "Calatayud, Zaragoza, España",
+  lat: 41.3535,
+  lng: -1.6434,
+};
+const CALATAYUD_BASE_RADIUS_KM = 3.5;
 const EXACT_COMMON_POINT_KEYS = new Set([
   "CALATAYUD",
   "CALATAYUD ZARAGOZA",
@@ -192,6 +198,10 @@ function normalize(value) {
     .replace(/\s+/g, " ")
     .toUpperCase()
     .trim();
+}
+
+function roundKm(value) {
+  return Math.max(0, Math.round(Number(value) * 10) / 10);
 }
 
 function pointFromRequest(point, fallbackLabel) {
@@ -245,6 +255,34 @@ function haversineKm(origin, destination) {
   return 2 * earthRadiusKm * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+function isCalatayudServicePoint(point, label = "") {
+  const normalizedLabel = normalize(`${label} ${point?.label || ""}`);
+
+  if (
+    normalizedLabel.includes("CALATAYUD") ||
+    normalizedLabel.includes("PL DEL FUERTE") ||
+    normalizedLabel.includes("PLAZA DEL FUERTE")
+  ) {
+    return true;
+  }
+
+  if (!point) return false;
+
+  const lat = Number(point.lat);
+  const lng = Number(point.lng);
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return false;
+
+  return haversineKm(CALATAYUD_SERVICE_BASE, { label: point.label, lat, lng }) <= CALATAYUD_BASE_RADIUS_KM;
+}
+
+function shouldCalculateFromCalatayudBase(originPoint, destinationPoint, originLabel = "", destinationLabel = "") {
+  return (
+    !isCalatayudServicePoint(originPoint, originLabel) &&
+    !isCalatayudServicePoint(destinationPoint, destinationLabel)
+  );
+}
+
 function estimateDrivingRoute(origin, destination) {
   const directKm = haversineKm(origin, destination);
 
@@ -254,11 +292,24 @@ function estimateDrivingRoute(origin, destination) {
 
   const correction = directKm < 12 ? 1.35 : directKm < 60 ? 1.27 : 1.23;
   const minimumBuffer = directKm < 12 ? 1.8 : 4;
-  const km = Math.round(Math.max(directKm * correction, directKm + minimumBuffer) * 10) / 10;
+  const km = roundKm(Math.max(directKm * correction, directKm + minimumBuffer));
 
   return {
     km,
     durationMinutes: Math.round((km / 68) * 60),
+    approximate: true,
+  };
+}
+
+function estimateDrivingRouteThrough(points) {
+  const km = points.slice(1).reduce((total, point, index) => {
+    return total + estimateDrivingRoute(points[index], point).km;
+  }, 0);
+  const rounded = roundKm(km);
+
+  return {
+    km: rounded,
+    durationMinutes: Math.round((rounded / 68) * 60),
     approximate: true,
   };
 }
@@ -370,7 +421,7 @@ async function geocodeWithOpenStreetMap(text) {
   };
 }
 
-async function getDrivingRoute(origin, destination, apiKey) {
+async function getDrivingRouteForPoints(points, apiKey) {
   const response = await fetch(`${ORS_BASE_URL}/v2/directions/driving-car/json`, {
     method: "POST",
     headers: {
@@ -378,10 +429,7 @@ async function getDrivingRoute(origin, destination, apiKey) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      coordinates: [
-        [origin.lng, origin.lat],
-        [destination.lng, destination.lat],
-      ],
+      coordinates: points.map((point) => [point.lng, point.lat]),
       units: "km",
     }),
   });
@@ -398,13 +446,17 @@ async function getDrivingRoute(origin, destination, apiKey) {
   }
 
   return {
-    km: Math.round(Number(summary.distance) * 10) / 10,
+    km: roundKm(summary.distance),
     durationMinutes: summary.duration ? Math.round(Number(summary.duration) / 60) : undefined,
   };
 }
 
-async function getDrivingRouteWithOpenStreetMap(origin, destination) {
-  const coordinates = `${origin.lng},${origin.lat};${destination.lng},${destination.lat}`;
+async function getDrivingRoute(origin, destination, apiKey) {
+  return getDrivingRouteForPoints([origin, destination], apiKey);
+}
+
+async function getDrivingRouteWithOpenStreetMapPoints(points) {
+  const coordinates = points.map((point) => `${point.lng},${point.lat}`).join(";");
   const params = new URLSearchParams({
     overview: "false",
     alternatives: "false",
@@ -420,9 +472,13 @@ async function getDrivingRouteWithOpenStreetMap(origin, destination) {
   }
 
   return {
-    km: Math.round((Number(route.distance) / 1000) * 10) / 10,
+    km: roundKm(Number(route.distance) / 1000),
     durationMinutes: route.duration ? Math.round(Number(route.duration) / 60) : undefined,
   };
+}
+
+async function getDrivingRouteWithOpenStreetMap(origin, destination) {
+  return getDrivingRouteWithOpenStreetMapPoints([origin, destination]);
 }
 
 async function calculateWithOpenRouteService(origin, destination, originPoint, destinationPoint, apiKey) {
@@ -431,9 +487,39 @@ async function calculateWithOpenRouteService(origin, destination, originPoint, d
     destinationPoint || geocode(destination, apiKey),
   ]);
   const route = await getDrivingRoute(resolvedOrigin, resolvedDestination, apiKey);
+  const baseAdjusted = shouldCalculateFromCalatayudBase(
+    resolvedOrigin,
+    resolvedDestination,
+    origin,
+    destination,
+  );
+  let serviceRoute = null;
+  let serviceRouteApproximate = false;
+
+  if (baseAdjusted) {
+    try {
+      serviceRoute = await getDrivingRouteForPoints(
+        [CALATAYUD_SERVICE_BASE, resolvedOrigin, resolvedDestination, CALATAYUD_SERVICE_BASE],
+        apiKey,
+      );
+    } catch {
+      serviceRoute = estimateDrivingRouteThrough([
+        CALATAYUD_SERVICE_BASE,
+        resolvedOrigin,
+        resolvedDestination,
+        CALATAYUD_SERVICE_BASE,
+      ]);
+      serviceRouteApproximate = true;
+    }
+  }
 
   return {
-    route,
+    route: {
+      ...route,
+      billableKm: serviceRoute?.km,
+      baseAdjusted,
+      approximate: route.approximate || serviceRouteApproximate || undefined,
+    },
     originPoint: resolvedOrigin,
     destinationPoint: resolvedDestination,
     provider: "openrouteservice",
@@ -447,6 +533,14 @@ async function calculateWithOpenStreetMap(origin, destination, originPoint, dest
   ]);
   let route = null;
   let provider = "openstreetmap-osrm";
+  const baseAdjusted = shouldCalculateFromCalatayudBase(
+    resolvedOrigin,
+    resolvedDestination,
+    origin,
+    destination,
+  );
+  let serviceRoute = null;
+  let serviceRouteApproximate = false;
 
   try {
     route = await getDrivingRouteWithOpenStreetMap(resolvedOrigin, resolvedDestination);
@@ -455,8 +549,32 @@ async function calculateWithOpenStreetMap(origin, destination, originPoint, dest
     provider = "estimated-distance";
   }
 
+  if (baseAdjusted) {
+    try {
+      serviceRoute = await getDrivingRouteWithOpenStreetMapPoints([
+        CALATAYUD_SERVICE_BASE,
+        resolvedOrigin,
+        resolvedDestination,
+        CALATAYUD_SERVICE_BASE,
+      ]);
+    } catch {
+      serviceRoute = estimateDrivingRouteThrough([
+        CALATAYUD_SERVICE_BASE,
+        resolvedOrigin,
+        resolvedDestination,
+        CALATAYUD_SERVICE_BASE,
+      ]);
+      serviceRouteApproximate = true;
+    }
+  }
+
   return {
-    route,
+    route: {
+      ...route,
+      billableKm: serviceRoute?.km,
+      baseAdjusted,
+      approximate: route.approximate || serviceRouteApproximate || undefined,
+    },
     originPoint: resolvedOrigin,
     destinationPoint: resolvedDestination,
     provider,
@@ -519,6 +637,8 @@ export default async function handler(request, response) {
       ...calculation.route,
       originLabel: calculation.originPoint.label,
       destinationLabel: calculation.destinationPoint.label,
+      originPoint: calculation.originPoint,
+      destinationPoint: calculation.destinationPoint,
       provider: calculation.provider,
     });
   } catch (error) {

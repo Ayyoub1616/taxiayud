@@ -81,9 +81,13 @@ type ResultInput = {
 
 type ExactRouteResponse = {
   km: number;
+  billableKm?: number;
   durationMinutes?: number;
   originLabel?: string;
   destinationLabel?: string;
+  originPoint?: RoutePoint;
+  destinationPoint?: RoutePoint;
+  baseAdjusted?: boolean;
   approximate?: boolean;
   provider?: string;
 };
@@ -3288,6 +3292,13 @@ const knownRoutePoints: KnownRoutePoint[] = [
   },
 ];
 
+const CALATAYUD_SERVICE_BASE: RoutePoint = {
+  label: "Calatayud, Zaragoza, España",
+  lat: 41.3535,
+  lng: -1.6434,
+};
+const CALATAYUD_BASE_RADIUS_KM = 3.5;
+
 const exactRoutePointKeys = new Set([
   "A2",
   "A-2",
@@ -3348,6 +3359,10 @@ function euro(value: number) {
   return `${value.toFixed(2).replace(".", ",")} €`;
 }
 
+function roundKm(value: number) {
+  return Math.max(0, Math.round(value * 10) / 10);
+}
+
 function localDate(value: string) {
   const [year, month, day] = value.split("-").map(Number);
   return new Date(year, month - 1, day);
@@ -3389,10 +3404,14 @@ function tariffInfo(date: string, hour: string, language: LangCode = "es") {
 }
 
 function priceFromKm(km: number, premium: boolean, waitMinutes = 0) {
+  return priceFromServiceKm(km * RATES.returnFactor, premium, waitMinutes);
+}
+
+function priceFromServiceKm(km: number, premium: boolean, waitMinutes = 0) {
   const rate = premium ? RATES.nightRate : RATES.dayRate;
   const waitRate = premium ? RATES.nightWaitRate : RATES.dayWaitRate;
   const waitingPrice = (Math.max(0, waitMinutes) / 60) * waitRate;
-  return km * RATES.returnFactor * rate + waitingPrice;
+  return km * rate + waitingPrice;
 }
 
 function formatKm(value: number) {
@@ -3593,8 +3612,37 @@ function makeResultFromExactRoute(
   const info = tariffInfo(input.date, input.hour, language);
   const waitMinutes = Math.max(0, input.waitMinutes || 0);
   const waitPrice = (waitMinutes / 60) * info.waitRate;
-  const km = Math.max(0, Math.round(route.km * 10) / 10);
+  const km = roundKm(route.km);
+  const needsBaseCalculation =
+    Boolean(route.baseAdjusted) ||
+    shouldCalculateFromCalatayudBase(
+      route.originPoint,
+      route.destinationPoint,
+      route.originLabel || input.origin,
+      route.destinationLabel || destination,
+    );
+  let serviceKm = route.billableKm ? roundKm(route.billableKm) : 0;
+
+  if (needsBaseCalculation && (!serviceKm || serviceKm < km)) {
+    try {
+      if (route.originPoint && route.destinationPoint) {
+        serviceKm = estimateDrivingRouteThrough([
+          CALATAYUD_SERVICE_BASE,
+          route.originPoint,
+          route.destinationPoint,
+          CALATAYUD_SERVICE_BASE,
+        ]).km;
+      }
+    } catch {
+      serviceKm = 0;
+    }
+  }
+
   const routeReason = route.approximate ? routeCopy.estimated : routeCopy.calculated;
+  const price =
+    needsBaseCalculation && serviceKm
+      ? priceFromServiceKm(Math.max(km, serviceKm), info.premium, waitMinutes)
+      : priceFromKm(km, info.premium, waitMinutes);
 
   return {
     origin: route.originLabel || input.origin.trim() || routeCopy.originFallback,
@@ -3603,7 +3651,7 @@ function makeResultFromExactRoute(
     km,
     waitMinutes,
     waitPrice,
-    price: priceFromKm(km, info.premium, waitMinutes),
+    price,
     tariffLabel: info.label,
     reason: `${info.reason} · ${routeReason}`,
     dateLabel: dateLabel(input.date, language),
@@ -3765,6 +3813,39 @@ function haversineKm(origin: RoutePoint, destination: RoutePoint) {
   return 2 * earthRadiusKm * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+function isCalatayudServicePoint(point: RoutePoint | null | undefined, label = "") {
+  const normalizedLabel = normalize(`${label} ${point?.label ?? ""}`);
+
+  if (
+    normalizedLabel.includes("CALATAYUD") ||
+    normalizedLabel.includes("PL DEL FUERTE") ||
+    normalizedLabel.includes("PLAZA DEL FUERTE")
+  ) {
+    return true;
+  }
+
+  if (!point) return false;
+
+  const lat = Number(point.lat);
+  const lng = Number(point.lng);
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return false;
+
+  return haversineKm(CALATAYUD_SERVICE_BASE, { label: point.label, lat, lng }) <= CALATAYUD_BASE_RADIUS_KM;
+}
+
+function shouldCalculateFromCalatayudBase(
+  originPoint: RoutePoint | null | undefined,
+  destinationPoint: RoutePoint | null | undefined,
+  originLabel = "",
+  destinationLabel = "",
+) {
+  return (
+    !isCalatayudServicePoint(originPoint, originLabel) &&
+    !isCalatayudServicePoint(destinationPoint, destinationLabel)
+  );
+}
+
 function estimateDrivingRoute(origin: RoutePoint, destination: RoutePoint): ExactRouteResponse {
   const directKm = haversineKm(origin, destination);
 
@@ -3783,6 +3864,20 @@ function estimateDrivingRoute(origin: RoutePoint, destination: RoutePoint): Exac
     destinationLabel: destination.label,
     approximate: true,
     provider: "estimated-distance",
+  };
+}
+
+function estimateDrivingRouteThrough(points: RoutePoint[]): ExactRouteResponse {
+  const km = points.slice(1).reduce((total, point, index) => {
+    return total + estimateDrivingRoute(points[index], point).km;
+  }, 0);
+  const rounded = roundKm(km);
+
+  return {
+    km: rounded,
+    durationMinutes: Math.round((rounded / 68) * 60),
+    approximate: true,
+    provider: "estimated-service-distance",
   };
 }
 
@@ -3812,6 +3907,27 @@ async function geocodeInBrowser(value: string, suggestion?: AddressSuggestion | 
   };
 }
 
+async function fetchOsrmDrivingRoute(points: RoutePoint[]): Promise<ExactRouteResponse> {
+  const coordinates = points.map((point) => `${point.lng},${point.lat}`).join(";");
+  const params = new URLSearchParams({
+    overview: "false",
+    alternatives: "false",
+    steps: "false",
+  });
+  const data = await fetchClientJson(`${OSRM_CLIENT_BASE_URL}/route/v1/driving/${coordinates}?${params}`);
+  const route = data?.routes?.[0];
+
+  if (!route?.distance) {
+    throw new Error("La ruta no devolvió distancia.");
+  }
+
+  return {
+    km: roundKm(Number(route.distance) / 1000),
+    durationMinutes: route.duration ? Math.round(Number(route.duration) / 60) : undefined,
+    provider: "openstreetmap-osrm",
+  };
+}
+
 async function fetchBrowserExactRoute(
   origin: string,
   destination: string,
@@ -3822,29 +3938,68 @@ async function fetchBrowserExactRoute(
     geocodeInBrowser(origin, originPoint),
     geocodeInBrowser(destination, destinationPoint),
   ]);
-  const coordinates = `${resolvedOrigin.lng},${resolvedOrigin.lat};${resolvedDestination.lng},${resolvedDestination.lat}`;
-  const params = new URLSearchParams({
-    overview: "false",
-    alternatives: "false",
-    steps: "false",
-  });
-  try {
-    const data = await fetchClientJson(`${OSRM_CLIENT_BASE_URL}/route/v1/driving/${coordinates}?${params}`);
-    const route = data?.routes?.[0];
+  const baseAdjusted = shouldCalculateFromCalatayudBase(
+    resolvedOrigin,
+    resolvedDestination,
+    origin,
+    destination,
+  );
+  let serviceRoute: ExactRouteResponse | null = null;
+  let serviceRouteApproximate = false;
 
-    if (!route?.distance) {
-      throw new Error("La ruta no devolvió distancia.");
+  try {
+    const route = await fetchOsrmDrivingRoute([resolvedOrigin, resolvedDestination]);
+
+    if (baseAdjusted) {
+      try {
+        serviceRoute = await fetchOsrmDrivingRoute([
+          CALATAYUD_SERVICE_BASE,
+          resolvedOrigin,
+          resolvedDestination,
+          CALATAYUD_SERVICE_BASE,
+        ]);
+      } catch {
+        serviceRoute = estimateDrivingRouteThrough([
+          CALATAYUD_SERVICE_BASE,
+          resolvedOrigin,
+          resolvedDestination,
+          CALATAYUD_SERVICE_BASE,
+        ]);
+        serviceRouteApproximate = true;
+      }
     }
 
     return {
-      km: Math.round((Number(route.distance) / 1000) * 10) / 10,
-      durationMinutes: route.duration ? Math.round(Number(route.duration) / 60) : undefined,
+      ...route,
       originLabel: resolvedOrigin.label,
       destinationLabel: resolvedDestination.label,
-      provider: "openstreetmap-osrm",
+      originPoint: resolvedOrigin,
+      destinationPoint: resolvedDestination,
+      billableKm: serviceRoute?.km,
+      baseAdjusted,
+      approximate: route.approximate || serviceRouteApproximate || undefined,
     };
   } catch {
-    return estimateDrivingRoute(resolvedOrigin, resolvedDestination);
+    const route = estimateDrivingRoute(resolvedOrigin, resolvedDestination);
+
+    if (baseAdjusted) {
+      serviceRoute = estimateDrivingRouteThrough([
+        CALATAYUD_SERVICE_BASE,
+        resolvedOrigin,
+        resolvedDestination,
+        CALATAYUD_SERVICE_BASE,
+      ]);
+    }
+
+    return {
+      ...route,
+      originLabel: resolvedOrigin.label,
+      destinationLabel: resolvedDestination.label,
+      originPoint: resolvedOrigin,
+      destinationPoint: resolvedDestination,
+      billableKm: serviceRoute?.km,
+      baseAdjusted,
+    };
   }
 }
 
