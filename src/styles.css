@@ -2545,6 +2545,107 @@ tr:hover td {
   margin: 8px 0 0;
 }
 
+.road-whatsapp-backdrop {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(241, 195, 77, 0.16), transparent 30%),
+    rgba(2, 5, 10, 0.78);
+  backdrop-filter: blur(16px);
+}
+
+.road-whatsapp-modal {
+  width: min(560px, 100%);
+  max-height: calc(100vh - 36px);
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid rgba(241, 195, 77, 0.28);
+  border-radius: 10px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+    rgba(7, 11, 17, 0.97);
+  color: #f7fbff;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.56);
+}
+
+.road-modal-heading {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.road-modal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(241, 195, 77, 0.14);
+  color: var(--gold);
+}
+
+.road-modal-icon svg {
+  width: 25px;
+  height: 25px;
+}
+
+.road-whatsapp-modal h2 {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  line-height: 1.05;
+}
+
+.road-whatsapp-modal p {
+  margin: 0;
+  color: #cfd7e4;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.road-whatsapp-modal ul {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.road-whatsapp-modal li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  color: #e7edf6;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.road-whatsapp-modal li svg {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--green);
+}
+
+.road-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.road-modal-actions .btn {
+  min-height: 46px;
+  padding: 0 16px;
+}
+
 .cookie-banner {
   position: fixed;
   z-index: 45;
@@ -3265,6 +3366,35 @@ tr:hover td {
   .cookie-actions .btn {
     width: 100%;
     min-height: 44px;
+  }
+
+  .road-whatsapp-backdrop {
+    align-items: end;
+    padding: 12px 12px calc(86px + env(safe-area-inset-bottom));
+  }
+
+  .road-whatsapp-modal {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .road-modal-heading {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .road-modal-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .road-modal-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .road-modal-actions .btn {
+    width: 100%;
   }
 
   .floating-whatsapp {

@@ -2273,6 +2273,145 @@ const UI_COPY: Record<
   },
 };
 
+const ROAD_WHATSAPP_NOTICE: Record<
+  LangCode,
+  {
+    aria: string;
+    title: string;
+    text: string;
+    points: string[];
+    cancel: string;
+    continue: string;
+  }
+> = {
+  es: {
+    aria: "Aviso antes de abrir WhatsApp por avería en carretera",
+    title: "Antes de abrir WhatsApp",
+    text:
+      "Si estás en carretera, primero ponte a salvo. Después abre WhatsApp y envía los datos para confirmar recogida, disponibilidad y precio orientativo.",
+    points: [
+      "Si hay peligro, accidente o emergencia, llama primero al 112.",
+      "Mantén el teléfono disponible: puede hacer falta llamarte para localizarte bien.",
+      "Indica carretera, sentido, kilómetro aproximado, salida cercana o una referencia visible.",
+      "Si el vehículo necesita grúa, avisa también a tu aseguradora o asistencia en carretera.",
+    ],
+    cancel: "Volver",
+    continue: "Abrir WhatsApp",
+  },
+  en: {
+    aria: "Notice before opening WhatsApp for a roadside incident",
+    title: "Before opening WhatsApp",
+    text:
+      "If you are on the road, get to safety first. Then open WhatsApp and send the details so pick-up, availability and an indicative price can be confirmed.",
+    points: [
+      "If there is danger, an accident or an emergency, call 112 first.",
+      "Keep your phone available: a call may be needed to locate you accurately.",
+      "Send the road, direction, approximate km, nearby exit or visible reference.",
+      "If the vehicle needs towing, also contact your insurer or roadside assistance.",
+    ],
+    cancel: "Back",
+    continue: "Open WhatsApp",
+  },
+  fr: {
+    aria: "Avis avant d'ouvrir WhatsApp pour une panne sur route",
+    title: "Avant d'ouvrir WhatsApp",
+    text:
+      "Si vous êtes sur la route, mettez-vous d'abord en sécurité. Ensuite ouvrez WhatsApp et envoyez les informations pour confirmer la prise en charge, la disponibilité et un prix indicatif.",
+    points: [
+      "En cas de danger, accident ou urgence, appelez d'abord le 112.",
+      "Gardez le téléphone disponible : un appel peut être nécessaire pour vous localiser précisément.",
+      "Indiquez route, sens, km approximatif, sortie proche ou repère visible.",
+      "Si le véhicule nécessite une dépanneuse, contactez aussi votre assurance ou assistance routière.",
+    ],
+    cancel: "Retour",
+    continue: "Ouvrir WhatsApp",
+  },
+  ca: {
+    aria: "Avís abans d'obrir WhatsApp per avaria en carretera",
+    title: "Abans d'obrir WhatsApp",
+    text:
+      "Si ets a la carretera, primer posa't a salvo. Després obre WhatsApp i envia les dades per confirmar recollida, disponibilitat i preu orientatiu.",
+    points: [
+      "Si hi ha perill, accident o emergència, truca primer al 112.",
+      "Mantén el telèfon disponible: pot caldre trucar-te per localitzar-te bé.",
+      "Indica carretera, sentit, km aproximat, sortida propera o una referència visible.",
+      "Si el vehicle necessita grua, avisa també l'asseguradora o assistència en carretera.",
+    ],
+    cancel: "Tornar",
+    continue: "Obrir WhatsApp",
+  },
+  de: {
+    aria: "Hinweis vor WhatsApp bei Panne auf der Straße",
+    title: "Vor dem Öffnen von WhatsApp",
+    text:
+      "Wenn Sie auf der Straße sind, bringen Sie sich zuerst in Sicherheit. Öffnen Sie danach WhatsApp und senden Sie die Angaben, damit Abholung, Verfügbarkeit und Orientierungspreis bestätigt werden können.",
+    points: [
+      "Bei Gefahr, Unfall oder Notfall zuerst 112 anrufen.",
+      "Telefon erreichbar halten: Ein Anruf kann nötig sein, um Sie genau zu finden.",
+      "Straße, Fahrtrichtung, ungefähren km, nahe Ausfahrt oder sichtbare Referenz senden.",
+      "Wenn das Fahrzeug Abschleppen braucht, kontaktieren Sie auch Versicherung oder Pannenhilfe.",
+    ],
+    cancel: "Zurück",
+    continue: "WhatsApp öffnen",
+  },
+  it: {
+    aria: "Avviso prima di aprire WhatsApp per guasto su strada",
+    title: "Prima di aprire WhatsApp",
+    text:
+      "Se sei su strada, mettiti prima al sicuro. Poi apri WhatsApp e invia i dati per confermare ritiro, disponibilità e prezzo indicativo.",
+    points: [
+      "In caso di pericolo, incidente o emergenza, chiama prima il 112.",
+      "Tieni il telefono disponibile: può servire una chiamata per localizzarti bene.",
+      "Indica strada, direzione, km approssimativo, uscita vicina o riferimento visibile.",
+      "Se il veicolo necessita carro attrezzi, contatta anche assicurazione o assistenza stradale.",
+    ],
+    cancel: "Indietro",
+    continue: "Apri WhatsApp",
+  },
+  pt: {
+    aria: "Aviso antes de abrir WhatsApp por avaria na estrada",
+    title: "Antes de abrir WhatsApp",
+    text:
+      "Se estiver na estrada, coloque-se primeiro em segurança. Depois abra WhatsApp e envie os dados para confirmar recolha, disponibilidade e preço indicativo.",
+    points: [
+      "Se houver perigo, acidente ou emergência, ligue primeiro 112.",
+      "Mantenha o telefone disponível: pode ser necessário telefonar para localizar bem.",
+      "Indique estrada, sentido, km aproximado, saída próxima ou referência visível.",
+      "Se o veículo precisar de reboque, contacte também o seguro ou assistência rodoviária.",
+    ],
+    cancel: "Voltar",
+    continue: "Abrir WhatsApp",
+  },
+  nl: {
+    aria: "Melding voordat WhatsApp opent bij pech onderweg",
+    title: "Voordat WhatsApp opent",
+    text:
+      "Bent u langs de weg, breng uzelf dan eerst in veiligheid. Open daarna WhatsApp en stuur de gegevens om ophalen, beschikbaarheid en richtprijs te bevestigen.",
+    points: [
+      "Bij gevaar, ongeval of noodsituatie eerst 112 bellen.",
+      "Houd uw telefoon beschikbaar: bellen kan nodig zijn om u goed te lokaliseren.",
+      "Stuur weg, rijrichting, geschatte km, nabijgelegen afrit of zichtbaar herkenningspunt.",
+      "Als het voertuig sleepdienst nodig heeft, neem ook contact op met verzekering of pechhulp.",
+    ],
+    cancel: "Terug",
+    continue: "WhatsApp openen",
+  },
+  ar: {
+    aria: "تنبيه قبل فتح واتساب بسبب عطل على الطريق",
+    title: "قبل فتح واتساب",
+    text:
+      "إذا كنت على الطريق، ابق أولا في مكان آمن. بعد ذلك افتح واتساب وأرسل التفاصيل لتأكيد الاستلام والتوفر والسعر التقريبي.",
+    points: [
+      "إذا كان هناك خطر أو حادث أو حالة طارئة، اتصل أولا ب 112.",
+      "أبق الهاتف متاحا: قد نحتاج إلى الاتصال بك لتحديد مكانك بدقة.",
+      "أرسل الطريق والاتجاه والكيلومتر التقريبي أو أقرب مخرج أو علامة واضحة.",
+      "إذا كانت السيارة تحتاج إلى سحب، تواصل أيضا مع التأمين أو خدمة المساعدة على الطريق.",
+    ],
+    cancel: "رجوع",
+    continue: "فتح واتساب",
+  },
+};
+
 const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
   es: {
     reserveWhatsapp: "Reservar por WhatsApp",
@@ -2317,8 +2456,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "Mi ubicación actual",
       currentDetail: "Ubicación compartida desde el navegador",
       roadFallbackOrigin: "A-2 / carretera cerca de Calatayud",
-      roadNotes:
-        "Avería o incidencia en carretera. Necesito recogida de pasajeros. Mantengo el teléfono disponible para confirmar la ubicación exacta. Taxi para pasajeros, no grúa. Precio sujeto a confirmación directa.",
+      roadNotes: "Avería o incidencia en carretera. Solicito recogida de pasajeros.",
       unsupported: "Tu navegador no permite enviar ubicación.",
       requesting: "Pidiendo ubicación...",
       ready: "Ubicación lista para enviar por WhatsApp.",
@@ -2397,8 +2535,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "My current location",
       currentDetail: "Location shared from the browser",
       roadFallbackOrigin: "A-2 / road near Calatayud",
-      roadNotes:
-        "Road breakdown or incident. I need passenger pick-up. I will keep my phone available to confirm the exact location. Passenger taxi, not a tow truck. Price subject to direct confirmation.",
+      roadNotes: "Road breakdown or incident. Passenger pick-up needed.",
       unsupported: "Your browser cannot send location.",
       requesting: "Requesting location...",
       ready: "Location ready to send by WhatsApp.",
@@ -2477,8 +2614,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "Ma position actuelle",
       currentDetail: "Position partagée depuis le navigateur",
       roadFallbackOrigin: "A-2 / route près de Calatayud",
-      roadNotes:
-        "Panne ou incident sur route. Besoin de prise en charge de passagers. Je garde le téléphone disponible pour confirmer la position exacte. Taxi pour passagers, pas dépanneuse. Prix soumis à confirmation directe.",
+      roadNotes: "Panne ou incident sur route. Prise en charge de passagers demandée.",
       unsupported: "Votre navigateur ne permet pas d'envoyer la position.",
       requesting: "Demande de position...",
       ready: "Position prête à envoyer par WhatsApp.",
@@ -2557,8 +2693,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "La meva ubicació actual",
       currentDetail: "Ubicació compartida des del navegador",
       roadFallbackOrigin: "A-2 / carretera prop de Calatayud",
-      roadNotes:
-        "Avaria o incidència en carretera. Necessito recollida de passatgers. Mantinc el telèfon disponible per confirmar la ubicació exacta. Taxi per a passatgers, no grua. Preu subjecte a confirmació directa.",
+      roadNotes: "Avaria o incidència en carretera. Sol·licito recollida de passatgers.",
       unsupported: "El navegador no permet enviar ubicació.",
       requesting: "Demanant ubicació...",
       ready: "Ubicació preparada per enviar per WhatsApp.",
@@ -2637,8 +2772,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "Mein aktueller Standort",
       currentDetail: "Standort aus dem Browser geteilt",
       roadFallbackOrigin: "A-2 / Straße bei Calatayud",
-      roadNotes:
-        "Panne oder Vorfall auf der Straße. Ich brauche Abholung für Fahrgäste. Ich halte mein Telefon erreichbar, um den genauen Standort zu bestätigen. Taxi für Fahrgäste, kein Abschleppdienst. Preis vorbehaltlich direkter Bestätigung.",
+      roadNotes: "Panne oder Vorfall auf der Straße. Abholung von Fahrgästen benötigt.",
       unsupported: "Ihr Browser kann keinen Standort senden.",
       requesting: "Standort wird angefragt...",
       ready: "Standort bereit zum Senden per WhatsApp.",
@@ -2717,8 +2851,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "La mia posizione attuale",
       currentDetail: "Posizione condivisa dal browser",
       roadFallbackOrigin: "A-2 / strada vicino a Calatayud",
-      roadNotes:
-        "Guasto o incidente su strada. Ho bisogno di ritiro passeggeri. Tengo il telefono disponibile per confermare la posizione esatta. Taxi per passeggeri, non carro attrezzi. Prezzo soggetto a conferma diretta.",
+      roadNotes: "Guasto o incidente su strada. Richiedo ritiro passeggeri.",
       unsupported: "Il browser non può inviare la posizione.",
       requesting: "Richiesta posizione...",
       ready: "Posizione pronta da inviare su WhatsApp.",
@@ -2797,8 +2930,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "A minha localização atual",
       currentDetail: "Localização partilhada pelo navegador",
       roadFallbackOrigin: "A-2 / estrada perto de Calatayud",
-      roadNotes:
-        "Avaria ou incidente na estrada. Preciso de recolha de passageiros. Mantenho o telefone disponível para confirmar a localização exata. Táxi para passageiros, não reboque. Preço sujeito a confirmação direta.",
+      roadNotes: "Avaria ou incidente na estrada. Solicito recolha de passageiros.",
       unsupported: "O navegador não permite enviar localização.",
       requesting: "A pedir localização...",
       ready: "Localização pronta para enviar por WhatsApp.",
@@ -2877,8 +3009,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "Mijn huidige locatie",
       currentDetail: "Locatie gedeeld vanuit de browser",
       roadFallbackOrigin: "A-2 / weg bij Calatayud",
-      roadNotes:
-        "Pech of incident onderweg. Ik heb passagiersvervoer nodig. Ik houd mijn telefoon beschikbaar om de exacte locatie te bevestigen. Taxi voor passagiers, geen sleepwagen. Prijs onder voorbehoud van directe bevestiging.",
+      roadNotes: "Pech of incident onderweg. Passagiersvervoer nodig.",
       unsupported: "Uw browser kan geen locatie verzenden.",
       requesting: "Locatie aanvragen...",
       ready: "Locatie klaar om via WhatsApp te verzenden.",
@@ -2957,8 +3088,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
       current: "موقعي الحالي",
       currentDetail: "موقع تمت مشاركته من المتصفح",
       roadFallbackOrigin: "A-2 / طريق قرب كالاتايود",
-      roadNotes:
-        "عطل أو مشكلة على الطريق. أحتاج إلى استلام ركاب. سأبقي الهاتف متاحا لتأكيد الموقع الدقيق. تاكسي للركاب وليس شاحنة سحب. السعر يخضع للتأكيد المباشر.",
+      roadNotes: "عطل أو مشكلة على الطريق. أحتاج إلى نقل ركاب.",
       unsupported: "المتصفح لا يسمح بإرسال الموقع.",
       requesting: "جار طلب الموقع...",
       ready: "الموقع جاهز للإرسال عبر واتساب.",
@@ -4315,112 +4445,85 @@ function roadAssistanceWhatsappUrl({
   const locationLine = pickupLocation ? pickupLocationLine(pickupLocation, language) : fallbackLocationLine;
   const linesByLanguage: Partial<Record<LangCode, string[]>> = {
     es: [
-      "⚠️ Hola Taxi Ayud, necesito recogida urgente de pasajeros en carretera cerca de Calatayud.",
-      "🚗 Situación: avería, incidencia o me he quedado tirado en la autovía/carretera.",
+      "👋 Hola Taxi Ayud, necesito un taxi para pasajeros por una incidencia en carretera.",
       locationLine,
       `👥 Pasajeros: ${passengers}`,
       "🏁 Destino: Calatayud, taller, hotel, estación o destino por confirmar.",
-      "✅ Me pongo a salvo en cuanto pueda y mantengo el teléfono disponible para concretar la ubicación.",
-      "📌 Puedo indicar carretera, sentido, km aproximado, salida cercana o referencia visible.",
-      "ℹ️ Solicito taxi para pasajeros. Si el vehículo necesita grúa, se gestiona aparte.",
-      "💶 Entiendo que el precio es orientativo hasta confirmación directa.",
-      "¿Me confirmas disponibilidad, por favor?",
+      "📌 Referencia: carretera, sentido, km aproximado, salida cercana o punto visible.",
+      "✅ ¿Me confirmas disponibilidad y precio orientativo?",
+      "🙏 Gracias.",
     ],
     en: [
-      "⚠️ Hello Taxi Ayud, I need an urgent passenger pick-up on the road near Calatayud.",
-      "🚗 Situation: breakdown, road incident or stranded on the motorway/road.",
+      "👋 Hello Taxi Ayud, I need a passenger taxi due to a roadside incident.",
       locationLine,
       `👥 Passengers: ${passengers}`,
       "🏁 Destination: Calatayud, garage, hotel, station or destination to confirm.",
-      "✅ I will get to safety as soon as possible and keep my phone available to confirm the location.",
-      "📌 I can indicate road, direction, approximate km, nearby exit or visible reference.",
-      "ℹ️ I am requesting a passenger taxi. If the vehicle needs towing, that is handled separately.",
-      "💶 I understand the price is indicative until direct confirmation.",
-      "Can you confirm availability, please?",
+      "📌 Reference: road, direction, approximate km, nearby exit or visible point.",
+      "✅ Can you confirm availability and an indicative price?",
+      "🙏 Thank you.",
     ],
     fr: [
-      "⚠️ Bonjour Taxi Ayud, j'ai besoin d'une prise en charge urgente de passagers près de Calatayud.",
-      "🚗 Situation : panne, incident ou bloqué sur l'autoroute/la route.",
+      "👋 Bonjour Taxi Ayud, j'ai besoin d'un taxi passagers pour un incident sur route.",
       locationLine,
       `👥 Passagers : ${passengers}`,
       "🏁 Destination : Calatayud, garage, hôtel, gare ou destination à confirmer.",
-      "✅ Je me mets en sécurité dès que possible et je garde le téléphone disponible pour confirmer la position.",
-      "📌 Je peux indiquer route, sens, km approximatif, sortie proche ou repère visible.",
-      "ℹ️ Je demande un taxi pour passagers. Si le véhicule nécessite une dépanneuse, cela se gère séparément.",
-      "💶 Je comprends que le prix est indicatif jusqu'à confirmation directe.",
-      "Pouvez-vous confirmer la disponibilité, s'il vous plaît ?",
+      "📌 Référence : route, sens, km approximatif, sortie proche ou repère visible.",
+      "✅ Pouvez-vous confirmer disponibilité et prix indicatif ?",
+      "🙏 Merci.",
     ],
     ca: [
-      "⚠️ Hola Taxi Ayud, necessito recollida urgent de passatgers en carretera prop de Calatayud.",
-      "🚗 Situació: avaria, incidència o m'he quedat tirat a l'autovia/carretera.",
+      "👋 Hola Taxi Ayud, necessito un taxi per a passatgers per una incidència en carretera.",
       locationLine,
       `👥 Passatgers: ${passengers}`,
       "🏁 Destinació: Calatayud, taller, hotel, estació o destinació per confirmar.",
-      "✅ Em poso a salvo tan aviat com pugui i mantinc el telèfon disponible per concretar la ubicació.",
-      "📌 Puc indicar carretera, sentit, km aproximat, sortida propera o referència visible.",
-      "ℹ️ Sol·licito taxi per a passatgers. Si el vehicle necessita grua, es gestiona a part.",
-      "💶 Entenc que el preu és orientatiu fins a confirmació directa.",
-      "Em confirmes disponibilitat, si us plau?",
+      "📌 Referència: carretera, sentit, km aproximat, sortida propera o punt visible.",
+      "✅ Em confirmes disponibilitat i preu orientatiu?",
+      "🙏 Gràcies.",
     ],
     de: [
-      "⚠️ Hallo Taxi Ayud, ich brauche eine dringende Abholung von Fahrgästen auf der Straße bei Calatayud.",
-      "🚗 Situation: Panne, Vorfall oder liegen geblieben auf Autobahn/Straße.",
+      "👋 Hallo Taxi Ayud, ich brauche ein Taxi für Fahrgäste wegen eines Vorfalls auf der Straße.",
       locationLine,
       `👥 Fahrgäste: ${passengers}`,
       "🏁 Ziel: Calatayud, Werkstatt, Hotel, Bahnhof oder noch zu bestätigen.",
-      "✅ Ich bringe mich so schnell wie möglich in Sicherheit und halte mein Telefon erreichbar, um den Standort zu bestätigen.",
-      "📌 Ich kann Straße, Fahrtrichtung, ungefähren km, nahe Ausfahrt oder sichtbare Referenz angeben.",
-      "ℹ️ Ich bitte um ein Taxi für Fahrgäste. Wenn das Fahrzeug Abschleppen braucht, wird das separat geregelt.",
-      "💶 Ich verstehe, dass der Preis bis zur direkten Bestätigung nur eine Orientierung ist.",
-      "Können Sie die Verfügbarkeit bitte bestätigen?",
+      "📌 Referenz: Straße, Fahrtrichtung, ungefährer km, nahe Ausfahrt oder sichtbarer Punkt.",
+      "✅ Können Sie Verfügbarkeit und Orientierungspreis bestätigen?",
+      "🙏 Danke.",
     ],
     it: [
-      "⚠️ Ciao Taxi Ayud, ho bisogno di un ritiro urgente passeggeri su strada vicino a Calatayud.",
-      "🚗 Situazione: guasto, incidente o sono rimasto bloccato in autostrada/strada.",
+      "👋 Ciao Taxi Ayud, ho bisogno di un taxi per passeggeri per un incidente su strada.",
       locationLine,
       `👥 Passeggeri: ${passengers}`,
       "🏁 Destinazione: Calatayud, officina, hotel, stazione o destinazione da confermare.",
-      "✅ Mi metto al sicuro appena possibile e tengo il telefono disponibile per confermare la posizione.",
-      "📌 Posso indicare strada, direzione, km approssimativo, uscita vicina o riferimento visibile.",
-      "ℹ️ Richiedo un taxi per passeggeri. Se il veicolo necessita carro attrezzi, si gestisce a parte.",
-      "💶 Capisco che il prezzo è indicativo fino a conferma diretta.",
-      "Potete confermare la disponibilità, per favore?",
+      "📌 Riferimento: strada, direzione, km approssimativo, uscita vicina o punto visibile.",
+      "✅ Potete confermare disponibilità e prezzo indicativo?",
+      "🙏 Grazie.",
     ],
     pt: [
-      "⚠️ Olá Taxi Ayud, preciso de recolha urgente de passageiros na estrada perto de Calatayud.",
-      "🚗 Situação: avaria, incidente ou fiquei parado na autoestrada/estrada.",
+      "👋 Olá Taxi Ayud, preciso de um táxi para passageiros por uma incidência na estrada.",
       locationLine,
       `👥 Passageiros: ${passengers}`,
       "🏁 Destino: Calatayud, oficina, hotel, estação ou destino a confirmar.",
-      "✅ Coloco-me em segurança assim que possível e mantenho o telefone disponível para confirmar a localização.",
-      "📌 Posso indicar estrada, sentido, km aproximado, saída próxima ou referência visível.",
-      "ℹ️ Solicito táxi para passageiros. Se o veículo precisar de reboque, isso é tratado separadamente.",
-      "💶 Entendo que o preço é indicativo até confirmação direta.",
-      "Pode confirmar disponibilidade, por favor?",
+      "📌 Referência: estrada, sentido, km aproximado, saída próxima ou ponto visível.",
+      "✅ Pode confirmar disponibilidade e preço indicativo?",
+      "🙏 Obrigado.",
     ],
     nl: [
-      "⚠️ Hallo Taxi Ayud, ik heb dringend passagiersvervoer nodig langs de weg bij Calatayud.",
-      "🚗 Situatie: pech, incident of gestrand op de snelweg/weg.",
+      "👋 Hallo Taxi Ayud, ik heb een taxi voor passagiers nodig wegens een incident onderweg.",
       locationLine,
       `👥 Passagiers: ${passengers}`,
       "🏁 Bestemming: Calatayud, garage, hotel, station of nog te bevestigen.",
-      "✅ Ik breng mezelf zo snel mogelijk in veiligheid en houd mijn telefoon beschikbaar om de locatie te bevestigen.",
-      "📌 Ik kan weg, rijrichting, geschatte km, nabijgelegen afrit of zichtbaar herkenningspunt doorgeven.",
-      "ℹ️ Ik vraag een taxi voor passagiers. Als het voertuig sleepdienst nodig heeft, wordt dat apart geregeld.",
-      "💶 Ik begrijp dat de prijs indicatief is tot directe bevestiging.",
-      "Kunt u de beschikbaarheid bevestigen, alstublieft?",
+      "📌 Referentie: weg, rijrichting, geschatte km, nabijgelegen afrit of zichtbaar punt.",
+      "✅ Kunt u beschikbaarheid en richtprijs bevestigen?",
+      "🙏 Dank u.",
     ],
     ar: [
-      "⚠️ مرحبا Taxi Ayud، أحتاج إلى استلام عاجل للركاب على الطريق قرب كالاتايود.",
-      "🚗 الحالة: عطل أو مشكلة أو توقفت على الطريق السريع/الطريق.",
+      "👋 مرحبا Taxi Ayud، أحتاج إلى تاكسي للركاب بسبب مشكلة على الطريق.",
       locationLine,
       `👥 عدد الركاب: ${passengers}`,
       "🏁 الوجهة: كالاتايود، ورشة، فندق، محطة أو وجهة للتأكيد.",
-      "✅ أحاول أن أكون في مكان آمن في أقرب وقت وأبقي الهاتف متاحا لتأكيد الموقع.",
-      "📌 يمكنني تحديد الطريق والاتجاه والكيلومتر التقريبي أو أقرب مخرج أو علامة واضحة.",
-      "ℹ️ أطلب تاكسي للركاب. إذا كانت السيارة تحتاج إلى سحب، يتم ترتيب ذلك بشكل منفصل.",
-      "💶 أفهم أن السعر تقديري حتى التأكيد المباشر.",
-      "هل يمكنك تأكيد التوفر من فضلك؟",
+      "📌 مرجع الموقع: الطريق والاتجاه والكيلومتر التقريبي أو أقرب مخرج أو علامة واضحة.",
+      "✅ هل يمكنك تأكيد التوفر والسعر التقريبي؟",
+      "🙏 شكرا.",
     ],
   };
   const text = [
@@ -4432,10 +4535,27 @@ function roadAssistanceWhatsappUrl({
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
+function isRoadAssistanceNote(value: string) {
+  const normalized = normalize(value);
+  if (!normalized) return false;
+
+  return Object.values(GLOBAL_COPY).some(({ location }) => {
+    const note = normalize(location.roadNotes);
+    return Boolean(note) && (normalized === note || normalized.includes(note) || note.includes(normalized));
+  });
+}
+
+function cleanWhatsappNotes(notes: string, language: LangCode) {
+  const trimmed = notes.trim();
+  if (!trimmed) return "";
+  return isRoadAssistanceNote(trimmed) ? GLOBAL_COPY[language].location.roadNotes : trimmed;
+}
+
 function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
+  const globalCopy = GLOBAL_COPY[language];
   const destination =
-    options.result?.destination || options.destination.trim() || "destino por confirmar";
-  const origin = options.result?.origin || options.origin.trim() || "origen por confirmar";
+    options.result?.destination || options.destination.trim() || globalCopy.route.destinationFallback;
+  const origin = options.result?.origin || options.origin.trim() || globalCopy.route.originFallback;
   const whatsappCopies = {
     es: {
       hello: "Hola Taxi Ayud, quiero reservar un taxi.",
@@ -4451,7 +4571,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarifa",
       priceNotice:
         "💶 Precio orientativo sujeto a confirmación directa según disponibilidad, ruta final, horario, espera y suplementos oficiales.",
-      askPrice: "Necesito confirmación de disponibilidad y precio orientativo.",
+      askPrice: "📩 Solicito disponibilidad y presupuesto orientativo para este trayecto.",
       notCalculated:
         "🚕 Te envío los datos para que Taxi Ayud confirme disponibilidad, precio orientativo y detalles del servicio.",
       confirm: "¿Me confirmas disponibilidad?",
@@ -4471,7 +4591,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Fare",
       priceNotice:
         "💶 Indicative price subject to direct confirmation depending on availability, final route, time, waiting time and official supplements.",
-      askPrice: "Please confirm availability and indicative price.",
+      askPrice: "📩 I would like availability and an indicative quote for this trip.",
       notCalculated:
         "🚕 I am sending the trip details so Taxi Ayud can confirm availability, indicative price and service details.",
       confirm: "Can you confirm availability?",
@@ -4491,7 +4611,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarif",
       priceNotice:
         "💶 Prix indicatif soumis à confirmation directe selon disponibilité, itinéraire final, horaire, attente et suppléments officiels.",
-      askPrice: "Merci de confirmer la disponibilité et le prix indicatif.",
+      askPrice: "📩 Je souhaite disponibilité et devis indicatif pour ce trajet.",
       notCalculated:
         "🚕 J'envoie les détails du trajet pour que Taxi Ayud confirme disponibilité, prix indicatif et détails du service.",
       confirm: "Pouvez-vous confirmer la disponibilité ?",
@@ -4511,7 +4631,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarifa",
       priceNotice:
         "💶 Preu orientatiu subjecte a confirmació directa segons disponibilitat, ruta final, horari, espera i suplements oficials.",
-      askPrice: "Si us plau, confirma disponibilitat i preu orientatiu.",
+      askPrice: "📩 Sol·licito disponibilitat i pressupost orientatiu per a aquest trajecte.",
       notCalculated:
         "🚕 Envio les dades del trajecte perquè Taxi Ayud confirmi disponibilitat, preu orientatiu i detalls del servei.",
       confirm: "Em confirmes disponibilitat?",
@@ -4531,7 +4651,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarif",
       priceNotice:
         "💶 Orientierungspreis vorbehaltlich direkter Bestätigung je nach Verfügbarkeit, endgültiger Route, Uhrzeit, Wartezeit und offiziellen Zuschlägen.",
-      askPrice: "Bitte Verfügbarkeit und Orientierungspreis bestätigen.",
+      askPrice: "📩 Ich möchte Verfügbarkeit und einen Orientierungspreis für diese Fahrt.",
       notCalculated:
         "🚕 Ich sende die Fahrtdaten, damit Taxi Ayud Verfügbarkeit, Orientierungspreis und Servicedetails bestätigen kann.",
       confirm: "Können Sie die Verfügbarkeit bestätigen?",
@@ -4551,7 +4671,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tariffa",
       priceNotice:
         "💶 Prezzo indicativo soggetto a conferma diretta in base a disponibilità, percorso finale, orario, attesa e supplementi ufficiali.",
-      askPrice: "Per favore confermate disponibilità e prezzo indicativo.",
+      askPrice: "📩 Vorrei disponibilità e preventivo indicativo per questo viaggio.",
       notCalculated:
         "🚕 Invio i dati del viaggio così Taxi Ayud può confermare disponibilità, prezzo indicativo e dettagli del servizio.",
       confirm: "Potete confermare la disponibilità?",
@@ -4571,7 +4691,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarifa",
       priceNotice:
         "💶 Preço indicativo sujeito a confirmação direta conforme disponibilidade, rota final, horário, espera e suplementos oficiais.",
-      askPrice: "Por favor confirme disponibilidade e preço indicativo.",
+      askPrice: "📩 Solicito disponibilidade e orçamento indicativo para esta viagem.",
       notCalculated:
         "🚕 Envio os dados da viagem para que Taxi Ayud confirme disponibilidade, preço indicativo e detalhes do serviço.",
       confirm: "Pode confirmar disponibilidade?",
@@ -4591,7 +4711,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       fare: "Tarief",
       priceNotice:
         "💶 Richtprijs onder voorbehoud van directe bevestiging, afhankelijk van beschikbaarheid, definitieve route, tijd, wachttijd en officiële toeslagen.",
-      askPrice: "Kunt u beschikbaarheid en richtprijs bevestigen?",
+      askPrice: "📩 Ik wil graag beschikbaarheid en een richtprijs voor deze rit.",
       notCalculated:
         "🚕 Ik stuur de ritgegevens zodat Taxi Ayud beschikbaarheid, richtprijs en servicedetails kan bevestigen.",
       confirm: "Kunt u de beschikbaarheid bevestigen?",
@@ -4610,7 +4730,7 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       price: "السعر التقديري",
       fare: "التعرفة",
       priceNotice: "💶 السعر تقديري ويخضع للتأكيد المباشر حسب التوفر والمسار النهائي والوقت والانتظار والرسوم الرسمية.",
-      askPrice: "يرجى تأكيد التوفر والسعر التقديري.",
+      askPrice: "📩 أريد معرفة التوفر والسعر التقريبي لهذه الرحلة.",
       notCalculated: "🚕 أرسل تفاصيل الرحلة حتى يؤكد Taxi Ayud التوفر والسعر التقديري وتفاصيل الخدمة.",
       confirm: "هل يمكنك تأكيد التوفر؟",
       thanks: "شكرا.",
@@ -4619,7 +4739,8 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
   const whatsappCopy = whatsappCopies[language] ?? whatsappCopies.en;
   const modeLine = options.mode === "now" ? whatsappCopy.now : whatsappCopy.later;
   const locationLine = pickupLocationLine(options.pickupLocation, language);
-  const notesLine = options.notes.trim() ? `📝 ${whatsappCopy.notes}: ${options.notes.trim()}` : "";
+  const cleanNotes = cleanWhatsappNotes(options.notes, language);
+  const notesLine = cleanNotes ? `📝 ${whatsappCopy.notes}: ${cleanNotes}` : "";
 
   const priceLines = options.result
     ? [
@@ -4633,7 +4754,6 @@ function whatsappUrl(options: WhatsAppOptions, language: LangCode) {
       ].filter(Boolean)
     : [
         whatsappCopy.askPrice,
-        whatsappCopy.notCalculated,
       ];
 
   const text = [
@@ -4775,6 +4895,51 @@ function InternalLinksBand({ language }: { language: LangCode }) {
   );
 }
 
+function RoadWhatsappNotice({
+  language,
+  onCancel,
+  onConfirm,
+}: {
+  language: LangCode;
+  onCancel: () => void;
+  onConfirm: () => void;
+}) {
+  const copy = ROAD_WHATSAPP_NOTICE[language];
+
+  return (
+    <div className="road-whatsapp-backdrop" role="presentation">
+      <section className="road-whatsapp-modal" role="dialog" aria-modal="true" aria-label={copy.aria}>
+        <div className="road-modal-heading">
+          <span className="road-modal-icon" aria-hidden="true">
+            <TriangleAlert />
+          </span>
+          <div>
+            <h2>{copy.title}</h2>
+            <p>{copy.text}</p>
+          </div>
+        </div>
+        <ul>
+          {copy.points.map((point) => (
+            <li key={point}>
+              <CheckCircle2 aria-hidden="true" />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="road-modal-actions">
+          <button type="button" className="btn btn-secondary" onClick={onCancel}>
+            {copy.cancel}
+          </button>
+          <button type="button" className="btn btn-whatsapp" onClick={onConfirm}>
+            <MessageCircle aria-hidden="true" />
+            {copy.continue}
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function CookieBanner({
   language,
   onAccept,
@@ -4880,6 +5045,7 @@ function App() {
   const [selectedOriginPoint, setSelectedOriginPoint] = useState<AddressSuggestion | null>(null);
   const [selectedDestinationPoint, setSelectedDestinationPoint] =
     useState<AddressSuggestion | null>(null);
+  const [pendingRoadWhatsappUrl, setPendingRoadWhatsappUrl] = useState("");
   const [filter, setFilter] = useState("");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
   const [result, setResult] = useState<Result | null>(null);
@@ -4893,9 +5059,7 @@ function App() {
   const touristCopy = touristSearchCopy[language];
   const festival = festivalCopy[language];
   const destinationSearchValue = isRoadDestinationDraft(query) ? "" : query;
-  const isRoadPickupContext = Object.values(GLOBAL_COPY).some((copy) =>
-    notes.includes(copy.location.roadNotes.slice(0, 18)),
-  );
+  const isRoadPickupContext = isRoadAssistanceNote(notes);
   const destinationPlaceholder = isRoadPickupContext
     ? roadDestinationPlaceholders[language]
     : t.destinationPlaceholder;
@@ -4952,6 +5116,17 @@ function App() {
     passengers,
     pickupLocation,
   });
+  const emptyResultWhatsappUrl = whatsappUrl({
+    result: null,
+    origin,
+    destination: activeDestination,
+    date,
+    hour,
+    passengers,
+    mode: bookingMode,
+    notes,
+    pickupLocation,
+  }, language);
 
   useEffect(() => {
     const page = currentSeoPage ?? HOME_SEO_PAGE;
@@ -5209,6 +5384,35 @@ function App() {
   function requestRoadPickupLocation() {
     prepareRoadPickup();
     requestPickupLocation();
+  }
+
+  function showRoadWhatsappNotice(
+    event: React.MouseEvent<HTMLAnchorElement>,
+    url: string,
+    source: string,
+  ) {
+    event.preventDefault();
+    trackEvent("clic_whatsapp", { source });
+    setPendingRoadWhatsappUrl(url);
+  }
+
+  function handleRouteWhatsapp(
+    event: React.MouseEvent<HTMLAnchorElement>,
+    url: string,
+    source: string,
+  ) {
+    if (isRoadPickupContext) {
+      showRoadWhatsappNotice(event, url, source);
+      return;
+    }
+
+    trackEvent("clic_whatsapp", { source });
+  }
+
+  function confirmRoadWhatsapp() {
+    const url = pendingRoadWhatsappUrl;
+    setPendingRoadWhatsappUrl("");
+    if (url) window.location.href = url;
   }
 
   async function calculate() {
@@ -5608,7 +5812,7 @@ function App() {
                 href={roadUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent("clic_whatsapp", { source: "road_assist" })}
+                onClick={(event) => showRoadWhatsappNotice(event, roadUrl, "road_assist")}
               >
                 <MessageCircle aria-hidden="true" />
                 {ui.roadWhatsapp}
@@ -5910,7 +6114,7 @@ function App() {
                   href={instantUrl}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => trackEvent("clic_whatsapp", { source: "calculator_now" })}
+                  onClick={(event) => handleRouteWhatsapp(event, instantUrl, "calculator_now")}
                 >
                   <Send aria-hidden="true" />
                   {t.taxiNow}
@@ -5973,8 +6177,8 @@ function App() {
                       href={quoteUrl}
                       target="_blank"
                       rel="noreferrer"
-                      onClick={() => {
-                        trackEvent("clic_whatsapp", { source: "calculated_quote" });
+                      onClick={(event) => {
+                        handleRouteWhatsapp(event, quoteUrl, "calculated_quote");
                         trackEvent("clic_reserva", { source: "calculated_quote" });
                         trackEvent("formulario_enviado", { source: "calculated_quote" });
                       }}
@@ -5987,7 +6191,7 @@ function App() {
                       href={instantUrl}
                       target="_blank"
                       rel="noreferrer"
-                      onClick={() => trackEvent("clic_whatsapp", { source: "result_availability" })}
+                      onClick={(event) => handleRouteWhatsapp(event, instantUrl, "result_availability")}
                     >
                       <LocateFixed aria-hidden="true" />
                       {t.seeAvailability}
@@ -6016,20 +6220,12 @@ function App() {
                   </p>
                   <a
                     className="btn btn-whatsapp"
-                    href={whatsappUrl({
-                      result: null,
-                      origin,
-                      destination: activeDestination,
-                      date,
-                      hour,
-                      passengers,
-                      mode: bookingMode,
-                      notes,
-                      pickupLocation,
-                    }, language)}
+                    href={emptyResultWhatsappUrl}
                     target="_blank"
                     rel="noreferrer"
-                    onClick={() => trackEvent("clic_whatsapp", { source: "result_without_calculation" })}
+                    onClick={(event) =>
+                      handleRouteWhatsapp(event, emptyResultWhatsappUrl, "result_without_calculation")
+                    }
                   >
                     <Send aria-hidden="true" />
                     {t.sendWhatsapp}
@@ -6382,6 +6578,14 @@ function App() {
       </footer>
 
       <LegalFooter language={language} />
+
+      {pendingRoadWhatsappUrl ? (
+        <RoadWhatsappNotice
+          language={language}
+          onCancel={() => setPendingRoadWhatsappUrl("")}
+          onConfirm={confirmRoadWhatsapp}
+        />
+      ) : null}
 
       {cookieConsent === "pending" ? (
         <CookieBanner
