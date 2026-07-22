@@ -1951,6 +1951,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "Balnearios", query: "Jaraba, Alhama de Aragón y Paracuellos de Jiloca" },
     { language: "Turismo", query: "Monasterio de Piedra, Nuévalos y rutas cercanas" },
     { language: "Tren", query: "Estación de Calatayud y conexión con AVE" },
+    { language: "Fiestas", query: "Taxi San Roque Calatayud y fiestas de pueblos de la comarca" },
     { language: "WhatsApp", query: "Teléfono taxi Calatayud y reserva directa" },
   ],
   en: [
@@ -1961,6 +1962,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "Spas", query: "Jaraba, Alhama de Aragon and Paracuellos de Jiloca" },
     { language: "Tourism", query: "Monasterio de Piedra, Nuevalos and nearby routes" },
     { language: "Train", query: "Calatayud train station and AVE connection" },
+    { language: "Festivals", query: "Taxi for San Roque Calatayud and local village festivals" },
     { language: "WhatsApp", query: "Calatayud taxi phone and direct booking" },
   ],
   fr: [
@@ -1971,6 +1973,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "Thermes", query: "Jaraba, Alhama de Aragon et Paracuellos de Jiloca" },
     { language: "Tourisme", query: "Monasterio de Piedra, Nuevalos et itinéraires proches" },
     { language: "Train", query: "Gare de Calatayud et connexion AVE" },
+    { language: "Fêtes", query: "Taxi San Roque Calatayud et fêtes des villages proches" },
     { language: "WhatsApp", query: "Téléphone taxi Calatayud et réservation directe" },
   ],
   ca: [
@@ -1981,6 +1984,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "Balnearis", query: "Jaraba, Alhama de Aragón i Paracuellos de Jiloca" },
     { language: "Turisme", query: "Monasterio de Piedra, Nuévalos i rutes properes" },
     { language: "Tren", query: "Estació de Calatayud i connexió amb AVE" },
+    { language: "Festes", query: "Taxi San Roque Calatayud i festes de pobles de la comarca" },
     { language: "WhatsApp", query: "Telèfon taxi Calatayud i reserva directa" },
   ],
   de: [
@@ -1991,6 +1995,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "Thermalbäder", query: "Jaraba, Alhama de Aragon und Paracuellos de Jiloca" },
     { language: "Tourismus", query: "Monasterio de Piedra, Nuevalos und nahe Routen" },
     { language: "Zug", query: "Bahnhof Calatayud und AVE-Verbindung" },
+    { language: "Feste", query: "Taxi für San Roque Calatayud und Dorffeste der Region" },
     { language: "WhatsApp", query: "Taxi-Telefon Calatayud und Direktbuchung" },
   ],
   it: [
@@ -2001,6 +2006,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "Terme", query: "Jaraba, Alhama de Aragon e Paracuellos de Jiloca" },
     { language: "Turismo", query: "Monasterio de Piedra, Nuevalos e percorsi vicini" },
     { language: "Treno", query: "Stazione di Calatayud e collegamento AVE" },
+    { language: "Feste", query: "Taxi San Roque Calatayud e feste dei paesi della comarca" },
     { language: "WhatsApp", query: "Telefono taxi Calatayud e prenotazione diretta" },
   ],
   pt: [
@@ -2011,6 +2017,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "Termas", query: "Jaraba, Alhama de Aragon e Paracuellos de Jiloca" },
     { language: "Turismo", query: "Monasterio de Piedra, Nuevalos e rotas próximas" },
     { language: "Comboio", query: "Estação de Calatayud e ligação AVE" },
+    { language: "Festas", query: "Táxi San Roque Calatayud e festas das aldeias da comarca" },
     { language: "WhatsApp", query: "Telefone táxi Calatayud e reserva direta" },
   ],
   nl: [
@@ -2021,6 +2028,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "Kuuroorden", query: "Jaraba, Alhama de Aragon en Paracuellos de Jiloca" },
     { language: "Toerisme", query: "Monasterio de Piedra, Nuevalos en nabijgelegen routes" },
     { language: "Trein", query: "Station Calatayud en AVE-verbinding" },
+    { language: "Feesten", query: "Taxi San Roque Calatayud en dorpsfeesten in de regio" },
     { language: "WhatsApp", query: "Taxi telefoon Calatayud en direct boeken" },
   ],
   ar: [
@@ -2031,6 +2039,7 @@ const touristSearchPhrases: Record<LangCode, Array<{ language: string; query: st
     { language: "منتجعات", query: "Jaraba وAlhama de Aragon وParacuellos de Jiloca" },
     { language: "سياحة", query: "Monasterio de Piedra وNuevalos والطرق القريبة" },
     { language: "قطار", query: "محطة كالاتايود واتصال AVE" },
+    { language: "مهرجانات", query: "تاكسي San Roque Calatayud ومهرجانات قرى المنطقة" },
     { language: "واتساب", query: "هاتف تاكسي كالاتايود وحجز مباشر" },
   ],
 };
@@ -2997,6 +3006,9 @@ const DEFAULT_SEO_LINKS = [
   "/taxi-desde-calatayud/",
   "/taxi-24-horas-calatayud/",
   "/taxi-estacion-ave-calatayud/",
+  "/taxi-fiestas-calatayud/",
+  "/taxi-san-roque-calatayud/",
+  "/taxi-fiestas-pueblos-comarca-calatayud/",
   "/taxi-monasterio-de-piedra/",
   "/taxi-nuevalos-monasterio-piedra/",
   "/taxi-balnearios-jaraba-alhama/",
@@ -3058,6 +3070,100 @@ const roadDestinationPlaceholders: Record<LangCode, string> = {
   pt: "Destino a confirmar: oficina, hotel, estação ou cidade",
   nl: "Bestemming te bevestigen: garage, hotel, station of stad",
   ar: "الوجهة للتأكيد: ورشة، فندق، محطة أو مدينة",
+};
+
+const festivalCopy: Record<
+  LangCode,
+  {
+    eyebrow: string;
+    title: string;
+    text: string;
+    tags: string[];
+    primary: string;
+    secondary: string;
+  }
+> = {
+  es: {
+    eyebrow: "Fiestas y eventos en Calatayud",
+    title: "Taxi para San Roque Calatayud 2026",
+    text:
+      "Del 13 al 16 de agosto de 2026 Calatayud celebra San Roque. Si vienes de fuera, llegas en tren, sales de un hotel o vas a pueblos y balnearios, reserva taxi con antelación para evitar esperas en horas punta.",
+    tags: ["San Roque 13-16 agosto", "Estación y hoteles", "Pueblos y balnearios"],
+    primary: "Reservar para fiestas",
+    secondary: "Calcular traslado",
+  },
+  en: {
+    eyebrow: "Festivals and events in Calatayud",
+    title: "Taxi for San Roque Calatayud 2026",
+    text:
+      "From 13 to 16 August 2026, Calatayud celebrates San Roque. If you are visiting, arriving by train, staying at a hotel or travelling to villages and spas, book your taxi in advance to avoid peak-time waits.",
+    tags: ["San Roque 13-16 August", "Station and hotels", "Villages and spas"],
+    primary: "Book for festivals",
+    secondary: "Calculate transfer",
+  },
+  fr: {
+    eyebrow: "Fêtes et événements à Calatayud",
+    title: "Taxi pour San Roque Calatayud 2026",
+    text:
+      "Du 13 au 16 août 2026, Calatayud célèbre San Roque. Si vous venez de l'extérieur, arrivez en train, séjournez à l'hôtel ou partez vers les villages et balnéaires, réservez le taxi à l'avance pour éviter l'attente.",
+    tags: ["San Roque 13-16 août", "Gare et hôtels", "Villages et balnéaires"],
+    primary: "Réserver pour les fêtes",
+    secondary: "Calculer le trajet",
+  },
+  ca: {
+    eyebrow: "Festes i esdeveniments a Calatayud",
+    title: "Taxi per a San Roque Calatayud 2026",
+    text:
+      "Del 13 al 16 d'agost de 2026 Calatayud celebra San Roque. Si vens de fora, arribes amb tren, surts d'un hotel o vas a pobles i balnearis, reserva taxi amb antelació per evitar esperes.",
+    tags: ["San Roque 13-16 agost", "Estació i hotels", "Pobles i balnearis"],
+    primary: "Reservar per festes",
+    secondary: "Calcular trasllat",
+  },
+  de: {
+    eyebrow: "Feste und Veranstaltungen in Calatayud",
+    title: "Taxi für San Roque Calatayud 2026",
+    text:
+      "Vom 13. bis 16. August 2026 feiert Calatayud San Roque. Wenn Sie zu Besuch sind, mit dem Zug ankommen, im Hotel wohnen oder in Dörfer und Thermalorte fahren, buchen Sie das Taxi frühzeitig.",
+    tags: ["San Roque 13.-16. August", "Bahnhof und Hotels", "Dörfer und Thermalorte"],
+    primary: "Für Feste buchen",
+    secondary: "Transfer berechnen",
+  },
+  it: {
+    eyebrow: "Feste ed eventi a Calatayud",
+    title: "Taxi per San Roque Calatayud 2026",
+    text:
+      "Dal 13 al 16 agosto 2026 Calatayud celebra San Roque. Se arrivi da fuori, in treno, da un hotel o devi andare verso paesi e terme, prenota il taxi in anticipo per evitare attese.",
+    tags: ["San Roque 13-16 agosto", "Stazione e hotel", "Paesi e terme"],
+    primary: "Prenota per le feste",
+    secondary: "Calcola transfer",
+  },
+  pt: {
+    eyebrow: "Festas e eventos em Calatayud",
+    title: "Táxi para San Roque Calatayud 2026",
+    text:
+      "De 13 a 16 de agosto de 2026, Calatayud celebra San Roque. Se vem de fora, chega de comboio, sai de um hotel ou vai para aldeias e termas, reserve táxi com antecedência para evitar esperas.",
+    tags: ["San Roque 13-16 agosto", "Estação e hotéis", "Aldeias e termas"],
+    primary: "Reservar para festas",
+    secondary: "Calcular transfer",
+  },
+  nl: {
+    eyebrow: "Feesten en evenementen in Calatayud",
+    title: "Taxi voor San Roque Calatayud 2026",
+    text:
+      "Van 13 tot 16 augustus 2026 viert Calatayud San Roque. Komt u van buitenaf, met de trein, vanuit een hotel of reist u naar dorpen en kuuroorden, boek dan vooraf om wachttijden te vermijden.",
+    tags: ["San Roque 13-16 augustus", "Station en hotels", "Dorpen en kuuroorden"],
+    primary: "Boeken voor feesten",
+    secondary: "Transfer berekenen",
+  },
+  ar: {
+    eyebrow: "المهرجانات والفعاليات في كالاتايود",
+    title: "تاكسي San Roque Calatayud 2026",
+    text:
+      "من 13 إلى 16 أغسطس 2026 تحتفل كالاتايود بسان روكي. إذا كنت زائرا أو تصل بالقطار أو من فندق أو تريد الذهاب إلى القرى والمنتجعات، احجز التاكسي مسبقا لتجنب الانتظار.",
+    tags: ["San Roque 13-16 أغسطس", "المحطة والفنادق", "القرى والمنتجعات"],
+    primary: "الحجز لفترة المهرجان",
+    secondary: "حساب الرحلة",
+  },
 };
 
 const roadPickupPresets: AddressSuggestion[] = [
@@ -4705,18 +4811,22 @@ function PaymentLogos({ language }: { language: LangCode }) {
     COPY[language].paymentText.split(" · ");
 
   return (
-    <span className="payment-logos" aria-label={COPY[language].paymentText}>
-      <span className="payment-logo payment-logo-cash">
-        <WalletCards aria-hidden="true" />
-        {cash}
+    <span className="payment-logos" role="img" aria-label={COPY[language].paymentText}>
+      <span className="payment-logo payment-logo-cash" title={cash} aria-hidden="true">
+        €
       </span>
-      <span className="payment-logo payment-logo-card">
+      <span className="payment-logo payment-logo-card" title={card} aria-hidden="true">
         <CreditCard aria-hidden="true" />
-        {card}
       </span>
-      <span className="payment-logo payment-logo-bizum">{bizum}</span>
-      <span className="payment-logo payment-logo-apple">{applePay}</span>
-      <span className="payment-logo payment-logo-google">{googlePay}</span>
+      <span className="payment-logo payment-logo-bizum" title={bizum} aria-hidden="true">
+        B
+      </span>
+      <span className="payment-logo payment-logo-apple" title={applePay} aria-hidden="true">
+        
+      </span>
+      <span className="payment-logo payment-logo-google" title={googlePay} aria-hidden="true">
+        G
+      </span>
     </span>
   );
 }
@@ -4781,6 +4891,7 @@ function App() {
   const heroSeoPage = currentSeoPage ?? HOME_SEO_PAGE;
   const statsLabels = heroStatLabels[language];
   const touristCopy = touristSearchCopy[language];
+  const festival = festivalCopy[language];
   const destinationSearchValue = isRoadDestinationDraft(query) ? "" : query;
   const isRoadPickupContext = Object.values(GLOBAL_COPY).some((copy) =>
     notes.includes(copy.location.roadNotes.slice(0, 18)),
@@ -5362,7 +5473,6 @@ function App() {
           <div>
             <WalletCards aria-hidden="true" />
             <span>{t.paymentTitle}</span>
-            <p>{t.paymentText}</p>
             <PaymentLogos language={language} />
           </div>
           <div>
@@ -5436,6 +5546,45 @@ function App() {
                 {item.query}
               </span>
             ))}
+          </div>
+        </section>
+
+        <section className="festival-section" id="taxi-fiestas-calatayud" data-animate>
+          <div className="festival-copy">
+            <p className="eyebrow compact">
+              <CalendarDays aria-hidden="true" />
+              {festival.eyebrow}
+            </p>
+            <h2>{festival.title}</h2>
+            <p>{festival.text}</p>
+            <div className="festival-tags">
+              {festival.tags.map((tag) => (
+                <span key={tag}>
+                  <CheckCircle2 aria-hidden="true" />
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="festival-actions">
+            <a
+              className="btn btn-whatsapp"
+              href={directUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackEvent("clic_whatsapp", { source: "festival_san_roque" })}
+            >
+              <MessageCircle aria-hidden="true" />
+              {festival.primary}
+            </a>
+            <a
+              className="btn btn-secondary"
+              href="#calculadora"
+              onClick={() => trackEvent("clic_reserva", { source: "festival_calculator" })}
+            >
+              <Route aria-hidden="true" />
+              {festival.secondary}
+            </a>
           </div>
         </section>
 

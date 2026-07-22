@@ -2,12 +2,12 @@
   {
     "path": "/",
     "title": "Taxi Calatayud 24h | Cerca de mí y comarca | Taxi Ayud",
-    "description": "Taxi Calatayud 24h y taxi cerca de mí para estación AVE, hoteles, pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
+    "description": "Taxi Calatayud 24h y taxi cerca de mí para estación AVE, hoteles, fiestas, pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
     "breadcrumb": "Inicio",
     "navLabel": "Taxi Calatayud",
     "eyebrow": "Taxi oficial en Calatayud · Licencia 18",
     "h1": "Taxi Calatayud 24h y comarca",
-    "intro": "Taxi Ayud ofrece taxi en Calatayud, taxi cerca de mí y traslados desde Calatayud para viajes locales, estación AVE, pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
+    "intro": "Taxi Ayud ofrece taxi en Calatayud, taxi cerca de mí y traslados desde Calatayud para viajes locales, estación AVE, fiestas, pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
     "h2": "Reserva rápida por teléfono o WhatsApp",
     "body": "La web está pensada para que puedas llamar, escribir por WhatsApp o consultar un precio orientativo sin formularios largos. Para horarios exactos, viajes de madrugada, trenes, vuelos o recogidas especiales, confirma la disponibilidad directamente.",
     "sections": [
@@ -22,6 +22,10 @@
       {
         "heading": "Zaragoza y aeropuerto",
         "text": "Viajes puerta a puerta a Zaragoza, Delicias, hospitales y Aeropuerto de Zaragoza."
+      },
+      {
+        "heading": "Fiestas y eventos",
+        "text": "Reservas para San Roque Calatayud, fiestas de pueblos de la comarca, hoteles, estación y vueltas programadas."
       }
     ],
     "faq": [
@@ -40,6 +44,10 @@
       {
         "question": "¿Hay taxi para Monasterio de Piedra, balnearios y pueblos de la comarca?",
         "answer": "Sí. Se realizan traslados desde Calatayud a Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, Ateca, Ariza y otros pueblos de la comarca. Para horarios concretos, consulta por WhatsApp."
+      },
+      {
+        "question": "¿Puedo reservar taxi para fiestas en Calatayud o pueblos cercanos?",
+        "answer": "Sí. Puedes reservar para San Roque Calatayud, fiestas patronales, eventos, cenas, hoteles, estación y vueltas programadas. En días de mucha demanda conviene escribir por WhatsApp con antelación."
       },
       {
         "question": "¿Taxi Ayud puede recoger por avería en la A-2 o carreteras cercanas?",
@@ -1232,6 +1240,150 @@
       {
         "question": "¿El teléfono sirve para taxis urgentes cerca de mí?",
         "answer": "Sí. Si necesitas disponibilidad inmediata en Calatayud o alrededores, llama o escribe por WhatsApp para confirmar si hay taxi disponible."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-fiestas-calatayud/",
+    "title": "Taxi fiestas Calatayud | San Roque, hoteles y estación | Taxi Ayud",
+    "description": "Taxi para fiestas en Calatayud, San Roque, estación, hoteles, pueblos de la comarca, balnearios y traslados nocturnos con reserva por WhatsApp.",
+    "breadcrumb": "Taxi fiestas Calatayud",
+    "navLabel": "Taxi fiestas Calatayud",
+    "eyebrow": "Fiestas y eventos en Calatayud",
+    "h1": "Taxi para fiestas en Calatayud",
+    "intro": "Taxi Ayud atiende reservas de taxi para fiestas en Calatayud, San Roque, hoteles, estación, restaurantes, pueblos de la comarca, balnearios y desplazamientos nocturnos.",
+    "h2": "Reserva taxi para San Roque, conciertos, cenas y eventos",
+    "body": "En días de fiestas, fines de semana y eventos con mucha demanda, lo recomendable es reservar con antelación por WhatsApp indicando hora, punto de recogida, destino, pasajeros y si necesitas vuelta programada.",
+    "sections": [
+      {
+        "heading": "San Roque Calatayud",
+        "text": "Traslados para visitantes, peñas, hoteles, estación, restaurantes y vueltas programadas durante las fiestas de San Roque."
+      },
+      {
+        "heading": "Fiestas y noches de verano",
+        "text": "Taxi para cenas, eventos, conciertos, celebraciones y desplazamientos seguros entre Calatayud y pueblos cercanos."
+      },
+      {
+        "heading": "Comarca y alojamientos",
+        "text": "Recogidas en hoteles, casas rurales, balnearios, estación AVE y municipios de la comarca de Calatayud."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo reservar taxi para fiestas en Calatayud?",
+        "answer": "Sí. Lo mejor es reservar por WhatsApp con fecha, hora, origen, destino, pasajeros y si necesitas recogida de vuelta."
+      },
+      {
+        "question": "¿Hay taxi para San Roque Calatayud?",
+        "answer": "Sí. En San Roque suele haber más demanda, por eso conviene reservar con antelación si vienes de fuera, llegas en tren, sales de un hotel o tienes horario concreto."
+      },
+      {
+        "question": "¿Taxi Ayud recoge en hoteles y estación durante fiestas?",
+        "answer": "Sí. Puedes indicar hotel, estación de Calatayud, restaurante, calle o compartir ubicación por WhatsApp."
+      },
+      {
+        "question": "¿Se hacen traslados nocturnos a pueblos cercanos?",
+        "answer": "Puedes consultar disponibilidad para traslados nocturnos entre Calatayud, Ateca, Maluenda, Ariza, Nuévalos, Jaraba, Alhama de Aragón y otros pueblos de la comarca."
+      },
+      {
+        "question": "¿El precio de la calculadora es definitivo en fiestas?",
+        "answer": "No. Es orientativo. En fiestas, horarios nocturnos, esperas y disponibilidad se confirman directamente por teléfono o WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-san-roque-calatayud/",
+    "title": "Taxi San Roque Calatayud 2026 | Reserva anticipada | Taxi Ayud",
+    "description": "Taxi para San Roque Calatayud 2026 del 13 al 16 de agosto: estación, hoteles, peñas, pueblos, balnearios y vueltas programadas.",
+    "breadcrumb": "Taxi San Roque Calatayud",
+    "navLabel": "Taxi San Roque",
+    "eyebrow": "San Roque Calatayud 2026",
+    "h1": "Taxi San Roque Calatayud 2026",
+    "intro": "Reserva taxi para San Roque Calatayud 2026, previsto del 13 al 16 de agosto, con recogidas en estación, hoteles, alojamientos, restaurantes, peñas y pueblos de la comarca.",
+    "h2": "Traslados para visitantes y vecinos durante San Roque",
+    "body": "San Roque concentra mucha movilidad en Calatayud. Si necesitas taxi a una hora concreta, llegada en tren, vuelta nocturna o traslado a un pueblo, envía los datos por WhatsApp con antelación.",
+    "sections": [
+      {
+        "heading": "Llegadas a Calatayud",
+        "text": "Recogidas en estación AVE, hoteles, alojamientos y puntos céntricos para visitantes que vienen a San Roque."
+      },
+      {
+        "heading": "Vuelta programada",
+        "text": "Opción de coordinar vuelta a hotel, domicilio, estación, pueblo cercano o balneario cuando el horario sea importante."
+      },
+      {
+        "heading": "Pueblos de la comarca",
+        "text": "Traslados desde Calatayud a Ateca, Maluenda, Ariza, Nuévalos, Jaraba, Alhama de Aragón y otros municipios."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Cuándo es San Roque Calatayud 2026?",
+        "answer": "San Roque Calatayud 2026 está previsto del 13 al 16 de agosto. Para taxi en esos días, reserva con antelación si tienes horario cerrado."
+      },
+      {
+        "question": "¿Puedo reservar taxi para volver de noche en San Roque?",
+        "answer": "Sí, puedes consultar disponibilidad y preparar una vuelta programada por WhatsApp indicando hora aproximada, recogida, destino y pasajeros."
+      },
+      {
+        "question": "¿Hay taxi desde la estación de Calatayud a San Roque?",
+        "answer": "Sí. Indica tren, hora de llegada, pasajeros y destino en Calatayud para confirmar disponibilidad."
+      },
+      {
+        "question": "¿Se puede pedir taxi a hoteles o alojamientos durante San Roque?",
+        "answer": "Sí. Puedes escribir el nombre del hotel, dirección o compartir ubicación para facilitar la recogida."
+      },
+      {
+        "question": "¿Taxi Ayud hace traslados de San Roque a pueblos cercanos?",
+        "answer": "Sí, según disponibilidad. Es recomendable indicar destino, hora y número de pasajeros con antelación."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-fiestas-pueblos-comarca-calatayud/",
+    "title": "Taxi fiestas pueblos comarca Calatayud | Reservas | Taxi Ayud",
+    "description": "Taxi para fiestas de pueblos de la comarca de Calatayud: Ateca, Ariza, Maluenda, Nuévalos, Jaraba, Alhama, Cetina y traslados seguros.",
+    "breadcrumb": "Taxi fiestas pueblos comarca",
+    "navLabel": "Fiestas pueblos",
+    "eyebrow": "Fiestas de pueblos de la comarca",
+    "h1": "Taxi para fiestas de pueblos de la comarca de Calatayud",
+    "intro": "Taxi Ayud realiza traslados para fiestas patronales, noches de verano, cenas, eventos y vueltas programadas entre Calatayud y pueblos de la comarca.",
+    "h2": "Traslados seguros entre Calatayud, hoteles, balnearios y pueblos",
+    "body": "Para fiestas en Ateca, Ariza, Maluenda, Nuévalos, Jaraba, Alhama de Aragón, Cetina, Miedes, Munébrega y otros municipios, conviene reservar con antelación si tienes hora de ida o vuelta.",
+    "sections": [
+      {
+        "heading": "Pueblos habituales",
+        "text": "Ateca, Ariza, Maluenda, Nuévalos, Jaraba, Alhama de Aragón, Cetina, Miedes, Munébrega, Ibdes y otros destinos cercanos."
+      },
+      {
+        "heading": "Hoteles, casas rurales y balnearios",
+        "text": "Recogidas en alojamientos rurales, hoteles de Calatayud, balnearios de Jaraba y Alhama, estación y domicilios."
+      },
+      {
+        "heading": "Reservas de ida y vuelta",
+        "text": "Puedes pedir ida, vuelta o traslado programado para moverte con más tranquilidad en días de mucha demanda."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo reservar taxi para fiestas de un pueblo de la comarca?",
+        "answer": "Sí. Envía por WhatsApp el pueblo, hora de recogida, destino, pasajeros y si necesitas vuelta."
+      },
+      {
+        "question": "¿Qué pueblos de la comarca atiende Taxi Ayud?",
+        "answer": "Se pueden consultar traslados a Ateca, Ariza, Maluenda, Nuévalos, Jaraba, Alhama de Aragón, Cetina, Miedes, Munébrega, Ibdes y otros pueblos cercanos."
+      },
+      {
+        "question": "¿Es mejor reservar antes en fiestas patronales?",
+        "answer": "Sí. En fiestas patronales, fines de semana, verano y festivos hay más demanda. Si tienes una hora concreta, reserva con antelación."
+      },
+      {
+        "question": "¿Se puede volver de madrugada desde un pueblo a Calatayud?",
+        "answer": "Puedes consultar disponibilidad por llamada o WhatsApp. Para madrugada o festivos, confirma antes siempre que puedas."
+      },
+      {
+        "question": "¿La calculadora sirve para trayectos entre pueblos?",
+        "answer": "Sí, ofrece un presupuesto orientativo. La disponibilidad, ruta final e importe se confirman por teléfono o WhatsApp."
       }
     ]
   },

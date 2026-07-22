@@ -651,23 +651,23 @@ h1 {
   grid-column: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 7px;
+  margin-top: 6px;
 }
 
 .payment-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  min-height: 25px;
-  padding: 4px 8px;
+  width: 34px;
+  height: 26px;
+  padding: 0;
   border: 1px solid rgba(20, 20, 20, 0.1);
   border-radius: 6px;
   background: #fff;
   color: #141414;
   box-shadow: 0 7px 18px rgba(20, 20, 20, 0.08);
-  font-size: 0.72rem;
+  font-size: 0.86rem;
   font-weight: 950;
   line-height: 1;
   white-space: nowrap;
@@ -680,7 +680,8 @@ h1 {
 
 .payment-logo-cash {
   background: #f7fff5;
-  color: #1f6f3b;
+  color: #196737;
+  font-size: 1.02rem;
 }
 
 .payment-logo-card {
@@ -690,7 +691,7 @@ h1 {
 
 .payment-logo-bizum {
   background: #ecfff7;
-  color: #008a74;
+  color: #007f72;
   letter-spacing: 0;
 }
 
@@ -700,9 +701,9 @@ h1 {
 }
 
 .payment-logo-google {
-  border-color: rgba(66, 133, 244, 0.22);
-  background: linear-gradient(90deg, #4285f4 0 20%, #34a853 20% 45%, #fbbc05 45% 70%, #ea4335 70%);
-  color: #fff;
+  border-color: rgba(26, 115, 232, 0.26);
+  background: #f7fbff;
+  color: #1a73e8;
 }
 
 .region-band {
@@ -907,6 +908,78 @@ h1 {
   color: var(--gold);
   font-size: 0.76rem;
   letter-spacing: 0.04em;
+}
+
+.festival-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: center;
+  padding: 38px 40px;
+  border-top: 1px solid rgba(241, 195, 77, 0.16);
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(120deg, rgba(241, 195, 77, 0.12), transparent 38%),
+    linear-gradient(90deg, rgba(78, 161, 255, 0.08), transparent 52%),
+    #0a0f16;
+}
+
+.festival-copy {
+  width: min(860px, 100%);
+  justify-self: end;
+}
+
+.festival-copy h2 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.festival-copy p:not(.eyebrow) {
+  margin: 0;
+  color: #d7e0eb;
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.festival-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.festival-tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #f7fbff;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.festival-tags svg {
+  width: 15px;
+  height: 15px;
+  color: var(--gold);
+}
+
+.festival-actions {
+  display: grid;
+  gap: 10px;
+  width: min(270px, 100%);
+}
+
+.festival-actions .btn {
+  width: 100%;
+  justify-content: center;
 }
 
 .intent-section {
@@ -2638,6 +2711,7 @@ tr:hover td {
   .region-band,
   .local-seo-section,
   .tourist-search-section,
+  .festival-section,
   .intent-layout,
   .road-assist-section,
   .reviews-section,
@@ -2652,6 +2726,15 @@ tr:hover td {
   .local-seo-section > div:first-child,
   .tourist-search-copy {
     justify-self: start;
+  }
+
+  .festival-copy {
+    justify-self: start;
+    width: min(760px, 100%);
+  }
+
+  .festival-actions {
+    width: min(420px, 100%);
   }
 
   .road-assist-copy {
@@ -2761,6 +2844,33 @@ tr:hover td {
   .tourist-search-section {
     grid-template-columns: 1fr;
     padding: 36px 20px;
+  }
+
+  .festival-section {
+    padding: 34px 20px;
+    gap: 16px;
+  }
+
+  .festival-copy h2 {
+    font-size: 1.75rem;
+  }
+
+  .festival-copy p:not(.eyebrow) {
+    font-size: 0.93rem;
+  }
+
+  .festival-tags {
+    gap: 7px;
+  }
+
+  .festival-tags span {
+    min-height: 32px;
+    padding: 0 10px;
+    font-size: 0.76rem;
+  }
+
+  .festival-actions {
+    width: 100%;
   }
 
   .intent-section,
@@ -2936,9 +3046,9 @@ tr:hover td {
   }
 
   .payment-logo {
-    min-height: 24px;
-    padding: 4px 7px;
-    font-size: 0.68rem;
+    width: 32px;
+    height: 24px;
+    font-size: 0.78rem;
   }
 
   .section {

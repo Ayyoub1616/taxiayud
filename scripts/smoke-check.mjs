@@ -21,6 +21,7 @@ const home = read("dist/index.html");
 const taxiCalatayud = read("dist/taxi-calatayud/index.html");
 const english = read("dist/en/taxi-calatayud/index.html");
 const road = read("dist/taxi-a2-calatayud/index.html");
+const festivals = read("dist/taxi-fiestas-calatayud/index.html");
 const notFound = read("dist/404.html");
 const sitemap = read("dist/sitemap.xml");
 
@@ -31,10 +32,12 @@ addCheck("La página taxi Calatayud tiene canonical propio", taxiCalatayud.inclu
 addCheck("La página inglesa declara idioma", english.includes('<html lang="en" dir="ltr">'));
 addCheck("La página inglesa tiene hreflang a francés", english.includes('hreflang="fr" href="https://www.taxiayud.es/fr/taxi-calatayud/"'));
 addCheck("La página A-2 existe para búsquedas de carretera", road.includes("Taxi A-2"));
+addCheck("La página de fiestas existe para búsquedas de San Roque", festivals.includes("San Roque"));
 addCheck("La 404 es noindex", notFound.includes('content="noindex, follow, max-image-preview:large"'));
 addCheck("El sitemap incluye alternates multidioma", sitemap.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"'));
 addCheck("El sitemap incluye la ruta A-2", sitemap.includes("https://www.taxiayud.es/taxi-a2-calatayud/"));
-addCheck("No quedan URLs antiguas .com", !`${home}${taxiCalatayud}${english}${road}${sitemap}`.includes("taxiayud.com"));
+addCheck("El sitemap incluye taxi fiestas Calatayud", sitemap.includes("https://www.taxiayud.es/taxi-fiestas-calatayud/"));
+addCheck("No quedan URLs antiguas .com", !`${home}${taxiCalatayud}${english}${road}${festivals}${sitemap}`.includes("taxiayud.com"));
 
 if (errors.length) {
   console.error(errors.map((error) => `- ${error}`).join("\n"));
