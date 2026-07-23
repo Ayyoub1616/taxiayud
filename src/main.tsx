@@ -3134,8 +3134,9 @@ const DEFAULT_SEO_LINKS = [
   "/taxi-autovia-calatayud/",
   "/taxi-a2-calatayud/",
   "/taxi-desde-calatayud/",
-  "/taxi-24-horas-calatayud/",
   "/taxi-estacion-ave-calatayud/",
+  "/taxi-calatayud-zaragoza/",
+  "/taxi-zaragoza-calatayud/",
   "/taxi-fiestas-calatayud/",
   "/taxi-san-roque-calatayud/",
   "/taxi-fiestas-pueblos-comarca-calatayud/",
@@ -4883,14 +4884,16 @@ function InternalLinksBand({ language }: { language: LangCode }) {
           </a>
         ))}
       </div>
-      <p className="language-link-heading">{ui.otherLanguages}</p>
-      <div className="language-link-row" aria-label={global.aria.languageVersions}>
-        {localizedTaxiPages.map((page) => (
-          <a href={page.path} hrefLang={HTML_LANG[page.lang]} key={page.path}>
-            {page.label}
-          </a>
-        ))}
-      </div>
+      <details className="language-links-disclosure">
+        <summary>{ui.otherLanguages}</summary>
+        <div className="language-link-row" aria-label={global.aria.languageVersions}>
+          {localizedTaxiPages.map((page) => (
+            <a href={page.path} hrefLang={HTML_LANG[page.lang]} key={page.path}>
+              {page.label}
+            </a>
+          ))}
+        </div>
+      </details>
     </section>
   );
 }
@@ -5000,7 +5003,7 @@ function LegalFooter({ language }: { language: LangCode }) {
   const global = GLOBAL_COPY[language];
 
   return (
-    <section className="legal-footer" aria-label={global.legal.aria}>
+    <section className="legal-footer" aria-label={global.legal.aria} data-nosnippet="">
       <details id="aviso-legal">
         <summary>{global.legal.legalTitle}</summary>
         <p>{global.legal.legalText}</p>
@@ -5064,7 +5067,7 @@ function App() {
     ? roadDestinationPlaceholders[language]
     : t.destinationPlaceholder;
   const heroStatsLocalized = [
-    { value: "24h", label: statsLabels[0] },
+    { value: "1 clic", label: statsLabels[0] },
     { value: "N.18", label: statsLabels[1] },
     { value: "+100", label: statsLabels[2] },
   ];
@@ -5167,6 +5170,7 @@ function App() {
   }
 
   function changeLanguage(nextLanguage: LangCode) {
+    trackEvent("language_change", { language: nextLanguage });
     setLanguage(nextLanguage);
 
     if (!isLocalizedTaxiPath(window.location.pathname)) return;
@@ -5401,6 +5405,7 @@ function App() {
     url: string,
     source: string,
   ) {
+    trackEvent("route_whatsapp", { source });
     if (isRoadPickupContext) {
       showRoadWhatsappNotice(event, url, source);
       return;
@@ -5499,10 +5504,12 @@ function App() {
   function requestPickupLocation() {
     if (!navigator.geolocation) {
       setLocationStatus(global.location.unsupported);
+      trackEvent("share_location", { status: "unsupported" });
       return;
     }
 
     setLocationStatus(global.location.requesting);
+    trackEvent("share_location", { status: "requested" });
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setPickupLocation({
@@ -5512,9 +5519,11 @@ function App() {
         setOrigin(global.location.current);
         setResult(null);
         setLocationStatus(global.location.ready);
+        trackEvent("share_location", { status: "granted" });
       },
       () => {
         setLocationStatus(global.location.failed);
+        trackEvent("share_location", { status: "denied" });
       },
       { enableHighAccuracy: true, timeout: 10000 },
     );
@@ -6257,7 +6266,7 @@ function App() {
               href={CONTACT.googleProfile}
               target="_blank"
               rel="noreferrer"
-              onClick={() => trackEvent("clic_reserva", { source: "google_reviews" })}
+              onClick={() => trackEvent("review_click", { source: "google_reviews" })}
             >
               <Star aria-hidden="true" />
               {t.viewGoogle}
@@ -6318,7 +6327,7 @@ function App() {
                 href={CONTACT.googleProfile}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent("clic_reserva", { source: "google_reviews_details" })}
+                onClick={() => trackEvent("review_click", { source: "google_reviews_details" })}
               >
                 <Star aria-hidden="true" />
                 {t.viewGoogle}
@@ -6608,6 +6617,13 @@ function App() {
 
       <nav className="mobile-action-bar" aria-label={global.aria.mobileActions}>
         <a
+          href={CONTACT.phoneHref}
+          onClick={() => trackEvent("clic_llamada", { source: "mobile_bar" })}
+        >
+          <Phone aria-hidden="true" />
+          {t.call}
+        </a>
+        <a
           href={directUrl}
           target="_blank"
           rel="noreferrer"
@@ -6615,17 +6631,6 @@ function App() {
         >
           <MessageCircle aria-hidden="true" />
           WhatsApp
-        </a>
-        <a
-          href={CONTACT.phoneHref}
-          onClick={() => trackEvent("clic_llamada", { source: "mobile_bar" })}
-        >
-          <Phone aria-hidden="true" />
-          {t.call}
-        </a>
-        <a href="#calculadora" onClick={() => trackEvent("clic_reserva", { source: "mobile_bar_calc" })}>
-          <Route aria-hidden="true" />
-          {t.nav[1]}
         </a>
         <button
           type="button"

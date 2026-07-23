@@ -154,11 +154,10 @@ const businessGraph = {
     "Taxi A-2 Calatayud",
     "Taxi avería A-2 Calatayud",
     "Teléfono taxi Calatayud",
-    "Taxi 24 horas Calatayud",
   ],
   slogan: "Tu taxi de confianza en Calatayud",
   description:
-    "Taxi oficial en Calatayud para traslados 24h a Monasterio de Piedra, Zaragoza, aeropuerto, estación, balnearios y pueblos de la comarca.",
+    "Taxi oficial en Calatayud para traslados a Monasterio de Piedra, Zaragoza, aeropuerto, estación, balnearios y pueblos de la comarca.",
   telephone: "+34611861041",
   areaServed: [
     "Calatayud",
@@ -202,34 +201,8 @@ const businessGraph = {
   priceRange: "€€",
   paymentAccepted: ["Cash", "Credit Card", "Bizum", "Apple Pay", "Google Pay"],
   currenciesAccepted: "EUR",
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "00:00",
-      closes: "23:59",
-    },
-  ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "10",
-  },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Pl. del Fuerte",
-    postalCode: "50300",
-    addressLocality: "Calatayud",
-    addressRegion: "Aragón",
-    addressCountry: "ES",
-  },
   hasMap: "https://share.google/QJyQ83oNHjkRqtciX",
   sameAs: ["https://share.google/QJyQ83oNHjkRqtciX"],
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 41.3535,
-    longitude: -1.6432,
-  },
   knowsAbout: [
     "taxi en Calatayud",
     "taxi desde Calatayud",
@@ -241,7 +214,6 @@ const businessGraph = {
     "recogida de pasajeros en carretera cerca de Calatayud",
     "teléfono taxi Calatayud",
     "WhatsApp taxi Calatayud",
-    "taxi 24 horas",
     "traslados a Monasterio de Piedra",
     "taxi a balnearios de Jaraba y Alhama",
     "taxi estación AVE Calatayud",
@@ -348,7 +320,6 @@ const businessGraph = {
     telephone: "+34611861041",
     contactType: "reservas de taxi",
     areaServed: "ES",
-    availableLanguage: ["es", "en", "fr", "ca", "de", "it", "pt", "nl", "ar"],
   },
 };
 
@@ -381,6 +352,32 @@ function isLocalizedTaxiPage(path) {
   return localizedTaxiPaths.has(path);
 }
 
+function serviceAreasForPage(page) {
+  if (page.path.includes("estacion-ave")) {
+    return ["Estación AVE de Calatayud", "Plaza del Fuerte", "Hoteles de Calatayud", "Monasterio de Piedra", "Balnearios", "Pueblos de la comarca"];
+  }
+  if (page.path.includes("monasterio") || page.path.includes("nuevalos")) {
+    return ["Monasterio de Piedra", "Nuévalos", "Embalse de La Tranquera", "Ibdes", "Calatayud", "Estación AVE de Calatayud"];
+  }
+  if (page.path.includes("balnearios") || page.path.includes("jaraba") || page.path.includes("alhama")) {
+    return ["Jaraba", "Alhama de Aragón", "Paracuellos de Jiloca", "Balneario Sicilia", "Balneario Serón", "Balneario de la Virgen", "Termas Pallarés"];
+  }
+  if (page.path.includes("aeropuerto") || page.path.includes("zaragoza")) {
+    return ["Calatayud", "Zaragoza", "Zaragoza-Delicias", "Aeropuerto de Zaragoza", "Hospitales de Zaragoza", "Hoteles de Zaragoza"];
+  }
+  if (page.path.includes("a2") || page.path.includes("autovia")) {
+    return ["A-2 Valdeherrera", "A-2 Ateca", "A-2 Ariza", "N-II Calatayud", "N-234 Calatayud", "Talleres, hoteles y estación de Calatayud"];
+  }
+  if (page.path.includes("pueblos") || page.path.includes("ariza") || page.path.includes("ateca")) {
+    return ["Ateca", "Ariza", "Maluenda", "Terrer", "Munébrega", "Ibdes", "Jaraba", "Alhama de Aragón", "Nuévalos", "Paracuellos de Jiloca"];
+  }
+  if (page.path.includes("fiestas") || page.path.includes("san-roque")) {
+    return ["San Roque Calatayud", "Hoteles de Calatayud", "Estación de Calatayud", "Pueblos de la comarca", "Restaurantes y eventos"];
+  }
+
+  return ["Calatayud", "Estación AVE de Calatayud", "Hoteles de Calatayud", "Pueblos de la comarca", "Monasterio de Piedra", "Balnearios", "Zaragoza"];
+}
+
 function alternateTags(page) {
   if (!isLocalizedTaxiPage(page.path)) return "";
 
@@ -405,6 +402,35 @@ function sitemapAlternateTags(page) {
   return `\n${tags.join("\n")}`;
 }
 
+function sitemapImageTags(page) {
+  const images = page.path.includes("a2") || page.path.includes("autovia")
+    ? [
+        {
+          loc: `${siteUrl}/assets/roadside-pickup-taxi.webp`,
+          title: "Taxi Ayud recogida de pasajeros en carretera cerca de Calatayud",
+        },
+      ]
+    : [
+        {
+          loc: `${siteUrl}/assets/taxi-calatayud-landscape.webp`,
+          title: "Taxi Ayud en la comarca de Calatayud",
+        },
+        {
+          loc: `${siteUrl}/assets/peugeot-408-hybrid.webp`,
+          title: "Taxi Ayud Peugeot 408 Hybrid blanco",
+        },
+      ];
+
+  return images
+    .map(
+      (image) => `    <image:image>
+      <image:loc>${image.loc}</image:loc>
+      <image:title>${escapeHtml(image.title)}</image:title>
+    </image:image>`,
+    )
+    .join("\n");
+}
+
 function staticFallback(page) {
   const copy = pageStaticCopy(page);
   const links = pages
@@ -412,26 +438,7 @@ function staticFallback(page) {
     .slice(0, 14)
     .map((item) => `<a href="${item.path}">${escapeHtml(item.navLabel)}</a>`)
     .join(" ");
-  const serviceAreas = [
-    "Calatayud",
-    "Estación AVE de Calatayud",
-    "Plaza del Fuerte",
-    "A-2 Valdeherrera",
-    "A-2 Ateca",
-    "A-2 Ariza",
-    "N-234 Calatayud",
-    "Fiestas de San Roque Calatayud",
-    "Fiestas de pueblos de la comarca",
-    "Ateca",
-    "Ariza",
-    "Maluenda",
-    "Nuévalos",
-    "Monasterio de Piedra",
-    "Jaraba",
-    "Alhama de Aragón",
-    "Paracuellos de Jiloca",
-    "Aeropuerto de Zaragoza",
-  ]
+  const serviceAreas = serviceAreasForPage(page)
     .map((area) => `<li>${escapeHtml(area)}</li>`)
     .join("");
   const sections = page.sections
@@ -496,7 +503,6 @@ function pageJsonLd(page) {
         "@type": "ContactPoint",
         telephone: "+34611861041",
         contactType: "reservas de taxi",
-        availableLanguage: ["es", "en", "fr", "ca", "de", "it", "pt", "nl", "ar"],
       },
     },
   };
@@ -623,6 +629,7 @@ function sitemapEntry(page, lastmod) {
   return `  <url>
     <loc>${absoluteUrl(page.path)}</loc>
 ${sitemapAlternateTags(page)}
+${sitemapImageTags(page)}
     <lastmod>${lastmod}</lastmod>
   </url>`;
 }
@@ -631,7 +638,8 @@ function writeSitemap() {
   const entries = pages.map((page) => sitemapEntry(page, buildDate)).join("\n");
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${entries}
 </urlset>
 `;

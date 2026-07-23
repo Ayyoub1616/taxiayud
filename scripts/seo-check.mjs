@@ -45,6 +45,12 @@ for (const page of pages) {
   const h1 = match(html, /<h1>([\s\S]*?)<\/h1>/);
 
   if (html.includes("taxiayud.com")) fail(`${page.path} contiene taxiayud.com`);
+  if (/(^|\b)(24h|24 horas)(\b|$)/i.test(title) || /(^|\b)(24h|24 horas)(\b|$)/i.test(h1)) {
+    fail(`${page.path} usa 24h/24 horas en title o H1 sin confirmación explícita`);
+  }
+  if (html.includes('"AggregateRating"')) fail(`${page.path} incluye AggregateRating no validado`);
+  if (html.includes('"openingHoursSpecification"')) fail(`${page.path} incluye horario estructurado no confirmado`);
+  if (html.includes('"streetAddress"')) fail(`${page.path} incluye dirección postal en JSON-LD`);
   if (html.includes('name="keywords"')) fail(`${page.path} contiene meta keywords innecesario`);
   if (!title) fail(`${page.path} no tiene title`);
   if (!description) fail(`${page.path} no tiene meta description`);
@@ -108,6 +114,10 @@ if (sitemap.includes("taxiayud.com")) fail("sitemap contiene .com");
 if (!sitemap.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"')) {
   fail("sitemap no declara alternates xhtml");
 }
+if (!sitemap.includes('xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"')) {
+  fail("sitemap no declara namespace de imágenes");
+}
+if (!sitemap.includes("<image:image>")) fail("sitemap no incluye imágenes");
 
 for (const page of pages) {
   const url = `${siteUrl}${page.path === "/" ? "/" : page.path}`;

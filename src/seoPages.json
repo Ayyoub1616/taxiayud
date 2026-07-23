@@ -1,13 +1,13 @@
 [
   {
     "path": "/",
-    "title": "Taxi Calatayud 24h | Cerca de mí y comarca | Taxi Ayud",
-    "description": "Taxi Calatayud 24h y taxi cerca de mí para estación AVE, hoteles, fiestas, pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
+    "title": "Taxi en Calatayud y comarca | Taxi Ayud",
+    "description": "Taxi oficial en Calatayud para estación AVE, hoteles, pueblos, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto. Llama o reserva por WhatsApp.",
     "breadcrumb": "Inicio",
     "navLabel": "Taxi Calatayud",
     "eyebrow": "Taxi oficial en Calatayud · Licencia 18",
-    "h1": "Taxi Calatayud 24h y comarca",
-    "intro": "Taxi Ayud ofrece taxi en Calatayud, taxi cerca de mí y traslados desde Calatayud para viajes locales, estación AVE, fiestas, pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
+    "h1": "Taxi en Calatayud y comarca",
+    "intro": "Taxi Ayud ofrece taxi en Calatayud y traslados desde Calatayud para viajes locales, estación AVE, fiestas, pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
     "h2": "Reserva rápida por teléfono o WhatsApp",
     "body": "La web está pensada para que puedas llamar, escribir por WhatsApp o consultar un precio orientativo sin formularios largos. Para horarios exactos, viajes de madrugada, trenes, vuelos o recogidas especiales, confirma la disponibilidad directamente.",
     "sections": [
@@ -57,13 +57,13 @@
   },
   {
     "path": "/taxi-calatayud/",
-    "title": "Taxi en Calatayud oficial 24h | Taxi Ayud",
+    "title": "Servicio local de taxi en Calatayud | Taxi Ayud",
     "description": "Taxi oficial en Calatayud para desplazamientos urbanos, estación, hoteles, citas, pueblos cercanos y traslados concertados.",
     "breadcrumb": "Taxi en Calatayud",
     "navLabel": "Taxi Calatayud",
     "eyebrow": "Servicio local en Calatayud",
-    "h1": "Taxi en Calatayud oficial 24h",
-    "intro": "Servicio de taxi en Calatayud para desplazamientos dentro de la ciudad, recogidas en estación, hoteles, citas médicas, compras y viajes programados.",
+    "h1": "Servicio local de taxi en Calatayud",
+    "intro": "Servicio de taxi en Calatayud para desplazamientos dentro de la ciudad, recogidas en estación, hoteles, citas médicas, compras y viajes programados con confirmación directa.",
     "h2": "Taxi local para moverte por Calatayud",
     "body": "Puedes llamar directamente, escribir por WhatsApp o preparar una reserva con origen, destino, fecha, hora y número de pasajeros. El servicio se adapta a viajes inmediatos y a traslados concertados.",
     "sections": [
@@ -700,6 +700,94 @@
     ]
   },
   {
+    "path": "/taxi-calatayud-zaragoza/",
+    "title": "Taxi Calatayud Zaragoza | Delicias, hospitales y centro",
+    "description": "Taxi de Calatayud a Zaragoza para estación Delicias, hospitales, centro, hoteles y conexiones. Reserva por WhatsApp con horario, pasajeros y equipaje.",
+    "breadcrumb": "Taxi Calatayud Zaragoza",
+    "navLabel": "Calatayud Zaragoza",
+    "eyebrow": "Traslado interurbano a Zaragoza",
+    "h1": "Taxi de Calatayud a Zaragoza",
+    "intro": "Traslado en taxi desde Calatayud a Zaragoza para estación Delicias, hospitales, centro, hoteles, citas y viajes programados con recogida puerta a puerta.",
+    "h2": "Reserva taxi desde Calatayud hacia Zaragoza",
+    "body": "Indica origen, destino exacto en Zaragoza, fecha, hora, pasajeros, maletas y si necesitas ida y vuelta. El precio se confirma directamente según ruta, horario, espera y suplementos oficiales.",
+    "sections": [
+      {
+        "heading": "Zaragoza Delicias y centro",
+        "text": "Traslados a estación Zaragoza-Delicias, centro, hoteles, universidades, zonas de trabajo y domicilios."
+      },
+      {
+        "heading": "Hospitales y citas",
+        "text": "Servicio útil para consultas médicas, visitas hospitalarias o gestiones con hora concreta en Zaragoza."
+      },
+      {
+        "heading": "Viaje programado",
+        "text": "Para trenes, citas o recogidas con equipaje, conviene reservar por WhatsApp con antelación."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo reservar taxi de Calatayud a Zaragoza?",
+        "answer": "Sí. Envía por WhatsApp origen, destino exacto en Zaragoza, fecha, hora, pasajeros y equipaje para confirmar disponibilidad y precio orientativo."
+      },
+      {
+        "question": "¿Recoge en domicilio, hotel o estación de Calatayud?",
+        "answer": "Sí. Puedes indicar una dirección, hotel, estación de Calatayud o compartir ubicación para preparar la recogida."
+      },
+      {
+        "question": "¿Se puede pedir ida y vuelta a Zaragoza?",
+        "answer": "Sí. Indica si necesitas espera o vuelta programada para calcular un presupuesto orientativo y confirmar la disponibilidad."
+      },
+      {
+        "question": "¿El precio de Calatayud a Zaragoza es cerrado?",
+        "answer": "No. La web puede orientar, pero el importe final se confirma directamente según horario, ruta final, espera, equipaje y suplementos oficiales."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-zaragoza-calatayud/",
+    "title": "Taxi Zaragoza Calatayud | Recogida en Delicias, aeropuerto o ciudad",
+    "description": "Taxi de Zaragoza a Calatayud con recogida en Delicias, aeropuerto, hoteles, hospitales o dirección indicada. Reserva anticipada por WhatsApp.",
+    "breadcrumb": "Taxi Zaragoza Calatayud",
+    "navLabel": "Zaragoza Calatayud",
+    "eyebrow": "Vuelta hacia Calatayud y comarca",
+    "h1": "Taxi de Zaragoza a Calatayud",
+    "intro": "Servicio de taxi desde Zaragoza hacia Calatayud, pueblos de la comarca, hoteles, estación, balnearios o destino indicado con reserva previa.",
+    "h2": "Recogida en Zaragoza con destino Calatayud",
+    "body": "Para recogidas en Zaragoza, envía punto exacto, hora, pasajeros, equipaje y destino final. En estaciones, hospitales o aeropuerto, conviene añadir tren, vuelo o referencia de acceso.",
+    "sections": [
+      {
+        "heading": "Delicias, aeropuerto y hospitales",
+        "text": "Recogidas en estación Zaragoza-Delicias, Aeropuerto de Zaragoza, hospitales, hoteles o dirección concreta."
+      },
+      {
+        "heading": "Destino Calatayud o comarca",
+        "text": "Llegada a Calatayud, estación, alojamiento, pueblo cercano, balneario o destino turístico."
+      },
+      {
+        "heading": "Coordinación por WhatsApp",
+        "text": "El mensaje preparado ayuda a confirmar hora, punto de encuentro, pasajeros, equipaje y precio orientativo."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Taxi Ayud puede recoger en Zaragoza y llevar a Calatayud?",
+        "answer": "Sí, con reserva y disponibilidad confirmada. Escribe por WhatsApp con dirección de recogida, destino, hora, pasajeros y equipaje."
+      },
+      {
+        "question": "¿Puedo pedir recogida en Zaragoza-Delicias?",
+        "answer": "Sí. Indica tren, hora prevista y punto de encuentro para coordinar la recogida en estación."
+      },
+      {
+        "question": "¿Se puede recoger en el Aeropuerto de Zaragoza?",
+        "answer": "Sí, si se confirma disponibilidad. Indica vuelo, hora de llegada, pasajeros y maletas para organizar el traslado a Calatayud o comarca."
+      },
+      {
+        "question": "¿Conviene reservar con antelación?",
+        "answer": "Sí. Para Zaragoza, aeropuerto, trenes, hospitales o viajes largos, reservar por WhatsApp con antelación reduce esperas y malentendidos."
+      }
+    ]
+  },
+  {
     "path": "/taxi-pueblos-comarca-calatayud/",
     "title": "Taxi para pueblos de la comarca de Calatayud",
     "description": "Taxi desde Calatayud a pueblos cercanos como Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes, Nuévalos, Jaraba y más destinos.",
@@ -745,7 +833,7 @@
   },
   {
     "path": "/taxi-cerca-de-mi-calatayud/",
-    "title": "Taxi cerca de mí en Calatayud | Taxi Ayud 24h",
+    "title": "Taxi cerca de mí en Calatayud | Taxi Ayud",
     "description": "Taxi cerca de mí en Calatayud con recogida por ubicación, hoteles, estación, Plaza del Fuerte, balnearios y pueblos de la comarca.",
     "breadcrumb": "Taxi cerca de mí",
     "navLabel": "Taxi cerca",
@@ -884,50 +972,6 @@
       {
         "question": "¿Puedo mandar mi ubicación por WhatsApp?",
         "answer": "Sí. Es la forma más rápida para confirmar recogida en carretera. También puedes escribir carretera, sentido, salida, kilómetro aproximado o referencia visible. Mantén el teléfono disponible para una llamada de confirmación."
-      }
-    ]
-  },
-  {
-    "path": "/taxi-24-horas-calatayud/",
-    "title": "Taxi 24 horas en Calatayud | Taxi Ayud",
-    "description": "Taxi 24 horas en Calatayud para reservas, recogidas programadas, trenes, aeropuerto, pueblos, balnearios y urgencias de transporte.",
-    "breadcrumb": "Taxi 24 horas",
-    "navLabel": "Taxi 24h",
-    "eyebrow": "Disponibilidad 24h",
-    "h1": "Taxi 24 horas en Calatayud",
-    "intro": "Taxi Ayud atiende reservas y consultas de disponibilidad para traslados a cualquier hora en Calatayud, comarca, estación, Zaragoza, aeropuerto y balnearios.",
-    "h2": "Reserva de día, noche o madrugada",
-    "body": "Para horarios especiales, viajes de madrugada, trenes tempranos, vuelos, citas médicas o vueltas programadas, lo mejor es escribir con antelación y dejar los datos claros.",
-    "sections": [
-      {
-        "heading": "Madrugada y festivos",
-        "text": "Consulta disponibilidad para salidas nocturnas, festivos, eventos o regresos con hora concreta."
-      },
-      {
-        "heading": "Trenes y vuelos",
-        "text": "Reserva para estación de Calatayud, Zaragoza-Delicias o Aeropuerto de Zaragoza con margen suficiente."
-      },
-      {
-        "heading": "Confirmación rápida",
-        "text": "WhatsApp permite enviar fecha, hora, origen, destino, pasajeros y equipaje sin formularios largos."
-      }
-    ],
-    "faq": [
-      {
-        "question": "¿Hay taxi 24 horas en Calatayud?",
-        "answer": "Puedes solicitar taxi a cualquier hora por llamada o WhatsApp, pero la disponibilidad debe confirmarse directamente, sobre todo de madrugada, festivos o para trayectos largos."
-      },
-      {
-        "question": "¿Conviene reservar de madrugada?",
-        "answer": "Sí. Para trenes, vuelos, trabajo, citas médicas o viajes largos, lo mejor es reservar con antelación por WhatsApp con hora, origen y destino."
-      },
-      {
-        "question": "¿Se aplica tarifa nocturna o festiva?",
-        "answer": "La calculadora muestra precio orientativo según tarifa y horario. El importe final se confirma directamente con Taxi Ayud antes del servicio."
-      },
-      {
-        "question": "¿Puedo consultar disponibilidad inmediata por WhatsApp?",
-        "answer": "Sí. El WhatsApp directo está pensado para preguntar rápido si hay taxi disponible ahora, sin obligarte a calcular ruta."
       }
     ]
   },

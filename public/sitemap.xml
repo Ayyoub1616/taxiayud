@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.taxiayud.es/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-calatayud/</loc>
@@ -19,7 +28,15 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/en/taxi-calatayud/</loc>
@@ -34,7 +51,15 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/fr/taxi-calatayud/</loc>
@@ -49,7 +74,15 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/ca/taxi-calatayud/</loc>
@@ -64,7 +97,15 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/de/taxi-calatayud/</loc>
@@ -79,7 +120,15 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/it/taxi-calatayud/</loc>
@@ -94,7 +143,15 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/pt/taxi-calatayud/</loc>
@@ -109,7 +166,15 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/nl/taxi-calatayud/</loc>
@@ -124,7 +189,15 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/ar/taxi-calatayud/</loc>
@@ -139,106 +212,318 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.taxiayud.es/nl/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.taxiayud.es/ar/taxi-calatayud/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.taxiayud.es/taxi-calatayud/" />
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-desde-calatayud/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/servicios/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-estacion-ave-calatayud/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-monasterio-de-piedra/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-balnearios-jaraba-alhama/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-aeropuerto-zaragoza/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-calatayud-zaragoza/</loc>
+
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-zaragoza-calatayud/</loc>
+
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-pueblos-comarca-calatayud/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-cerca-de-mi-calatayud/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-autovia-calatayud/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/roadside-pickup-taxi.webp</image:loc>
+      <image:title>Taxi Ayud recogida de pasajeros en carretera cerca de Calatayud</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-a2-calatayud/</loc>
 
-    <lastmod>2026-07-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.taxiayud.es/taxi-24-horas-calatayud/</loc>
-
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/roadside-pickup-taxi.webp</image:loc>
+      <image:title>Taxi Ayud recogida de pasajeros en carretera cerca de Calatayud</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-hoteles-calatayud/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-nuevalos-monasterio-piedra/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-jaraba/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-alhama-de-aragon/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-ariza/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/taxi-ateca/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/contacto/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/telefono-taxi-calatayud/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-fiestas-calatayud/</loc>
+
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-san-roque-calatayud/</loc>
+
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.taxiayud.es/taxi-fiestas-pueblos-comarca-calatayud/</loc>
+
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
   <url>
     <loc>https://www.taxiayud.es/preguntas-frecuentes/</loc>
 
-    <lastmod>2026-07-21</lastmod>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/taxi-calatayud-landscape.webp</image:loc>
+      <image:title>Taxi Ayud en la comarca de Calatayud</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.taxiayud.es/assets/peugeot-408-hybrid.webp</image:loc>
+      <image:title>Taxi Ayud Peugeot 408 Hybrid blanco</image:title>
+    </image:image>
+    <lastmod>2026-07-23</lastmod>
   </url>
 </urlset>

@@ -12,6 +12,14 @@ const analyticsEnabled = import.meta.env.VITE_ENABLE_ANALYTICS === "true";
 
 let initialized = false;
 
+const EVENT_ALIASES: Record<string, string> = {
+  clic_llamada: "click_phone",
+  clic_whatsapp: "click_whatsapp",
+  consulta_tarifa: "route_calculation",
+  clic_reserva: "booking_start",
+  formulario_enviado: "booking_submit",
+};
+
 export function initAnalytics() {
   if (!analyticsEnabled || !measurementId || initialized || typeof window === "undefined") {
     return;
@@ -37,7 +45,9 @@ export function initAnalytics() {
 
 export function trackEvent(name: string, params: AnalyticsParams = {}) {
   if (!analyticsEnabled || !measurementId || typeof window === "undefined") return;
-  window.gtag?.("event", name, {
+  const eventName = EVENT_ALIASES[name] ?? name;
+
+  window.gtag?.("event", eventName, {
     ...params,
     transport_type: "beacon",
   });
