@@ -11,7 +11,7 @@ La prioridad es mantener una experiencia movil directa: llamar, WhatsApp, enviar
 ## P0 Criticos
 
 - Unificar dominio canonico en produccion: `.com`, `www.taxiayud.com`, `taxiayud.es` y HTTP deben redirigir a `https://www.taxiayud.es` con 301.
-- Eliminar o desconectar el WordPress antiguo que aun pueda servir `Hello world!` desde `taxiayud.com` si DNS/Vercel no apuntan todos los hosts al mismo proyecto.
+- Vigilar en Search Console los restos indexados del WordPress antiguo (`Hello world!`) y forzar que `.com` solo redirija a `https://www.taxiayud.es`.
 - Mantener datos legales sensibles fuera de metadescripcion, Open Graph, JSON-LD y texto promocional. El footer legal se mantiene con `data-nosnippet`.
 - No publicar tarifas como precio cerrado. La calculadora y tabla deben indicar presupuesto orientativo sujeto a confirmacion directa.
 

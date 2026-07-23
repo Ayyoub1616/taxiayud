@@ -1,6 +1,69 @@
 {
   "redirects": [
     {
+      "source": "/hello-world/",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/hello-world",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sample-page/",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sample-page",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/uncategorized/hello-world/",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/uncategorized/",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/2026/07/hello-world/",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/2026/07/10/hello-world/",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/index.php/hello-world/",
+      "destination": "https://www.taxiayud.es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "taxiayud.com" }],
+      "destination": "https://www.taxiayud.es/$1",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.taxiayud.com" }],
+      "destination": "https://www.taxiayud.es/$1",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "taxiayud.es" }],
+      "destination": "https://www.taxiayud.es/$1",
+      "statusCode": 301
+    },
+    {
       "source": "/taxi-24-horas-calatayud/",
       "destination": "/telefono-taxi-calatayud/",
       "permanent": true
@@ -18,24 +81,6 @@
     {
       "source": "/taxi-calatayud-delicias/",
       "destination": "/taxi-calatayud-zaragoza/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "taxiayud.com" }],
-      "destination": "https://www.taxiayud.es/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.taxiayud.com" }],
-      "destination": "https://www.taxiayud.es/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "taxiayud.es" }],
-      "destination": "https://www.taxiayud.es/:path*",
       "permanent": true
     }
   ],

@@ -65,8 +65,10 @@ Taxi Ayud es un servicio de taxi oficial en Calatayud, Zaragoza.
 - https://www.taxiayud.es/taxi-autovia-calatayud/
 - https://www.taxiayud.es/taxi-a2-calatayud/
 - https://www.taxiayud.es/taxi-desde-calatayud/
-- https://www.taxiayud.es/taxi-24-horas-calatayud/
 - https://www.taxiayud.es/servicios/
+- https://www.taxiayud.es/reservar/
+- https://www.taxiayud.es/tarifas/
+- https://www.taxiayud.es/vehiculo/
 - https://www.taxiayud.es/taxi-estacion-ave-calatayud/
 - https://www.taxiayud.es/taxi-monasterio-de-piedra/
 - https://www.taxiayud.es/taxi-nuevalos-monasterio-piedra/

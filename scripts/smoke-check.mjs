@@ -26,6 +26,8 @@ const calatayudZaragoza = read("dist/taxi-calatayud-zaragoza/index.html");
 const zaragozaCalatayud = read("dist/taxi-zaragoza-calatayud/index.html");
 const notFound = read("dist/404.html");
 const sitemap = read("dist/sitemap.xml");
+const llms = read("dist/llms.txt");
+const vercelConfig = JSON.parse(read("vercel.json"));
 
 addCheck("La portada contiene el teléfono principal", home.includes("611 861 041"));
 addCheck("La portada enlaza WhatsApp", home.includes("wa.me/34611861041"));
@@ -44,9 +46,34 @@ addCheck("El sitemap incluye la ruta A-2", sitemap.includes("https://www.taxiayu
 addCheck("El sitemap incluye taxi fiestas Calatayud", sitemap.includes("https://www.taxiayud.es/taxi-fiestas-calatayud/"));
 addCheck("El sitemap incluye taxi Calatayud Zaragoza", sitemap.includes("https://www.taxiayud.es/taxi-calatayud-zaragoza/"));
 addCheck("El sitemap no indexa taxi 24 horas sin confirmar", !sitemap.includes("https://www.taxiayud.es/taxi-24-horas-calatayud/"));
+addCheck("llms.txt no recomienda taxi 24 horas sin confirmar", !llms.includes("https://www.taxiayud.es/taxi-24-horas-calatayud/"));
 addCheck(
   "No quedan URLs antiguas .com",
-  !`${home}${taxiCalatayud}${english}${road}${festivals}${calatayudZaragoza}${zaragozaCalatayud}${sitemap}`.includes("taxiayud.com"),
+  !`${home}${taxiCalatayud}${english}${road}${festivals}${calatayudZaragoza}${zaragozaCalatayud}${sitemap}${llms}`.includes("taxiayud.com"),
+);
+
+const redirects = Array.isArray(vercelConfig.redirects) ? vercelConfig.redirects : [];
+const canonicalHostRedirects = ["taxiayud.com", "www.taxiayud.com", "taxiayud.es"];
+
+for (const host of canonicalHostRedirects) {
+  const redirect = redirects.find(
+    (item) =>
+      item.source === "/(.*)" &&
+      item.destination === "https://www.taxiayud.es/$1" &&
+      item.statusCode === 301 &&
+      item.has?.some((condition) => condition.type === "host" && condition.value === host),
+  );
+  addCheck(`Redirect 301 de ${host} hacia el canonico .es`, Boolean(redirect));
+}
+
+addCheck(
+  "La ruta antigua Hello world redirige al dominio canonico",
+  redirects.some(
+    (item) =>
+      item.source === "/hello-world/" &&
+      item.destination === "https://www.taxiayud.es/" &&
+      item.statusCode === 301,
+  ),
 );
 
 if (errors.length) {

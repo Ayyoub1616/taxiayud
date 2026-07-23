@@ -2,15 +2,16 @@
 
 Dominio canónico: `https://www.taxiayud.es`
 
-Dominio secundario: `https://www.taxiayud.com`
+Dominio legado solo para redirección: `https://www.taxiayud.com`
 
 ## Implementado En El Repositorio
 
-`vercel.json` incluye redirecciones permanentes 301 para:
+`vercel.json` incluye redirecciones permanentes 301 explícitas para:
 
-- `taxiayud.com/:path*` -> `https://www.taxiayud.es/:path*`
-- `www.taxiayud.com/:path*` -> `https://www.taxiayud.es/:path*`
-- `taxiayud.es/:path*` -> `https://www.taxiayud.es/:path*`
+- `taxiayud.com/(.*)` -> `https://www.taxiayud.es/$1`
+- `www.taxiayud.com/(.*)` -> `https://www.taxiayud.es/$1`
+- `taxiayud.es/(.*)` -> `https://www.taxiayud.es/$1`
+- `/hello-world/`, `/sample-page/` y restos comunes de WordPress -> `https://www.taxiayud.es/`
 
 También se han añadido redirecciones de rutas antiguas o menos seguras:
 
@@ -34,6 +35,7 @@ Las URLs internas, canonical, Open Graph, JSON-LD, robots y sitemap usan solo `h
    - `https://taxiayud.es/taxi-monasterio-de-piedra/`
    - `https://taxiayud.com/taxi-monasterio-de-piedra/`
    - `https://www.taxiayud.com/taxi-monasterio-de-piedra/`
+   - `https://www.taxiayud.com/hello-world/`
 5. En Search Console, usar `https://www.taxiayud.es` como propiedad principal.
 
 ## Pasos DNS En Arsys
@@ -46,7 +48,7 @@ Para `taxiayud.es`:
 Para `taxiayud.com`:
 
 - Mantenerlo conectado a Vercel solo para redirigir.
-- No indexarlo ni enlazarlo internamente.
+- No indexarlo, no enlazarlo internamente y no dejarlo como dominio principal del proyecto.
 
 ## Comprobación Recomendable
 
@@ -54,8 +56,9 @@ Después del despliegue:
 
 ```bash
 curl -I https://taxiayud.com/taxi-monasterio-de-piedra/
+curl -I https://www.taxiayud.com/hello-world/
 curl -I https://taxiayud.es/taxi-monasterio-de-piedra/
 curl -I https://www.taxiayud.es/sitemap.xml
 ```
 
-Los dos primeros deben devolver una redirección permanente hacia `https://www.taxiayud.es/...`.
+Las URL de `.com` y el apex `.es` deben devolver una redirección permanente hacia `https://www.taxiayud.es/...`. Solo `https://www.taxiayud.es` debe responder 200 con contenido.

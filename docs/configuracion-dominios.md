@@ -19,13 +19,22 @@ Vercel conserva query strings habituales en redirects, por lo que enlaces con UT
 
 ## Estado en el repositorio
 
-`vercel.json` ya incluye redirecciones 301 para:
+`vercel.json` incluye redirecciones 301 explicitas para:
 
 - `taxiayud.com`
 - `www.taxiayud.com`
 - `taxiayud.es`
 
+Tambien redirige restos habituales de WordPress como `/hello-world/`, `/sample-page/` y variantes antiguas hacia la portada canonica.
+
 El HTML, sitemap y robots apuntan a `https://www.taxiayud.es`.
+
+## Diagnostico del 23-07-2026
+
+- `taxiayud.es` redirige correctamente a `https://www.taxiayud.es/`.
+- `taxiayud.com/hello-world/` ya no sirve WordPress: devuelve una 404 de Vercel.
+- `www.taxiayud.com` seguia sirviendo la misma web con estado 200, por lo que podia generar contenido duplicado frente a `.es`.
+- La correccion del repositorio fuerza que `taxiayud.com`, `www.taxiayud.com` y `taxiayud.es` redirijan por 301 a `https://www.taxiayud.es`.
 
 ## Pasos en Vercel
 
@@ -51,14 +60,15 @@ Eliminar o desactivar cualquier hosting WordPress antiguo que siga respondiendo 
 ## Search Console
 
 1. Verificar propiedad de dominio para `taxiayud.es`.
-2. Verificar tambien `taxiayud.com` para controlar la migracion.
+2. Verificar tambien propiedad de dominio para `taxiayud.com` para controlar la migracion y retirar restos antiguos.
 3. Enviar `https://www.taxiayud.es/sitemap.xml`.
 4. Solicitar inspeccion de:
    - `https://www.taxiayud.es/`
    - `https://www.taxiayud.es/tarifas/`
    - `https://www.taxiayud.es/reservar/`
    - `https://www.taxiayud.es/vehiculo/`
-5. Usar retirada temporal solo si Google mantiene un resultado `Hello world!` visible y ya no existe contenido util en esa URL.
+5. Inspeccionar `https://taxiayud.com/hello-world/` y `https://www.taxiayud.com/hello-world/`. Cuando Google vea 301/404 sin WordPress, solicitar retirada temporal solo si el resultado `Hello world!` sigue visible.
+6. Revisar que la URL canonica seleccionada por Google sea `https://www.taxiayud.es/`.
 
 ## Comprobacion rapida
 
@@ -71,5 +81,5 @@ curl -I https://www.taxiayud.es/
 
 Esperado:
 
-- Las tres primeras devuelven 301 a `https://www.taxiayud.es/`.
+- Las tres primeras devuelven 301 a `https://www.taxiayud.es/` despues del nuevo despliegue.
 - La ultima devuelve 200.
