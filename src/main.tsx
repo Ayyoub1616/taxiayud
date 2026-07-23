@@ -64,6 +64,10 @@ type Result = {
 
 type BookingMode = "later" | "now";
 
+type QuickPickupKind = "current" | "station" | "plaza" | "hotel" | "manual";
+type QuickTripType = "oneway" | "returnFixed" | "returnPending";
+type TariffCategory = "all" | "comarca" | "zaragoza" | "turismo" | "larga";
+
 type PickupLocation = {
   lat: number;
   lng: number;
@@ -3137,6 +3141,9 @@ const DEFAULT_SEO_LINKS = [
   "/taxi-estacion-ave-calatayud/",
   "/taxi-calatayud-zaragoza/",
   "/taxi-zaragoza-calatayud/",
+  "/reservar/",
+  "/tarifas/",
+  "/vehiculo/",
   "/taxi-fiestas-calatayud/",
   "/taxi-san-roque-calatayud/",
   "/taxi-fiestas-pueblos-comarca-calatayud/",
@@ -3201,6 +3208,829 @@ const roadDestinationPlaceholders: Record<LangCode, string> = {
   pt: "Destino a confirmar: oficina, hotel, estação ou cidade",
   nl: "Bestemming te bevestigen: garage, hotel, station of stad",
   ar: "الوجهة للتأكيد: ورشة، فندق، محطة أو مدينة",
+};
+
+const mobileActionCopy: Record<LangCode, { location: string; locationAria: string }> = {
+  es: { location: "Ubicación", locationAria: "Enviar mi ubicación actual por WhatsApp o preparar recogida" },
+  en: { location: "Location", locationAria: "Send my current location or prepare pick-up" },
+  fr: { location: "Position", locationAria: "Envoyer ma position actuelle ou préparer la prise en charge" },
+  ca: { location: "Ubicació", locationAria: "Enviar la meva ubicació actual o preparar recollida" },
+  de: { location: "Standort", locationAria: "Aktuellen Standort senden oder Abholung vorbereiten" },
+  it: { location: "Posizione", locationAria: "Inviare la posizione attuale o preparare il ritiro" },
+  pt: { location: "Localização", locationAria: "Enviar a minha localização atual ou preparar recolha" },
+  nl: { location: "Locatie", locationAria: "Mijn huidige locatie sturen of ophaalpunt voorbereiden" },
+  ar: { location: "الموقع", locationAria: "إرسال موقعي الحالي أو تجهيز نقطة الاستلام" },
+};
+
+const businessToolsCopy: Record<
+  LangCode,
+  { save: string; share: string; copied: string; shareText: string }
+> = {
+  es: {
+    save: "Guardar contacto",
+    share: "Compartir taxi",
+    copied: "Enlace copiado",
+    shareText: "Taxi Ayud en Calatayud: teléfono, WhatsApp y reservas.",
+  },
+  en: {
+    save: "Save contact",
+    share: "Share taxi",
+    copied: "Link copied",
+    shareText: "Taxi Ayud in Calatayud: phone, WhatsApp and bookings.",
+  },
+  fr: {
+    save: "Enregistrer",
+    share: "Partager",
+    copied: "Lien copié",
+    shareText: "Taxi Ayud à Calatayud : téléphone, WhatsApp et réservations.",
+  },
+  ca: {
+    save: "Guardar contacte",
+    share: "Compartir taxi",
+    copied: "Enllaç copiat",
+    shareText: "Taxi Ayud a Calatayud: telèfon, WhatsApp i reserves.",
+  },
+  de: {
+    save: "Kontakt speichern",
+    share: "Taxi teilen",
+    copied: "Link kopiert",
+    shareText: "Taxi Ayud in Calatayud: Telefon, WhatsApp und Buchung.",
+  },
+  it: {
+    save: "Salva contatto",
+    share: "Condividi taxi",
+    copied: "Link copiato",
+    shareText: "Taxi Ayud a Calatayud: telefono, WhatsApp e prenotazioni.",
+  },
+  pt: {
+    save: "Guardar contacto",
+    share: "Partilhar táxi",
+    copied: "Ligação copiada",
+    shareText: "Taxi Ayud em Calatayud: telefone, WhatsApp e reservas.",
+  },
+  nl: {
+    save: "Contact opslaan",
+    share: "Taxi delen",
+    copied: "Link gekopieerd",
+    shareText: "Taxi Ayud in Calatayud: telefoon, WhatsApp en boekingen.",
+  },
+  ar: {
+    save: "حفظ جهة الاتصال",
+    share: "مشاركة التاكسي",
+    copied: "تم نسخ الرابط",
+    shareText: "Taxi Ayud في كالاتايود: الهاتف وواتساب والحجوزات.",
+  },
+};
+
+const quickWhatsappMessageCopy: Record<
+  LangCode,
+  {
+    hello: string;
+    pickup: string;
+    destination: string;
+    dateTime: string;
+    passengers: string;
+    luggage: string;
+    trip: string;
+    train: string;
+    notes: string;
+    pending: string;
+    thanks: string;
+  }
+> = {
+  es: {
+    hello: "👋 Hola Taxi Ayud, quiero consultar un taxi con estos datos:",
+    pickup: "Recogida",
+    destination: "Destino",
+    dateTime: "Fecha y hora",
+    passengers: "Pasajeros",
+    luggage: "Equipaje",
+    trip: "Ida o ida y vuelta",
+    train: "Tren/vuelo",
+    notes: "Observaciones",
+    pending: "Entiendo que el viaje queda pendiente de confirmación.",
+    thanks: "Gracias.",
+  },
+  en: {
+    hello: "👋 Hello Taxi Ayud, I would like to request a taxi with these details:",
+    pickup: "Pick-up",
+    destination: "Destination",
+    dateTime: "Date and time",
+    passengers: "Passengers",
+    luggage: "Luggage",
+    trip: "One way or return",
+    train: "Train/flight",
+    notes: "Notes",
+    pending: "I understand the trip is pending confirmation.",
+    thanks: "Thank you.",
+  },
+  fr: {
+    hello: "👋 Bonjour Taxi Ayud, je souhaite demander un taxi avec ces informations :",
+    pickup: "Prise en charge",
+    destination: "Destination",
+    dateTime: "Date et heure",
+    passengers: "Passagers",
+    luggage: "Bagages",
+    trip: "Aller ou aller-retour",
+    train: "Train/vol",
+    notes: "Notes",
+    pending: "Je comprends que le trajet reste à confirmer.",
+    thanks: "Merci.",
+  },
+  ca: {
+    hello: "👋 Hola Taxi Ayud, vull consultar un taxi amb aquestes dades:",
+    pickup: "Recollida",
+    destination: "Destinació",
+    dateTime: "Data i hora",
+    passengers: "Passatgers",
+    luggage: "Equipatge",
+    trip: "Anada o anada i tornada",
+    train: "Tren/vol",
+    notes: "Observacions",
+    pending: "Entenc que el viatge queda pendent de confirmació.",
+    thanks: "Gràcies.",
+  },
+  de: {
+    hello: "👋 Hallo Taxi Ayud, ich möchte ein Taxi mit diesen Daten anfragen:",
+    pickup: "Abholung",
+    destination: "Ziel",
+    dateTime: "Datum und Uhrzeit",
+    passengers: "Fahrgäste",
+    luggage: "Gepäck",
+    trip: "Einfach oder Hin- und Rückfahrt",
+    train: "Zug/Flug",
+    notes: "Hinweise",
+    pending: "Ich verstehe, dass die Fahrt noch bestätigt werden muss.",
+    thanks: "Danke.",
+  },
+  it: {
+    hello: "👋 Ciao Taxi Ayud, vorrei richiedere un taxi con questi dati:",
+    pickup: "Ritiro",
+    destination: "Destinazione",
+    dateTime: "Data e ora",
+    passengers: "Passeggeri",
+    luggage: "Bagagli",
+    trip: "Solo andata o ritorno",
+    train: "Treno/volo",
+    notes: "Note",
+    pending: "Capisco che il viaggio resta da confermare.",
+    thanks: "Grazie.",
+  },
+  pt: {
+    hello: "👋 Olá Taxi Ayud, quero consultar um táxi com estes dados:",
+    pickup: "Recolha",
+    destination: "Destino",
+    dateTime: "Data e hora",
+    passengers: "Passageiros",
+    luggage: "Bagagem",
+    trip: "Só ida ou ida e volta",
+    train: "Comboio/voo",
+    notes: "Observações",
+    pending: "Entendo que a viagem fica pendente de confirmação.",
+    thanks: "Obrigado.",
+  },
+  nl: {
+    hello: "👋 Hallo Taxi Ayud, ik wil graag een taxi aanvragen met deze gegevens:",
+    pickup: "Ophaalpunt",
+    destination: "Bestemming",
+    dateTime: "Datum en tijd",
+    passengers: "Passagiers",
+    luggage: "Bagage",
+    trip: "Enkele reis of retour",
+    train: "Trein/vlucht",
+    notes: "Opmerkingen",
+    pending: "Ik begrijp dat de rit nog bevestigd moet worden.",
+    thanks: "Dank u.",
+  },
+  ar: {
+    hello: "👋 مرحبا Taxi Ayud، أريد طلب تاكسي بهذه البيانات:",
+    pickup: "مكان الاستلام",
+    destination: "الوجهة",
+    dateTime: "التاريخ والوقت",
+    passengers: "الركاب",
+    luggage: "الحقائب",
+    trip: "ذهاب أو ذهاب وعودة",
+    train: "قطار/رحلة",
+    notes: "ملاحظات",
+    pending: "أفهم أن الرحلة تحتاج إلى تأكيد.",
+    thanks: "شكرا.",
+  },
+};
+
+const tariffCategoryCopy: Record<
+  LangCode,
+  { all: string; comarca: string; zaragoza: string; turismo: string; larga: string; whatsapp: string; allFares: string }
+> = {
+  es: {
+    all: "Todos",
+    comarca: "Comarca",
+    zaragoza: "Zaragoza",
+    turismo: "Turismo y balnearios",
+    larga: "Larga distancia",
+    whatsapp: "Consultar",
+    allFares: "Ver tarifas completas",
+  },
+  en: {
+    all: "All",
+    comarca: "Local area",
+    zaragoza: "Zaragoza",
+    turismo: "Tourism and spas",
+    larga: "Long distance",
+    whatsapp: "Ask",
+    allFares: "See all fares",
+  },
+  fr: {
+    all: "Tous",
+    comarca: "Région",
+    zaragoza: "Saragosse",
+    turismo: "Tourisme et thermes",
+    larga: "Longue distance",
+    whatsapp: "Consulter",
+    allFares: "Voir tous les tarifs",
+  },
+  ca: {
+    all: "Tots",
+    comarca: "Comarca",
+    zaragoza: "Saragossa",
+    turismo: "Turisme i balnearis",
+    larga: "Llarga distància",
+    whatsapp: "Consultar",
+    allFares: "Veure tarifes completes",
+  },
+  de: {
+    all: "Alle",
+    comarca: "Region",
+    zaragoza: "Zaragoza",
+    turismo: "Tourismus und Thermen",
+    larga: "Fernfahrt",
+    whatsapp: "Fragen",
+    allFares: "Alle Tarife ansehen",
+  },
+  it: {
+    all: "Tutti",
+    comarca: "Comarca",
+    zaragoza: "Saragozza",
+    turismo: "Turismo e terme",
+    larga: "Lunga distanza",
+    whatsapp: "Chiedi",
+    allFares: "Vedi tutte le tariffe",
+  },
+  pt: {
+    all: "Todos",
+    comarca: "Comarca",
+    zaragoza: "Zaragoza",
+    turismo: "Turismo e termas",
+    larga: "Longa distância",
+    whatsapp: "Consultar",
+    allFares: "Ver tarifas completas",
+  },
+  nl: {
+    all: "Alles",
+    comarca: "Regio",
+    zaragoza: "Zaragoza",
+    turismo: "Toerisme en kuuroorden",
+    larga: "Lange afstand",
+    whatsapp: "Vragen",
+    allFares: "Alle tarieven bekijken",
+  },
+  ar: {
+    all: "الكل",
+    comarca: "المنطقة",
+    zaragoza: "سرقسطة",
+    turismo: "السياحة والمنتجعات",
+    larga: "مسافات طويلة",
+    whatsapp: "استفسار",
+    allFares: "عرض كل الأسعار",
+  },
+};
+
+const quickBookingCopy: Record<
+  LangCode,
+  {
+    eyebrow: string;
+    title: string;
+    text: string;
+    now: string;
+    later: string;
+    pickup: string;
+    pickupOptions: Record<QuickPickupKind, string>;
+    manualPickup: string;
+    destination: string;
+    destinationPlaceholder: string;
+    quickDestinations: string;
+    passengers: string;
+    luggage: string;
+    luggageOptions: string[];
+    tripType: string;
+    tripOptions: Record<QuickTripType, string>;
+    returnTime: string;
+    train: string;
+    trainPlaceholder: string;
+    notes: string;
+    notesPlaceholder: string;
+    useLocation: string;
+    send: string;
+    call: string;
+    notice: string;
+    saved: string;
+    clearSaved: string;
+    privacy: string;
+    presets: { label: string; destination?: string; pickup?: QuickPickupKind; mode?: BookingMode; notes?: string }[];
+  }
+> = {
+  es: {
+    eyebrow: "Reserva rápida",
+    title: "Pide taxi en Calatayud en menos de un minuto",
+    text: "Elige lo básico y abre WhatsApp con un mensaje claro. La reserva queda pendiente de confirmación directa.",
+    now: "Ahora",
+    later: "Para otro día",
+    pickup: "Recogida",
+    pickupOptions: {
+      current: "Mi ubicación",
+      station: "Estación AVE",
+      plaza: "Plaza del Fuerte",
+      hotel: "Hotel o alojamiento",
+      manual: "Otra dirección",
+    },
+    manualPickup: "Calle, hotel, carretera o referencia",
+    destination: "Destino",
+    destinationPlaceholder: "Destino, taller, hotel, balneario, pueblo...",
+    quickDestinations: "Destinos rápidos",
+    passengers: "Pasajeros",
+    luggage: "Equipaje",
+    luggageOptions: ["Sin equipaje", "1-2 maletas", "3-4 maletas"],
+    tripType: "Viaje",
+    tripOptions: {
+      oneway: "Solo ida",
+      returnFixed: "Ida y vuelta con hora",
+      returnPending: "Ida y vuelta pendiente",
+    },
+    returnTime: "Hora de vuelta",
+    train: "Tren o vuelo",
+    trainPlaceholder: "Ej. AVE 03123, procedencia, vuelo...",
+    notes: "Observaciones",
+    notesPlaceholder: "Maletas, hotel, punto visible, necesidades...",
+    useLocation: "Usar mi ubicación",
+    send: "Solicitar por WhatsApp",
+    call: "Llamar",
+    notice: "Precio orientativo y disponibilidad siempre sujetos a confirmación. Para peligro inmediato, accidente con heridos o riesgo vial, llama al 112.",
+    saved: "Últimos destinos",
+    clearSaved: "Borrar",
+    privacy: "Los destinos se recuerdan solo en este dispositivo y puedes borrarlos cuando quieras.",
+    presets: [
+      { label: "Estoy en la estación", pickup: "station", mode: "now" },
+      { label: "Necesito taxi ahora", pickup: "current", mode: "now" },
+      { label: "Quiero ir al Monasterio", destination: "Monasterio de Piedra, Nuévalos" },
+      { label: "Quiero ir a un balneario", destination: "Jaraba o Alhama de Aragón" },
+      {
+        label: "Recogida en carretera",
+        pickup: "current",
+        mode: "now",
+        destination: "Destino por confirmar",
+        notes: "Incidencia en carretera. Servicio de traslado de pasajeros, no grúa.",
+      },
+      { label: "Reservar para otro día", mode: "later" },
+    ],
+  },
+  en: {
+    eyebrow: "Quick booking",
+    title: "Request a taxi in Calatayud in under a minute",
+    text: "Choose the essentials and open WhatsApp with a clear message. The booking is pending direct confirmation.",
+    now: "Now",
+    later: "Another day",
+    pickup: "Pick-up",
+    pickupOptions: {
+      current: "My location",
+      station: "AVE station",
+      plaza: "Plaza del Fuerte",
+      hotel: "Hotel or lodging",
+      manual: "Other address",
+    },
+    manualPickup: "Street, hotel, road or reference",
+    destination: "Destination",
+    destinationPlaceholder: "Destination, garage, hotel, spa, village...",
+    quickDestinations: "Quick destinations",
+    passengers: "Passengers",
+    luggage: "Luggage",
+    luggageOptions: ["No luggage", "1-2 bags", "3-4 bags"],
+    tripType: "Trip",
+    tripOptions: {
+      oneway: "One way",
+      returnFixed: "Return at a set time",
+      returnPending: "Return time to confirm",
+    },
+    returnTime: "Return time",
+    train: "Train or flight",
+    trainPlaceholder: "E.g. train number, origin, flight...",
+    notes: "Notes",
+    notesPlaceholder: "Bags, hotel, visible point, needs...",
+    useLocation: "Use my location",
+    send: "Ask by WhatsApp",
+    call: "Call",
+    notice: "Indicative price and availability are always subject to confirmation. For immediate danger, injuries or road risk, call 112.",
+    saved: "Recent destinations",
+    clearSaved: "Clear",
+    privacy: "Destinations are remembered only on this device and can be cleared anytime.",
+    presets: [
+      { label: "I am at the station", pickup: "station", mode: "now" },
+      { label: "I need a taxi now", pickup: "current", mode: "now" },
+      { label: "Go to Monasterio de Piedra", destination: "Monasterio de Piedra, Nuévalos" },
+      { label: "Go to a spa", destination: "Jaraba or Alhama de Aragón" },
+      {
+        label: "Roadside pick-up",
+        pickup: "current",
+        mode: "now",
+        destination: "Destination to confirm",
+        notes: "Roadside incident. Passenger transfer service, not a tow truck.",
+      },
+      { label: "Book another day", mode: "later" },
+    ],
+  },
+  fr: {
+    eyebrow: "Réservation rapide",
+    title: "Demandez un taxi à Calatayud en moins d'une minute",
+    text: "Choisissez l'essentiel et ouvrez WhatsApp avec un message clair. La réservation reste à confirmer.",
+    now: "Maintenant",
+    later: "Un autre jour",
+    pickup: "Prise en charge",
+    pickupOptions: {
+      current: "Ma position",
+      station: "Gare AVE",
+      plaza: "Plaza del Fuerte",
+      hotel: "Hôtel ou logement",
+      manual: "Autre adresse",
+    },
+    manualPickup: "Rue, hôtel, route ou repère",
+    destination: "Destination",
+    destinationPlaceholder: "Destination, garage, hôtel, thermes, village...",
+    quickDestinations: "Destinations rapides",
+    passengers: "Passagers",
+    luggage: "Bagages",
+    luggageOptions: ["Sans bagages", "1-2 valises", "3-4 valises"],
+    tripType: "Trajet",
+    tripOptions: {
+      oneway: "Aller simple",
+      returnFixed: "Aller-retour avec heure",
+      returnPending: "Retour à confirmer",
+    },
+    returnTime: "Heure de retour",
+    train: "Train ou vol",
+    trainPlaceholder: "Ex. train, provenance, vol...",
+    notes: "Notes",
+    notesPlaceholder: "Valises, hôtel, repère visible...",
+    useLocation: "Utiliser ma position",
+    send: "Demander par WhatsApp",
+    call: "Appeler",
+    notice: "Prix indicatif et disponibilité toujours soumis à confirmation. En cas de danger immédiat, blessés ou risque routier, appelez le 112.",
+    saved: "Destinations récentes",
+    clearSaved: "Effacer",
+    privacy: "Les destinations restent uniquement sur cet appareil.",
+    presets: [
+      { label: "Je suis à la gare", pickup: "station", mode: "now" },
+      { label: "J'ai besoin d'un taxi", pickup: "current", mode: "now" },
+      { label: "Aller au Monasterio", destination: "Monasterio de Piedra, Nuévalos" },
+      { label: "Aller aux thermes", destination: "Jaraba ou Alhama de Aragón" },
+      {
+        label: "Prise en charge route",
+        pickup: "current",
+        mode: "now",
+        destination: "Destination à confirmer",
+        notes: "Incident sur route. Transport de passagers, pas de dépannage.",
+      },
+      { label: "Réserver un autre jour", mode: "later" },
+    ],
+  },
+  ca: {} as never,
+  de: {} as never,
+  it: {} as never,
+  pt: {} as never,
+  nl: {} as never,
+  ar: {} as never,
+};
+
+quickBookingCopy.ca = {
+  ...quickBookingCopy.es,
+  eyebrow: "Reserva ràpida",
+  title: "Demana taxi a Calatayud en menys d'un minut",
+  text: "Tria el bàsic i obre WhatsApp amb un missatge clar. La reserva queda pendent de confirmació.",
+  now: "Ara",
+  later: "Un altre dia",
+  pickup: "Recollida",
+  pickupOptions: {
+    current: "La meva ubicació",
+    station: "Estació AVE",
+    plaza: "Plaza del Fuerte",
+    hotel: "Hotel o allotjament",
+    manual: "Una altra adreça",
+  },
+  manualPickup: "Carrer, hotel, carretera o referència",
+  destination: "Destinació",
+  destinationPlaceholder: "Destinació, taller, hotel, balneari, poble...",
+  passengers: "Passatgers",
+  luggage: "Equipatge",
+  luggageOptions: ["Sense equipatge", "1-2 maletes", "3-4 maletes"],
+  tripType: "Viatge",
+  tripOptions: {
+    oneway: "Només anada",
+    returnFixed: "Anada i tornada amb hora",
+    returnPending: "Tornada pendent",
+  },
+  returnTime: "Hora de tornada",
+  train: "Tren o vol",
+  trainPlaceholder: "Ex. AVE, procedència, vol...",
+  notes: "Observacions",
+  notesPlaceholder: "Maletes, hotel, punt visible, necessitats...",
+  useLocation: "Usar la meva ubicació",
+  send: "Sol·licitar per WhatsApp",
+  call: "Trucar",
+  notice: "Preu orientatiu i disponibilitat sempre subjectes a confirmació. Si hi ha perill immediat, ferits o risc viari, truca al 112.",
+  saved: "Últimes destinacions",
+  clearSaved: "Esborrar",
+  privacy: "Les destinacions es recorden només en aquest dispositiu.",
+  presets: [
+    { label: "Soc a l'estació", pickup: "station", mode: "now" },
+    { label: "Necessito taxi ara", pickup: "current", mode: "now" },
+    { label: "Vull anar al Monasterio", destination: "Monasterio de Piedra, Nuévalos" },
+    { label: "Vull anar a un balneari", destination: "Jaraba o Alhama de Aragón" },
+    {
+      label: "Recollida en carretera",
+      pickup: "current",
+      mode: "now",
+      destination: "Destinació per confirmar",
+      notes: "Incidència en carretera. Servei de trasllat de passatgers, no grua.",
+    },
+    { label: "Reservar per un altre dia", mode: "later" },
+  ],
+};
+quickBookingCopy.de = {
+  ...quickBookingCopy.en,
+  eyebrow: "Schnelle Buchung",
+  title: "Taxi in Calatayud in weniger als einer Minute anfragen",
+  text: "Wählen Sie die wichtigsten Daten und öffnen Sie WhatsApp mit einer klaren Nachricht.",
+  now: "Jetzt",
+  later: "Anderer Tag",
+  pickup: "Abholung",
+  pickupOptions: {
+    current: "Mein Standort",
+    station: "AVE-Bahnhof",
+    plaza: "Plaza del Fuerte",
+    hotel: "Hotel oder Unterkunft",
+    manual: "Andere Adresse",
+  },
+  manualPickup: "Straße, Hotel, Straße oder Referenzpunkt",
+  destination: "Ziel",
+  destinationPlaceholder: "Ziel, Werkstatt, Hotel, Thermalbad, Ort...",
+  passengers: "Fahrgäste",
+  luggage: "Gepäck",
+  luggageOptions: ["Kein Gepäck", "1-2 Koffer", "3-4 Koffer"],
+  tripType: "Fahrt",
+  tripOptions: {
+    oneway: "Nur hin",
+    returnFixed: "Hin und zurück mit Uhrzeit",
+    returnPending: "Rückfahrt noch offen",
+  },
+  returnTime: "Rückfahrtzeit",
+  train: "Zug oder Flug",
+  trainPlaceholder: "Z. B. Zugnummer, Herkunft, Flug...",
+  notes: "Hinweise",
+  notesPlaceholder: "Koffer, Hotel, sichtbarer Punkt, Bedarf...",
+  useLocation: "Meinen Standort nutzen",
+  send: "Per WhatsApp anfragen",
+  call: "Anrufen",
+  notice: "Richtpreis und Verfügbarkeit sind immer vorbehaltlich direkter Bestätigung. Bei unmittelbarer Gefahr, Verletzten oder Verkehrsrisiko 112 anrufen.",
+  saved: "Letzte Ziele",
+  clearSaved: "Löschen",
+  privacy: "Ziele werden nur auf diesem Gerät gespeichert.",
+  presets: [
+    { label: "Ich bin am Bahnhof", pickup: "station", mode: "now" },
+    { label: "Ich brauche jetzt ein Taxi", pickup: "current", mode: "now" },
+    { label: "Zum Monasterio de Piedra", destination: "Monasterio de Piedra, Nuévalos" },
+    { label: "Zu einem Thermalbad", destination: "Jaraba oder Alhama de Aragón" },
+    {
+      label: "Abholung an der Straße",
+      pickup: "current",
+      mode: "now",
+      destination: "Ziel noch zu bestätigen",
+      notes: "Vorfall auf der Straße. Personenbeförderung, kein Abschleppdienst.",
+    },
+    { label: "Für einen anderen Tag buchen", mode: "later" },
+  ],
+};
+quickBookingCopy.it = {
+  ...quickBookingCopy.en,
+  eyebrow: "Prenotazione rapida",
+  title: "Richiedi un taxi a Calatayud in meno di un minuto",
+  text: "Scegli i dati essenziali e apri WhatsApp con un messaggio chiaro.",
+  now: "Ora",
+  later: "Un altro giorno",
+  pickup: "Ritiro",
+  pickupOptions: {
+    current: "La mia posizione",
+    station: "Stazione AVE",
+    plaza: "Plaza del Fuerte",
+    hotel: "Hotel o alloggio",
+    manual: "Altro indirizzo",
+  },
+  manualPickup: "Via, hotel, strada o riferimento",
+  destination: "Destinazione",
+  destinationPlaceholder: "Destinazione, officina, hotel, terme, paese...",
+  passengers: "Passeggeri",
+  luggage: "Bagagli",
+  luggageOptions: ["Senza bagagli", "1-2 valigie", "3-4 valigie"],
+  tripType: "Viaggio",
+  tripOptions: {
+    oneway: "Solo andata",
+    returnFixed: "Andata e ritorno con ora",
+    returnPending: "Ritorno da confermare",
+  },
+  returnTime: "Ora di ritorno",
+  train: "Treno o volo",
+  trainPlaceholder: "Es. treno, provenienza, volo...",
+  notes: "Note",
+  notesPlaceholder: "Valigie, hotel, punto visibile, esigenze...",
+  useLocation: "Usa la mia posizione",
+  send: "Richiedi su WhatsApp",
+  call: "Chiama",
+  notice: "Prezzo indicativo e disponibilità sempre soggetti a conferma. In caso di pericolo immediato, feriti o rischio stradale chiama il 112.",
+  saved: "Destinazioni recenti",
+  clearSaved: "Cancella",
+  privacy: "Le destinazioni restano solo su questo dispositivo.",
+  presets: [
+    { label: "Sono alla stazione", pickup: "station", mode: "now" },
+    { label: "Ho bisogno di un taxi ora", pickup: "current", mode: "now" },
+    { label: "Vorrei andare al Monasterio", destination: "Monasterio de Piedra, Nuévalos" },
+    { label: "Vorrei andare alle terme", destination: "Jaraba o Alhama de Aragón" },
+    {
+      label: "Ritiro su strada",
+      pickup: "current",
+      mode: "now",
+      destination: "Destinazione da confermare",
+      notes: "Incidente su strada. Trasporto passeggeri, non carro attrezzi.",
+    },
+    { label: "Prenotare per un altro giorno", mode: "later" },
+  ],
+};
+quickBookingCopy.pt = {
+  ...quickBookingCopy.es,
+  eyebrow: "Reserva rápida",
+  title: "Peça táxi em Calatayud em menos de um minuto",
+  text: "Escolha o essencial e abra o WhatsApp com uma mensagem clara. A reserva fica pendente de confirmação.",
+  now: "Agora",
+  later: "Outro dia",
+  pickup: "Recolha",
+  pickupOptions: {
+    current: "A minha localização",
+    station: "Estação AVE",
+    plaza: "Plaza del Fuerte",
+    hotel: "Hotel ou alojamento",
+    manual: "Outro endereço",
+  },
+  manualPickup: "Rua, hotel, estrada ou referência",
+  destination: "Destino",
+  destinationPlaceholder: "Destino, oficina, hotel, termas, aldeia...",
+  passengers: "Passageiros",
+  luggage: "Bagagem",
+  luggageOptions: ["Sem bagagem", "1-2 malas", "3-4 malas"],
+  tripType: "Viagem",
+  tripOptions: {
+    oneway: "Só ida",
+    returnFixed: "Ida e volta com hora",
+    returnPending: "Volta a confirmar",
+  },
+  returnTime: "Hora de volta",
+  train: "Comboio ou voo",
+  trainPlaceholder: "Ex. AVE, origem, voo...",
+  notes: "Observações",
+  notesPlaceholder: "Malas, hotel, ponto visível, necessidades...",
+  useLocation: "Usar a minha localização",
+  send: "Pedir por WhatsApp",
+  call: "Ligar",
+  notice: "Preço orientativo e disponibilidade sempre sujeitos a confirmação. Em perigo imediato, feridos ou risco na estrada, ligue 112.",
+  saved: "Últimos destinos",
+  clearSaved: "Apagar",
+  privacy: "Os destinos ficam apenas neste dispositivo.",
+  presets: [
+    { label: "Estou na estação", pickup: "station", mode: "now" },
+    { label: "Preciso de táxi agora", pickup: "current", mode: "now" },
+    { label: "Quero ir ao Monasterio", destination: "Monasterio de Piedra, Nuévalos" },
+    { label: "Quero ir a umas termas", destination: "Jaraba ou Alhama de Aragón" },
+    {
+      label: "Recolha na estrada",
+      pickup: "current",
+      mode: "now",
+      destination: "Destino a confirmar",
+      notes: "Incidência na estrada. Transporte de passageiros, não reboque.",
+    },
+    { label: "Reservar para outro dia", mode: "later" },
+  ],
+};
+quickBookingCopy.nl = {
+  ...quickBookingCopy.en,
+  eyebrow: "Snel boeken",
+  title: "Vraag een taxi in Calatayud aan binnen een minuut",
+  text: "Kies de belangrijkste gegevens en open WhatsApp met een helder bericht.",
+  now: "Nu",
+  later: "Andere dag",
+  pickup: "Ophaalpunt",
+  pickupOptions: {
+    current: "Mijn locatie",
+    station: "AVE-station",
+    plaza: "Plaza del Fuerte",
+    hotel: "Hotel of verblijf",
+    manual: "Ander adres",
+  },
+  manualPickup: "Straat, hotel, weg of herkenningspunt",
+  destination: "Bestemming",
+  destinationPlaceholder: "Bestemming, garage, hotel, kuuroord, dorp...",
+  passengers: "Passagiers",
+  luggage: "Bagage",
+  luggageOptions: ["Geen bagage", "1-2 koffers", "3-4 koffers"],
+  tripType: "Rit",
+  tripOptions: {
+    oneway: "Enkele reis",
+    returnFixed: "Retour met tijd",
+    returnPending: "Retour nog te bevestigen",
+  },
+  returnTime: "Retourtijd",
+  train: "Trein of vlucht",
+  trainPlaceholder: "Bijv. trein, herkomst, vlucht...",
+  notes: "Opmerkingen",
+  notesPlaceholder: "Koffers, hotel, zichtbaar punt, wensen...",
+  useLocation: "Mijn locatie gebruiken",
+  send: "Vraag via WhatsApp",
+  call: "Bel",
+  notice: "Richtprijs en beschikbaarheid altijd onder voorbehoud van bevestiging. Bel 112 bij direct gevaar, gewonden of verkeersrisico.",
+  saved: "Recente bestemmingen",
+  clearSaved: "Wissen",
+  privacy: "Bestemmingen worden alleen op dit apparaat bewaard.",
+  presets: [
+    { label: "Ik ben op het station", pickup: "station", mode: "now" },
+    { label: "Ik heb nu een taxi nodig", pickup: "current", mode: "now" },
+    { label: "Naar Monasterio de Piedra", destination: "Monasterio de Piedra, Nuévalos" },
+    { label: "Naar een kuuroord", destination: "Jaraba of Alhama de Aragón" },
+    {
+      label: "Ophalen langs de weg",
+      pickup: "current",
+      mode: "now",
+      destination: "Bestemming te bevestigen",
+      notes: "Incident onderweg. Personenvervoer, geen sleepdienst.",
+    },
+    { label: "Boeken voor een andere dag", mode: "later" },
+  ],
+};
+quickBookingCopy.ar = {
+  ...quickBookingCopy.en,
+  eyebrow: "حجز سريع",
+  title: "اطلب تاكسي في كالاتايود خلال أقل من دقيقة",
+  text: "اختر البيانات الأساسية وافتح واتساب برسالة واضحة. الحجز يحتاج إلى تأكيد مباشر.",
+  now: "الآن",
+  later: "يوم آخر",
+  pickup: "الاستلام",
+  pickupOptions: {
+    current: "موقعي",
+    station: "محطة AVE",
+    plaza: "Plaza del Fuerte",
+    hotel: "فندق أو إقامة",
+    manual: "عنوان آخر",
+  },
+  manualPickup: "شارع أو فندق أو طريق أو علامة واضحة",
+  destination: "الوجهة",
+  destinationPlaceholder: "وجهة، ورشة، فندق، منتجع، قرية...",
+  passengers: "الركاب",
+  luggage: "الحقائب",
+  luggageOptions: ["بدون حقائب", "1-2 حقيبة", "3-4 حقائب"],
+  tripType: "الرحلة",
+  tripOptions: {
+    oneway: "ذهاب فقط",
+    returnFixed: "ذهاب وعودة بوقت",
+    returnPending: "عودة للتأكيد",
+  },
+  returnTime: "وقت العودة",
+  train: "قطار أو رحلة",
+  trainPlaceholder: "مثال: قطار، مدينة القدوم، رحلة...",
+  notes: "ملاحظات",
+  notesPlaceholder: "حقائب، فندق، نقطة واضحة، احتياجات...",
+  useLocation: "استخدم موقعي",
+  send: "طلب عبر واتساب",
+  call: "اتصال",
+  notice: "السعر التقريبي والتوفر يحتاجان دائما إلى تأكيد مباشر. عند وجود خطر فوري أو إصابات أو خطر على الطريق اتصل بالرقم 112.",
+  saved: "آخر الوجهات",
+  clearSaved: "مسح",
+  privacy: "تُحفظ الوجهات على هذا الجهاز فقط.",
+  presets: [
+    { label: "أنا في المحطة", pickup: "station", mode: "now" },
+    { label: "أحتاج تاكسي الآن", pickup: "current", mode: "now" },
+    { label: "أريد الذهاب إلى Monasterio", destination: "Monasterio de Piedra, Nuévalos" },
+    { label: "أريد الذهاب إلى منتجع", destination: "Jaraba أو Alhama de Aragón" },
+    {
+      label: "استلام على الطريق",
+      pickup: "current",
+      mode: "now",
+      destination: "وجهة للتأكيد",
+      notes: "مشكلة على الطريق. خدمة نقل ركاب وليست رافعة.",
+    },
+    { label: "حجز ليوم آخر", mode: "later" },
+  ],
 };
 
 const festivalCopy: Record<
@@ -3590,6 +4420,38 @@ function titleCase(value: string) {
 
 function displayName(key: string) {
   return DISPLAY_NAMES[key] ?? titleCase(key);
+}
+
+function tariffCategoryForKey(key: string): TariffCategory {
+  const km = TARIFAS[key]?.km ?? 0;
+  const normalized = normalize(key);
+
+  if (
+    normalized.includes("ZARAGOZA") ||
+    normalized.includes("DELICIAS") ||
+    normalized.includes("AEROPUERTO")
+  ) {
+    return "zaragoza";
+  }
+
+  if (
+    [
+      "MONASTERIO DE PIEDRA",
+      "NUEVALOS",
+      "JARABA",
+      "ALHAMA DE ARAGON",
+      "PARACUELLOS DE JILOCA",
+      "IBDES",
+      "CARENAS",
+      "MUNEBREGA",
+    ].some((item) => normalized.includes(item))
+  ) {
+    return "turismo";
+  }
+
+  if (km >= 90) return "larga";
+
+  return "comarca";
 }
 
 function euro(value: number) {
@@ -5020,6 +5882,370 @@ function LegalFooter({ language }: { language: LangCode }) {
   );
 }
 
+function readSavedQuickDestinations() {
+  if (typeof window === "undefined") return [];
+
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem("taxiayud-last-destinations") || "[]");
+    return Array.isArray(parsed)
+      ? parsed.filter((item) => typeof item === "string" && item.trim()).slice(0, 4)
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveQuickDestination(destination: string) {
+  const clean = destination.trim().slice(0, 90);
+  if (!clean || typeof window === "undefined") return [];
+
+  const next = [clean, ...readSavedQuickDestinations().filter((item) => normalize(item) !== normalize(clean))].slice(0, 4);
+  window.localStorage.setItem("taxiayud-last-destinations", JSON.stringify(next));
+  return next;
+}
+
+function quickPickupLabel(
+  pickup: QuickPickupKind,
+  manualPickup: string,
+  pickupLocation: PickupLocation,
+  language: LangCode,
+) {
+  const copy = quickBookingCopy[language];
+
+  if (pickup === "current") {
+    return pickupLocation
+      ? pickupLocationLine(pickupLocation, language)
+      : `${copy.pickupOptions.current} (${copy.useLocation})`;
+  }
+
+  if (pickup === "station") return "Estación de tren de Calatayud, Zaragoza";
+  if (pickup === "plaza") return "Plaza del Fuerte, Calatayud, Zaragoza";
+  if (pickup === "hotel") return "Hotel o alojamiento en Calatayud / comarca";
+
+  return manualPickup.trim() || copy.manualPickup;
+}
+
+function quickBookingWhatsappUrl({
+  language,
+  mode,
+  date,
+  hour,
+  pickup,
+  manualPickup,
+  destination,
+  passengers,
+  luggage,
+  tripType,
+  returnTime,
+  trainReference,
+  notes,
+  pickupLocation,
+}: {
+  language: LangCode;
+  mode: BookingMode;
+  date: string;
+  hour: string;
+  pickup: QuickPickupKind;
+  manualPickup: string;
+  destination: string;
+  passengers: number;
+  luggage: string;
+  tripType: QuickTripType;
+  returnTime: string;
+  trainReference: string;
+  notes: string;
+  pickupLocation: PickupLocation;
+}) {
+  const copy = quickBookingCopy[language];
+  const message = quickWhatsappMessageCopy[language];
+  const pickupText = quickPickupLabel(pickup, manualPickup, pickupLocation, language);
+  const destinationText = destination.trim() || copy.destinationPlaceholder;
+  const lines = [
+    languageNotice(language),
+    "",
+    message.hello,
+    `📍 ${message.pickup}: ${pickupText}`,
+    `🏁 ${message.destination}: ${destinationText}`,
+    mode === "now" ? `⏱️ ${message.dateTime}: ${copy.now}` : `📅 ${message.dateTime}: ${dateLabel(date, language)} · ${hour}h`,
+    `👥 ${message.passengers}: ${passengers}`,
+    `🧳 ${message.luggage}: ${luggage}`,
+    `🔁 ${message.trip}: ${copy.tripOptions[tripType]}${tripType === "returnFixed" && returnTime ? ` · ${returnTime}h` : ""}`,
+    trainReference.trim() ? `🚆 ${message.train}: ${trainReference.trim()}` : "",
+    notes.trim() ? `📝 ${message.notes}: ${notes.trim()}` : "",
+    "",
+    `✅ ${message.pending}`,
+    `🙏 ${message.thanks}`,
+  ].filter(Boolean);
+
+  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
+}
+
+function ReservaRapida({
+  language,
+  pickupLocation,
+  locationStatus,
+  onUseLocation,
+}: {
+  language: LangCode;
+  pickupLocation: PickupLocation;
+  locationStatus: string;
+  onUseLocation: () => void;
+}) {
+  const copy = quickBookingCopy[language];
+  const [mode, setMode] = useState<BookingMode>("now");
+  const [pickup, setPickup] = useState<QuickPickupKind>("current");
+  const [manualPickup, setManualPickup] = useState("");
+  const [destination, setDestination] = useState("Zaragoza");
+  const [date, setDate] = useState(todayValue());
+  const [hour, setHour] = useState(currentHour());
+  const [passengers, setPassengers] = useState(1);
+  const [luggage, setLuggage] = useState(copy.luggageOptions[0]);
+  const [tripType, setTripType] = useState<QuickTripType>("oneway");
+  const [returnTime, setReturnTime] = useState("");
+  const [trainReference, setTrainReference] = useState("");
+  const [notes, setNotes] = useState("");
+  const [savedDestinations, setSavedDestinations] = useState<string[]>(() => readSavedQuickDestinations());
+
+  useEffect(() => {
+    setLuggage((current) => (quickBookingCopy[language].luggageOptions.includes(current) ? current : quickBookingCopy[language].luggageOptions[0]));
+  }, [language]);
+
+  function applyPreset(preset: (typeof copy.presets)[number]) {
+    if (preset.pickup) setPickup(preset.pickup);
+    if (preset.mode) setMode(preset.mode);
+    if (preset.destination) setDestination(preset.destination);
+    if (preset.notes) setNotes(preset.notes);
+    trackEvent("booking_step", { step: "quick_preset" });
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (destination.trim()) {
+      setSavedDestinations(saveQuickDestination(destination));
+    }
+    trackEvent("booking_whatsapp", { source: "reserva_rapida", mode });
+    window.location.href = quickBookingWhatsappUrl({
+      language,
+      mode,
+      date,
+      hour,
+      pickup,
+      manualPickup,
+      destination,
+      passengers,
+      luggage,
+      tripType,
+      returnTime,
+      trainReference,
+      notes,
+      pickupLocation,
+    });
+  }
+
+  function clearSaved() {
+    try {
+      window.localStorage.removeItem("taxiayud-last-destinations");
+    } catch {
+      // Ignore storage errors.
+    }
+    setSavedDestinations([]);
+  }
+
+  return (
+    <section className="quick-booking-section" id="reservar" data-animate>
+      <div className="quick-booking-copy">
+        <p className="eyebrow compact">
+          <MessageCircle aria-hidden="true" />
+          {copy.eyebrow}
+        </p>
+        <h2>{copy.title}</h2>
+        <p>{copy.text}</p>
+        <div className="quick-preset-grid" aria-label={copy.quickDestinations}>
+          {copy.presets.map((preset) => (
+            <button type="button" key={preset.label} onClick={() => applyPreset(preset)}>
+              <Sparkles aria-hidden="true" />
+              {preset.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <form className="quick-booking-form" onSubmit={handleSubmit}>
+        <div className="mode-toggle" role="group" aria-label={copy.eyebrow}>
+          <button
+            type="button"
+            className={mode === "now" ? "active" : ""}
+            onClick={() => setMode("now")}
+          >
+            <LocateFixed aria-hidden="true" />
+            {copy.now}
+          </button>
+          <button
+            type="button"
+            className={mode === "later" ? "active" : ""}
+            onClick={() => setMode("later")}
+          >
+            <CalendarDays aria-hidden="true" />
+            {copy.later}
+          </button>
+        </div>
+
+        {mode === "later" ? (
+          <div className="quick-two">
+            <label>
+              <span className="field-label">{COPY[language].date}</span>
+              <input type="date" min={todayValue()} value={date} onChange={(event) => setDate(event.target.value)} />
+            </label>
+            <label>
+              <span className="field-label">{COPY[language].time}</span>
+              <input type="time" value={hour} onChange={(event) => setHour(event.target.value)} />
+            </label>
+          </div>
+        ) : null}
+
+        <fieldset className="quick-fieldset">
+          <legend>{copy.pickup}</legend>
+          <div className="quick-radio-grid">
+            {(Object.keys(copy.pickupOptions) as QuickPickupKind[]).map((key) => (
+              <label key={key}>
+                <input
+                  type="radio"
+                  name="quick-pickup"
+                  checked={pickup === key}
+                  onChange={() => setPickup(key)}
+                />
+                <span>{copy.pickupOptions[key]}</span>
+              </label>
+            ))}
+          </div>
+          {pickup === "current" ? (
+            <button type="button" className="btn btn-secondary quick-location-button" onClick={onUseLocation}>
+              <LocateFixed aria-hidden="true" />
+              {copy.useLocation}
+            </button>
+          ) : null}
+          {pickup === "manual" ? (
+            <input
+              value={manualPickup}
+              placeholder={copy.manualPickup}
+              onChange={(event) => setManualPickup(event.target.value.slice(0, 120))}
+            />
+          ) : null}
+          {locationStatus && pickup === "current" ? <p className="quick-status">{locationStatus}</p> : null}
+        </fieldset>
+
+        <label>
+          <span className="field-label">{copy.destination}</span>
+          <input
+            value={destination}
+            placeholder={copy.destinationPlaceholder}
+            onChange={(event) => setDestination(event.target.value.slice(0, 120))}
+          />
+        </label>
+
+        {savedDestinations.length ? (
+          <div className="saved-destinations">
+            <span>{copy.saved}</span>
+            {savedDestinations.map((item) => (
+              <button type="button" key={item} onClick={() => setDestination(item)}>
+                {item}
+              </button>
+            ))}
+            <button type="button" onClick={clearSaved}>
+              {copy.clearSaved}
+            </button>
+          </div>
+        ) : null}
+
+        <div className="quick-two">
+          <label>
+            <span className="field-label">{copy.passengers}</span>
+            <select value={passengers} onChange={(event) => setPassengers(Number(event.target.value))}>
+              {[1, 2, 3, 4].map((item) => (
+                <option value={item} key={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span className="field-label">{copy.luggage}</span>
+            <select value={luggage} onChange={(event) => setLuggage(event.target.value)}>
+              {copy.luggageOptions.map((item) => (
+                <option value={item} key={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div className="quick-two">
+          <label>
+            <span className="field-label">{copy.tripType}</span>
+            <select value={tripType} onChange={(event) => setTripType(event.target.value as QuickTripType)}>
+              {(Object.keys(copy.tripOptions) as QuickTripType[]).map((key) => (
+                <option value={key} key={key}>
+                  {copy.tripOptions[key]}
+                </option>
+              ))}
+            </select>
+          </label>
+          {tripType === "returnFixed" ? (
+            <label>
+              <span className="field-label">{copy.returnTime}</span>
+              <input type="time" value={returnTime} onChange={(event) => setReturnTime(event.target.value)} />
+            </label>
+          ) : (
+            <label>
+              <span className="field-label">{copy.train}</span>
+              <input
+                value={trainReference}
+                placeholder={copy.trainPlaceholder}
+                onChange={(event) => setTrainReference(event.target.value.slice(0, 80))}
+              />
+            </label>
+          )}
+        </div>
+
+        {tripType === "returnFixed" ? (
+          <label>
+            <span className="field-label">{copy.train}</span>
+            <input
+              value={trainReference}
+              placeholder={copy.trainPlaceholder}
+              onChange={(event) => setTrainReference(event.target.value.slice(0, 80))}
+            />
+          </label>
+        ) : null}
+
+        <label>
+          <span className="field-label">{copy.notes}</span>
+          <input
+            value={notes}
+            placeholder={copy.notesPlaceholder}
+            onChange={(event) => setNotes(event.target.value.slice(0, 160))}
+          />
+        </label>
+
+        <p className="quick-notice">{copy.notice}</p>
+        <p className="quick-privacy">{copy.privacy}</p>
+
+        <div className="quick-actions">
+          <button type="submit" className="btn btn-whatsapp">
+            <MessageCircle aria-hidden="true" />
+            {copy.send}
+          </button>
+          <a className="btn btn-secondary" href={CONTACT.phoneHref} onClick={() => trackEvent("clic_llamada", { source: "reserva_rapida" })}>
+            <Phone aria-hidden="true" />
+            {copy.call}
+          </a>
+        </div>
+      </form>
+    </section>
+  );
+}
+
 function App() {
   const [language, setLanguage] = useState<LangCode>(() => detectLanguage());
   const [cookieConsent, setCookieConsent] = useState<"accepted" | "necessary" | "pending">(() => {
@@ -5050,13 +6276,19 @@ function App() {
     useState<AddressSuggestion | null>(null);
   const [pendingRoadWhatsappUrl, setPendingRoadWhatsappUrl] = useState("");
   const [filter, setFilter] = useState("");
+  const [tariffCategory, setTariffCategory] = useState<TariffCategory>("all");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
   const [result, setResult] = useState<Result | null>(null);
   const [reviews, setReviews] = useState<ReviewsData>(GOOGLE_REVIEWS);
+  const [shareStatus, setShareStatus] = useState("");
   const t = COPY[language];
   const ui = UI_COPY[language];
   const global = GLOBAL_COPY[language];
+  const mobileCopy = mobileActionCopy[language];
+  const toolsCopy = businessToolsCopy[language];
+  const tariffCopy = tariffCategoryCopy[language];
   const currentSeoPage = activeSeoPage();
+  const isTariffPage = currentSeoPage?.path === "/tarifas/";
   const heroSeoPage = currentSeoPage ?? HOME_SEO_PAGE;
   const statsLabels = heroStatLabels[language];
   const touristCopy = touristSearchCopy[language];
@@ -5084,8 +6316,12 @@ function App() {
 
   const filteredTariffs = useMemo(() => {
     const q = normalize(filter);
-    return tariffEntries.filter(([name]) => !q || normalize(name).includes(q));
-  }, [filter]);
+    return tariffEntries.filter(([name]) => {
+      const matchesText = !q || normalize(name).includes(q) || normalize(displayName(name)).includes(q);
+      const matchesCategory = tariffCategory === "all" || tariffCategoryForKey(name) === tariffCategory;
+      return matchesText && matchesCategory;
+    });
+  }, [filter, tariffCategory]);
 
   const lookupTariff = TARIFAS[tariffLookupKey];
   const activeDestination = destinationSearchValue.trim() || (selectedKey ? displayName(selectedKey) : "");
@@ -5495,6 +6731,7 @@ function App() {
     } catch (error) {
       setResult(null);
       setRouteError(friendlyRouteError(error, t.routeError));
+      trackEvent("route_error", { source: "calculator" });
       scrollToResult();
     } finally {
       setRouteLoading(false);
@@ -5524,9 +6761,32 @@ function App() {
       () => {
         setLocationStatus(global.location.failed);
         trackEvent("share_location", { status: "denied" });
+        trackEvent("location_permission_denied", { source: "geolocation" });
       },
       { enableHighAccuracy: true, timeout: 10000 },
     );
+  }
+
+  async function shareBusiness() {
+    const url = "https://www.taxiayud.es/";
+    trackEvent("share_business", { source: "closing" });
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "Taxi Ayud Calatayud",
+          text: toolsCopy.shareText,
+          url,
+        });
+        return;
+      }
+
+      await navigator.clipboard?.writeText(url);
+      setShareStatus(toolsCopy.copied);
+      window.setTimeout(() => setShareStatus(""), 2400);
+    } catch {
+      setShareStatus("");
+    }
   }
 
   return (
@@ -5681,6 +6941,13 @@ function App() {
             </div>
           </aside>
         </section>
+
+        <ReservaRapida
+          language={language}
+          pickupLocation={pickupLocation}
+          locationStatus={locationStatus}
+          onUseLocation={requestPickupLocation}
+        />
 
         <section className="trust-strip" aria-label={global.aria.trustData}>
           <div>
@@ -6413,6 +7680,10 @@ function App() {
             </p>
             <h2>{t.tariffsTitle}</h2>
             <p>{t.tariffsText}</p>
+            <a className="btn btn-secondary section-inline-action" href="/tarifas/">
+              <Search aria-hidden="true" />
+              {tariffCopy.allFares}
+            </a>
           </div>
 
           <div className="tariff-lookup" data-animate>
@@ -6481,7 +7752,7 @@ function App() {
             </aside>
           </div>
 
-          <details className="full-table-disclosure">
+          <details className="full-table-disclosure" open={isTariffPage}>
             <summary>{t.fullTable}</summary>
             <div className="table-tools">
               <div className="search-field">
@@ -6489,8 +7760,23 @@ function App() {
                 <input
                   value={filter}
                   placeholder={t.filterTable}
-                  onChange={(event) => setFilter(event.target.value)}
+                  onChange={(event) => {
+                    setFilter(event.target.value);
+                    trackEvent("tariff_search", { source: "table" });
+                  }}
                 />
+              </div>
+              <div className="tariff-filter-tabs" role="group" aria-label={t.fullTable}>
+                {(["all", "comarca", "zaragoza", "turismo", "larga"] as TariffCategory[]).map((category) => (
+                  <button
+                    type="button"
+                    key={category}
+                    className={tariffCategory === category ? "active" : ""}
+                    onClick={() => setTariffCategory(category)}
+                  >
+                    {tariffCopy[category]}
+                  </button>
+                ))}
               </div>
             </div>
             <div className="table-wrap">
@@ -6501,15 +7787,41 @@ function App() {
                     <th>{t.oneWayKm}</th>
                     <th>{t.dayFare}</th>
                     <th>{t.nightFare}</th>
+                    <th>WhatsApp</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredTariffs.map(([key, tariff]) => (
                     <tr key={key}>
-                      <td>{displayName(key)}</td>
-                      <td>{formatKm(tariff.km)} km</td>
-                      <td>{euro(priceFromKm(tariff.km, false))}</td>
-                      <td>{euro(priceFromKm(tariff.km, true))}</td>
+                      <td data-label={t.destination}>{displayName(key)}</td>
+                      <td data-label={t.oneWayKm}>{formatKm(tariff.km)} km</td>
+                      <td data-label={t.dayFare}>{euro(priceFromKm(tariff.km, false))}</td>
+                      <td data-label={t.nightFare}>{euro(priceFromKm(tariff.km, true))}</td>
+                      <td data-label="WhatsApp">
+                        <a
+                          className="table-whatsapp"
+                          href={whatsappUrl({
+                            result: null,
+                            origin: "Calatayud",
+                            destination: displayName(key),
+                            date,
+                            hour,
+                            passengers,
+                            mode: bookingMode,
+                            notes: "",
+                            pickupLocation,
+                          }, language)}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={() => {
+                            trackEvent("destination_selected", { source: "tariff_table" });
+                            trackEvent("clic_whatsapp", { source: "tariff_table" });
+                          }}
+                        >
+                          <MessageCircle aria-hidden="true" />
+                          {tariffCopy.whatsapp}
+                        </a>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -6554,6 +7866,20 @@ function App() {
               <MessageCircle aria-hidden="true" />
               WhatsApp
             </a>
+            <a
+              className="btn btn-secondary"
+              href="/taxi-ayud.vcf"
+              download
+              onClick={() => trackEvent("save_contact", { source: "closing" })}
+            >
+              <BadgeCheck aria-hidden="true" />
+              {toolsCopy.save}
+            </a>
+            <button type="button" className="btn btn-secondary" onClick={shareBusiness}>
+              <Send aria-hidden="true" />
+              {toolsCopy.share}
+            </button>
+            {shareStatus ? <span className="share-status">{shareStatus}</span> : null}
           </div>
         </section>
       </main>
@@ -6634,11 +7960,11 @@ function App() {
         </a>
         <button
           type="button"
-          aria-label={global.aria.roadMobile}
-          onClick={requestRoadPickupLocation}
+          aria-label={mobileCopy.locationAria}
+          onClick={requestPickupLocation}
         >
-          <TriangleAlert aria-hidden="true" />
-          {ui.roadHeroOption}
+          <LocateFixed aria-hidden="true" />
+          {mobileCopy.location}
         </button>
       </nav>
     </>

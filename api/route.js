@@ -142,7 +142,7 @@ const COMMON_POINTS = [
   },
   {
     keys: ["ZARAGOZA", "ZARAGOZA CENTRO"],
-    label: "Zaragoza, España",
+    label: "Zaragoza, Zaragoza, España",
     lat: 41.6488,
     lng: -0.8891,
   },
@@ -154,13 +154,13 @@ const COMMON_POINTS = [
   },
   {
     keys: ["AEROPUERTO DE ZARAGOZA", "AEROPUERTO ZARAGOZA"],
-    label: "Aeropuerto de Zaragoza, España",
+    label: "Aeropuerto de Zaragoza, Zaragoza, España",
     lat: 41.6662,
     lng: -1.0415,
   },
   {
     keys: ["MADRID"],
-    label: "Madrid, España",
+    label: "Madrid, Madrid, España",
     lat: 40.4168,
     lng: -3.7038,
   },

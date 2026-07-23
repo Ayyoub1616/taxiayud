@@ -15,9 +15,11 @@ let initialized = false;
 const EVENT_ALIASES: Record<string, string> = {
   clic_llamada: "click_phone",
   clic_whatsapp: "click_whatsapp",
-  consulta_tarifa: "route_calculation",
+  consulta_tarifa: "route_calculated",
   clic_reserva: "booking_start",
-  formulario_enviado: "booking_submit",
+  formulario_enviado: "booking_whatsapp",
+  share_location: "use_location",
+  route_whatsapp: "booking_whatsapp",
 };
 
 export function initAnalytics() {

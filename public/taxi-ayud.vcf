@@ -1,0 +1,9 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Taxi Ayud
+ORG:Taxi Ayud
+TEL;TYPE=CELL,VOICE:+34611861041
+URL:https://www.taxiayud.es/
+ADR;TYPE=WORK:;;;;Calatayud;Zaragoza;Spain
+NOTE:Taxi oficial en Calatayud y comarca. Reservas por telefono o WhatsApp.
+END:VCARD

@@ -1,11 +1,16 @@
+import { BUSINESS_CONFIG, validateBusinessConfig } from "./config/business";
+import { OFFICIAL_TARIFF_CONFIG } from "./config/tarifas";
+
+validateBusinessConfig(BUSINESS_CONFIG);
+
 export const CONTACT = {
-  phoneDisplay: "611 861 041",
-  phoneHref: "tel:611861041",
-  whatsapp: "34611861041",
-  address: "Pl. del Fuerte, 50300 Calatayud, Zaragoza",
-  googleProfile: "https://share.google/QJyQ83oNHjkRqtciX",
-  place: "Calatayud, Zaragoza",
-  license: "Licencia municipal n.º 18",
+  phoneDisplay: BUSINESS_CONFIG.phoneDisplay,
+  phoneHref: BUSINESS_CONFIG.phoneHref,
+  whatsapp: BUSINESS_CONFIG.whatsapp,
+  address: BUSINESS_CONFIG.publicAddress,
+  googleProfile: BUSINESS_CONFIG.googleProfile,
+  place: BUSINESS_CONFIG.publicPlace,
+  license: BUSINESS_CONFIG.license,
 };
 
 export const LEGAL = {
@@ -16,12 +21,12 @@ export const LEGAL = {
 };
 
 export const RATES = {
-  dayRate: 0.71,
-  nightRate: 0.79,
-  dayWaitRate: 18.92,
-  nightWaitRate: 21.54,
-  returnFactor: 2,
-  officialNotice: "Tarifas interurbanas oficiales 2026 · B.O.A. n.º 238 del 10-12-2025",
+  dayRate: OFFICIAL_TARIFF_CONFIG.interurban.day.pricePerKm,
+  nightRate: OFFICIAL_TARIFF_CONFIG.interurban.nightHoliday.pricePerKm,
+  dayWaitRate: OFFICIAL_TARIFF_CONFIG.interurban.day.waitPerHour,
+  nightWaitRate: OFFICIAL_TARIFF_CONFIG.interurban.nightHoliday.waitPerHour,
+  returnFactor: OFFICIAL_TARIFF_CONFIG.calculation.returnFactor,
+  officialNotice: OFFICIAL_TARIFF_CONFIG.sourceLabel,
 };
 
 export const GOOGLE_REVIEWS = {
