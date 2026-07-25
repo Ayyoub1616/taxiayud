@@ -7,6 +7,9 @@ const PUBLIC_HEADERS = {
   "User-Agent": "TaxiAyudWebsite/1.0 (https://www.taxiayud.es)",
   Referer: "https://www.taxiayud.es/",
 };
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 90;
+const requestBuckets = new Map();
 
 function withSpain(value) {
   const clean = String(value || "").trim().slice(0, 120);
@@ -22,6 +25,39 @@ function normalize(value) {
     .replace(/\s+/g, " ")
     .toUpperCase()
     .trim();
+}
+
+function headerValue(request, name) {
+  const headers = request?.headers || {};
+  if (typeof headers.get === "function") return headers.get(name);
+  return headers[name] || headers[name.toLowerCase()];
+}
+
+function clientKey(request) {
+  const forwarded = String(headerValue(request, "x-forwarded-for") || "");
+  return forwarded.split(",")[0].trim() || String(headerValue(request, "x-real-ip") || "local");
+}
+
+function isRateLimited(request) {
+  const now = Date.now();
+  const key = clientKey(request);
+  const bucket = requestBuckets.get(key) || { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS };
+
+  if (bucket.resetAt <= now) {
+    bucket.count = 0;
+    bucket.resetAt = now + RATE_LIMIT_WINDOW_MS;
+  }
+
+  bucket.count += 1;
+  requestBuckets.set(key, bucket);
+
+  if (requestBuckets.size > 500) {
+    for (const [bucketKey, value] of requestBuckets.entries()) {
+      if (value.resetAt <= now) requestBuckets.delete(bucketKey);
+    }
+  }
+
+  return bucket.count > RATE_LIMIT_MAX_REQUESTS;
 }
 
 function compactDetail(properties = {}) {
@@ -42,7 +78,7 @@ function compactDetail(properties = {}) {
 }
 
 function displayLabel(label) {
-  const ignoredParts = new Set(["ARAGON", "COMUNIDAD DE CALATAYUD"]);
+  const ignoredParts = new Set(["ARAGON", "COMUNIDAD DE CALATAYUD", "ESPANA"]);
   const parts = String(label || "")
     .split(",")
     .map((part) => part.trim())
@@ -58,10 +94,17 @@ function displayLabel(label) {
     cleanParts.push(part);
   }
 
+  if (
+    cleanParts.length === 1 &&
+    normalize(cleanParts[0]) === "CALATAYUD" &&
+    !seen.has("ZARAGOZA")
+  ) {
+    cleanParts.push("Zaragoza");
+  }
+
   return cleanParts
     .join(", ")
-    .replace(/,\s*Aragón,\s*España$/i, ", Zaragoza, España")
-    .replace(/^Calatayud,\s*España$/i, "Calatayud, Zaragoza, España")
+    .replace(/,\s*Aragón$/i, ", Zaragoza")
     .replace(/^Calatayud,\s*Aragón/i, "Calatayud, Zaragoza");
 }
 
@@ -189,6 +232,11 @@ export default async function handler(request, response) {
 
   const apiKey = process.env.OPENROUTESERVICE_API_KEY;
   const query = String(request.query?.q || "").trim().slice(0, 120);
+
+  if (isRateLimited(request)) {
+    response.status(200).json({ suggestions: [] });
+    return;
+  }
 
   if (query.length < 3) {
     response.status(200).json({ suggestions: [] });

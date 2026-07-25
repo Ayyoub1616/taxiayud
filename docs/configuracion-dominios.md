@@ -32,7 +32,7 @@ El HTML, sitemap y robots apuntan a `https://www.taxiayud.es`.
 ## Diagnostico del 23-07-2026
 
 - `taxiayud.es` redirige correctamente a `https://www.taxiayud.es/`.
-- `taxiayud.com/hello-world/` ya no sirve WordPress: devuelve una 404 de Vercel.
+- `taxiayud.com/hello-world/` debe dejar de servir WordPress y responder con redireccion permanente a la portada canonica.
 - `www.taxiayud.com` seguia sirviendo la misma web con estado 200, por lo que podia generar contenido duplicado frente a `.es`.
 - La correccion del repositorio fuerza que `taxiayud.com`, `www.taxiayud.com` y `taxiayud.es` redirijan por 301 a `https://www.taxiayud.es`.
 
@@ -55,7 +55,7 @@ Configurar DNS segun indique Vercel:
 - Para `www`: normalmente CNAME hacia Vercel.
 - Para apex (`taxiayud.es` y `taxiayud.com`): A record o configuración recomendada por Vercel.
 
-Eliminar o desactivar cualquier hosting WordPress antiguo que siga respondiendo en `taxiayud.com`. Si `taxiayud.com` no apunta a Vercel, Google puede seguir viendo `Hello world!`.
+Eliminar o desactivar cualquier hosting WordPress antiguo que siga respondiendo en `taxiayud.com`. Si `taxiayud.com` no apunta a Vercel, Google puede seguir viendo `Hello world!` aunque el proyecto actual este correcto.
 
 ## Search Console
 
@@ -77,6 +77,7 @@ curl -I https://taxiayud.com/
 curl -I https://www.taxiayud.com/
 curl -I https://taxiayud.es/
 curl -I https://www.taxiayud.es/
+pnpm run redirect:check
 ```
 
 Esperado:

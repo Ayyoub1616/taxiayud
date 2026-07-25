@@ -13,7 +13,11 @@
     "typecheck": "tsc -b --pretty false",
     "lint": "tsc -b --pretty false",
     "seo:check": "node scripts/seo-check.mjs",
-    "test": "node scripts/seo-check.mjs && node scripts/smoke-check.mjs",
+    "url:table": "node scripts/generate-url-table.mjs",
+    "link:check": "node scripts/link-check.mjs",
+    "redirect:check": "node scripts/redirect-check.mjs",
+    "redirect:check:strict": "node scripts/redirect-check.mjs --strict",
+    "test": "node scripts/seo-check.mjs && node scripts/smoke-check.mjs && node scripts/link-check.mjs",
     "check": "pnpm build && pnpm test"
   },
   "dependencies": {

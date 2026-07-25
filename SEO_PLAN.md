@@ -10,20 +10,19 @@ Mejorar la visibilidad de Taxi Ayud para búsquedas locales reales relacionadas 
 - `/taxi-calatayud/`: intención general “taxi en Calatayud”.
 - `/en/taxi-calatayud/`, `/fr/taxi-calatayud/`, `/ca/taxi-calatayud/`, `/de/taxi-calatayud/`, `/it/taxi-calatayud/`, `/pt/taxi-calatayud/`, `/nl/taxi-calatayud/`, `/ar/taxi-calatayud/`: versiones por idioma para visitantes que buscan taxi en Calatayud en su propio idioma.
 - `/taxi-desde-calatayud/`: búsquedas de salida desde Calatayud a comarca, estación, balnearios, Zaragoza y aeropuerto.
-- `/taxi-autovia-calatayud/`: recogida de pasajeros por avería o incidencia en A-2, N-II y carreteras cercanas.
-- `/taxi-a2-calatayud/`: intención concreta de recogida en A-2, Valdeherrera, Ateca y Ariza.
+- `/taxi-pasajeros-averia-a2-calatayud/`: recogida de pasajeros por avería o incidencia en A-2, N-II, Valdeherrera, Ateca, Ariza y carreteras cercanas. No es servicio de grúa.
 - `/servicios/`: resumen de servicios reales.
 - `/taxi-estacion-ave-calatayud/`: recogidas en estación y tren.
-- `/taxi-monasterio-de-piedra/`: traslado turístico específico.
-- `/taxi-balnearios-jaraba-alhama/`: Jaraba, Alhama y balnearios.
-- `/taxi-aeropuerto-zaragoza/`: Zaragoza, Delicias y aeropuerto.
+- `/taxi-calatayud-monasterio-de-piedra/`: traslado turístico específico.
+- `/taxi-calatayud-jaraba-balnearios/`: Jaraba, Alhama y balnearios.
+- `/taxi-calatayud-aeropuerto-zaragoza/`: Zaragoza, Delicias y aeropuerto.
 - `/taxi-pueblos-comarca-calatayud/`: pueblos de la comarca sin crear doorway pages.
 - `/taxi-cerca-de-mi-calatayud/`: intención local “taxi cerca de mí” en Calatayud.
-- `/taxi-24-horas-calatayud/`: disponibilidad 24h y viajes programados.
+- `/telefono-taxi-calatayud/`: intención directa de teléfono y WhatsApp. La antigua `/taxi-24-horas-calatayud/` queda redirigida hasta confirmar disponibilidad 24 horas real.
 - `/taxi-hoteles-calatayud/`: recogidas en hoteles, alojamientos y casas rurales.
 - `/taxi-nuevalos-monasterio-piedra/`: Nuévalos y Monasterio de Piedra.
 - `/taxi-jaraba/`: Jaraba y balnearios.
-- `/taxi-alhama-de-aragon/`: Alhama de Aragón y balnearios.
+- `/taxi-calatayud-alhama-de-aragon/`: Alhama de Aragón y balnearios.
 - `/taxi-ariza/`: Ariza y eje hacia Soria.
 - `/taxi-ateca/`: Ateca y pueblos cercanos.
 - `/contacto/`: teléfono, WhatsApp y datos para reservar.
@@ -58,11 +57,16 @@ El contenido se ha enfocado en:
 
 Eventos preparados:
 
-- `clic_llamada`
-- `clic_whatsapp`
-- `formulario_enviado`
-- `consulta_tarifa`
-- `clic_reserva`
+- `click_to_call`
+- `whatsapp_click`
+- `location_share_click`
+- `fare_calculation_started`
+- `fare_calculation_completed`
+- `booking_started`
+- `booking_whatsapp_sent`
+- `route_page_view`
+- `google_reviews_click`
+- `language_changed`
 
 GA4 solo se carga si:
 

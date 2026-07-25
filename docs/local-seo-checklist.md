@@ -62,12 +62,12 @@ No usar granjas de enlaces ni directorios genéricos de baja calidad.
   - `/`
   - `/taxi-calatayud/`
   - `/taxi-estacion-ave-calatayud/`
-  - `/taxi-monasterio-de-piedra/`
-  - `/taxi-balnearios-jaraba-alhama/`
-  - `/taxi-aeropuerto-zaragoza/`
+  - `/taxi-calatayud-monasterio-de-piedra/`
+  - `/taxi-calatayud-jaraba-balnearios/`
+  - `/taxi-calatayud-aeropuerto-zaragoza/`
   - `/taxi-calatayud-zaragoza/`
   - `/taxi-zaragoza-calatayud/`
-  - `/taxi-a2-calatayud/`
+  - `/taxi-pasajeros-averia-a2-calatayud/`
 - Revisar consultas reales cada 2-4 semanas y ajustar contenido con intención real, no con repetición artificial.
 
 ## Consistencia NAP

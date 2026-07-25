@@ -74,6 +74,7 @@ function localApiMiddleware() {
       await handler(
         {
           method: request.method,
+          headers: request.headers,
           query: queryFromSearchParams(url.searchParams),
           body: await readRequestBody(request),
         },

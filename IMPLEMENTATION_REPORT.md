@@ -38,9 +38,9 @@ Se ha renovado la base técnica y SEO de Taxi Ayud para que el dominio principal
 - `/taxi-calatayud/`
 - `/servicios/`
 - `/taxi-estacion-ave-calatayud/`
-- `/taxi-monasterio-de-piedra/`
-- `/taxi-balnearios-jaraba-alhama/`
-- `/taxi-aeropuerto-zaragoza/`
+- `/taxi-calatayud-monasterio-de-piedra/`
+- `/taxi-calatayud-jaraba-balnearios/`
+- `/taxi-calatayud-aeropuerto-zaragoza/`
 - `/taxi-pueblos-comarca-calatayud/`
 - `/contacto/`
 - `/preguntas-frecuentes/`

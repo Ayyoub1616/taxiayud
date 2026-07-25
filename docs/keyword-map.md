@@ -16,24 +16,24 @@ Objetivo: asignar cada intención de búsqueda a una URL concreta, evitando que 
 | Intención | Keywords | URL Objetivo |
 |---|---|---|
 | Estación AVE | taxi estación Calatayud, taxi AVE Calatayud, recogida estación AVE Calatayud | `/taxi-estacion-ave-calatayud/` |
-| Estación a turismo | taxi estación Calatayud Monasterio de Piedra | `/taxi-monasterio-de-piedra/` |
-| Estación a balnearios | taxi estación Calatayud balneario, taxi estación Calatayud balnearios | `/taxi-balnearios-jaraba-alhama/` |
+| Estación a turismo | taxi estación Calatayud Monasterio de Piedra | `/taxi-calatayud-monasterio-de-piedra/` |
+| Estación a balnearios | taxi estación Calatayud balneario, taxi estación Calatayud balnearios | `/taxi-calatayud-jaraba-balnearios/` |
 
 ## Turismo
 
 | Intención | Keywords | URL Objetivo |
 |---|---|---|
-| Monasterio de Piedra | taxi Calatayud Monasterio de Piedra, taxi Monasterio de Piedra Calatayud | `/taxi-monasterio-de-piedra/` |
+| Monasterio de Piedra | taxi Calatayud Monasterio de Piedra, taxi Monasterio de Piedra Calatayud | `/taxi-calatayud-monasterio-de-piedra/` |
 | Nuévalos | taxi Nuévalos, taxi Nuévalos Monasterio de Piedra | `/taxi-nuevalos-monasterio-piedra/` |
-| Turismo comarca | taxi turismo Calatayud, excursión en taxi Monasterio de Piedra | `/taxi-monasterio-de-piedra/` y enlaces internos a pueblos |
+| Turismo comarca | taxi turismo Calatayud, excursión en taxi Monasterio de Piedra | `/taxi-calatayud-monasterio-de-piedra/` y enlaces internos a pueblos |
 
 ## Balnearios
 
 | Intención | Keywords | URL Objetivo |
 |---|---|---|
-| Balnearios comarca | taxi balnearios Calatayud, taxi estación Calatayud balneario | `/taxi-balnearios-jaraba-alhama/` |
+| Balnearios comarca | taxi balnearios Calatayud, taxi estación Calatayud balneario | `/taxi-calatayud-jaraba-balnearios/` |
 | Jaraba | taxi Calatayud Jaraba, taxi Balneario Sicilia, taxi Balneario Serón, taxi Balneario de la Virgen | `/taxi-jaraba/` |
-| Alhama | taxi Calatayud Alhama de Aragón, taxi Termas Pallarés | `/taxi-alhama-de-aragon/` |
+| Alhama | taxi Calatayud Alhama de Aragón, taxi Termas Pallarés | `/taxi-calatayud-alhama-de-aragon/` |
 
 ## Zaragoza Y Larga Distancia
 
@@ -41,7 +41,7 @@ Objetivo: asignar cada intención de búsqueda a una URL concreta, evitando que 
 |---|---|---|
 | Calatayud a Zaragoza | taxi Calatayud Zaragoza, taxi Calatayud Zaragoza Delicias, taxi Calatayud hospitales Zaragoza | `/taxi-calatayud-zaragoza/` |
 | Zaragoza a Calatayud | taxi Zaragoza Calatayud, taxi Zaragoza Delicias Calatayud | `/taxi-zaragoza-calatayud/` |
-| Aeropuerto de Zaragoza | taxi Calatayud aeropuerto Zaragoza, traslado Calatayud aeropuerto | `/taxi-aeropuerto-zaragoza/` |
+| Aeropuerto de Zaragoza | taxi Calatayud aeropuerto Zaragoza, traslado Calatayud aeropuerto | `/taxi-calatayud-aeropuerto-zaragoza/` |
 | Madrid o Barajas | taxi Calatayud Madrid, taxi Calatayud aeropuerto Madrid Barajas | No crear página hasta confirmar servicio y contenido real. |
 
 ## Pueblos Y Comarca
@@ -57,8 +57,8 @@ Objetivo: asignar cada intención de búsqueda a una URL concreta, evitando que 
 
 | Intención | Keywords | URL Objetivo | Nota |
 |---|---|---|---|
-| Avería o incidencia A-2 | recogida de pasajeros por avería A-2, taxi A-2 Calatayud | `/taxi-a2-calatayud/` | Servicio de taxi para pasajeros, no grúa. |
-| Autovía general | taxi avería autovía Calatayud | `/taxi-autovia-calatayud/` | Similar a A-2, pero más amplia. |
+| Avería o incidencia A-2 | recogida de pasajeros por avería A-2, taxi A-2 Calatayud | `/taxi-pasajeros-averia-a2-calatayud/` | Servicio de taxi para pasajeros, no grúa. |
+| Autovía general | taxi avería autovía Calatayud | `/taxi-pasajeros-averia-a2-calatayud/` | Similar a A-2, pero más amplia. |
 | Hoteles | taxi hoteles Calatayud | `/taxi-hoteles-calatayud/` | Útil para turistas y recepción de alojamientos. |
 | Fiestas | taxi fiestas San Roque Calatayud, taxi fiestas pueblos comarca Calatayud | `/taxi-san-roque-calatayud/`, `/taxi-fiestas-pueblos-comarca-calatayud/` | Mantener con aviso de reserva anticipada. |
 

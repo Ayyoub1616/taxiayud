@@ -13,13 +13,15 @@ const analyticsEnabled = import.meta.env.VITE_ENABLE_ANALYTICS === "true";
 let initialized = false;
 
 const EVENT_ALIASES: Record<string, string> = {
-  clic_llamada: "click_phone",
-  clic_whatsapp: "click_whatsapp",
-  consulta_tarifa: "route_calculated",
-  clic_reserva: "booking_start",
-  formulario_enviado: "booking_whatsapp",
-  share_location: "use_location",
-  route_whatsapp: "booking_whatsapp",
+  clic_llamada: "click_to_call",
+  clic_whatsapp: "whatsapp_click",
+  consulta_tarifa: "fare_calculation_started",
+  clic_reserva: "booking_started",
+  formulario_enviado: "booking_whatsapp_sent",
+  share_location: "location_share_click",
+  route_whatsapp: "booking_whatsapp_sent",
+  review_click: "google_reviews_click",
+  language_change: "language_changed",
 };
 
 export function initAnalytics() {

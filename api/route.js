@@ -8,6 +8,9 @@ const PUBLIC_HEADERS = {
   "User-Agent": "TaxiAyudWebsite/1.0 (https://www.taxiayud.es)",
   Referer: "https://www.taxiayud.es/",
 };
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 30;
+const requestBuckets = new Map();
 
 const COMMON_POINTS = [
   {
@@ -202,6 +205,39 @@ function normalize(value) {
 
 function roundKm(value) {
   return Math.max(0, Math.round(Number(value) * 10) / 10);
+}
+
+function headerValue(request, name) {
+  const headers = request?.headers || {};
+  if (typeof headers.get === "function") return headers.get(name);
+  return headers[name] || headers[name.toLowerCase()];
+}
+
+function clientKey(request) {
+  const forwarded = String(headerValue(request, "x-forwarded-for") || "");
+  return forwarded.split(",")[0].trim() || String(headerValue(request, "x-real-ip") || "local");
+}
+
+function isRateLimited(request) {
+  const now = Date.now();
+  const key = clientKey(request);
+  const bucket = requestBuckets.get(key) || { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS };
+
+  if (bucket.resetAt <= now) {
+    bucket.count = 0;
+    bucket.resetAt = now + RATE_LIMIT_WINDOW_MS;
+  }
+
+  bucket.count += 1;
+  requestBuckets.set(key, bucket);
+
+  if (requestBuckets.size > 500) {
+    for (const [bucketKey, value] of requestBuckets.entries()) {
+      if (value.resetAt <= now) requestBuckets.delete(bucketKey);
+    }
+  }
+
+  return bucket.count > RATE_LIMIT_MAX_REQUESTS;
 }
 
 function pointFromRequest(point, fallbackLabel) {
@@ -591,6 +627,14 @@ export default async function handler(request, response) {
   const apiKey = process.env.OPENROUTESERVICE_API_KEY;
 
   try {
+    if (isRateLimited(request)) {
+      response.status(429).json({
+        message:
+          "Demasiadas consultas seguidas. Escríbenos por WhatsApp y confirmamos ruta, precio orientativo y disponibilidad directamente.",
+      });
+      return;
+    }
+
     const {
       origin: rawOrigin,
       destination: rawDestination,

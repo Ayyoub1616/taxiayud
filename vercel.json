@@ -70,7 +70,42 @@
     },
     {
       "source": "/taxi-a2-recogida-pasajeros/",
-      "destination": "/taxi-a2-calatayud/",
+      "destination": "/taxi-pasajeros-averia-a2-calatayud/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-a2-calatayud/",
+      "destination": "/taxi-pasajeros-averia-a2-calatayud/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-autovia-calatayud/",
+      "destination": "/taxi-pasajeros-averia-a2-calatayud/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-monasterio-de-piedra/",
+      "destination": "/taxi-calatayud-monasterio-de-piedra/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-calatayud-monasterio-piedra/",
+      "destination": "/taxi-calatayud-monasterio-de-piedra/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-balnearios-jaraba-alhama/",
+      "destination": "/taxi-calatayud-jaraba-balnearios/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-aeropuerto-zaragoza/",
+      "destination": "/taxi-calatayud-aeropuerto-zaragoza/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-alhama-de-aragon/",
+      "destination": "/taxi-calatayud-alhama-de-aragon/",
       "permanent": true
     },
     {

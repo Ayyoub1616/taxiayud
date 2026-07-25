@@ -14,7 +14,7 @@ La web queda funcional con los datos aportados en el proyecto y en la conversaci
 - Vehículo: Peugeot 408 Hybrid blanco.
 - Perfil de Google: `https://share.google/QJyQ83oNHjkRqtciX`.
 - Tarifas 2026 aportadas por el propietario.
-- Disponibilidad 24h según contenido actual del negocio.
+- Disponibilidad fuera de horarios habituales: consultar directamente. No se publica 24h como afirmacion SEO hasta confirmarlo expresamente.
 
 ## Datos que conviene mantener actualizados
 

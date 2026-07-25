@@ -25,7 +25,7 @@ La web de Taxi Ayud es una aplicación React con Vite y generación estática po
   - `/taxi-zaragoza-calatayud/`
 - Redirecciones 301 añadidas en `vercel.json`:
   - `/taxi-24-horas-calatayud/` -> `/telefono-taxi-calatayud/`
-  - `/taxi-a2-recogida-pasajeros/` -> `/taxi-a2-calatayud/`
+  - `/taxi-a2-recogida-pasajeros/` -> `/taxi-pasajeros-averia-a2-calatayud/`
   - `/taxi-fiestas-san-roque-calatayud/` -> `/taxi-san-roque-calatayud/`
   - `/taxi-calatayud-delicias/` -> `/taxi-calatayud-zaragoza/`
 - JSON-LD más prudente: `TaxiService`, `LocalBusiness`, `WebSite`, `WebPage`, `Service`, `BreadcrumbList` y `FAQPage` cuando corresponde.

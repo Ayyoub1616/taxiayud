@@ -16,7 +16,13 @@ Dominio legado solo para redirección: `https://www.taxiayud.com`
 También se han añadido redirecciones de rutas antiguas o menos seguras:
 
 - `/taxi-24-horas-calatayud/` -> `/telefono-taxi-calatayud/`
-- `/taxi-a2-recogida-pasajeros/` -> `/taxi-a2-calatayud/`
+- `/taxi-a2-recogida-pasajeros/` -> `/taxi-pasajeros-averia-a2-calatayud/`
+- `/taxi-a2-calatayud/` -> `/taxi-pasajeros-averia-a2-calatayud/`
+- `/taxi-autovia-calatayud/` -> `/taxi-pasajeros-averia-a2-calatayud/`
+- `/taxi-monasterio-de-piedra/` -> `/taxi-calatayud-monasterio-de-piedra/`
+- `/taxi-balnearios-jaraba-alhama/` -> `/taxi-calatayud-jaraba-balnearios/`
+- `/taxi-aeropuerto-zaragoza/` -> `/taxi-calatayud-aeropuerto-zaragoza/`
+- `/taxi-alhama-de-aragon/` -> `/taxi-calatayud-alhama-de-aragon/`
 - `/taxi-fiestas-san-roque-calatayud/` -> `/taxi-san-roque-calatayud/`
 - `/taxi-calatayud-delicias/` -> `/taxi-calatayud-zaragoza/`
 
@@ -32,8 +38,8 @@ Las URLs internas, canonical, Open Graph, JSON-LD, robots y sitemap usan solo `h
 2. Marcar `www.taxiayud.es` como dominio principal.
 3. Verificar que Vercel muestra certificado SSL activo para los cuatro dominios.
 4. Confirmar que las redirecciones funcionan:
-   - `https://taxiayud.es/taxi-monasterio-de-piedra/`
-   - `https://taxiayud.com/taxi-monasterio-de-piedra/`
+   - `https://taxiayud.es/taxi-calatayud-monasterio-de-piedra/`
+   - `https://taxiayud.com/taxi-calatayud-monasterio-de-piedra/`
    - `https://www.taxiayud.com/taxi-monasterio-de-piedra/`
    - `https://www.taxiayud.com/hello-world/`
 5. En Search Console, usar `https://www.taxiayud.es` como propiedad principal.
@@ -55,9 +61,9 @@ Para `taxiayud.com`:
 Después del despliegue:
 
 ```bash
-curl -I https://taxiayud.com/taxi-monasterio-de-piedra/
+curl -I https://taxiayud.com/taxi-calatayud-monasterio-de-piedra/
 curl -I https://www.taxiayud.com/hello-world/
-curl -I https://taxiayud.es/taxi-monasterio-de-piedra/
+curl -I https://taxiayud.es/taxi-calatayud-monasterio-de-piedra/
 curl -I https://www.taxiayud.es/sitemap.xml
 ```
 

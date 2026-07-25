@@ -3135,8 +3135,7 @@ const HOME_SEO_PAGE = SEO_PAGES.find((page) => page.path === "/") ?? SEO_PAGES[0
 const DEFAULT_SEO_LINKS = [
   "/taxi-calatayud/",
   "/taxi-cerca-de-mi-calatayud/",
-  "/taxi-autovia-calatayud/",
-  "/taxi-a2-calatayud/",
+  "/taxi-pasajeros-averia-a2-calatayud/",
   "/taxi-desde-calatayud/",
   "/taxi-estacion-ave-calatayud/",
   "/taxi-calatayud-zaragoza/",
@@ -3147,12 +3146,12 @@ const DEFAULT_SEO_LINKS = [
   "/taxi-fiestas-calatayud/",
   "/taxi-san-roque-calatayud/",
   "/taxi-fiestas-pueblos-comarca-calatayud/",
-  "/taxi-monasterio-de-piedra/",
+  "/taxi-calatayud-monasterio-de-piedra/",
   "/taxi-nuevalos-monasterio-piedra/",
-  "/taxi-balnearios-jaraba-alhama/",
+  "/taxi-calatayud-jaraba-balnearios/",
   "/taxi-jaraba/",
-  "/taxi-alhama-de-aragon/",
-  "/taxi-aeropuerto-zaragoza/",
+  "/taxi-calatayud-alhama-de-aragon/",
+  "/taxi-calatayud-aeropuerto-zaragoza/",
   "/taxi-pueblos-comarca-calatayud/",
   "/taxi-hoteles-calatayud/",
   "/taxi-ariza/",
@@ -6428,6 +6427,14 @@ function App() {
   }, [language]);
 
   useEffect(() => {
+    if (!currentSeoPage || currentSeoPage.path === "/") return;
+    trackEvent("route_page_view", {
+      path: currentSeoPage.path,
+      language,
+    });
+  }, [currentSeoPage, language]);
+
+  useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
 
     document.body.classList.add("motion-ready");
@@ -6680,6 +6687,11 @@ function App() {
       setSelectedKey(key);
       setQuery(displayName(key));
       setResult(resultForKey(key));
+      trackEvent("fare_calculation_completed", {
+        route_type: "habitual_from_calatayud",
+        language,
+        mode: bookingMode,
+      });
       scrollToResult();
       return;
     }
@@ -6697,6 +6709,11 @@ function App() {
           language,
         }, trimmedDestination || "Calatayud"),
       );
+      trackEvent("fare_calculation_completed", {
+        route_type: "habitual_to_calatayud",
+        language,
+        mode: bookingMode,
+      });
       scrollToResult();
       return;
     }
@@ -6727,6 +6744,13 @@ function App() {
           language,
         }, trimmedDestination),
       );
+      trackEvent("fare_calculation_completed", {
+        route_type: route.baseAdjusted ? "route_from_base" : "exact_route",
+        provider: route.provider || "server",
+        approximate: Boolean(route.approximate),
+        language,
+        mode: bookingMode,
+      });
       scrollToResult();
     } catch (error) {
       setResult(null);
