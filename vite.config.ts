@@ -1,9 +1,13 @@
 import { defineConfig } from "vite";
+import adminLogHandler from "./api/admin-log.js";
+import adminStatsHandler from "./api/admin-stats.js";
 import reviewsHandler from "./api/reviews.js";
 import routeHandler from "./api/route.js";
 import suggestHandler from "./api/suggest.js";
 
 const apiHandlers = new Map([
+  ["/api/admin-log", adminLogHandler],
+  ["/api/admin-stats", adminStatsHandler],
   ["/api/reviews", reviewsHandler],
   ["/api/route", routeHandler],
   ["/api/suggest", suggestHandler],

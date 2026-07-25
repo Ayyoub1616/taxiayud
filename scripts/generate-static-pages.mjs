@@ -647,6 +647,253 @@ ${entries}
   writeFileSync("dist/sitemap.xml", sitemap);
 }
 
+function writeAdminPanel() {
+  const outputPath = "dist/panel-ayud/index.html";
+  const html = `<!doctype html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="googlebot" content="noindex, nofollow, noarchive" />
+    <title>Panel privado Taxi Ayud</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <style>
+      :root { color-scheme: dark; --bg: #07110f; --panel: #101c19; --panel-2: #172823; --text: #effaf6; --muted: #9fb7ae; --line: rgba(255,255,255,.12); --green: #45d483; --amber: #ffd166; --red: #ff6b6b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at top left, rgba(69,212,131,.18), transparent 36rem), var(--bg); color: var(--text); }
+      main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 44px; }
+      header { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 18px 0 26px; }
+      h1, h2, p { margin-top: 0; }
+      h1 { margin-bottom: 6px; font-size: clamp(28px, 5vw, 46px); letter-spacing: 0; }
+      h2 { font-size: 18px; margin-bottom: 14px; }
+      p, small { color: var(--muted); line-height: 1.55; }
+      button, input { font: inherit; }
+      .btn { border: 0; border-radius: 8px; min-height: 44px; padding: 0 16px; background: var(--green); color: #062014; font-weight: 800; cursor: pointer; }
+      .btn.secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
+      .login, .panel { background: rgba(16,28,25,.88); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 24px 80px rgba(0,0,0,.32); }
+      .login { max-width: 520px; margin: 44px auto; padding: 24px; }
+      label { display: grid; gap: 8px; color: var(--muted); font-weight: 700; }
+      input { width: 100%; border: 1px solid var(--line); background: #07110f; color: var(--text); border-radius: 8px; padding: 12px 14px; outline: none; }
+      input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(69,212,131,.16); }
+      .login form { display: grid; gap: 14px; }
+      .status { min-height: 24px; color: var(--amber); }
+      .grid { display: grid; gap: 14px; }
+      .cards { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .card, .block { background: rgba(23,40,35,.86); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+      .metric { display: block; font-size: clamp(26px, 4vw, 40px); font-weight: 900; color: var(--green); line-height: 1; }
+      .label { color: var(--muted); font-size: 13px; line-height: 1.35; }
+      .columns { grid-template-columns: 1.1fr 1.1fr .8fr; margin-top: 14px; }
+      ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+      li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 8px; color: var(--muted); }
+      li strong { color: var(--text); font-weight: 750; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { text-align: left; border-bottom: 1px solid rgba(255,255,255,.08); padding: 10px 8px; vertical-align: top; color: var(--muted); }
+      th { color: var(--text); font-size: 13px; }
+      .toolbar { display: flex; gap: 10px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+      .hidden { display: none !important; }
+      .warning { border-color: rgba(255,209,102,.38); background: rgba(255,209,102,.08); }
+      @media (max-width: 860px) { header, .toolbar { align-items: flex-start; justify-content: flex-start; } header { flex-direction: column; } .cards, .columns { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 560px) { main { width: min(100% - 20px, 1120px); padding-top: 16px; } .cards, .columns { grid-template-columns: 1fr; } .login, .panel { border-radius: 10px; } th:nth-child(4), td:nth-child(4) { display: none; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>Panel privado Taxi Ayud</h1>
+          <p>Ultimas visitas, clics y rutas consultadas. Datos resumidos: sin IP, sin coordenadas y sin numeros de calle.</p>
+        </div>
+        <div class="toolbar panel-actions hidden">
+          <button class="btn secondary" id="refresh" type="button">Actualizar</button>
+          <button class="btn secondary" id="logout" type="button">Cerrar acceso</button>
+        </div>
+      </header>
+
+      <section class="login" id="login">
+        <h2>Acceso privado</h2>
+        <p>Escribe tu clave privada. La URL no aparece en la web publica ni en el sitemap.</p>
+        <form id="loginForm">
+          <label>Clave de panel <input id="token" type="password" autocomplete="current-password" required /></label>
+          <button class="btn" type="submit">Entrar al panel</button>
+          <p class="status" id="loginStatus"></p>
+        </form>
+      </section>
+
+      <section class="grid panel hidden" id="dashboard" aria-live="polite" style="padding:16px">
+        <div class="grid cards">
+          <article class="card"><span class="metric" id="visits24h">0</span><span class="label">Visitas ultimas 24 h</span></article>
+          <article class="card"><span class="metric" id="visits7d">0</span><span class="label">Visitas 7 dias</span></article>
+          <article class="card"><span class="metric" id="routes7d">0</span><span class="label">Rutas consultadas 7 dias</span></article>
+          <article class="card"><span class="metric" id="whatsapp7d">0</span><span class="label">WhatsApp 7 dias</span></article>
+          <article class="card"><span class="metric" id="calls7d">0</span><span class="label">Llamadas 7 dias</span></article>
+        </div>
+
+        <article class="block warning hidden" id="setupWarning">
+          <h2>Falta activar almacenamiento</h2>
+          <p id="setupMessage"></p>
+          <small>Configura en Vercel: ADMIN_PANEL_TOKEN, UPSTASH_REDIS_REST_URL y UPSTASH_REDIS_REST_TOKEN.</small>
+        </article>
+
+        <div class="grid columns">
+          <article class="block"><h2>Paginas mas vistas</h2><ul id="topPages"></ul></article>
+          <article class="block"><h2>Rutas buscadas</h2><ul id="topRoutes"></ul></article>
+          <article class="block"><h2>Idiomas</h2><ul id="topLanguages"></ul></article>
+        </div>
+
+        <article class="block">
+          <h2>Ultimos eventos</h2>
+          <table>
+            <thead><tr><th>Hora</th><th>Tipo</th><th>Pagina / Ruta</th><th>Extra</th></tr></thead>
+            <tbody id="events"></tbody>
+          </table>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      const tokenKey = "taxiayud-admin-token";
+      const login = document.getElementById("login");
+      const dashboard = document.getElementById("dashboard");
+      const tokenInput = document.getElementById("token");
+      const loginStatus = document.getElementById("loginStatus");
+      const setupWarning = document.getElementById("setupWarning");
+      const setupMessage = document.getElementById("setupMessage");
+      const panelActions = document.querySelector(".panel-actions");
+      let timer = null;
+
+      function qs(name) {
+        return new URLSearchParams(window.location.search).get(name);
+      }
+
+      function token() {
+        return window.localStorage.getItem(tokenKey) || "";
+      }
+
+      function setMetric(id, value) {
+        document.getElementById(id).textContent = String(value || 0);
+      }
+
+      function list(id, items) {
+        const el = document.getElementById(id);
+        el.innerHTML = "";
+        if (!items || !items.length) {
+          el.innerHTML = "<li><span>Sin datos todavia</span><strong>0</strong></li>";
+          return;
+        }
+        for (const item of items) {
+          const li = document.createElement("li");
+          const label = document.createElement("span");
+          const count = document.createElement("strong");
+          label.textContent = item.label || "Sin dato";
+          count.textContent = item.count || 0;
+          li.append(label, count);
+          el.append(li);
+        }
+      }
+
+      function eventExtra(event) {
+        const p = event.params || {};
+        return [p.source, p.language, p.device, p.provider, p.status].filter(Boolean).join(" · ");
+      }
+
+      function eventRoute(event) {
+        const p = event.params || {};
+        if (p.origin || p.destination) return [p.origin, p.destination].filter(Boolean).join(" -> ");
+        return p.path || "";
+      }
+
+      function renderEvents(events) {
+        const tbody = document.getElementById("events");
+        tbody.innerHTML = "";
+        if (!events || !events.length) {
+          tbody.innerHTML = "<tr><td colspan='4'>Sin eventos todavia.</td></tr>";
+          return;
+        }
+        for (const event of events.slice(0, 60)) {
+          const row = document.createElement("tr");
+          const created = new Date(event.createdAt);
+          const cells = [
+            created.toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" }),
+            event.type,
+            eventRoute(event),
+            eventExtra(event),
+          ];
+          for (const value of cells) {
+            const td = document.createElement("td");
+            td.textContent = value || "—";
+            row.append(td);
+          }
+          tbody.append(row);
+        }
+      }
+
+      function showDashboard() {
+        login.classList.add("hidden");
+        dashboard.classList.remove("hidden");
+        panelActions.classList.remove("hidden");
+      }
+
+      async function loadStats() {
+        loginStatus.textContent = "";
+        const accessToken = token();
+        if (!accessToken) return;
+        const response = await fetch("/api/admin-stats", {
+          headers: { Authorization: "Bearer " + accessToken },
+        });
+        const data = await response.json().catch(() => null);
+        if (!response.ok || !data?.ok) {
+          window.localStorage.removeItem(tokenKey);
+          dashboard.classList.add("hidden");
+          panelActions.classList.add("hidden");
+          login.classList.remove("hidden");
+          loginStatus.textContent = data?.message || "No se pudo entrar al panel.";
+          return;
+        }
+        showDashboard();
+        const summary = data.summary || {};
+        setMetric("visits24h", summary.visits24h);
+        setMetric("visits7d", summary.visits7d);
+        setMetric("routes7d", summary.routeSearches7d);
+        setMetric("whatsapp7d", summary.whatsapp7d);
+        setMetric("calls7d", summary.calls7d);
+        list("topPages", summary.topPages);
+        list("topRoutes", summary.topRoutes);
+        list("topLanguages", summary.topLanguages);
+        renderEvents(data.events);
+        setupWarning.classList.toggle("hidden", data.configured !== false);
+        setupMessage.textContent = data.message || "";
+      }
+
+      const urlToken = qs("token");
+      if (urlToken) {
+        window.localStorage.setItem(tokenKey, urlToken);
+        window.history.replaceState({}, "", "/panel-ayud/");
+      }
+      if (token()) loadStats();
+      timer = window.setInterval(() => {
+        if (token()) loadStats();
+      }, 25000);
+
+      document.getElementById("loginForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        window.localStorage.setItem(tokenKey, tokenInput.value.trim());
+        loadStats();
+      });
+      document.getElementById("refresh").addEventListener("click", loadStats);
+      document.getElementById("logout").addEventListener("click", () => {
+        window.localStorage.removeItem(tokenKey);
+        if (timer) window.clearInterval(timer);
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>`;
+
+  mkdirSync(dirname(outputPath), { recursive: true });
+  writeFileSync(outputPath, html);
+}
+
 for (const page of pages) {
   const html = replaceMeta(template, page);
   const outputPath = page.path === "/" ? "dist/index.html" : join("dist", page.path, "index.html");
@@ -676,3 +923,4 @@ const notFoundHtml = replaceMeta(template, notFoundPage)
 
 writeFileSync("dist/404.html", notFoundHtml);
 writeSitemap();
+writeAdminPanel();

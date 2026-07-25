@@ -10,6 +10,7 @@ Web moderna para Taxi Ayud Calatayud, lista para desplegar en Vercel sin WordPre
 - Modo carretera para pasajeros que se quedan tirados por avería cerca de Calatayud, A-2, N-II o N-234.
 - Accesos rápidos móviles para WhatsApp, llamada, calculadora y recogida en A-2.
 - Bloque de reseñas públicas de Google con actualización automática opcional.
+- Panel privado opcional en `/panel-ayud/` para ver visitas, clics y rutas consultadas de forma resumida.
 - Tabla de destinos frecuentes.
 - Servicios, vehículo, métodos de pago y contacto.
 - SEO local avanzado, sitemap, robots.txt, datos estructurados y metadatos para compartir.
@@ -81,6 +82,33 @@ Project Settings -> Environment Variables.
 Si usas reseñas automáticas, añade también `GOOGLE_PLACES_API_KEY` y
 `GOOGLE_PLACE_ID`.
 
+## Panel privado de visitas y rutas
+
+La URL privada del panel es:
+
+```text
+https://www.taxiayud.es/panel-ayud/
+```
+
+No aparece en la navegación, no entra en el sitemap y se marca como `noindex`.
+Aun así, la URL oculta no es suficiente como seguridad: configura una clave
+privada fuerte en Vercel.
+
+Variables necesarias:
+
+```bash
+ADMIN_PANEL_TOKEN=una_clave_larga_y_privada
+UPSTASH_REDIS_REST_URL=url_rest_de_upstash
+UPSTASH_REDIS_REST_TOKEN=token_rest_de_upstash
+```
+
+Funcionamiento:
+
+- Solo registra eventos si el visitante acepta cookies.
+- No guarda IP, coordenadas, mensajes de WhatsApp, teléfonos ni direcciones completas.
+- Guarda páginas vistas, idioma, dispositivo aproximado, clics en llamada/WhatsApp y rutas consultadas con origen/destino resumidos.
+- Si no configuras Upstash, el panel abre pero muestra un aviso de almacenamiento pendiente.
+
 ## Desarrollo local
 
 ```bash
@@ -90,4 +118,4 @@ pnpm build
 pnpm test
 ```
 
-La web es estática y no necesita base de datos.
+La web pública es estática. El panel privado solo necesita almacenamiento si quieres guardar estadísticas propias dentro de la web.

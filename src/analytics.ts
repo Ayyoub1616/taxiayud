@@ -23,6 +23,97 @@ const EVENT_ALIASES: Record<string, string> = {
   review_click: "google_reviews_click",
   language_change: "language_changed",
 };
+const ADMIN_PARAM_KEYS = new Set([
+  "path",
+  "source",
+  "language",
+  "mode",
+  "route_type",
+  "provider",
+  "approximate",
+  "base_adjusted",
+  "origin",
+  "destination",
+  "km",
+  "passengers",
+  "status",
+]);
+
+function adminConsentAccepted() {
+  try {
+    return window.localStorage.getItem("taxiayud-cookie-consent") === "accepted";
+  } catch {
+    return false;
+  }
+}
+
+function deviceCategory() {
+  if (typeof window === "undefined") return "unknown";
+  if (window.matchMedia("(max-width: 640px)").matches) return "mobile";
+  if (window.matchMedia("(max-width: 1024px)").matches) return "tablet";
+  return "desktop";
+}
+
+function safeText(value: unknown) {
+  return String(value || "")
+    .normalize("NFKC")
+    .replace(/[<>]/g, "")
+    .replace(/\b\d{1,5}[a-zºª-]?\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 140);
+}
+
+function safeAdminParams(params: AnalyticsParams) {
+  const clean: AnalyticsParams = {
+    path: typeof window !== "undefined" ? window.location.pathname : "/",
+    device: deviceCategory(),
+  };
+
+  for (const [key, value] of Object.entries(params)) {
+    if (!ADMIN_PARAM_KEYS.has(key) || value === undefined) continue;
+
+    if (typeof value === "number") {
+      if (Number.isFinite(value)) clean[key] = Math.round(value * 10) / 10;
+      continue;
+    }
+
+    if (typeof value === "boolean") {
+      clean[key] = value;
+      continue;
+    }
+
+    const text = safeText(value);
+    if (text) clean[key] = text;
+  }
+
+  return clean;
+}
+
+function sendAdminEvent(name: string, params: AnalyticsParams = {}) {
+  if (typeof window === "undefined" || !adminConsentAccepted()) return;
+
+  const body = JSON.stringify({
+    type: name,
+    params: safeAdminParams(params),
+  });
+
+  try {
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon("/api/admin-log", new Blob([body], { type: "application/json" }));
+      return;
+    }
+  } catch {
+    // Fetch fallback below.
+  }
+
+  fetch("/api/admin-log", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body,
+    keepalive: true,
+  }).catch(() => undefined);
+}
 
 export function initAnalytics() {
   if (!analyticsEnabled || !measurementId || initialized || typeof window === "undefined") {
@@ -48,8 +139,10 @@ export function initAnalytics() {
 }
 
 export function trackEvent(name: string, params: AnalyticsParams = {}) {
-  if (!analyticsEnabled || !measurementId || typeof window === "undefined") return;
   const eventName = EVENT_ALIASES[name] ?? name;
+  sendAdminEvent(eventName, params);
+
+  if (!analyticsEnabled || !measurementId || typeof window === "undefined") return;
 
   window.gtag?.("event", eventName, {
     ...params,

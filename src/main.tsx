@@ -2441,7 +2441,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "Los datos que envíes por llamada, WhatsApp o formularios se usan únicamente para atender tu consulta, preparar la reserva, confirmar disponibilidad y gestionar el servicio solicitado. No se venden datos ni se publican datos personales. Puedes solicitar acceso, rectificación o supresión contactando por teléfono o WhatsApp.",
       cookiesTitle: "Política de cookies",
       cookiesText:
-        "La web utiliza cookies técnicas necesarias para recordar preferencias básicas. La medición anónima solo se carga si aceptas las cookies y sirve para conocer clics generales en llamada, WhatsApp o consulta de tarifa, sin registrar mensajes, teléfonos ni direcciones personales.",
+        "La web utiliza cookies técnicas necesarias para recordar preferencias básicas. La medición anónima solo se carga si aceptas las cookies y sirve para conocer clics generales, páginas vistas y rutas consultadas de forma resumida, sin guardar IP, coordenadas, mensajes, teléfonos ni direcciones completas.",
     },
     route: {
       dayLabel: "Laborable diurna",
@@ -2520,7 +2520,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "The data you send by phone, WhatsApp or forms is used only to answer your request, prepare the booking, confirm availability and manage the requested service. Data is not sold or published. You can request access, correction or deletion by phone or WhatsApp.",
       cookiesTitle: "Cookie policy",
       cookiesText:
-        "The website uses necessary technical cookies to remember basic preferences. Anonymous measurement only loads if you accept cookies and is used to understand general call, WhatsApp and fare-query clicks, without recording messages, phone numbers or personal addresses.",
+        "The website uses necessary technical cookies to remember basic preferences. Anonymous measurement only loads if you accept cookies and is used to understand general clicks, page views and summarized route searches, without storing IP addresses, coordinates, messages, phone numbers or full addresses.",
     },
     route: {
       dayLabel: "Weekday daytime",
@@ -2599,7 +2599,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "Les données envoyées par appel, WhatsApp ou formulaire servent uniquement à répondre à votre demande, préparer la réservation, confirmer la disponibilité et gérer le service demandé. Les données ne sont ni vendues ni publiées. Vous pouvez demander l'accès, la rectification ou la suppression par téléphone ou WhatsApp.",
       cookiesTitle: "Politique de cookies",
       cookiesText:
-        "Le site utilise des cookies techniques nécessaires pour mémoriser des préférences de base. La mesure anonyme ne se charge que si vous acceptez les cookies et sert à connaître les clics généraux d'appel, WhatsApp ou consultation de tarif, sans enregistrer messages, téléphones ni adresses personnelles.",
+        "Le site utilise des cookies techniques nécessaires pour mémoriser des préférences de base. La mesure anonyme ne se charge que si vous acceptez les cookies et sert à connaître les clics généraux, pages vues et recherches d'itinéraire résumées, sans stocker IP, coordonnées, messages, téléphones ni adresses complètes.",
     },
     route: {
       dayLabel: "Jour ouvrable",
@@ -2678,7 +2678,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "Les dades que enviïs per trucada, WhatsApp o formularis s'utilitzen només per atendre la consulta, preparar la reserva, confirmar disponibilitat i gestionar el servei sol·licitat. No es venen dades ni es publiquen dades personals. Pots sol·licitar accés, rectificació o supressió per telèfon o WhatsApp.",
       cookiesTitle: "Política de cookies",
       cookiesText:
-        "La web utilitza cookies tècniques necessàries per recordar preferències bàsiques. El mesurament anònim només es carrega si acceptes les cookies i serveix per conèixer clics generals de trucada, WhatsApp o consulta de tarifa, sense registrar missatges, telèfons ni adreces personals.",
+        "La web utilitza cookies tècniques necessàries per recordar preferències bàsiques. El mesurament anònim només es carrega si acceptes les cookies i serveix per conèixer clics generals, pàgines vistes i rutes consultades de forma resumida, sense desar IP, coordenades, missatges, telèfons ni adreces completes.",
     },
     route: {
       dayLabel: "Laborable diürna",
@@ -2757,7 +2757,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "Daten, die Sie per Anruf, WhatsApp oder Formular senden, werden nur genutzt, um Ihre Anfrage zu beantworten, die Buchung vorzubereiten, Verfügbarkeit zu bestätigen und den gewünschten Service zu verwalten. Daten werden nicht verkauft oder veröffentlicht. Zugang, Berichtigung oder Löschung können per Telefon oder WhatsApp angefragt werden.",
       cookiesTitle: "Cookie-Richtlinie",
       cookiesText:
-        "Die Website nutzt notwendige technische Cookies für grundlegende Präferenzen. Anonyme Messung wird nur geladen, wenn Sie Cookies akzeptieren, und erfasst allgemeine Klicks auf Anruf, WhatsApp oder Tarifabfrage, ohne Nachrichten, Telefonnummern oder persönliche Adressen zu speichern.",
+        "Die Website nutzt notwendige technische Cookies für grundlegende Präferenzen. Anonyme Messung wird nur geladen, wenn Sie Cookies akzeptieren, und erfasst allgemeine Klicks, Seitenaufrufe und zusammengefasste Routensuchen, ohne IP-Adressen, Koordinaten, Nachrichten, Telefonnummern oder vollständige Adressen zu speichern.",
     },
     route: {
       dayLabel: "Werktag tagsüber",
@@ -2836,7 +2836,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "I dati inviati tramite chiamata, WhatsApp o moduli sono usati solo per rispondere alla richiesta, preparare la prenotazione, confermare disponibilità e gestire il servizio. I dati non vengono venduti né pubblicati. Puoi richiedere accesso, rettifica o cancellazione per telefono o WhatsApp.",
       cookiesTitle: "Politica cookie",
       cookiesText:
-        "Il sito usa cookie tecnici necessari per ricordare preferenze di base. La misurazione anonima si carica solo se accetti i cookie e serve a conoscere clic generali su chiamata, WhatsApp o consulta tariffa, senza registrare messaggi, telefoni o indirizzi personali.",
+        "Il sito usa cookie tecnici necessari per ricordare preferenze di base. La misurazione anonima si carica solo se accetti i cookie e serve a conoscere clic generali, pagine viste e ricerche di percorso riassunte, senza salvare IP, coordinate, messaggi, telefoni o indirizzi completi.",
     },
     route: {
       dayLabel: "Feriale diurna",
@@ -2915,7 +2915,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "Os dados enviados por chamada, WhatsApp ou formulários são usados apenas para responder ao pedido, preparar a reserva, confirmar disponibilidade e gerir o serviço solicitado. Os dados não são vendidos nem publicados. Pode solicitar acesso, retificação ou eliminação por telefone ou WhatsApp.",
       cookiesTitle: "Política de cookies",
       cookiesText:
-        "O site utiliza cookies técnicos necessários para recordar preferências básicas. A medição anónima só é carregada se aceitar cookies e serve para conhecer cliques gerais em chamada, WhatsApp ou consulta de tarifa, sem registar mensagens, telefones ou moradas pessoais.",
+        "O site utiliza cookies técnicos necessários para recordar preferências básicas. A medição anónima só é carregada se aceitar cookies e serve para conhecer cliques gerais, páginas vistas e pesquisas de rota resumidas, sem guardar IP, coordenadas, mensagens, telefones ou moradas completas.",
     },
     route: {
       dayLabel: "Dia útil diurno",
@@ -2994,7 +2994,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "Gegevens die u per telefoon, WhatsApp of formulier stuurt, worden alleen gebruikt om uw verzoek te beantwoorden, de boeking voor te bereiden, beschikbaarheid te bevestigen en de gevraagde service te beheren. Gegevens worden niet verkocht of gepubliceerd. U kunt toegang, correctie of verwijdering aanvragen via telefoon of WhatsApp.",
       cookiesTitle: "Cookiebeleid",
       cookiesText:
-        "De website gebruikt noodzakelijke technische cookies om basisvoorkeuren te onthouden. Anonieme meting wordt alleen geladen als u cookies accepteert en dient om algemene klikken op bellen, WhatsApp of tariefaanvragen te begrijpen, zonder berichten, telefoonnummers of persoonlijke adressen op te slaan.",
+        "De website gebruikt noodzakelijke technische cookies om basisvoorkeuren te onthouden. Anonieme meting wordt alleen geladen als u cookies accepteert en dient om algemene klikken, paginaweergaven en samengevatte routezoekopdrachten te begrijpen, zonder IP-adressen, coördinaten, berichten, telefoonnummers of volledige adressen op te slaan.",
     },
     route: {
       dayLabel: "Werkdag overdag",
@@ -3073,7 +3073,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
         "تستخدم البيانات التي ترسلها عبر الاتصال أو واتساب أو النماذج فقط للرد على طلبك، إعداد الحجز، تأكيد التوفر وإدارة الخدمة المطلوبة. لا يتم بيع البيانات أو نشرها. يمكنك طلب الوصول أو التصحيح أو الحذف عبر الهاتف أو واتساب.",
       cookiesTitle: "سياسة ملفات الارتباط",
       cookiesText:
-        "يستخدم الموقع ملفات ارتباط تقنية ضرورية لتذكر التفضيلات الأساسية. لا يتم تحميل القياس المجهول إلا إذا وافقت على ملفات الارتباط، ويستخدم لمعرفة النقرات العامة على الاتصال وواتساب وطلب السعر، دون تسجيل الرسائل أو الهواتف أو العناوين الشخصية.",
+        "يستخدم الموقع ملفات ارتباط تقنية ضرورية لتذكر التفضيلات الأساسية. لا يتم تحميل القياس المجهول إلا إذا وافقت على ملفات الارتباط، ويستخدم لمعرفة النقرات العامة والصفحات المشاهدة وطلبات المسار بشكل مختصر، دون حفظ عنوان IP أو الإحداثيات أو الرسائل أو الهواتف أو العناوين الكاملة.",
     },
     route: {
       dayLabel: "يوم عمل نهاري",
@@ -4804,6 +4804,16 @@ function friendlyRouteError(error: unknown, fallback: string) {
   return error.message || fallback;
 }
 
+function privacySafeRouteLabel(value: string) {
+  return String(value || "")
+    .normalize("NFKC")
+    .replace(/[<>]/g, "")
+    .replace(/\b\d{1,5}[a-zºª-]?\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 90);
+}
+
 function compactClientDetail(item: Record<string, unknown>) {
   const address = (item.address || {}) as Record<string, string | undefined>;
   const province =
@@ -6391,8 +6401,14 @@ function App() {
   }, [currentSeoPage]);
 
   useEffect(() => {
-    if (cookieConsent === "accepted") initAnalytics();
-  }, [cookieConsent]);
+    if (cookieConsent !== "accepted") return;
+    initAnalytics();
+    trackEvent("page_view", {
+      path: window.location.pathname,
+      language,
+      source: "site",
+    });
+  }, [cookieConsent, language]);
 
   function saveCookieConsent(value: "accepted" | "necessary") {
     try {
@@ -6683,12 +6699,26 @@ function App() {
     });
     setRouteError("");
 
+    if (trimmedOrigin && trimmedDestination) {
+      trackEvent("route_search", {
+        origin: privacySafeRouteLabel(trimmedOrigin),
+        destination: privacySafeRouteLabel(trimmedDestination),
+        language,
+        mode: bookingMode,
+        passengers,
+      });
+    }
+
     if (key && TARIFAS[key] && isCalatayudOrigin(origin)) {
+      const habitualResult = resultForKey(key);
       setSelectedKey(key);
       setQuery(displayName(key));
-      setResult(resultForKey(key));
+      setResult(habitualResult);
       trackEvent("fare_calculation_completed", {
         route_type: "habitual_from_calatayud",
+        origin: privacySafeRouteLabel(trimmedOrigin || "Calatayud"),
+        destination: privacySafeRouteLabel(habitualResult.destination),
+        km: habitualResult.km,
         language,
         mode: bookingMode,
       });
@@ -6697,20 +6727,22 @@ function App() {
     }
 
     if (originKey && TARIFAS[originKey] && isCalatayudOrigin(destinationSearchValue)) {
+      const reverseResult = makeReverseResultForKey(originKey, {
+        origin: trimmedOrigin,
+        date,
+        hour,
+        passengers,
+        waitMinutes,
+        mode: bookingMode,
+        language,
+      }, trimmedDestination || "Calatayud");
       setSelectedKey(originKey);
-      setResult(
-        makeReverseResultForKey(originKey, {
-          origin: trimmedOrigin,
-          date,
-          hour,
-          passengers,
-          waitMinutes,
-          mode: bookingMode,
-          language,
-        }, trimmedDestination || "Calatayud"),
-      );
+      setResult(reverseResult);
       trackEvent("fare_calculation_completed", {
         route_type: "habitual_to_calatayud",
+        origin: privacySafeRouteLabel(reverseResult.origin),
+        destination: privacySafeRouteLabel(reverseResult.destination),
+        km: reverseResult.km,
         language,
         mode: bookingMode,
       });
@@ -6733,8 +6765,7 @@ function App() {
         routeOriginPoint,
         selectedDestinationPoint,
       );
-      setResult(
-        makeResultFromExactRoute(route, {
+      const exactResult = makeResultFromExactRoute(route, {
           origin: trimmedOrigin,
           date,
           hour,
@@ -6742,12 +6773,25 @@ function App() {
           waitMinutes,
           mode: bookingMode,
           language,
-        }, trimmedDestination),
-      );
+        }, trimmedDestination);
+      setResult(exactResult);
       trackEvent("fare_calculation_completed", {
         route_type: route.baseAdjusted ? "route_from_base" : "exact_route",
         provider: route.provider || "server",
         approximate: Boolean(route.approximate),
+        base_adjusted: Boolean(route.baseAdjusted),
+        origin: privacySafeRouteLabel(exactResult.origin),
+        destination: privacySafeRouteLabel(exactResult.destination),
+        km: exactResult.km,
+        language,
+        mode: bookingMode,
+      });
+      trackEvent("route_search_result", {
+        origin: privacySafeRouteLabel(exactResult.origin),
+        destination: privacySafeRouteLabel(exactResult.destination),
+        km: exactResult.km,
+        provider: route.provider || "server",
+        base_adjusted: Boolean(route.baseAdjusted),
         language,
         mode: bookingMode,
       });
