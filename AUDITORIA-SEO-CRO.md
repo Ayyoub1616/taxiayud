@@ -23,6 +23,14 @@ La web usa Vite + React con generacion estatica de paginas SEO en `dist/`, APIs 
 | Resenas y rating no deben inventarse en JSON-LD | `scripts/seo-check.mjs`, `api/reviews.js` | Alta | Se evita `AggregateRating`; resenas visibles proceden de fallback real y API Google si esta configurada | `pnpm run seo:check` |
 | Direcciones, coordenadas o mensajes no deben enviarse a Analytics | `src/analytics.ts`, `src/main.tsx` | Alta | Eventos solo con fuente, idioma, modo, proveedor y estado general | Revision de `trackEvent` |
 | Idiomas necesitan URLs propias y `hreflang` | `scripts/generate-static-pages.mjs`, `src/seoPages.json` | Alta | Se mantienen URLs multidioma principales con canonical propio, `lang`, `dir` y `x-default` | `pnpm run seo:check` |
+| Marcado `FAQPage` obsoleto para resultados enriquecidos | `scripts/generate-static-pages.mjs`, `index.html` | Media | Se mantienen FAQs visibles, pero se retira `FAQPage` del JSON-LD y se añade check antirregresión | `pnpm run seo:check` |
+
+## Revision de actualidad 2026-08-21
+
+- Google retiro el resultado enriquecido de FAQ en 2026. Se mantiene el contenido de preguntas frecuentes visible para clientes, pero se elimina `FAQPage` del JSON-LD para reducir ruido estructurado y peso en HTML.
+- Se confirma que las recomendaciones actuales de Google para busqueda generativa siguen priorizando SEO tecnico base, contenido util, imagenes reales, estructura clara, canonical, sitemap, Search Console y Business Profile.
+- No se implementa boton de preferred sources porque la funcionalidad esta orientada a fuentes/editoriales y no aporta una conversion clara para una web local de taxi.
+- No se elimina `llms.txt`: Google indica que no ayuda ni perjudica para Search; se mantiene solo como archivo informativo para otros sistemas.
 
 ## Arquitectura actual
 

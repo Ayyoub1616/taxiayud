@@ -28,7 +28,7 @@ La web de Taxi Ayud es una aplicación React con Vite y generación estática po
   - `/taxi-a2-recogida-pasajeros/` -> `/taxi-pasajeros-averia-a2-calatayud/`
   - `/taxi-fiestas-san-roque-calatayud/` -> `/taxi-san-roque-calatayud/`
   - `/taxi-calatayud-delicias/` -> `/taxi-calatayud-zaragoza/`
-- JSON-LD más prudente: `TaxiService`, `LocalBusiness`, `WebSite`, `WebPage`, `Service`, `BreadcrumbList` y `FAQPage` cuando corresponde.
+- JSON-LD más prudente: `TaxiService`, `LocalBusiness`, `WebSite`, `WebPage`, `Service` y `BreadcrumbList`. Las FAQs se mantienen visibles en HTML, pero ya no se marcan como `FAQPage` porque Google retiró ese rich result en 2026.
 - Se retira marcado estructurado de reseñas, horarios, dirección postal y coordenadas hasta confirmación.
 - Eventos de analítica normalizados: `click_phone`, `click_whatsapp`, `share_location`, `route_calculation`, `route_whatsapp`, `booking_start`, `booking_submit`, `language_change`, `review_click`.
 - Nuevas comprobaciones en `scripts/seo-check.mjs` y `scripts/smoke-check.mjs` para evitar regresiones.

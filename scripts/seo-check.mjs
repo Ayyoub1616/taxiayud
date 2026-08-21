@@ -49,6 +49,7 @@ for (const page of pages) {
     fail(`${page.path} usa 24h/24 horas en title o H1 sin confirmación explícita`);
   }
   if (html.includes('"AggregateRating"')) fail(`${page.path} incluye AggregateRating no validado`);
+  if (html.includes('"FAQPage"')) fail(`${page.path} incluye FAQPage, rich result retirado por Google`);
   if (html.includes('"openingHoursSpecification"')) fail(`${page.path} incluye horario estructurado no confirmado`);
   if (html.includes('"streetAddress"')) fail(`${page.path} incluye dirección postal en JSON-LD`);
   if (html.includes('name="keywords"')) fail(`${page.path} contiene meta keywords innecesario`);

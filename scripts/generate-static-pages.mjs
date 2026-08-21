@@ -465,14 +465,6 @@ function staticFallback(page) {
 function pageJsonLd(page) {
   const pageUrl = absoluteUrl(page.path);
   const lang = pageLang(page);
-  const faqEntity = page.faq.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  }));
   const pageService = {
     "@type": "Service",
     "@id": `${pageUrl}#service`,
@@ -560,15 +552,6 @@ function pageJsonLd(page) {
                 },
               ],
       },
-      ...(faqEntity.length
-        ? [
-            {
-              "@type": "FAQPage",
-              "@id": `${pageUrl}#faq`,
-              mainEntity: faqEntity,
-            },
-          ]
-        : []),
     ],
   };
 }
