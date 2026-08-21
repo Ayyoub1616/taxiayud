@@ -514,7 +514,7 @@ img {
   margin-bottom: 18px;
 }
 
-.hero-direct-options span {
+.hero-direct-options a {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -525,6 +525,16 @@ img {
   background: rgba(255, 255, 255, 0.045);
   color: #eef5ff;
   font-weight: 900;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.hero-direct-options a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(241, 195, 77, 0.42);
+  background: rgba(241, 195, 77, 0.12);
 }
 
 .hero-direct-options svg {
@@ -1147,7 +1157,8 @@ h1 {
   gap: 10px;
 }
 
-.local-route-grid article {
+.local-route-card {
+  display: block;
   min-height: 172px;
   padding: 16px;
   border: 1px solid rgba(255, 255, 255, 0.13);
@@ -1158,32 +1169,34 @@ h1 {
   transition:
     transform 220ms ease,
     border-color 220ms ease,
-    background 220ms ease;
+    background 220ms ease,
+    box-shadow 220ms ease;
 }
 
-.local-route-grid article:hover {
+.local-route-card:hover {
   transform: translateY(-4px);
   border-color: var(--line-strong);
   background:
     linear-gradient(180deg, rgba(241, 195, 77, 0.11), rgba(255, 255, 255, 0.025)),
     #121a24;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24);
 }
 
-.local-route-grid svg {
+.local-route-card svg {
   width: 20px;
   height: 20px;
   margin-bottom: 12px;
   color: var(--gold);
 }
 
-.local-route-grid h3 {
+.local-route-card h3 {
   margin: 0 0 8px;
   color: #fff;
   font-size: 1rem;
   line-height: 1.16;
 }
 
-.local-route-grid p {
+.local-route-card p {
   margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
@@ -1224,7 +1237,7 @@ h1 {
   gap: 9px;
 }
 
-.tourist-search-grid span {
+.tourist-search-grid a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1242,7 +1255,7 @@ h1 {
     background 180ms ease;
 }
 
-.tourist-search-grid span:hover {
+.tourist-search-grid a:hover {
   transform: translateY(-2px);
   border-color: var(--line-strong);
   background: rgba(241, 195, 77, 0.12);
@@ -3476,7 +3489,7 @@ tr:hover td {
     gap: 7px;
   }
 
-  .tourist-search-grid span {
+  .tourist-search-grid a {
     min-height: 34px;
     padding: 0 10px;
     font-size: 0.78rem;
@@ -3490,16 +3503,16 @@ tr:hover td {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .local-route-grid article {
+  .local-route-card {
     min-height: auto;
     padding: 13px;
   }
 
-  .local-route-grid h3 {
+  .local-route-card h3 {
     font-size: 0.92rem;
   }
 
-  .local-route-grid p {
+  .local-route-card p {
     font-size: 0.82rem;
   }
 

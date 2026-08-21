@@ -251,7 +251,7 @@ type Copy = {
   seoEyebrow: string;
   seoTitle: string;
   seoText: string;
-  seoRoutes: { title: string; text: string }[];
+  seoRoutes: { title: string; text: string; href?: string }[];
   calcEyebrow: string;
   calcTitle: string;
   calcText: string;
@@ -403,18 +403,22 @@ const BASE_COPY = {
       {
         title: "Taxi cerca de mí en Calatayud",
         text: "Recogida por ubicación, domicilio, estación, Plaza del Fuerte, hoteles y alojamientos.",
+        href: "/taxi-cerca-de-mi-calatayud/",
       },
       {
         title: "Estación-Monasterio de Piedra",
         text: "Traslado directo desde estación AVE de Calatayud a Nuévalos con vuelta programada.",
+        href: "/taxi-estacion-calatayud-monasterio-de-piedra/",
       },
       {
         title: "Taxi A-2, N-II y N-234",
         text: "Recogida de pasajeros por avería o incidencia cerca de Calatayud, Ateca, Ariza y Valdeherrera.",
+        href: "/taxi-averia-carretera-calatayud/",
       },
       {
         title: "Hoteles, balnearios y comarca",
         text: "Jaraba, Alhama de Aragón, Paracuellos, Ateca, Maluenda, Ariza y pueblos cercanos.",
+        href: "/taxi-hoteles-calatayud/",
       },
     ],
     calcEyebrow: "Reserva y presupuesto",
@@ -3162,6 +3166,25 @@ const DEFAULT_SEO_LINKS = [
   "/contacto/",
   "/telefono-taxi-calatayud/",
   "/preguntas-frecuentes/",
+];
+
+const LOCAL_ROUTE_FALLBACK_LINKS = [
+  "/taxi-cerca-de-mi-calatayud/",
+  "/taxi-estacion-calatayud-monasterio-de-piedra/",
+  "/taxi-averia-carretera-calatayud/",
+  "/taxi-hoteles-calatayud/",
+];
+
+const TOURIST_SEARCH_LINKS = [
+  "/taxi-cerca-de-mi-calatayud/",
+  "/taxi-desde-calatayud/",
+  "/taxi-averia-carretera-calatayud/",
+  "/taxi-hoteles-calatayud/",
+  "/taxi-calatayud-jaraba-balnearios/",
+  "/taxi-calatayud-monasterio-de-piedra/",
+  "/taxi-estacion-ave-calatayud/",
+  "/taxi-fiestas-pueblos-comarca-calatayud/",
+  "/telefono-taxi-calatayud/",
 ];
 
 const serviceIcons = [
@@ -6982,22 +7005,40 @@ function App() {
             <h2>{t.bookTitle}</h2>
             <p>{t.bookText}</p>
             <div className="hero-direct-options" aria-label={global.aria.quickContact}>
-              <span>
+              <a
+                href={directUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("clic_whatsapp", { source: "hero_direct_no_route" })}
+              >
                 <MessageCircle aria-hidden="true" />
                 {t.noRoute}
-              </span>
-              <span>
+              </a>
+              <a
+                href={directUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("clic_whatsapp", { source: "hero_direct_fast_reply" })}
+              >
                 <Clock3 aria-hidden="true" />
                 {t.fastReply}
-              </span>
-              <span>
+              </a>
+              <a
+                href={instantUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(event) => handleRouteWhatsapp(event, instantUrl, "hero_direct_now")}
+              >
                 <LocateFixed aria-hidden="true" />
                 {t.taxiNow}
-              </span>
-              <span>
+              </a>
+              <a
+                href="#taxi-averia-calatayud"
+                onClick={() => trackEvent("clic_reserva", { source: "hero_direct_road" })}
+              >
                 <TriangleAlert aria-hidden="true" />
                 {ui.roadHeroOption}
-              </span>
+              </a>
             </div>
             <div className="hero-card-actions">
               <a
@@ -7080,12 +7121,17 @@ function App() {
             <p>{t.seoText}</p>
           </div>
           <div className="local-route-grid">
-            {t.seoRoutes.map((route) => (
-              <article key={route.title}>
+            {t.seoRoutes.map((route, index) => (
+              <a
+                className="local-route-card"
+                href={route.href ?? LOCAL_ROUTE_FALLBACK_LINKS[index] ?? "/taxi-calatayud/"}
+                key={route.title}
+                onClick={() => trackEvent("internal_route_click", { source: "local_route_grid", index })}
+              >
                 <MapPin aria-hidden="true" />
                 <h3>{route.title}</h3>
                 <p>{route.text}</p>
-              </article>
+              </a>
             ))}
           </div>
         </section>
@@ -7100,11 +7146,15 @@ function App() {
             <p>{touristCopy.text}</p>
           </div>
           <div className="tourist-search-grid">
-            {touristSearchPhrases[language].map((item) => (
-              <span key={item.language}>
+            {touristSearchPhrases[language].map((item, index) => (
+              <a
+                href={TOURIST_SEARCH_LINKS[index] ?? "/taxi-calatayud/"}
+                key={`${item.language}-${item.query}`}
+                onClick={() => trackEvent("internal_route_click", { source: "tourist_search_chip", index })}
+              >
                 <strong>{item.language}</strong>
                 {item.query}
-              </span>
+              </a>
             ))}
           </div>
         </section>
