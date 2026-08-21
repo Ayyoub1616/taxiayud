@@ -4539,6 +4539,15 @@ function displayRouteLabel(label: string) {
       cleanParts.push(part);
     });
 
+  const knownPoint = knownRoutePoints.find((point) => {
+    const [knownPlace] = point.label.split(",").map((part) => part.trim());
+    return normalize(knownPlace) === normalize(cleanParts[0]);
+  });
+
+  if (knownPoint && cleanParts.length <= 2 && seen.has("ESPANA")) {
+    return knownPoint.label;
+  }
+
   return cleanParts
     .join(", ")
     .replace(/,\s*Aragón,\s*España$/i, ", Zaragoza, España")
