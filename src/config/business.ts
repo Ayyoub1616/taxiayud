@@ -37,6 +37,12 @@ export const BUSINESS_CONFIG = {
     "Zaragoza",
     "Aeropuerto de Zaragoza",
     "A-2 y carreteras cercanas a Calatayud",
+    "A-2 Valdeherrera",
+    "A-2 Ateca",
+    "A-2 Ariza",
+    "N-II Calatayud",
+    "N-234 Calatayud",
+    "Estación de Calatayud a Monasterio de Piedra",
   ],
 } as const;
 

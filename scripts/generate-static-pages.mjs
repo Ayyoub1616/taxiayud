@@ -38,6 +38,22 @@ const localizedTaxiAlternates = [
   { path: "/ar/taxi-calatayud/", hreflang: "ar", label: "العربية" },
 ];
 const localizedTaxiPaths = new Set(localizedTaxiAlternates.map((item) => item.path));
+const priorityStaticLinks = [
+  "/taxi-calatayud/",
+  "/taxi-cerca-de-mi-calatayud/",
+  "/taxi-averia-carretera-calatayud/",
+  "/taxi-pasajeros-averia-a2-calatayud/",
+  "/taxi-a2-valdeherrera-ateca-ariza/",
+  "/taxi-estacion-calatayud-monasterio-de-piedra/",
+  "/taxi-hoteles-calatayud/",
+  "/taxi-pueblos-comarca-calatayud/",
+  "/taxi-calatayud-monasterio-de-piedra/",
+  "/taxi-calatayud-jaraba-balnearios/",
+  "/taxi-calatayud-aeropuerto-zaragoza/",
+  "/telefono-taxi-calatayud/",
+  "/reservar/",
+  "/tarifas/",
+];
 const staticCopy = {
   "es-ES": {
     call: "Llamar al 611 861 041",
@@ -153,6 +169,9 @@ const businessGraph = {
     "Taxi avería autovía Calatayud",
     "Taxi A-2 Calatayud",
     "Taxi avería A-2 Calatayud",
+    "Taxi avería carretera Calatayud",
+    "Taxi estación Calatayud Monasterio de Piedra",
+    "Taxi A-2 Valdeherrera Ateca Ariza",
     "Teléfono taxi Calatayud",
   ],
   slogan: "Tu taxi de confianza en Calatayud",
@@ -167,6 +186,7 @@ const businessGraph = {
     "A-2 km 231 Valdeherrera",
     "A-2 salida Ateca",
     "A-2 Ariza",
+    "A-2 Valdeherrera Ateca Ariza",
     "N-II Calatayud",
     "N-234 Calatayud",
     "Carreteras de la comarca de Calatayud",
@@ -208,8 +228,12 @@ const businessGraph = {
     "taxi desde Calatayud",
     "taxi cerca de mi en Calatayud",
     "taxi por avería en autovía cerca de Calatayud",
+    "taxi por avería en carretera cerca de Calatayud",
     "taxi A-2 Calatayud",
     "taxi avería A-2 Calatayud",
+    "taxi A-2 Valdeherrera Ateca Ariza",
+    "taxi estación Calatayud Monasterio de Piedra",
+    "taxi desde estación de Calatayud al Monasterio de Piedra",
     "taxi me he quedado tirado cerca de Calatayud",
     "recogida de pasajeros en carretera cerca de Calatayud",
     "teléfono taxi Calatayud",
@@ -261,10 +285,30 @@ const businessGraph = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
+          name: "Taxi por avería en carretera cerca de Calatayud",
+          serviceType: "Recogida de pasajeros por incidencia en carretera",
+          areaServed: "A-2, N-II, N-234, Valdeherrera, Ateca, Ariza y carreteras cercanas a Calatayud",
+          description: "Taxi para pasajeros que necesitan continuar viaje desde carretera hacia Calatayud, hotel, estación, taller o destino confirmado.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
           name: "Taxi A-2 cerca de Calatayud",
           serviceType: "Recogida de pasajeros en la A-2",
           areaServed: "Autovía A-2, Valdeherrera, Ateca, Ariza y Calatayud",
           description: "Traslado de pasajeros desde puntos seguros de la A-2 hacia Calatayud, taller, hotel, estación o destino confirmado.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Taxi A-2 Valdeherrera Ateca Ariza",
+          serviceType: "Recogida de pasajeros en autovía A-2",
+          areaServed: "Valdeherrera, Ateca, Ariza, Calatayud y salidas próximas de la A-2",
+          description: "Recogida de pasajeros en puntos habituales de la A-2 con ubicación y confirmación directa por WhatsApp.",
         },
       },
       {
@@ -283,6 +327,16 @@ const businessGraph = {
           name: "Taxi a Monasterio de Piedra y Nuévalos",
           serviceType: "Traslado turístico",
           areaServed: "Comarca de Calatayud",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Taxi estación Calatayud a Monasterio de Piedra",
+          serviceType: "Traslado turístico desde estación AVE",
+          areaServed: "Estación de Calatayud, Nuévalos y Monasterio de Piedra",
+          description: "Taxi para viajeros que llegan en tren a Calatayud y continúan hacia Monasterio de Piedra, Nuévalos, hoteles o vuelta programada.",
         },
       },
       {
@@ -365,7 +419,7 @@ function serviceAreasForPage(page) {
   if (page.path.includes("aeropuerto") || page.path.includes("zaragoza")) {
     return ["Calatayud", "Zaragoza", "Zaragoza-Delicias", "Aeropuerto de Zaragoza", "Hospitales de Zaragoza", "Hoteles de Zaragoza"];
   }
-  if (page.path.includes("a2") || page.path.includes("autovia")) {
+  if (page.path.includes("a2") || page.path.includes("autovia") || page.path.includes("averia-carretera")) {
     return ["A-2 Valdeherrera", "A-2 Ateca", "A-2 Ariza", "N-II Calatayud", "N-234 Calatayud", "Talleres, hoteles y estación de Calatayud"];
   }
   if (page.path.includes("pueblos") || page.path.includes("ariza") || page.path.includes("ateca")) {
@@ -403,7 +457,7 @@ function sitemapAlternateTags(page) {
 }
 
 function sitemapImageTags(page) {
-  const images = page.path.includes("a2") || page.path.includes("autovia")
+  const images = page.path.includes("a2") || page.path.includes("autovia") || page.path.includes("averia-carretera")
     ? [
         {
           loc: `${siteUrl}/assets/roadside-pickup-taxi.webp`,
@@ -431,9 +485,19 @@ function sitemapImageTags(page) {
     .join("\n");
 }
 
+function uniquePagesByPath(items) {
+  const seen = new Set();
+  return items.filter((item) => {
+    if (!item || seen.has(item.path)) return false;
+    seen.add(item.path);
+    return true;
+  });
+}
+
 function staticFallback(page) {
   const copy = pageStaticCopy(page);
-  const links = pages
+  const prioritizedPages = priorityStaticLinks.map((path) => pages.find((item) => item.path === path));
+  const links = uniquePagesByPath([...prioritizedPages, ...pages])
     .filter((item) => item.path !== page.path && (!isLocalizedTaxiPage(page.path) || isLocalizedTaxiPage(item.path)))
     .slice(0, 14)
     .map((item) => `<a href="${item.path}">${escapeHtml(item.navLabel)}</a>`)
@@ -457,7 +521,17 @@ function staticFallback(page) {
     ? `<section class="static-faq" id="faq"><h2>${escapeHtml(copy.faqHeading)}</h2>${faqItems}</section>`
     : "";
 
-  const image = `<figure class="static-local-image"><img src="/assets/taxi-calatayud-landscape.webp" alt="${escapeHtml(copy.imageAlt)}" width="1800" height="1013" loading="eager" decoding="async" fetchpriority="high" /><figcaption>${escapeHtml(copy.imageCaption)}</figcaption></figure>`;
+  const roadImage = page.path.includes("a2") || page.path.includes("autovia") || page.path.includes("averia-carretera");
+  const imageSrc = roadImage ? "/assets/roadside-pickup-taxi.webp" : "/assets/taxi-calatayud-landscape.webp";
+  const imageAlt = roadImage
+    ? "Taxi Ayud recogiendo pasajeros por avería en carretera cerca de Calatayud"
+    : copy.imageAlt;
+  const imageCaption = roadImage
+    ? "Taxi para pasajeros por avería o incidencia en la A-2, N-II, N-234 y carreteras cerca de Calatayud."
+    : copy.imageCaption;
+  const imageWidth = roadImage ? "738" : "1800";
+  const imageHeight = roadImage ? "415" : "1013";
+  const image = `<figure class="static-local-image"><img src="${imageSrc}" alt="${escapeHtml(imageAlt)}" width="${imageWidth}" height="${imageHeight}" loading="eager" decoding="async" fetchpriority="high" /><figcaption>${escapeHtml(imageCaption)}</figcaption></figure>`;
 
   return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${image}<p class="static-cta-row"><a href="tel:611861041">${escapeHtml(copy.call)}</a><a href="https://wa.me/34611861041">${escapeHtml(copy.whatsapp)}</a></p><article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>${escapeHtml(copy.serviceAreasHeading)}</h2><p>${escapeHtml(copy.serviceAreasText)}</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="${escapeHtml(copy.related)}">${links}</nav></main>`;
 }

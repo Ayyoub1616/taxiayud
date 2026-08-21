@@ -1,8 +1,8 @@
 [
   {
     "path": "/",
-    "title": "Taxi Calatayud | Taxi cerca de mí y comarca | Taxi Ayud",
-    "description": "Taxi oficial en Calatayud: teléfono y WhatsApp para estación AVE, hoteles, pueblos de la comarca, A-2, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
+    "title": "Taxi Calatayud | Taxi cerca de mí, A-2 y comarca | Taxi Ayud",
+    "description": "Taxi oficial en Calatayud: teléfono y WhatsApp para estación AVE, hoteles, pueblos de la comarca, A-2, averías, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
     "breadcrumb": "Inicio",
     "navLabel": "Taxi Calatayud",
     "eyebrow": "Taxi oficial en Calatayud · Licencia 18",
@@ -26,6 +26,10 @@
       {
         "heading": "Fiestas y eventos",
         "text": "Reservas para San Roque Calatayud, fiestas de pueblos de la comarca, hoteles, estación y vueltas programadas."
+      },
+      {
+        "heading": "Averías en carretera",
+        "text": "Taxi para pasajeros que se han quedado tirados cerca de Calatayud, A-2, N-II, N-234, Valdeherrera, Ateca o Ariza."
       }
     ],
     "faq": [
@@ -1528,6 +1532,162 @@
       {
         "question": "¿La calculadora sirve para trayectos entre pueblos?",
         "answer": "Sí, ofrece un presupuesto orientativo. La disponibilidad, ruta final e importe se confirman por teléfono o WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-estacion-calatayud-monasterio-de-piedra/",
+    "title": "Taxi estación Calatayud a Monasterio de Piedra | Taxi Ayud",
+    "description": "Taxi desde la estación de Calatayud al Monasterio de Piedra y Nuévalos: recogida con tren, equipaje, vuelta programada y reserva por WhatsApp.",
+    "breadcrumb": "Estación a Monasterio de Piedra",
+    "navLabel": "Estación-Monasterio",
+    "eyebrow": "Taxi turístico desde estación",
+    "h1": "Taxi desde estación de Calatayud al Monasterio de Piedra",
+    "intro": "Traslado en taxi desde la estación AVE de Calatayud al Monasterio de Piedra, Nuévalos y alojamientos cercanos para visitantes que llegan en tren o no llevan coche.",
+    "h2": "Recogida en la estación y llegada directa a Nuévalos",
+    "body": "Indica hora de llegada del tren, pasajeros, equipaje y si necesitas ida, vuelta o espera orientativa. En fines de semana, festivos y temporada turística conviene reservar por WhatsApp con antelación.",
+    "sections": [
+      {
+        "heading": "Llegada en tren",
+        "text": "Recogida coordinada en estación de Calatayud con hora de llegada, posible retraso, maletas y destino exacto."
+      },
+      {
+        "heading": "Monasterio de Piedra y Nuévalos",
+        "text": "Traslado hasta el entorno del Monasterio, hoteles de Nuévalos, La Tranquera o punto acordado por WhatsApp."
+      },
+      {
+        "heading": "Vuelta programada",
+        "text": "Puedes dejar preparada la vuelta a la estación, hotel, Calatayud o pueblo cercano para viajar con más tranquilidad."
+      },
+      {
+        "heading": "Precio orientativo",
+        "text": "La calculadora ayuda a preparar presupuesto, pero disponibilidad, espera y precio final se confirman siempre de forma directa."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo ir en taxi de la estación de Calatayud al Monasterio de Piedra?",
+        "answer": "Sí. Puedes reservar por WhatsApp indicando tren, hora de llegada, pasajeros, equipaje y destino exacto en Monasterio de Piedra o Nuévalos."
+      },
+      {
+        "question": "¿Se puede reservar la vuelta del Monasterio de Piedra a la estación?",
+        "answer": "Sí. Lo recomendable es indicar hora aproximada de salida o pedir disponibilidad para vuelta programada antes de finalizar la visita."
+      },
+      {
+        "question": "¿Conviene reservar si viajo en fin de semana?",
+        "answer": "Sí. En fines de semana, festivos y temporada turística hay más demanda. Reservar con antelación evita esperas."
+      },
+      {
+        "question": "¿Puedo llevar maletas o equipaje?",
+        "answer": "Sí. El Peugeot 408 Hybrid tiene maletero amplio para equipaje habitual. Si llevas maletas grandes o mucho equipaje, avisa antes por WhatsApp."
+      },
+      {
+        "question": "¿El precio de la web es definitivo?",
+        "answer": "No. Es orientativo. La disponibilidad, espera, suplementos oficiales e importe final se confirman por llamada o WhatsApp."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-averia-carretera-calatayud/",
+    "title": "Taxi avería carretera Calatayud | Pasajeros A-2 N-II N-234",
+    "description": "Taxi para pasajeros por avería cerca de Calatayud en A-2, N-II, N-234 y carreteras de la comarca. Envía ubicación y destino por WhatsApp.",
+    "breadcrumb": "Taxi avería carretera",
+    "navLabel": "Avería carretera",
+    "eyebrow": "Recogida de pasajeros por incidencia",
+    "h1": "Taxi para pasajeros por avería en carretera cerca de Calatayud",
+    "intro": "Si te has quedado tirado cerca de Calatayud por avería, incidencia o espera de grúa, puedes consultar recogida de pasajeros hacia Calatayud, estación, hotel, taller, Zaragoza u otro destino.",
+    "h2": "Envía ubicación y confirma el punto exacto por WhatsApp",
+    "body": "Taxi Ayud es taxi para pasajeros, no grúa ni reparación mecánica. Para localizarte mejor, envía ubicación, carretera, sentido, salida o kilómetro aproximado, número de pasajeros y destino. Mantén el teléfono disponible para confirmar.",
+    "sections": [
+      {
+        "heading": "A-2, N-II y N-234",
+        "text": "Recogidas a consultar en autovía A-2, N-II, N-234, Valdeherrera, accesos a Calatayud, Ateca, Ariza y carreteras cercanas."
+      },
+      {
+        "heading": "Pasajeros, no vehículo",
+        "text": "Servicio pensado para trasladar personas a un lugar seguro, hotel, estación, taller o destino confirmado."
+      },
+      {
+        "heading": "Seguridad primero",
+        "text": "Si hay peligro, accidente, emergencia médica o riesgo en la vía, llama primero al 112 antes de pedir taxi."
+      },
+      {
+        "heading": "WhatsApp claro",
+        "text": "La web prepara un mensaje limpio para confirmar disponibilidad y precio orientativo sin mezclar avisos de seguridad dentro del pedido."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Qué hago si me he quedado tirado cerca de Calatayud?",
+        "answer": "Ponte a salvo si puedes, llama al 112 si hay peligro y envía ubicación por WhatsApp para consultar taxi de pasajeros. Si el coche necesita grúa, contacta también con tu asistencia."
+      },
+      {
+        "question": "¿Taxi Ayud recoge en la A-2, N-II o N-234?",
+        "answer": "Puedes consultar recogida de pasajeros en la A-2, N-II, N-234 y carreteras cercanas a Calatayud. El punto exacto se confirma por llamada o WhatsApp."
+      },
+      {
+        "question": "¿Me podéis llevar al taller, hotel o estación?",
+        "answer": "Sí. Puedes pedir traslado hacia Calatayud, estación, hotel, taller, Zaragoza, Soria u otro destino confirmado."
+      },
+      {
+        "question": "¿Es una grúa o asistencia mecánica?",
+        "answer": "No. Es servicio de taxi para pasajeros. Para grúa o asistencia mecánica debes contactar con aseguradora o asistencia en carretera."
+      },
+      {
+        "question": "¿Por qué conviene mantener el teléfono disponible?",
+        "answer": "En autovía puede ser difícil identificar el punto exacto. Mantener el teléfono con sonido ayuda a confirmar sentido, salida, kilómetro y ubicación."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-a2-valdeherrera-ateca-ariza/",
+    "title": "Taxi A-2 Valdeherrera Ateca Ariza | Taxi Ayud Calatayud",
+    "description": "Taxi para pasajeros en la A-2 cerca de Calatayud: Valdeherrera, Ateca, Ariza, salidas próximas, hoteles, estación, talleres y destinos seguros.",
+    "breadcrumb": "Taxi A-2 Valdeherrera Ateca Ariza",
+    "navLabel": "A-2 Valdeherrera",
+    "eyebrow": "Taxi A-2 cerca de Calatayud",
+    "h1": "Taxi A-2 Valdeherrera, Ateca y Ariza",
+    "intro": "Recogida de pasajeros en puntos habituales de la A-2 cerca de Calatayud, como Valdeherrera, salida de Ateca, Ariza y accesos próximos, siempre con confirmación directa.",
+    "h2": "Taxi para continuar viaje desde la autovía A-2",
+    "body": "Si estás en una gasolinera, área de servicio, arcén seguro o punto indicado por asistencia, envía ubicación, sentido de marcha, pasajeros y destino. El servicio es para pasajeros y el precio se confirma por WhatsApp o llamada.",
+    "sections": [
+      {
+        "heading": "Valdeherrera km 231",
+        "text": "Referencia habitual para localizar recogidas cerca de Calatayud y conectar con estación, hotel, taller o Zaragoza."
+      },
+      {
+        "heading": "Ateca salida 218",
+        "text": "Punto frecuente para incidencias, paradas de viaje o recogidas hacia Calatayud, Ateca, Zaragoza o pueblos de la comarca."
+      },
+      {
+        "heading": "Ariza km 197",
+        "text": "Recogidas a consultar cerca de Ariza, límite con rutas hacia Soria, Madrid, Calatayud y municipios cercanos."
+      },
+      {
+        "heading": "Ubicación exacta",
+        "text": "La ubicación compartida por WhatsApp ayuda a evitar confusiones en autovía, salidas y sentidos de circulación."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo pedir taxi en la A-2 cerca de Valdeherrera?",
+        "answer": "Sí. Puedes enviar ubicación, sentido y destino por WhatsApp para confirmar recogida de pasajeros y disponibilidad."
+      },
+      {
+        "question": "¿Taxi Ayud puede recoger cerca de Ateca o Ariza?",
+        "answer": "Sí, se pueden consultar recogidas en zona Ateca, Ariza y puntos próximos de la A-2, siempre confirmando ubicación exacta."
+      },
+      {
+        "question": "¿Qué destino puedo indicar?",
+        "answer": "Puedes pedir traslado a Calatayud, estación, hotel, taller, Zaragoza, Soria, Madrid u otro destino concreto."
+      },
+      {
+        "question": "¿El taxi puede recoger si estoy en el arcén?",
+        "answer": "Depende del punto y de la seguridad. Si hay peligro o accidente, llama al 112. Para taxi, se confirma un punto seguro por teléfono o WhatsApp."
+      },
+      {
+        "question": "¿La calculadora funciona para puntos de autovía?",
+        "answer": "La calculadora puede orientar, pero en autovía es mejor confirmar siempre ubicación, sentido, espera y precio por WhatsApp."
       }
     ]
   },
