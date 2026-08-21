@@ -68,6 +68,18 @@ const COMMON_POINTS = [
     lng: -1.7939,
   },
   {
+    keys: ["ARIZA"],
+    label: "Ariza, Zaragoza, España",
+    lat: 41.3131,
+    lng: -2.0536,
+  },
+  {
+    keys: ["MALUENDA"],
+    label: "Maluenda, Zaragoza, España",
+    lat: 41.2878,
+    lng: -1.6167,
+  },
+  {
     keys: [
       "A2",
       "A-2",
@@ -254,7 +266,7 @@ function pointFromRequest(point, fallbackLabel) {
 }
 
 function displayLabel(label) {
-  const ignoredParts = new Set(["ARAGON", "COMUNIDAD DE CALATAYUD"]);
+  const ignoredParts = new Set(["AR", "ARAGON", "COMUNIDAD DE CALATAYUD"]);
   const parts = String(label || "")
     .split(",")
     .map((part) => part.trim())

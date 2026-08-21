@@ -458,7 +458,7 @@ const BASE_COPY = {
     whatsappQuote: "Presupuesto por WhatsApp",
     reviewsEyebrow: "Reseñas de Google",
     reviewsText:
-      "Destacamos la experiencia de Raquel en Google: puntualidad, taxi limpio y trato cercano. El resto de opiniones queda disponible en Google.",
+      "Destacamos la experiencia de Raquel en Google: puntualidad, taxi limpio y trato cercano. El resto de reseñas está disponible en el perfil de Google.",
     reviewsWith: "con",
     featuredReview: "Reseña principal",
     moreReviews: "Ver más reseñas",
@@ -4523,7 +4523,7 @@ function withSpain(value: string) {
 }
 
 function displayRouteLabel(label: string) {
-  const ignoredParts = new Set(["ARAGON", "COMUNIDAD DE CALATAYUD"]);
+  const ignoredParts = new Set(["AR", "ARAGON", "COMUNIDAD DE CALATAYUD"]);
   const cleanParts: string[] = [];
   const seen = new Set<string>();
 

@@ -78,7 +78,7 @@ function compactDetail(properties = {}) {
 }
 
 function displayLabel(label) {
-  const ignoredParts = new Set(["ARAGON", "COMUNIDAD DE CALATAYUD", "ESPANA"]);
+  const ignoredParts = new Set(["AR", "ARAGON", "COMUNIDAD DE CALATAYUD", "ESPANA"]);
   const parts = String(label || "")
     .split(",")
     .map((part) => part.trim())

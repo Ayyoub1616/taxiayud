@@ -31,12 +31,12 @@ export const RATES = {
 
 export const GOOGLE_REVIEWS = {
   rating: "5/5",
-  count: "10 opiniones",
+  count: "10 reseñas",
   items: [
     {
       author: "Raquel C",
       text: "Ante la dificultad de encontrar taxi en Calatayud, una suerte dar con ellos. Los necesité dos veces y fui con el mismo taxista, muy amable y puntual. El taxi perfecto, muy limpio y cómodo. Totalmente recomendable.",
-      time: "Reseña principal",
+      time: "Reseña destacada",
       rating: 5,
       url: "https://share.google/vVhE9TRxVGqUYTwKp",
     },

@@ -7,7 +7,7 @@ function ratingLabel(value) {
 
 function countLabel(value) {
   if (typeof value !== "number" || Number.isNaN(value)) return null;
-  return `${value} ${value === 1 ? "opinión" : "opiniones"}`;
+  return `${value} ${value === 1 ? "reseña" : "reseñas"}`;
 }
 
 function reviewText(review) {
