@@ -8,7 +8,7 @@ const titles = new Map();
 const descriptions = new Map();
 const pageUrls = new Set(pages.map((page) => `${siteUrl}${page.path === "/" ? "/" : page.path}`));
 const localizedTaxiPaths = new Set([
-  "/taxi-calatayud/",
+  "/",
   "/en/taxi-calatayud/",
   "/fr/taxi-calatayud/",
   "/ca/taxi-calatayud/",
@@ -123,7 +123,7 @@ if (!sitemap.includes("<image:image>")) fail("sitemap no incluye imágenes");
 for (const page of pages) {
   const url = `${siteUrl}${page.path === "/" ? "/" : page.path}`;
   if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`sitemap no incluye ${url}`);
-  if (localizedTaxiPaths.has(page.path) && !sitemap.includes(`<xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/taxi-calatayud/" />`)) {
+  if (localizedTaxiPaths.has(page.path) && !sitemap.includes(`<xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/" />`)) {
     fail(`sitemap no incluye hreflang x-default para ${page.path}`);
   }
 }

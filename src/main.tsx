@@ -3137,7 +3137,7 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
 const SEO_PAGES = seoPagesData as SeoPage[];
 const HOME_SEO_PAGE = SEO_PAGES.find((page) => page.path === "/") ?? SEO_PAGES[0];
 const DEFAULT_SEO_LINKS = [
-  "/taxi-calatayud/",
+  "/",
   "/taxi-cerca-de-mi-calatayud/",
   "/taxi-averia-carretera-calatayud/",
   "/taxi-pasajeros-averia-a2-calatayud/",
@@ -3212,7 +3212,7 @@ const featuredDestinations = [
 ].filter((item) => TARIFAS[item]);
 
 const localizedTaxiPages: Array<{ path: string; lang: LangCode; label: string }> = [
-  { path: "/taxi-calatayud/", lang: "es", label: "Español" },
+  { path: "/", lang: "es", label: "Español" },
   { path: "/en/taxi-calatayud/", lang: "en", label: "English" },
   { path: "/fr/taxi-calatayud/", lang: "fr", label: "Français" },
   { path: "/ca/taxi-calatayud/", lang: "ca", label: "Català" },
@@ -3233,18 +3233,6 @@ const roadDestinationPlaceholders: Record<LangCode, string> = {
   pt: "Destino a confirmar: oficina, hotel, estação ou cidade",
   nl: "Bestemming te bevestigen: garage, hotel, station of stad",
   ar: "الوجهة للتأكيد: ورشة، فندق، محطة أو مدينة",
-};
-
-const mobileActionCopy: Record<LangCode, { location: string; locationAria: string }> = {
-  es: { location: "Ubicación", locationAria: "Enviar mi ubicación actual por WhatsApp o preparar recogida" },
-  en: { location: "Location", locationAria: "Send my current location or prepare pick-up" },
-  fr: { location: "Position", locationAria: "Envoyer ma position actuelle ou préparer la prise en charge" },
-  ca: { location: "Ubicació", locationAria: "Enviar la meva ubicació actual o preparar recollida" },
-  de: { location: "Standort", locationAria: "Aktuellen Standort senden oder Abholung vorbereiten" },
-  it: { location: "Posizione", locationAria: "Inviare la posizione attuale o preparare il ritiro" },
-  pt: { location: "Localização", locationAria: "Enviar a minha localização atual ou preparar recolha" },
-  nl: { location: "Locatie", locationAria: "Mijn huidige locatie sturen of ophaalpunt voorbereiden" },
-  ar: { location: "الموقع", locationAria: "إرسال موقعي الحالي أو تجهيز نقطة الاستلام" },
 };
 
 const businessToolsCopy: Record<
@@ -4152,6 +4140,16 @@ const festivalCopy: Record<
   },
 };
 
+const seasonalCampaign = {
+  start: "2026-07-15",
+  end: "2026-08-17",
+  visibleOnPaths: new Set([
+    "/taxi-fiestas-calatayud/",
+    "/taxi-san-roque-calatayud/",
+    "/taxi-fiestas-pueblos-comarca-calatayud/",
+  ]),
+};
+
 const roadPickupPresets: AddressSuggestion[] = [
   {
     label: "E.S. Valdeherrera, Autovía A-2 km 231, Calatayud, Zaragoza, España",
@@ -4652,6 +4650,12 @@ function todayValue() {
 
 function currentHour() {
   return new Date().toTimeString().slice(0, 5);
+}
+
+function isSeasonalCampaignVisible(path?: string | null) {
+  if (path && seasonalCampaign.visibleOnPaths.has(path)) return true;
+  const today = new Date().toISOString().slice(0, 10);
+  return today >= seasonalCampaign.start && today <= seasonalCampaign.end;
 }
 
 function isCalatayudOrigin(value: string) {
@@ -6328,7 +6332,6 @@ function App() {
   const t = COPY[language];
   const ui = UI_COPY[language];
   const global = GLOBAL_COPY[language];
-  const mobileCopy = mobileActionCopy[language];
   const toolsCopy = businessToolsCopy[language];
   const tariffCopy = tariffCategoryCopy[language];
   const currentSeoPage = activeSeoPage();
@@ -6337,6 +6340,7 @@ function App() {
   const statsLabels = heroStatLabels[language];
   const touristCopy = touristSearchCopy[language];
   const festival = festivalCopy[language];
+  const showFestivalSection = isSeasonalCampaignVisible(currentSeoPage?.path);
   const destinationSearchValue = isRoadDestinationDraft(query) ? "" : query;
   const isRoadPickupContext = isRoadAssistanceNote(notes);
   const destinationPlaceholder = isRoadPickupContext
@@ -7159,44 +7163,46 @@ function App() {
           </div>
         </section>
 
-        <section className="festival-section" id="taxi-fiestas-calatayud" data-animate>
-          <div className="festival-copy">
-            <p className="eyebrow compact">
-              <CalendarDays aria-hidden="true" />
-              {festival.eyebrow}
-            </p>
-            <h2>{festival.title}</h2>
-            <p>{festival.text}</p>
-            <div className="festival-tags">
-              {festival.tags.map((tag) => (
-                <span key={tag}>
-                  <CheckCircle2 aria-hidden="true" />
-                  {tag}
-                </span>
-              ))}
+        {showFestivalSection ? (
+          <section className="festival-section" id="taxi-fiestas-calatayud" data-animate>
+            <div className="festival-copy">
+              <p className="eyebrow compact">
+                <CalendarDays aria-hidden="true" />
+                {festival.eyebrow}
+              </p>
+              <h2>{festival.title}</h2>
+              <p>{festival.text}</p>
+              <div className="festival-tags">
+                {festival.tags.map((tag) => (
+                  <span key={tag}>
+                    <CheckCircle2 aria-hidden="true" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="festival-actions">
-            <a
-              className="btn btn-whatsapp"
-              href={directUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => trackEvent("clic_whatsapp", { source: "festival_san_roque" })}
-            >
-              <MessageCircle aria-hidden="true" />
-              {festival.primary}
-            </a>
-            <a
-              className="btn btn-secondary"
-              href="#calculadora"
-              onClick={() => trackEvent("clic_reserva", { source: "festival_calculator" })}
-            >
-              <Route aria-hidden="true" />
-              {festival.secondary}
-            </a>
-          </div>
-        </section>
+            <div className="festival-actions">
+              <a
+                className="btn btn-whatsapp"
+                href={directUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("clic_whatsapp", { source: "festival_san_roque" })}
+              >
+                <MessageCircle aria-hidden="true" />
+                {festival.primary}
+              </a>
+              <a
+                className="btn btn-secondary"
+                href="#calculadora"
+                onClick={() => trackEvent("clic_reserva", { source: "festival_calculator" })}
+              >
+                <Route aria-hidden="true" />
+                {festival.secondary}
+              </a>
+            </div>
+          </section>
+        ) : null}
 
         <InternalLinksBand language={language} />
 
@@ -8088,14 +8094,6 @@ function App() {
           <MessageCircle aria-hidden="true" />
           WhatsApp
         </a>
-        <button
-          type="button"
-          aria-label={mobileCopy.locationAria}
-          onClick={requestPickupLocation}
-        >
-          <LocateFixed aria-hidden="true" />
-          {mobileCopy.location}
-        </button>
       </nav>
     </>
   );

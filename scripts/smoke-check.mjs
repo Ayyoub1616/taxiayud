@@ -32,13 +32,32 @@ const airport = read("dist/taxi-calatayud-aeropuerto-zaragoza/index.html");
 const notFound = read("dist/404.html");
 const sitemap = read("dist/sitemap.xml");
 const llms = read("dist/llms.txt");
+const tariffConfig = read("src/config/tarifas.ts");
+const tariffData = read("src/data.ts");
 const vercelConfig = JSON.parse(read("vercel.json"));
+const homeH1Count = (home.match(/<h1[\s>]/g) || []).length;
 
 addCheck("La portada contiene el teléfono principal", home.includes("611 861 041"));
 addCheck("La portada enlaza WhatsApp", home.includes("wa.me/34611861041"));
 addCheck("La portada incluye contenido SEO inicial", home.includes("static-seo-content"));
+addCheck("La portada mantiene un único H1 inicial", homeH1Count === 1);
+addCheck("La portada es la versión española hreflang", home.includes('hreflang="es-ES" href="https://www.taxiayud.es/"'));
+addCheck("La portada declara x-default en la home", home.includes('hreflang="x-default" href="https://www.taxiayud.es/"'));
 addCheck("La portada enlaza la pagina de avería carretera", home.includes("/taxi-averia-carretera-calatayud/"));
 addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-estacion-calatayud-monasterio-de-piedra/"));
+addCheck(
+  "Tarifas interurbanas 2026 usan constantes oficiales exactas",
+  tariffConfig.includes("pricePerKm: 0.714") &&
+    tariffConfig.includes("pricePerKm: 0.7875") &&
+    tariffConfig.includes("waitPerHour: 18.921") &&
+    tariffConfig.includes("waitPerHour: 21.5355") &&
+    tariffConfig.includes("minimumService: 3.5175") &&
+    tariffConfig.includes("minimumService: 3.675"),
+);
+addCheck(
+  "Los destinos guardan solo distancia y no importes antiguos",
+  !tariffData.includes("dia:") && !tariffData.includes("noche:"),
+);
 addCheck("La página taxi Calatayud tiene canonical propio", taxiCalatayud.includes('href="https://www.taxiayud.es/taxi-calatayud/"'));
 addCheck("La página inglesa declara idioma", english.includes('<html lang="en" dir="ltr">'));
 addCheck("La página inglesa tiene hreflang a francés", english.includes('hreflang="fr" href="https://www.taxiayud.es/fr/taxi-calatayud/"'));
@@ -66,6 +85,7 @@ addCheck("El sitemap no indexa taxi 24 horas sin confirmar", !sitemap.includes("
 addCheck("El sitemap no indexa rutas antiguas A-2", !sitemap.includes("https://www.taxiayud.es/taxi-a2-calatayud/"));
 addCheck("El sitemap no indexa ruta antigua de autovía", !sitemap.includes("https://www.taxiayud.es/taxi-autovia-calatayud/"));
 addCheck("El sitemap no indexa ruta antigua de Monasterio", !sitemap.includes("https://www.taxiayud.es/taxi-monasterio-de-piedra/"));
+addCheck("El sitemap no indexa ruta antigua de aeropuerto", !sitemap.includes("https://www.taxiayud.es/taxi-aeropuerto-zaragoza/"));
 addCheck("llms.txt no recomienda taxi 24 horas sin confirmar", !llms.includes("https://www.taxiayud.es/taxi-24-horas-calatayud/"));
 addCheck(
   "No quedan URLs antiguas .com",
@@ -93,6 +113,16 @@ addCheck(
       item.source === "/hello-world/" &&
       item.destination === "https://www.taxiayud.es/" &&
       item.statusCode === 301,
+  ),
+);
+
+addCheck(
+  "La ruta antigua de aeropuerto redirige a la landing canonica",
+  redirects.some(
+    (item) =>
+      item.source === "/taxi-aeropuerto-zaragoza/" &&
+      item.destination === "/taxi-calatayud-aeropuerto-zaragoza/" &&
+      item.permanent === true,
   ),
 );
 

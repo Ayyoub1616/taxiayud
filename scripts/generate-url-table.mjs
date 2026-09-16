@@ -5,7 +5,7 @@ const pages = JSON.parse(readFileSync("src/seoPages.json", "utf8"));
 
 const keywordByPath = {
   "/": "taxi Calatayud",
-  "/taxi-calatayud/": "taxi en Calatayud",
+  "/taxi-calatayud/": "taxi urbano y recogidas en Calatayud",
   "/en/taxi-calatayud/": "taxi in Calatayud",
   "/fr/taxi-calatayud/": "taxi a Calatayud en frances",
   "/ca/taxi-calatayud/": "taxi a Calatayud en catalan",

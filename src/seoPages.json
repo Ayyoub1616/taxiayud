@@ -61,14 +61,14 @@
   },
   {
     "path": "/taxi-calatayud/",
-    "title": "Servicio local de taxi en Calatayud | Taxi Ayud",
-    "description": "Taxi oficial en Calatayud para desplazamientos urbanos, estación, hoteles, citas, pueblos cercanos y traslados concertados.",
+    "title": "Taxi urbano y recogidas en Calatayud | Taxi Ayud",
+    "description": "Servicio local de taxi para recogidas dentro de Calatayud: estación, hoteles, domicilios, citas, compras y traslados concertados.",
     "breadcrumb": "Taxi en Calatayud",
     "navLabel": "Taxi Calatayud",
-    "eyebrow": "Servicio local en Calatayud",
-    "h1": "Servicio local de taxi en Calatayud",
-    "intro": "Servicio de taxi en Calatayud para desplazamientos dentro de la ciudad, recogidas en estación, hoteles, citas médicas, compras y viajes programados con confirmación directa.",
-    "h2": "Taxi local para moverte por Calatayud",
+    "eyebrow": "Recogidas urbanas en Calatayud",
+    "h1": "Taxi urbano y recogidas en Calatayud",
+    "intro": "Página específica para desplazamientos dentro de Calatayud: estación, hoteles, domicilios, citas médicas, compras y viajes programados con confirmación directa.",
+    "h2": "Taxi local para moverte dentro de Calatayud",
     "body": "Puedes llamar directamente, escribir por WhatsApp o preparar una reserva con origen, destino, fecha, hora y número de pasajeros. El servicio se adapta a viajes inmediatos y a traslados concertados.",
     "sections": [
       {

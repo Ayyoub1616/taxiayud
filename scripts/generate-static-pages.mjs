@@ -27,7 +27,7 @@ const ogLocaleByLang = {
   ar: "ar_AR",
 };
 const localizedTaxiAlternates = [
-  { path: "/taxi-calatayud/", hreflang: "es-ES", label: "Español" },
+  { path: "/", hreflang: "es-ES", label: "Español" },
   { path: "/en/taxi-calatayud/", hreflang: "en", label: "English" },
   { path: "/fr/taxi-calatayud/", hreflang: "fr", label: "Français" },
   { path: "/ca/taxi-calatayud/", hreflang: "ca-ES", label: "Català" },
@@ -39,7 +39,7 @@ const localizedTaxiAlternates = [
 ];
 const localizedTaxiPaths = new Set(localizedTaxiAlternates.map((item) => item.path));
 const priorityStaticLinks = [
-  "/taxi-calatayud/",
+  "/",
   "/taxi-cerca-de-mi-calatayud/",
   "/taxi-averia-carretera-calatayud/",
   "/taxi-pasajeros-averia-a2-calatayud/",
@@ -439,7 +439,7 @@ function alternateTags(page) {
     (alternate) =>
       `<link rel="alternate" hreflang="${alternate.hreflang}" href="${absoluteUrl(alternate.path)}" />`,
   );
-  tags.push(`<link rel="alternate" hreflang="x-default" href="${absoluteUrl("/taxi-calatayud/")}" />`);
+  tags.push(`<link rel="alternate" hreflang="x-default" href="${absoluteUrl("/")}" />`);
   return `${tags.join("\n    ")}\n    `;
 }
 
@@ -451,7 +451,7 @@ function sitemapAlternateTags(page) {
       `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${absoluteUrl(alternate.path)}" />`,
   );
   tags.push(
-    `    <xhtml:link rel="alternate" hreflang="x-default" href="${absoluteUrl("/taxi-calatayud/")}" />`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${absoluteUrl("/")}" />`,
   );
   return `\n${tags.join("\n")}`;
 }
@@ -498,7 +498,11 @@ function staticFallback(page) {
   const copy = pageStaticCopy(page);
   const prioritizedPages = priorityStaticLinks.map((path) => pages.find((item) => item.path === path));
   const links = uniquePagesByPath([...prioritizedPages, ...pages])
-    .filter((item) => item.path !== page.path && (!isLocalizedTaxiPage(page.path) || isLocalizedTaxiPage(item.path)))
+    .filter(
+      (item) =>
+        item.path !== page.path &&
+        (page.path === "/" || !isLocalizedTaxiPage(page.path) || isLocalizedTaxiPage(item.path)),
+    )
     .slice(0, 14)
     .map((item) => `<a href="${item.path}">${escapeHtml(item.navLabel)}</a>`)
     .join(" ");

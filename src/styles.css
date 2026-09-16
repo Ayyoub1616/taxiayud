@@ -3931,7 +3931,7 @@ tr:hover td {
     right: 0;
     bottom: 0;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
     padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
     border-top: 1px solid rgba(255, 255, 255, 0.13);
@@ -3941,8 +3941,7 @@ tr:hover td {
     overflow: hidden;
   }
 
-  .mobile-action-bar a,
-  .mobile-action-bar button {
+  .mobile-action-bar a {
     display: grid;
     place-items: center;
     gap: 3px;
@@ -3969,12 +3968,6 @@ tr:hover td {
     background: linear-gradient(135deg, var(--green), var(--green-dark));
     color: #fff;
     border-color: transparent;
-  }
-
-  .mobile-action-bar button {
-    background: rgba(78, 161, 255, 0.14);
-    color: #d8ebff;
-    border-color: rgba(78, 161, 255, 0.32);
   }
 
   .mobile-action-bar svg {

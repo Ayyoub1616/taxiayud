@@ -2,21 +2,23 @@ export const OFFICIAL_TARIFF_CONFIG = {
   sourceLabel: "Tarifas interurbanas oficiales 2026 · B.O.A. n.º 238 del 10-12-2025",
   lastReviewed: "2026-07-23",
   validationStatus:
-    "Valores configurados con la tabla aportada por el propietario; revisar con documento oficial antes de cambios de formula.",
+    "Constantes oficiales interurbanas 2026 configuradas con precision completa; revisar con documento oficial antes de cambios de formula.",
   interurban: {
     day: {
       label: "Interurbana diurna",
       time: "Laborables de 6:00 a 22:00",
-      pricePerKm: 0.71,
-      waitPerHour: 18.92,
-      minimumService: 3.52,
+      // B.O.A. n.º 238 del 10-12-2025: tarifa interurbana 2026 sin redondear.
+      pricePerKm: 0.714,
+      waitPerHour: 18.921,
+      minimumService: 3.5175,
     },
     nightHoliday: {
       label: "Interurbana nocturna/festiva",
       time: "Laborables de 22:00 a 6:00, sabados, domingos y festivos",
-      pricePerKm: 0.79,
-      waitPerHour: 21.54,
-      minimumService: 3.68,
+      // B.O.A. n.º 238 del 10-12-2025: tarifa interurbana 2026 sin redondear.
+      pricePerKm: 0.7875,
+      waitPerHour: 21.5355,
+      minimumService: 3.675,
     },
   },
   urban: {
