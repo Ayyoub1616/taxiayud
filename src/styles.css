@@ -3607,6 +3607,174 @@ tr:hover td {
   padding: 0 16px;
 }
 
+.direct-whatsapp-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 92;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 52% 34%, rgba(32, 192, 99, 0.22), transparent 36%),
+    rgba(5, 7, 11, 0.74);
+  backdrop-filter: blur(12px);
+}
+
+.direct-whatsapp-modal {
+  width: min(640px, 100%);
+  padding: 22px;
+  border: 1px solid rgba(32, 192, 99, 0.28);
+  border-radius: 8px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+    #0b1119;
+  color: #fff;
+  box-shadow:
+    0 36px 92px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(241, 195, 77, 0.08);
+}
+
+.direct-modal-heading {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.direct-modal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: #fff;
+  box-shadow: 0 16px 32px rgba(32, 192, 99, 0.24);
+}
+
+.direct-modal-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.direct-modal-heading h2 {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: clamp(1.65rem, 4vw, 2.15rem);
+  line-height: 1.03;
+}
+
+.direct-modal-heading p,
+.direct-form-hint {
+  margin: 0;
+  color: #dbe5f1;
+  line-height: 1.55;
+}
+
+.direct-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.direct-form-grid.compact {
+  grid-template-columns: minmax(130px, 0.55fr) minmax(0, 1fr);
+}
+
+.direct-form-grid label,
+.direct-whatsapp-modal label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.direct-whatsapp-modal input,
+.direct-whatsapp-modal select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-weight: 850;
+  outline: none;
+}
+
+.direct-whatsapp-modal input::placeholder {
+  color: rgba(219, 229, 241, 0.62);
+}
+
+.direct-whatsapp-modal input:focus,
+.direct-whatsapp-modal select:focus {
+  border-color: rgba(241, 195, 77, 0.7);
+  box-shadow: 0 0 0 3px rgba(241, 195, 77, 0.12);
+}
+
+.direct-timing-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.direct-timing-options legend {
+  grid-column: 1 / -1;
+  margin-bottom: 2px;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.direct-timing-options label {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  gap: 10px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #eef5ff;
+  font-weight: 900;
+}
+
+.direct-timing-options input {
+  width: 18px;
+  min-height: 18px;
+  accent-color: var(--green);
+}
+
+.direct-form-hint {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(241, 195, 77, 0.22);
+  border-radius: 8px;
+  background: rgba(241, 195, 77, 0.08);
+  color: #ffe9a6;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.direct-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.direct-modal-actions .btn {
+  min-height: 46px;
+  padding: 0 16px;
+}
+
 .cookie-banner {
   position: fixed;
   z-index: 45;
@@ -4579,6 +4747,71 @@ tr:hover td {
   }
 
   .road-modal-actions .btn {
+    width: 100%;
+  }
+
+  .direct-whatsapp-backdrop {
+    align-items: end;
+    padding: 12px 12px calc(86px + env(safe-area-inset-bottom));
+  }
+
+  .direct-whatsapp-modal {
+    max-height: calc(100vh - 112px);
+    overflow: auto;
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .direct-modal-heading {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .direct-modal-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .direct-modal-heading h2 {
+    font-size: 1.55rem;
+  }
+
+  .direct-modal-heading p {
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .direct-form-grid {
+    gap: 9px;
+    margin-top: 9px;
+  }
+
+  .direct-whatsapp-modal input,
+  .direct-whatsapp-modal select,
+  .direct-timing-options label {
+    min-height: 44px;
+  }
+
+  .direct-form-hint {
+    margin-top: 9px;
+    padding: 9px 10px;
+    font-size: 0.8rem;
+  }
+
+  .direct-form-grid,
+  .direct-form-grid.compact,
+  .direct-timing-options {
+    grid-template-columns: 1fr;
+  }
+
+  .direct-modal-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 10px 0 0;
+  }
+
+  .direct-modal-actions .btn {
     width: 100%;
   }
 

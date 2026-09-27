@@ -63,6 +63,17 @@ type Result = {
 };
 
 type BookingMode = "later" | "now";
+type DirectWhatsappTiming = "now" | "later";
+
+type DirectWhatsappDraft = {
+  origin: string;
+  destination: string;
+  timing: DirectWhatsappTiming;
+  date: string;
+  time: string;
+  passengers: string;
+  notes: string;
+};
 
 type QuickPickupKind = "current" | "station" | "plaza" | "hotel" | "manual";
 type QuickTripType = "oneway" | "returnFixed" | "returnPending";
@@ -2612,6 +2623,261 @@ const ROAD_WHATSAPP_NOTICE: Record<
     ],
     cancel: "رجوع",
     continue: "فتح واتساب",
+  },
+};
+
+const DIRECT_WHATSAPP_FORM_COPY: Record<
+  LangCode,
+  {
+    aria: string;
+    title: string;
+    text: string;
+    origin: string;
+    destination: string;
+    originPlaceholder: string;
+    destinationPlaceholder: string;
+    timing: string;
+    now: string;
+    later: string;
+    date: string;
+    time: string;
+    passengers: string;
+    notes: string;
+    notesPlaceholder: string;
+    cancel: string;
+    send: string;
+    hint: string;
+    messageIntro: string;
+    messageTypeNow: string;
+    messageTypeLater: string;
+    messageConfirm: string;
+    messageThanks: string;
+  }
+> = {
+  es: {
+    aria: "Datos rápidos antes de abrir WhatsApp",
+    title: "Dime origen y destino",
+    text: "No se calcula precio. Solo prepara un mensaje útil para responder rápido y saber si es urgente o programado.",
+    origin: "Origen",
+    destination: "Destino",
+    originPlaceholder: "Ej. Estación AVE, hotel, A-2 km..., mi ubicación",
+    destinationPlaceholder: "Ej. Zaragoza, Monasterio de Piedra o por confirmar",
+    timing: "¿Para cuándo?",
+    now: "Ahora / urgente",
+    later: "Programar",
+    date: "Fecha",
+    time: "Hora",
+    passengers: "Pasajeros",
+    notes: "Notas opcionales",
+    notesPlaceholder: "Maletas, mascota, silla, carretera, referencia visible...",
+    cancel: "Volver",
+    send: "Abrir WhatsApp",
+    hint: "Origen y destino son obligatorios. Si no sabes el destino exacto, escribe “por confirmar”.",
+    messageIntro: "Hola Taxi Ayud, quiero consultar disponibilidad de taxi.",
+    messageTypeNow: "Taxi ahora / disponibilidad inmediata",
+    messageTypeLater: "Reserva programada",
+    messageConfirm: "¿Me confirmas disponibilidad?",
+    messageThanks: "Gracias.",
+  },
+  en: {
+    aria: "Quick details before opening WhatsApp",
+    title: "Tell me pick-up and destination",
+    text: "No fare is calculated. This only prepares a useful message so I can reply quickly and know if it is urgent or scheduled.",
+    origin: "Pick-up",
+    destination: "Destination",
+    originPlaceholder: "Station, hotel, A-2 km..., my location",
+    destinationPlaceholder: "Zaragoza, Monasterio de Piedra or to confirm",
+    timing: "When?",
+    now: "Now / urgent",
+    later: "Schedule",
+    date: "Date",
+    time: "Time",
+    passengers: "Passengers",
+    notes: "Optional notes",
+    notesPlaceholder: "Luggage, pet, child seat, road reference...",
+    cancel: "Back",
+    send: "Open WhatsApp",
+    hint: "Pick-up and destination are required. If you are unsure, write “to confirm”.",
+    messageIntro: "Hello Taxi Ayud, I would like to check taxi availability.",
+    messageTypeNow: "Taxi now / immediate availability",
+    messageTypeLater: "Scheduled booking",
+    messageConfirm: "Can you confirm availability?",
+    messageThanks: "Thank you.",
+  },
+  fr: {
+    aria: "Informations rapides avant d'ouvrir WhatsApp",
+    title: "Indiquez départ et destination",
+    text: "Aucun prix n'est calculé. Le message sert seulement à répondre vite et à savoir si c'est urgent ou programmé.",
+    origin: "Départ",
+    destination: "Destination",
+    originPlaceholder: "Gare, hôtel, A-2 km..., ma position",
+    destinationPlaceholder: "Saragosse, Monasterio de Piedra ou à confirmer",
+    timing: "Quand ?",
+    now: "Maintenant / urgent",
+    later: "Programmer",
+    date: "Date",
+    time: "Heure",
+    passengers: "Passagers",
+    notes: "Notes optionnelles",
+    notesPlaceholder: "Bagages, animal, siège enfant, route, repère visible...",
+    cancel: "Retour",
+    send: "Ouvrir WhatsApp",
+    hint: "Départ et destination sont obligatoires. Si vous ne savez pas, écrivez « à confirmer ».",
+    messageIntro: "Bonjour Taxi Ayud, je souhaite vérifier la disponibilité d'un taxi.",
+    messageTypeNow: "Taxi maintenant / disponibilité immédiate",
+    messageTypeLater: "Réservation programmée",
+    messageConfirm: "Pouvez-vous confirmer la disponibilité ?",
+    messageThanks: "Merci.",
+  },
+  ca: {
+    aria: "Dades ràpides abans d'obrir WhatsApp",
+    title: "Indica origen i destinació",
+    text: "No es calcula preu. Només prepara un missatge útil per respondre ràpid i saber si és urgent o programat.",
+    origin: "Origen",
+    destination: "Destinació",
+    originPlaceholder: "Estació, hotel, A-2 km..., la meva ubicació",
+    destinationPlaceholder: "Saragossa, Monasterio de Piedra o per confirmar",
+    timing: "Per quan?",
+    now: "Ara / urgent",
+    later: "Programar",
+    date: "Data",
+    time: "Hora",
+    passengers: "Passatgers",
+    notes: "Notes opcionals",
+    notesPlaceholder: "Maletes, mascota, cadireta, carretera, referència visible...",
+    cancel: "Tornar",
+    send: "Obrir WhatsApp",
+    hint: "Origen i destinació són obligatoris. Si no ho saps, escriu “per confirmar”.",
+    messageIntro: "Hola Taxi Ayud, vull consultar disponibilitat de taxi.",
+    messageTypeNow: "Taxi ara / disponibilitat immediata",
+    messageTypeLater: "Reserva programada",
+    messageConfirm: "Em confirmes disponibilitat?",
+    messageThanks: "Gràcies.",
+  },
+  de: {
+    aria: "Kurze Angaben vor WhatsApp",
+    title: "Abholung und Ziel angeben",
+    text: "Es wird kein Preis berechnet. Die Nachricht hilft nur, schnell zu antworten und Dringlichkeit zu erkennen.",
+    origin: "Abholung",
+    destination: "Ziel",
+    originPlaceholder: "Bahnhof, Hotel, A-2 km..., mein Standort",
+    destinationPlaceholder: "Zaragoza, Monasterio de Piedra oder zu bestätigen",
+    timing: "Wann?",
+    now: "Jetzt / dringend",
+    later: "Planen",
+    date: "Datum",
+    time: "Uhrzeit",
+    passengers: "Fahrgäste",
+    notes: "Optionale Hinweise",
+    notesPlaceholder: "Gepäck, Haustier, Kindersitz, Straße, sichtbarer Punkt...",
+    cancel: "Zurück",
+    send: "WhatsApp öffnen",
+    hint: "Abholung und Ziel sind erforderlich. Wenn unklar, schreiben Sie „zu bestätigen”.",
+    messageIntro: "Hallo Taxi Ayud, ich möchte die Taxi-Verfügbarkeit anfragen.",
+    messageTypeNow: "Taxi jetzt / sofortige Verfügbarkeit",
+    messageTypeLater: "Geplante Buchung",
+    messageConfirm: "Können Sie die Verfügbarkeit bestätigen?",
+    messageThanks: "Danke.",
+  },
+  it: {
+    aria: "Dati rapidi prima di aprire WhatsApp",
+    title: "Indica partenza e destinazione",
+    text: "Non viene calcolato il prezzo. Serve solo a preparare un messaggio utile per rispondere in fretta.",
+    origin: "Partenza",
+    destination: "Destinazione",
+    originPlaceholder: "Stazione, hotel, A-2 km..., la mia posizione",
+    destinationPlaceholder: "Saragozza, Monasterio de Piedra o da confermare",
+    timing: "Quando?",
+    now: "Ora / urgente",
+    later: "Programmare",
+    date: "Data",
+    time: "Ora",
+    passengers: "Passeggeri",
+    notes: "Note opzionali",
+    notesPlaceholder: "Bagagli, animale, seggiolino, strada, riferimento visibile...",
+    cancel: "Indietro",
+    send: "Apri WhatsApp",
+    hint: "Partenza e destinazione sono obbligatorie. Se non sai, scrivi “da confermare”.",
+    messageIntro: "Ciao Taxi Ayud, vorrei verificare la disponibilità di un taxi.",
+    messageTypeNow: "Taxi ora / disponibilità immediata",
+    messageTypeLater: "Prenotazione programmata",
+    messageConfirm: "Puoi confermare la disponibilità?",
+    messageThanks: "Grazie.",
+  },
+  pt: {
+    aria: "Dados rápidos antes de abrir WhatsApp",
+    title: "Indique origem e destino",
+    text: "Não calcula preço. Só prepara uma mensagem útil para responder rápido e saber se é urgente ou agendado.",
+    origin: "Origem",
+    destination: "Destino",
+    originPlaceholder: "Estação, hotel, A-2 km..., a minha localização",
+    destinationPlaceholder: "Saragoça, Monasterio de Piedra ou por confirmar",
+    timing: "Para quando?",
+    now: "Agora / urgente",
+    later: "Agendar",
+    date: "Data",
+    time: "Hora",
+    passengers: "Passageiros",
+    notes: "Notas opcionais",
+    notesPlaceholder: "Malas, animal, cadeira, estrada, referência visível...",
+    cancel: "Voltar",
+    send: "Abrir WhatsApp",
+    hint: "Origem e destino são obrigatórios. Se não sabe, escreva “por confirmar”.",
+    messageIntro: "Olá Taxi Ayud, quero consultar disponibilidade de táxi.",
+    messageTypeNow: "Táxi agora / disponibilidade imediata",
+    messageTypeLater: "Reserva agendada",
+    messageConfirm: "Confirma disponibilidade?",
+    messageThanks: "Obrigado.",
+  },
+  nl: {
+    aria: "Snelle gegevens vóór WhatsApp",
+    title: "Vul ophaalpunt en bestemming in",
+    text: "Er wordt geen prijs berekend. Dit maakt alleen een duidelijk bericht om snel te kunnen antwoorden.",
+    origin: "Ophaalpunt",
+    destination: "Bestemming",
+    originPlaceholder: "Station, hotel, A-2 km..., mijn locatie",
+    destinationPlaceholder: "Zaragoza, Monasterio de Piedra of te bevestigen",
+    timing: "Wanneer?",
+    now: "Nu / urgent",
+    later: "Plannen",
+    date: "Datum",
+    time: "Tijd",
+    passengers: "Passagiers",
+    notes: "Optionele notities",
+    notesPlaceholder: "Bagage, huisdier, kinderzitje, weg, zichtbaar punt...",
+    cancel: "Terug",
+    send: "WhatsApp openen",
+    hint: "Ophaalpunt en bestemming zijn verplicht. Schrijf “te bevestigen” als u het niet weet.",
+    messageIntro: "Hallo Taxi Ayud, ik wil taxibeschikbaarheid vragen.",
+    messageTypeNow: "Taxi nu / directe beschikbaarheid",
+    messageTypeLater: "Geplande reservering",
+    messageConfirm: "Kunt u beschikbaarheid bevestigen?",
+    messageThanks: "Dank u.",
+  },
+  ar: {
+    aria: "تفاصيل سريعة قبل فتح واتساب",
+    title: "اكتب نقطة الانطلاق والوجهة",
+    text: "لا يتم حساب السعر. يتم فقط تجهيز رسالة واضحة لمعرفة هل الطلب عاجل أو محجوز.",
+    origin: "نقطة الانطلاق",
+    destination: "الوجهة",
+    originPlaceholder: "المحطة، الفندق، الطريق A-2، موقعي",
+    destinationPlaceholder: "سرقسطة، Monasterio de Piedra أو للتأكيد",
+    timing: "متى؟",
+    now: "الآن / عاجل",
+    later: "حجز موعد",
+    date: "التاريخ",
+    time: "الوقت",
+    passengers: "الركاب",
+    notes: "ملاحظات اختيارية",
+    notesPlaceholder: "حقائب، حيوان، كرسي طفل، طريق، علامة واضحة...",
+    cancel: "رجوع",
+    send: "فتح واتساب",
+    hint: "نقطة الانطلاق والوجهة إلزامية. إذا لم تعرف، اكتب “للتأكيد”.",
+    messageIntro: "مرحبا Taxi Ayud، أريد الاستفسار عن توفر تاكسي.",
+    messageTypeNow: "تاكسي الآن / توفر فوري",
+    messageTypeLater: "حجز مسبق",
+    messageConfirm: "هل يمكنك تأكيد التوفر؟",
+    messageThanks: "شكرا.",
   },
 };
 
@@ -5532,6 +5798,32 @@ function whatsappDirectUrl(language: LangCode) {
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
+function whatsappDirectRequestUrl(language: LangCode, draft: DirectWhatsappDraft) {
+  const copy = DIRECT_WHATSAPP_FORM_COPY[language];
+  const timingLine =
+    draft.timing === "now"
+      ? `⏱️ Tipo: ${copy.messageTypeNow}`
+      : `📅 Tipo: ${copy.messageTypeLater} · ${dateLabel(draft.date, language)} · ${draft.time}h`;
+  const notesLine = draft.notes.trim() ? `📝 ${copy.notes}: ${draft.notes.trim()}` : "";
+  const text = [
+    languageNotice(language),
+    "",
+    `👋 ${copy.messageIntro}`,
+    timingLine,
+    `📍 ${copy.origin}: ${draft.origin.trim()}`,
+    `🏁 ${copy.destination}: ${draft.destination.trim()}`,
+    `👥 ${copy.passengers}: ${draft.passengers}`,
+    notesLine,
+    "",
+    `✅ ${copy.messageConfirm}`,
+    `🙏 ${copy.messageThanks}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
+}
+
 function roadAssistanceWhatsappUrl({
   language,
   passengers,
@@ -5901,10 +6193,12 @@ function SeoIntentSection({
   page,
   directUrl,
   language,
+  onDirectWhatsapp,
 }: {
   page: SeoPage;
   directUrl: string;
   language: LangCode;
+  onDirectWhatsapp: (event: React.MouseEvent<HTMLElement>, source: string) => void;
 }) {
   const relatedPages = relatedSeoPages(page.path);
   const global = GLOBAL_COPY[language];
@@ -5930,7 +6224,7 @@ function SeoIntentSection({
               href={directUrl}
               target="_blank"
               rel="noreferrer"
-              onClick={() => trackEvent("clic_whatsapp", { source: "seo_page" })}
+              onClick={(event) => onDirectWhatsapp(event, "seo_page")}
             >
               <Send aria-hidden="true" />
               {global.reserveWhatsapp}
@@ -6053,6 +6347,154 @@ function RoadWhatsappNotice({
   );
 }
 
+function DirectWhatsappForm({
+  language,
+  onCancel,
+  onSubmit,
+}: {
+  language: LangCode;
+  onCancel: () => void;
+  onSubmit: (draft: DirectWhatsappDraft) => void;
+}) {
+  const copy = DIRECT_WHATSAPP_FORM_COPY[language];
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  const [timing, setTiming] = useState<DirectWhatsappTiming>("now");
+  const [date, setDate] = useState(todayValue());
+  const [time, setTime] = useState(currentHour());
+  const [passengers, setPassengers] = useState("1");
+  const [notes, setNotes] = useState("");
+
+  function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const cleanOrigin = origin.trim();
+    const cleanDestination = destination.trim();
+    if (!cleanOrigin || !cleanDestination) return;
+
+    onSubmit({
+      origin: cleanOrigin,
+      destination: cleanDestination,
+      timing,
+      date,
+      time,
+      passengers,
+      notes,
+    });
+  }
+
+  return (
+    <div className="direct-whatsapp-backdrop" role="presentation" onClick={onCancel}>
+      <form
+        className="direct-whatsapp-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={copy.aria}
+        onClick={(event) => event.stopPropagation()}
+        onSubmit={submit}
+      >
+        <div className="direct-modal-heading">
+          <span className="direct-modal-icon" aria-hidden="true">
+            <MessageSquareText />
+          </span>
+          <div>
+            <h2>{copy.title}</h2>
+            <p>{copy.text}</p>
+          </div>
+        </div>
+
+        <div className="direct-form-grid">
+          <label>
+            <span className="field-label">{copy.origin}</span>
+            <input
+              autoFocus
+              required
+              autoComplete="street-address"
+              value={origin}
+              placeholder={copy.originPlaceholder}
+              onChange={(event) => setOrigin(event.target.value)}
+            />
+          </label>
+          <label>
+            <span className="field-label">{copy.destination}</span>
+            <input
+              required
+              autoComplete="street-address"
+              value={destination}
+              placeholder={copy.destinationPlaceholder}
+              onChange={(event) => setDestination(event.target.value)}
+            />
+          </label>
+        </div>
+
+        <fieldset className="direct-timing-options">
+          <legend>{copy.timing}</legend>
+          <label>
+            <input
+              type="radio"
+              name="directTiming"
+              value="now"
+              checked={timing === "now"}
+              onChange={() => setTiming("now")}
+            />
+            <span>{copy.now}</span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="directTiming"
+              value="later"
+              checked={timing === "later"}
+              onChange={() => setTiming("later")}
+            />
+            <span>{copy.later}</span>
+          </label>
+        </fieldset>
+
+        {timing === "later" ? (
+          <div className="direct-form-grid compact">
+            <label>
+              <span className="field-label">{copy.date}</span>
+              <input type="date" min={todayValue()} value={date} onChange={(event) => setDate(event.target.value)} />
+            </label>
+            <label>
+              <span className="field-label">{copy.time}</span>
+              <input type="time" value={time} onChange={(event) => setTime(event.target.value)} />
+            </label>
+          </div>
+        ) : null}
+
+        <div className="direct-form-grid compact">
+          <label>
+            <span className="field-label">{copy.passengers}</span>
+            <select value={passengers} onChange={(event) => setPassengers(event.target.value)}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </label>
+          <label>
+            <span className="field-label">{copy.notes}</span>
+            <input value={notes} placeholder={copy.notesPlaceholder} onChange={(event) => setNotes(event.target.value)} />
+          </label>
+        </div>
+
+        <p className="direct-form-hint">{copy.hint}</p>
+
+        <div className="direct-modal-actions">
+          <button type="button" className="btn btn-secondary" onClick={onCancel}>
+            {copy.cancel}
+          </button>
+          <button type="submit" className="btn btn-whatsapp">
+            <MessageCircle aria-hidden="true" />
+            {copy.send}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
 function CookieBanner({
   language,
   onAccept,
@@ -6098,11 +6540,13 @@ function FreenowDownloadChooser({
   language,
   copy,
   directUrl,
+  onDirectWhatsapp,
   onClose,
 }: {
   language: LangCode;
   copy: AppBookingContent;
   directUrl: string;
+  onDirectWhatsapp: (event: React.MouseEvent<HTMLElement>, source: string) => void;
   onClose: () => void;
 }) {
   const roadNotice = ROAD_WHATSAPP_NOTICE[language];
@@ -6161,7 +6605,7 @@ function FreenowDownloadChooser({
           href={directUrl}
           target="_blank"
           rel="noreferrer"
-          onClick={() => trackEvent("clic_whatsapp", { source: "freenow_download_modal" })}
+          onClick={(event) => onDirectWhatsapp(event, "freenow_download_modal")}
         >
           <MessageCircle aria-hidden="true" />
           {copy.primary}
@@ -6611,6 +7055,8 @@ function App() {
     useState<AddressSuggestion | null>(null);
   const [pendingRoadWhatsappUrl, setPendingRoadWhatsappUrl] = useState("");
   const [showFreenowChooser, setShowFreenowChooser] = useState(false);
+  const [showDirectWhatsappForm, setShowDirectWhatsappForm] = useState(false);
+  const [directWhatsappSource, setDirectWhatsappSource] = useState("unknown");
   const [filter, setFilter] = useState("");
   const [tariffCategory, setTariffCategory] = useState<TariffCategory>("all");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
@@ -6977,6 +7423,27 @@ function App() {
     requestPickupLocation();
   }
 
+  function openDirectWhatsappForm(event: React.MouseEvent<HTMLElement>, source: string) {
+    event.preventDefault();
+    setDirectWhatsappSource(source);
+    setShowDirectWhatsappForm(true);
+    trackEvent("clic_whatsapp", { source });
+    trackEvent("direct_whatsapp_form_open", { source, language });
+  }
+
+  function submitDirectWhatsappForm(draft: DirectWhatsappDraft) {
+    const source = directWhatsappSource;
+    setShowDirectWhatsappForm(false);
+    trackEvent("direct_whatsapp_form_submit", {
+      source,
+      timing: draft.timing,
+      passengers: draft.passengers,
+      language,
+      has_notes: Boolean(draft.notes.trim()),
+    });
+    window.location.href = whatsappDirectRequestUrl(language, draft);
+  }
+
   function showRoadWhatsappNotice(
     event: React.MouseEvent<HTMLAnchorElement>,
     url: string,
@@ -7199,7 +7666,7 @@ function App() {
             href={directUrl}
             target="_blank"
             rel="noreferrer"
-            onClick={() => trackEvent("clic_whatsapp", { source: "header" })}
+            onClick={(event) => openDirectWhatsappForm(event, "header")}
           >
             {t.nav[0]}
           </a>
@@ -7259,7 +7726,7 @@ function App() {
                 href={directUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent("clic_whatsapp", { source: "hero" })}
+                onClick={(event) => openDirectWhatsappForm(event, "hero")}
               >
                 <Send aria-hidden="true" />
                 {t.directWhatsapp}
@@ -7312,7 +7779,7 @@ function App() {
                 href={directUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent("clic_whatsapp", { source: "hero_direct_no_route" })}
+                onClick={(event) => openDirectWhatsappForm(event, "hero_direct_no_route")}
               >
                 <MessageCircle aria-hidden="true" />
                 {t.noRoute}
@@ -7321,7 +7788,7 @@ function App() {
                 href={directUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent("clic_whatsapp", { source: "hero_direct_fast_reply" })}
+                onClick={(event) => openDirectWhatsappForm(event, "hero_direct_fast_reply")}
               >
                 <Clock3 aria-hidden="true" />
                 {t.fastReply}
@@ -7330,7 +7797,7 @@ function App() {
                 href={instantUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={(event) => handleRouteWhatsapp(event, instantUrl, "hero_direct_now")}
+                onClick={(event) => openDirectWhatsappForm(event, "hero_direct_now")}
               >
                 <LocateFixed aria-hidden="true" />
                 {t.taxiNow}
@@ -7349,7 +7816,7 @@ function App() {
                 href={directUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent("clic_whatsapp", { source: "hero_card" })}
+                onClick={(event) => openDirectWhatsappForm(event, "hero_card")}
               >
                 <Send aria-hidden="true" />
                 {t.sendWhatsapp}
@@ -7392,7 +7859,12 @@ function App() {
         </section>
 
         {currentSeoPage ? (
-          <SeoIntentSection page={currentSeoPage} directUrl={directUrl} language={language} />
+          <SeoIntentSection
+            page={currentSeoPage}
+            directUrl={directUrl}
+            language={language}
+            onDirectWhatsapp={openDirectWhatsappForm}
+          />
         ) : null}
 
         <section className="region-band" aria-label={global.aria.region} data-animate>
@@ -7520,7 +7992,7 @@ function App() {
                 href={directUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent("clic_whatsapp", { source: "freenow_home_block" })}
+                onClick={(event) => openDirectWhatsappForm(event, "freenow_home_block")}
               >
                 <MessageCircle aria-hidden="true" />
                 {appBooking.primary}
@@ -7594,7 +8066,7 @@ function App() {
                 href={directUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent("clic_whatsapp", { source: "festival_san_roque" })}
+                onClick={(event) => openDirectWhatsappForm(event, "festival_san_roque")}
               >
                 <MessageCircle aria-hidden="true" />
                 {festival.primary}
@@ -8404,7 +8876,7 @@ function App() {
               href={directUrl}
               target="_blank"
               rel="noreferrer"
-              onClick={() => trackEvent("clic_whatsapp", { source: "closing" })}
+              onClick={(event) => openDirectWhatsappForm(event, "closing")}
             >
               <MessageCircle aria-hidden="true" />
               WhatsApp
@@ -8470,7 +8942,19 @@ function App() {
           language={language}
           copy={appBooking}
           directUrl={directUrl}
+          onDirectWhatsapp={(event, source) => {
+            setShowFreenowChooser(false);
+            openDirectWhatsappForm(event, source);
+          }}
           onClose={() => setShowFreenowChooser(false)}
+        />
+      ) : null}
+
+      {showDirectWhatsappForm ? (
+        <DirectWhatsappForm
+          language={language}
+          onCancel={() => setShowDirectWhatsappForm(false)}
+          onSubmit={submitDirectWhatsappForm}
         />
       ) : null}
 
@@ -8488,7 +8972,7 @@ function App() {
         target="_blank"
         rel="noreferrer"
         aria-label={t.floatingWhatsapp}
-        onClick={() => trackEvent("clic_whatsapp", { source: "floating" })}
+        onClick={(event) => openDirectWhatsappForm(event, "floating")}
       >
         <MessageCircle aria-hidden="true" />
       </a>
@@ -8505,7 +8989,7 @@ function App() {
           href={directUrl}
           target="_blank"
           rel="noreferrer"
-          onClick={() => trackEvent("clic_whatsapp", { source: "mobile_bar" })}
+          onClick={(event) => openDirectWhatsappForm(event, "mobile_bar")}
         >
           <MessageCircle aria-hidden="true" />
           WhatsApp
