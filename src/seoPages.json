@@ -1,19 +1,23 @@
 [
   {
     "path": "/",
-    "title": "Taxi Calatayud | Taxi cerca de mí, A-2 y comarca | Taxi Ayud",
-    "description": "Taxi oficial en Calatayud: teléfono y WhatsApp para estación AVE, hoteles, pueblos de la comarca, A-2, averías, balnearios, Monasterio de Piedra, Zaragoza y aeropuerto.",
+    "title": "Taxi Calatayud | FREENOW, taxi cerca de mí y comarca | Taxi Ayud",
+    "description": "Taxi oficial en Calatayud y colaborador FREENOW: teléfono, WhatsApp y app para estación AVE, hoteles, pueblos, A-2, balnearios, Monasterio de Piedra y Zaragoza.",
     "breadcrumb": "Inicio",
     "navLabel": "Taxi Calatayud",
     "eyebrow": "Taxi oficial en Calatayud · Licencia 18",
     "h1": "Taxi Calatayud y comarca",
-    "intro": "Si buscas taxi en Calatayud, taxi cerca de mí o traslado desde la comarca, Taxi Ayud ofrece recogidas en estación AVE, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.",
+    "intro": "Si buscas taxi en Calatayud, taxi cerca de mí o traslado desde la comarca, Taxi Ayud ofrece recogidas en estación AVE, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto. Novedad: también colaborador FREENOW.",
     "h2": "Llama o reserva taxi por WhatsApp",
-    "body": "La web está pensada para que puedas llamar, escribir por WhatsApp o consultar un precio orientativo sin formularios largos. Para horarios exactos, viajes de madrugada, trenes, vuelos, averías en carretera o recogidas especiales, confirma disponibilidad directamente.",
+    "body": "La web está pensada para que puedas llamar, escribir por WhatsApp, consultar un precio orientativo o usar FREENOW si prefieres pedir taxi por app. Para horarios exactos, viajes de madrugada, trenes, vuelos, averías en carretera o recogidas especiales, confirma disponibilidad directamente.",
     "sections": [
       {
         "heading": "Recogidas en Calatayud",
         "text": "Domicilios, hoteles, estación, Plaza del Fuerte y otros puntos de la ciudad."
+      },
+      {
+        "heading": "Novedad FREENOW",
+        "text": "Taxi Ayud ya es colaborador FREENOW en Calatayud, una opción útil para viajeros que prefieren pedir taxi desde app y confirmar detalles por WhatsApp."
       },
       {
         "heading": "Traslados de comarca",
@@ -40,6 +44,10 @@
       {
         "question": "¿Puedo pedir un taxi sin calcular ruta?",
         "answer": "Sí. El botón de WhatsApp directo abre un mensaje sencillo para consultar disponibilidad o reservar sin usar la calculadora. Si tienes dudas, pregunta por WhatsApp antes de cerrar el viaje."
+      },
+      {
+        "question": "¿Taxi Ayud está en FREENOW?",
+        "answer": "Sí. Taxi Ayud ya es colaborador FREENOW en Calatayud. Puedes usar la app si lo prefieres o contactar directamente por WhatsApp y teléfono para confirmar disponibilidad, hora, recogida y precio orientativo."
       },
       {
         "question": "¿La calculadora da un precio cerrado?",

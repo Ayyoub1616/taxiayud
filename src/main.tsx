@@ -376,7 +376,7 @@ const BASE_COPY = {
     call: "Llamar",
     heroEyebrow: "Taxi oficial en Calatayud · Licencia 18",
     heroSubtitle:
-      "Taxi desde Calatayud para pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza, aeropuerto y estación.",
+      "Taxi desde Calatayud para pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza, aeropuerto y estación. Novedad: también colaborador FREENOW.",
     bookTitle: "Reserva directa, sin formularios largos",
     bookText:
       "Manda un mensaje directo si solo quieres hablar, consultar disponibilidad o pedir taxi ahora. La calculadora queda abajo para presupuestos orientativos.",
@@ -396,9 +396,9 @@ const BASE_COPY = {
       "Servicio puntual, cómodo y discreto para moverte por Calatayud, Zaragoza y toda la comarca con maletas, familia o visitas turísticas.",
     comfort: ["Conducción tranquila", "Maletero amplio", "Taxi oficial", "También en FREENOW"],
     seoEyebrow: "Taxi local premium",
-    seoTitle: "El taxi de confianza para Calatayud y la zona",
+    seoTitle: "Taxi Calatayud con WhatsApp, calculadora y FREENOW",
     seoText:
-      "Rutas frecuentes con recogida por ubicación en Calatayud, estación AVE, hoteles, pueblos de la comarca, A-2, N-II, N-234, Monasterio de Piedra, balnearios, Zaragoza y aeropuerto.",
+      "Rutas frecuentes con recogida por ubicación en Calatayud, estación AVE, hoteles, pueblos de la comarca, A-2, N-II, N-234, Monasterio de Piedra, balnearios, Zaragoza y aeropuerto. Taxi Ayud también es colaborador FREENOW para viajeros que prefieren pedir taxi por app.",
     seoRoutes: [
       {
         title: "Taxi cerca de mí en Calatayud",
@@ -1977,8 +1977,8 @@ const appBookingCopy: Record<
   }
 > = {
   es: {
-    eyebrow: "Colaborador FREENOW",
-    title: "Taxi Ayud ya es colaborador de FREENOW",
+    eyebrow: "Novedad · Colaborador FREENOW",
+    title: "Novedad: Taxi Ayud ya es colaborador de FREENOW",
     text: "También puedes encontrar Taxi Ayud desde la app FREENOW. Si vienes a Calatayud por turismo, estación, hotel, empresa o balneario, tienes app para pedir taxi y WhatsApp directo para confirmar cualquier detalle.",
     points: ["Colaborador FREENOW", "App para viajeros", "Reserva directa por WhatsApp", "Calatayud y comarca"],
     primary: "Reservar directo",
@@ -1986,8 +1986,8 @@ const appBookingCopy: Record<
     appStore: "Descargar para iPhone",
     googlePlay: "Descargar para Android",
     note: "Si prefieres app, descarga FREENOW y busca taxi en Calatayud. Si necesitas hora exacta, carretera o ruta especial, escríbeme por WhatsApp para confirmarlo.",
-    heroKicker: "Colaborador FREENOW",
-    heroText: "Taxi Ayud también en la app",
+    heroKicker: "Novedad FREENOW",
+    heroText: "Taxi Ayud ya es colaborador en Calatayud",
   },
   en: {
     eyebrow: "FREENOW collaborator",
@@ -1999,8 +1999,8 @@ const appBookingCopy: Record<
     appStore: "Download for iPhone",
     googlePlay: "Download for Android",
     note: "If you prefer an app, download FREENOW and search for a taxi in Calatayud. For exact times, roadside pick-ups or special routes, WhatsApp is best for confirmation.",
-    heroKicker: "FREENOW collaborator",
-    heroText: "Taxi Ayud also in the app",
+    heroKicker: "New on FREENOW",
+    heroText: "Taxi Ayud is now a collaborator in Calatayud",
   },
   fr: {
     eyebrow: "Collaborateur FREENOW",
@@ -2012,8 +2012,8 @@ const appBookingCopy: Record<
     appStore: "Télécharger iPhone",
     googlePlay: "Télécharger Android",
     note: "Si vous préférez l'app, téléchargez FREENOW et cherchez un taxi à Calatayud. Pour horaires fixes ou trajets spéciaux, confirmez par WhatsApp.",
-    heroKicker: "Collaborateur FREENOW",
-    heroText: "Taxi Ayud aussi dans l'app",
+    heroKicker: "Nouveau FREENOW",
+    heroText: "Taxi Ayud est collaborateur à Calatayud",
   },
   ca: {
     eyebrow: "Col·laborador FREENOW",
@@ -2025,8 +2025,8 @@ const appBookingCopy: Record<
     appStore: "Descarregar iPhone",
     googlePlay: "Descarregar Android",
     note: "Si prefereixes app, descarrega FREENOW i busca taxi a Calatayud. Per a hores exactes o rutes especials, confirma per WhatsApp.",
-    heroKicker: "Col·laborador FREENOW",
-    heroText: "Taxi Ayud també a l'app",
+    heroKicker: "Novetat FREENOW",
+    heroText: "Taxi Ayud ja és col·laborador a Calatayud",
   },
   de: {
     eyebrow: "FREENOW Partner",
@@ -2038,8 +2038,8 @@ const appBookingCopy: Record<
     appStore: "Für iPhone laden",
     googlePlay: "Für Android laden",
     note: "Wenn Sie eine App bevorzugen, laden Sie FREENOW und suchen Sie ein Taxi in Calatayud. Für feste Zeiten oder Spezialrouten per WhatsApp bestätigen.",
-    heroKicker: "FREENOW Partner",
-    heroText: "Taxi Ayud auch in der App",
+    heroKicker: "Neu bei FREENOW",
+    heroText: "Taxi Ayud ist jetzt Partner in Calatayud",
   },
   it: {
     eyebrow: "Collaboratore FREENOW",
@@ -2051,8 +2051,8 @@ const appBookingCopy: Record<
     appStore: "Scarica per iPhone",
     googlePlay: "Scarica per Android",
     note: "Se preferisci l'app, scarica FREENOW e cerca taxi a Calatayud. Per orari precisi o tratte speciali, conferma via WhatsApp.",
-    heroKicker: "Collaboratore FREENOW",
-    heroText: "Taxi Ayud anche nell'app",
+    heroKicker: "Novità FREENOW",
+    heroText: "Taxi Ayud è collaboratore a Calatayud",
   },
   pt: {
     eyebrow: "Colaborador FREENOW",
@@ -2064,8 +2064,8 @@ const appBookingCopy: Record<
     appStore: "Descarregar iPhone",
     googlePlay: "Descarregar Android",
     note: "Se prefere app, descarregue FREENOW e procure táxi em Calatayud. Para hora certa ou rotas especiais, confirme por WhatsApp.",
-    heroKicker: "Colaborador FREENOW",
-    heroText: "Taxi Ayud também na app",
+    heroKicker: "Novo FREENOW",
+    heroText: "Taxi Ayud já é colaborador em Calatayud",
   },
   nl: {
     eyebrow: "FREENOW partner",
@@ -2077,8 +2077,8 @@ const appBookingCopy: Record<
     appStore: "Download voor iPhone",
     googlePlay: "Download voor Android",
     note: "Gebruik je liever een app, download FREENOW en zoek taxi in Calatayud. Voor vaste tijden of speciale routes bevestig je via WhatsApp.",
-    heroKicker: "FREENOW partner",
-    heroText: "Taxi Ayud ook in de app",
+    heroKicker: "Nieuw bij FREENOW",
+    heroText: "Taxi Ayud is nu partner in Calatayud",
   },
   ar: {
     eyebrow: "متعاون مع FREENOW",
@@ -2090,8 +2090,8 @@ const appBookingCopy: Record<
     appStore: "تحميل iPhone",
     googlePlay: "تحميل Android",
     note: "إذا كنت تفضل التطبيق، حمّل FREENOW وابحث عن تاكسي في كالاتايود. للحجز بوقت محدد أو الرحلات الخاصة، أكّد عبر واتساب.",
-    heroKicker: "متعاون FREENOW",
-    heroText: "Taxi Ayud أيضاً في التطبيق",
+    heroKicker: "جديد FREENOW",
+    heroText: "Taxi Ayud أصبح متعاوناً في كالاتايود",
   },
 };
 
@@ -7065,6 +7065,7 @@ function App() {
           >
             {t.nav[0]}
           </a>
+          <a href="#freenow">FREENOW</a>
           <a href="#calculadora">{t.nav[1]}</a>
           <a href="#resenas">{t.nav[2]}</a>
           <a href="/servicios/">{t.nav[3]}</a>
@@ -7099,6 +7100,15 @@ function App() {
           <div className="hero-media" aria-hidden="true" />
           <div className="hero-car-layer" aria-hidden="true" />
           <div className="hero-content">
+            <a
+              className="hero-freenow-badge"
+              href="#freenow"
+              onClick={() => trackEvent("internal_route_click", { source: "hero_freenow_badge" })}
+            >
+              <BadgeCheck aria-hidden="true" />
+              <span>{appBooking.heroKicker}</span>
+              <strong>{appBooking.heroText}</strong>
+            </a>
             <p className="eyebrow">
               <BadgeCheck aria-hidden="true" />
               {currentSeoPage?.eyebrow ?? t.heroEyebrow}
@@ -7133,15 +7143,6 @@ function App() {
                 {t.call}
               </a>
             </div>
-            <a
-              className="hero-freenow-badge"
-              href="#freenow"
-              onClick={() => trackEvent("internal_route_click", { source: "hero_freenow_badge" })}
-            >
-              <BadgeCheck aria-hidden="true" />
-              <span>{appBooking.heroKicker}</span>
-              <strong>{appBooking.heroText}</strong>
-            </a>
             <dl className="hero-stats">
               {heroStatsLocalized.map((item) => (
                 <div key={item.label}>

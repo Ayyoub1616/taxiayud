@@ -47,6 +47,8 @@ addCheck("La portada declara x-default en la home", home.includes('hreflang="x-d
 addCheck("La portada enlaza la pagina de avería carretera", home.includes("/taxi-averia-carretera-calatayud/"));
 addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-estacion-calatayud-monasterio-de-piedra/"));
 addCheck("La portada enlaza la pagina FREENOW Calatayud", home.includes("/taxi-freenow-calatayud/"));
+addCheck("La portada destaca FREENOW como novedad", home.includes("Novedad FREENOW"));
+addCheck("La portada indica colaboración FREENOW en Calatayud", home.includes("colaborador FREENOW en Calatayud"));
 addCheck("La portada incluye descarga FREENOW iPhone", home.includes("apps.apple.com/es/app/freenow-by-lyft-taxi-more/id357852748"));
 addCheck("La portada incluye descarga FREENOW Android", home.includes("play.google.com/store/apps/details?id=taxi.android.client"));
 addCheck(

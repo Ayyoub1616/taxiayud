@@ -184,7 +184,7 @@ const businessGraph = {
   ],
   slogan: "Tu taxi de confianza en Calatayud",
   description:
-    "Taxi oficial en Calatayud para traslados a Monasterio de Piedra, Zaragoza, aeropuerto, estación, balnearios y pueblos de la comarca.",
+    "Taxi oficial en Calatayud y colaborador FREENOW para traslados a Monasterio de Piedra, Zaragoza, aeropuerto, estación, balnearios y pueblos de la comarca.",
   telephone: "+34611861041",
   areaServed: [
     "Calatayud",
@@ -551,7 +551,11 @@ function staticFallback(page) {
   const faq = faqItems
     ? `<section class="static-faq" id="faq"><h2>${escapeHtml(copy.faqHeading)}</h2>${faqItems}</section>`
     : "";
-  const freenowDownloads = page.path === "/" || page.path.includes("freenow")
+  const freenowPriority = page.path === "/" || page.path.includes("freenow");
+  const freenowNews = freenowPriority
+    ? `<aside class="static-freenow-news"><span>Novedad FREENOW</span><strong>Taxi Ayud ya es colaborador FREENOW en Calatayud</strong><p>También puedes pedir taxi desde la app FREENOW o confirmar por WhatsApp recogidas en estación, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.</p></aside>`
+    : "";
+  const freenowDownloads = freenowPriority
     ? `<p class="static-store-row"><a href="${freenowAppLinks.ios}">Descargar FREENOW para iPhone</a><a href="${freenowAppLinks.android}">Descargar FREENOW para Android</a></p>`
     : "";
 
@@ -567,7 +571,7 @@ function staticFallback(page) {
   const imageHeight = roadImage ? "415" : "1013";
   const image = `<figure class="static-local-image"><img src="${imageSrc}" alt="${escapeHtml(imageAlt)}" width="${imageWidth}" height="${imageHeight}" loading="eager" decoding="async" fetchpriority="high" /><figcaption>${escapeHtml(imageCaption)}</figcaption></figure>`;
 
-  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${image}<p class="static-cta-row"><a href="tel:611861041">${escapeHtml(copy.call)}</a><a href="https://wa.me/34611861041">${escapeHtml(copy.whatsapp)}</a></p>${freenowDownloads}<article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>${escapeHtml(copy.serviceAreasHeading)}</h2><p>${escapeHtml(copy.serviceAreasText)}</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="${escapeHtml(copy.related)}">${links}</nav></main>`;
+  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${freenowNews}${image}<p class="static-cta-row"><a href="tel:611861041">${escapeHtml(copy.call)}</a><a href="https://wa.me/34611861041">${escapeHtml(copy.whatsapp)}</a></p>${freenowDownloads}<article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>${escapeHtml(copy.serviceAreasHeading)}</h2><p>${escapeHtml(copy.serviceAreasText)}</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="${escapeHtml(copy.related)}">${links}</nav></main>`;
 }
 
 function pageJsonLd(page) {
