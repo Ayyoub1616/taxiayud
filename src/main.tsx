@@ -1974,12 +1974,17 @@ const appBookingCopy: Record<
     note: string;
     heroKicker: string;
     heroText: string;
+    partnerTitle: string;
+    partnerText: string;
+    previewPlace: string;
+    previewRoute: string;
+    previewStatus: string;
   }
 > = {
   es: {
     eyebrow: "Novedad · Colaborador FREENOW",
-    title: "Novedad: Taxi Ayud ya es colaborador de FREENOW",
-    text: "También puedes encontrar Taxi Ayud desde la app FREENOW. Si vienes a Calatayud por turismo, estación, hotel, empresa o balneario, tienes app para pedir taxi y WhatsApp directo para confirmar cualquier detalle.",
+    title: "FREENOW × Taxi Ayud: nueva colaboración en Calatayud",
+    text: "Taxi Ayud ya aparece como colaborador FREENOW en Calatayud. Si vienes por turismo, estación, hotel, empresa, balneario o comarca, tienes app para pedir taxi y WhatsApp directo para confirmar cualquier detalle.",
     points: ["Colaborador FREENOW", "App para viajeros", "Reserva directa por WhatsApp", "Calatayud y comarca"],
     primary: "Reservar directo",
     secondary: "Ver página FREENOW",
@@ -1987,7 +1992,12 @@ const appBookingCopy: Record<
     googlePlay: "Descargar para Android",
     note: "Si prefieres app, descarga FREENOW y busca taxi en Calatayud. Si necesitas hora exacta, carretera o ruta especial, escríbeme por WhatsApp para confirmarlo.",
     heroKicker: "Novedad FREENOW",
-    heroText: "Taxi Ayud ya es colaborador en Calatayud",
+    heroText: "FREENOW × Taxi Ayud en Calatayud",
+    partnerTitle: "Colaboración destacada",
+    partnerText: "FREENOW × Taxi Ayud: colaborador en Calatayud",
+    previewPlace: "Calatayud",
+    previewRoute: "Estación · hoteles · comarca",
+    previewStatus: "Colaborador activo",
   },
   en: {
     eyebrow: "FREENOW collaborator",
@@ -2001,6 +2011,11 @@ const appBookingCopy: Record<
     note: "If you prefer an app, download FREENOW and search for a taxi in Calatayud. For exact times, roadside pick-ups or special routes, WhatsApp is best for confirmation.",
     heroKicker: "New on FREENOW",
     heroText: "Taxi Ayud is now a collaborator in Calatayud",
+    partnerTitle: "Local collaboration",
+    partnerText: "Taxi Ayud FREENOW collaborator in Calatayud",
+    previewPlace: "Calatayud",
+    previewRoute: "Station · hotels · area",
+    previewStatus: "Active collaborator",
   },
   fr: {
     eyebrow: "Collaborateur FREENOW",
@@ -2014,6 +2029,11 @@ const appBookingCopy: Record<
     note: "Si vous préférez l'app, téléchargez FREENOW et cherchez un taxi à Calatayud. Pour horaires fixes ou trajets spéciaux, confirmez par WhatsApp.",
     heroKicker: "Nouveau FREENOW",
     heroText: "Taxi Ayud est collaborateur à Calatayud",
+    partnerTitle: "Collaboration locale",
+    partnerText: "Taxi Ayud collaborateur FREENOW à Calatayud",
+    previewPlace: "Calatayud",
+    previewRoute: "Gare · hôtels · région",
+    previewStatus: "Collaborateur actif",
   },
   ca: {
     eyebrow: "Col·laborador FREENOW",
@@ -2027,6 +2047,11 @@ const appBookingCopy: Record<
     note: "Si prefereixes app, descarrega FREENOW i busca taxi a Calatayud. Per a hores exactes o rutes especials, confirma per WhatsApp.",
     heroKicker: "Novetat FREENOW",
     heroText: "Taxi Ayud ja és col·laborador a Calatayud",
+    partnerTitle: "Col·laboració local",
+    partnerText: "Taxi Ayud col·laborador FREENOW a Calatayud",
+    previewPlace: "Calatayud",
+    previewRoute: "Estació · hotels · comarca",
+    previewStatus: "Col·laborador actiu",
   },
   de: {
     eyebrow: "FREENOW Partner",
@@ -2040,6 +2065,11 @@ const appBookingCopy: Record<
     note: "Wenn Sie eine App bevorzugen, laden Sie FREENOW und suchen Sie ein Taxi in Calatayud. Für feste Zeiten oder Spezialrouten per WhatsApp bestätigen.",
     heroKicker: "Neu bei FREENOW",
     heroText: "Taxi Ayud ist jetzt Partner in Calatayud",
+    partnerTitle: "Lokale Zusammenarbeit",
+    partnerText: "Taxi Ayud FREENOW Partner in Calatayud",
+    previewPlace: "Calatayud",
+    previewRoute: "Bahnhof · Hotels · Region",
+    previewStatus: "Aktiver Partner",
   },
   it: {
     eyebrow: "Collaboratore FREENOW",
@@ -2053,6 +2083,11 @@ const appBookingCopy: Record<
     note: "Se preferisci l'app, scarica FREENOW e cerca taxi a Calatayud. Per orari precisi o tratte speciali, conferma via WhatsApp.",
     heroKicker: "Novità FREENOW",
     heroText: "Taxi Ayud è collaboratore a Calatayud",
+    partnerTitle: "Collaborazione locale",
+    partnerText: "Taxi Ayud collaboratore FREENOW a Calatayud",
+    previewPlace: "Calatayud",
+    previewRoute: "Stazione · hotel · zona",
+    previewStatus: "Collaboratore attivo",
   },
   pt: {
     eyebrow: "Colaborador FREENOW",
@@ -2066,6 +2101,11 @@ const appBookingCopy: Record<
     note: "Se prefere app, descarregue FREENOW e procure táxi em Calatayud. Para hora certa ou rotas especiais, confirme por WhatsApp.",
     heroKicker: "Novo FREENOW",
     heroText: "Taxi Ayud já é colaborador em Calatayud",
+    partnerTitle: "Colaboração local",
+    partnerText: "Taxi Ayud colaborador FREENOW em Calatayud",
+    previewPlace: "Calatayud",
+    previewRoute: "Estação · hotéis · região",
+    previewStatus: "Colaborador ativo",
   },
   nl: {
     eyebrow: "FREENOW partner",
@@ -2079,6 +2119,11 @@ const appBookingCopy: Record<
     note: "Gebruik je liever een app, download FREENOW en zoek taxi in Calatayud. Voor vaste tijden of speciale routes bevestig je via WhatsApp.",
     heroKicker: "Nieuw bij FREENOW",
     heroText: "Taxi Ayud is nu partner in Calatayud",
+    partnerTitle: "Lokale samenwerking",
+    partnerText: "Taxi Ayud FREENOW partner in Calatayud",
+    previewPlace: "Calatayud",
+    previewRoute: "Station · hotels · regio",
+    previewStatus: "Actieve partner",
   },
   ar: {
     eyebrow: "متعاون مع FREENOW",
@@ -2092,6 +2137,11 @@ const appBookingCopy: Record<
     note: "إذا كنت تفضل التطبيق، حمّل FREENOW وابحث عن تاكسي في كالاتايود. للحجز بوقت محدد أو الرحلات الخاصة، أكّد عبر واتساب.",
     heroKicker: "جديد FREENOW",
     heroText: "Taxi Ayud أصبح متعاوناً في كالاتايود",
+    partnerTitle: "تعاون محلي",
+    partnerText: "Taxi Ayud متعاون مع FREENOW في كالاتايود",
+    previewPlace: "كالاتايود",
+    previewRoute: "المحطة · الفنادق · المنطقة",
+    previewStatus: "متعاون نشط",
   },
 };
 
@@ -6036,9 +6086,8 @@ function CookieBanner({
 
 function FreenowWordmark({ compact = false }: { compact?: boolean }) {
   return (
-    <span className={`freenow-wordmark${compact ? " freenow-wordmark-compact" : ""}`} aria-label="FREENOW">
-      <span>FREE</span>
-      <span>NOW</span>
+    <span className={`freenow-wordmark${compact ? " freenow-wordmark-compact" : ""}`}>
+      <img src="/assets/freenow-logo.svg" alt="FREENOW" width="360" height="96" />
     </span>
   );
 }
@@ -7321,36 +7370,36 @@ function App() {
             <small>{appBooking.note}</small>
           </div>
             <div className="app-booking-card">
-              <div className="app-partnership-lockup" aria-label="Taxi Ayud colaborador FREENOW en Calatayud">
+              <div className="app-partnership-lockup" aria-label={appBooking.partnerText}>
+                <div className="partner-brand partner-brand-freenow">
+                  <FreenowWordmark />
+                </div>
+                <span className="partnership-plus" aria-hidden="true">×</span>
                 <div className="partner-brand partner-brand-taxi">
                   <img src="/assets/logo.webp" alt="" width="520" height="520" />
                   <span>
                     Taxi <strong>Ayud</strong>
                   </span>
                 </div>
-                <span className="partnership-plus" aria-hidden="true">×</span>
-                <div className="partner-brand partner-brand-freenow">
-                  <FreenowWordmark />
-                </div>
               </div>
               <div className="app-booking-mark">
                 <BadgeCheck aria-hidden="true" />
-                <strong>Partnership local</strong>
-                <span>Taxi Ayud colaborador FREENOW en Calatayud</span>
+                <strong>{appBooking.partnerTitle}</strong>
+                <span>{appBooking.partnerText}</span>
               </div>
               <div className="freenow-app-preview" aria-hidden="true">
                 <div className="freenow-phone-top">
                   <FreenowWordmark compact />
-                  <span>Calatayud</span>
+                  <span>{appBooking.previewPlace}</span>
                 </div>
                 <div className="freenow-route-row">
                   <MapPin aria-hidden="true" />
-                  <span>Estación · hoteles · comarca</span>
+                  <span>{appBooking.previewRoute}</span>
                 </div>
                 <div className="freenow-car-row">
                   <CarFront aria-hidden="true" />
                   <strong>Taxi Ayud</strong>
-                  <span>Colaborador activo</span>
+                  <span>{appBooking.previewStatus}</span>
                 </div>
               </div>
             <div className="app-booking-points">

@@ -181,6 +181,11 @@ const businessGraph = {
     "Taxi Ayud colaborador FREENOW",
     "Taxi FREENOW Calatayud",
     "Taxi app Calatayud",
+    "Taxi por app Calatayud",
+    "Taxi Ayud en FREENOW",
+    "FREENOW x Taxi Ayud",
+    "FREENOW Taxi Ayud Calatayud",
+    "Pedir taxi FREENOW Calatayud",
   ],
   slogan: "Tu taxi de confianza en Calatayud",
   description:
@@ -238,9 +243,14 @@ const businessGraph = {
     "taxi cerca de mi en Calatayud",
     "taxi FREENOW Calatayud",
     "Taxi Ayud colaborador FREENOW",
+    "Taxi Ayud en FREENOW",
+    "FREENOW x Taxi Ayud",
+    "FREENOW Taxi Ayud Calatayud",
     "colaborador FREENOW Calatayud",
+    "pedir taxi FREENOW Calatayud",
     "pedir taxi por app en Calatayud",
     "taxi app Calatayud",
+    "taxi por app Calatayud",
     "taxi por avería en autovía cerca de Calatayud",
     "taxi por avería en carretera cerca de Calatayud",
     "taxi A-2 Calatayud",
@@ -338,10 +348,10 @@ const businessGraph = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Taxi Ayud colaborador FREENOW Calatayud",
-          serviceType: "Colaborador FREENOW para pedir taxi por app",
+          name: "FREENOW x Taxi Ayud Calatayud",
+          serviceType: "Taxi por app en Calatayud y colaborador FREENOW",
           areaServed: "Calatayud y comarca de Calatayud",
-          description: "Taxi Ayud es colaborador FREENOW en Calatayud y también ofrece reserva directa por teléfono y WhatsApp.",
+          description: "FREENOW x Taxi Ayud en Calatayud: taxi oficial colaborador FREENOW y reserva directa por teléfono y WhatsApp para estación, hoteles, comarca y rutas turísticas.",
         },
       },
       {
@@ -553,7 +563,7 @@ function staticFallback(page) {
     : "";
   const freenowPriority = page.path === "/" || page.path.includes("freenow");
   const freenowNews = freenowPriority
-    ? `<aside class="static-freenow-news"><span>Novedad FREENOW</span><strong>Taxi Ayud ya es colaborador FREENOW en Calatayud</strong><p>También puedes pedir taxi desde la app FREENOW o confirmar por WhatsApp recogidas en estación, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.</p></aside>`
+    ? `<aside class="static-freenow-news"><span>Novedad FREENOW</span><strong>FREENOW x Taxi Ayud en Calatayud</strong><p>Taxi Ayud ya es colaborador FREENOW. También puedes pedir taxi desde la app FREENOW o confirmar por WhatsApp recogidas en estación, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.</p></aside>`
     : "";
   const freenowDownloads = freenowPriority
     ? `<p class="static-store-row"><a href="${freenowAppLinks.ios}">Descargar FREENOW para iPhone</a><a href="${freenowAppLinks.android}">Descargar FREENOW para Android</a></p>`

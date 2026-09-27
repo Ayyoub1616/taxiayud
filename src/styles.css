@@ -37,6 +37,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 420px),
     var(--ink);
@@ -666,75 +667,50 @@ h1 {
 }
 
 .freenow-wordmark {
-  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  width: fit-content;
-  min-height: 38px;
-  padding: 7px 10px 7px 12px;
-  border-radius: 8px;
+  justify-content: center;
+  width: 176px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 10px;
   background: #fff;
-  color: #111820;
-  font-weight: 950;
-  line-height: 1;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
-.freenow-wordmark::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  margin-right: 5px;
-  border-radius: 50%;
-  background: #e1282f;
-  box-shadow:
-    12px 0 0 #e1282f,
-    24px 0 0 #e1282f;
-}
-
-.freenow-wordmark span {
-  color: #111820;
-  font-size: 0.98rem;
-  letter-spacing: 0;
+.freenow-wordmark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .freenow-wordmark-compact {
-  min-height: 32px;
-  padding: 6px 8px 6px 10px;
-}
-
-.freenow-wordmark-compact::before {
-  width: 6px;
-  height: 6px;
-  margin-right: 4px;
-  box-shadow:
-    9px 0 0 #e1282f,
-    18px 0 0 #e1282f;
-}
-
-.freenow-wordmark-compact span {
-  font-size: 0.76rem;
+  width: 132px;
+  height: 36px;
+  border-radius: 8px;
 }
 
 .hero-freenow-badge {
   display: inline-grid;
   grid-template-columns: auto minmax(0, 1fr);
-  column-gap: 10px;
-  row-gap: 2px;
+  column-gap: 12px;
+  row-gap: 4px;
   align-items: center;
   width: fit-content;
-  max-width: min(100%, 540px);
+  max-width: min(100%, 660px);
   margin: 0 0 18px;
-  padding: 12px 14px;
-  border: 1px solid rgba(241, 195, 77, 0.36);
+  padding: 14px 16px;
+  border: 1px solid rgba(225, 40, 47, 0.38);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(241, 195, 77, 0.2), rgba(255, 255, 255, 0.07)),
-    rgba(8, 12, 18, 0.72);
+    radial-gradient(circle at 18% 24%, rgba(225, 40, 47, 0.26), transparent 42%),
+    linear-gradient(135deg, rgba(241, 195, 77, 0.2), rgba(255, 255, 255, 0.075)),
+    rgba(8, 12, 18, 0.78);
   color: #fff;
   box-shadow:
-    0 20px 52px rgba(0, 0, 0, 0.3),
+    0 22px 58px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(241, 195, 77, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(16px);
   transition:
@@ -743,7 +719,7 @@ h1 {
 }
 
 .hero-freenow-badge:hover {
-  border-color: rgba(241, 195, 77, 0.52);
+  border-color: rgba(241, 195, 77, 0.62);
   transform: translateY(-2px);
 }
 
@@ -761,7 +737,7 @@ h1 {
   align-items: center;
   padding: 0 8px;
   border-radius: 999px;
-  background: var(--gold);
+  background: linear-gradient(135deg, var(--gold), #ffe29a);
   color: #151007;
   font-size: 0.74rem;
   font-weight: 950;
@@ -770,7 +746,7 @@ h1 {
 
 .hero-freenow-badge strong {
   color: #fff;
-  font-size: 0.98rem;
+  font-size: clamp(1rem, 2vw, 1.16rem);
   line-height: 1.1;
 }
 
@@ -1371,15 +1347,16 @@ h1 {
 .app-booking-section {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.78fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1fr);
   gap: 26px;
   align-items: center;
-  padding: 42px 40px;
+  padding: 50px 40px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background:
-    radial-gradient(circle at 14% 18%, rgba(20, 142, 255, 0.16), transparent 34%),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 42%),
+    radial-gradient(circle at 74% 18%, rgba(225, 40, 47, 0.26), transparent 30%),
+    radial-gradient(circle at 14% 18%, rgba(241, 195, 77, 0.16), transparent 34%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.07), transparent 42%),
     #070b12;
 }
 
@@ -1388,7 +1365,7 @@ h1 {
   position: absolute;
   inset: auto -8% -48% 34%;
   height: 180px;
-  background: linear-gradient(90deg, transparent, rgba(241, 195, 77, 0.28), transparent);
+  background: linear-gradient(90deg, transparent, rgba(225, 40, 47, 0.32), rgba(241, 195, 77, 0.28), transparent);
   transform: rotate(-5deg);
   opacity: 0.75;
   pointer-events: none;
@@ -1432,21 +1409,28 @@ h1 {
 
 .app-booking-card {
   display: grid;
-  gap: 16px;
-  padding: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  gap: 18px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(241, 195, 77, 0.22);
   border-radius: 8px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035)),
-    rgba(7, 12, 20, 0.72);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.04)),
+    rgba(7, 12, 20, 0.78);
+  box-shadow:
+    0 28px 82px rgba(0, 0, 0, 0.36),
+    0 0 0 1px rgba(225, 40, 47, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(18px);
 }
 
 .app-partnership-lockup {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.08fr) auto minmax(0, 0.92fr);
   align-items: center;
+  min-width: 0;
   gap: 12px;
 }
 
@@ -1455,9 +1439,9 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 76px;
+  min-height: 94px;
   min-width: 0;
-  padding: 14px;
+  padding: 16px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
 }
@@ -1468,8 +1452,8 @@ h1 {
 }
 
 .partner-brand-taxi img {
-  width: 38px;
-  height: 38px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 2px solid var(--gold);
 }
@@ -1479,6 +1463,7 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0;
   line-height: 1;
+  font-size: 1.05rem;
 }
 
 .partner-brand-taxi strong {
@@ -1488,10 +1473,14 @@ h1 {
 .partner-brand-freenow {
   background:
     linear-gradient(135deg, #fff, #f5f7fb);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 16px 38px rgba(225, 40, 47, 0.14),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .partner-brand-freenow .freenow-wordmark {
+  width: min(100%, 220px);
+  height: 58px;
   box-shadow: none;
 }
 
@@ -1499,15 +1488,17 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
   border: 1px solid rgba(241, 195, 77, 0.36);
   border-radius: 50%;
-  background: rgba(241, 195, 77, 0.14);
+  background:
+    radial-gradient(circle, rgba(241, 195, 77, 0.28), rgba(225, 40, 47, 0.16));
   color: #fff3c5;
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   font-weight: 900;
   line-height: 1;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 }
 
 .app-booking-mark {
@@ -1617,6 +1608,7 @@ h1 {
 }
 
 .freenow-car-row strong {
+  min-width: 0;
   color: #fff;
   font-size: 0.94rem;
   line-height: 1.1;
@@ -1652,6 +1644,7 @@ h1 {
 .app-download-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  min-width: 0;
   gap: 10px;
 }
 
@@ -1662,6 +1655,7 @@ h1 {
   row-gap: 2px;
   align-items: center;
   min-height: 66px;
+  min-width: 0;
   padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
@@ -4190,6 +4184,14 @@ tr:hover td {
 
   .partner-brand {
     min-height: 62px;
+  }
+
+  .freenow-car-row {
+    grid-template-columns: 22px minmax(0, 1fr);
+  }
+
+  .freenow-car-row span {
+    grid-column: 2;
   }
 
   .app-booking-points {

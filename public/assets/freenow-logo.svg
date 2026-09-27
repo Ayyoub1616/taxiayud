@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="96" viewBox="0 0 360 96" role="img" aria-labelledby="title">
+  <title id="title">FREENOW</title>
+  <rect width="360" height="96" rx="20" fill="#fff"/>
+  <circle cx="35" cy="48" r="7" fill="#e1282f"/>
+  <circle cx="54" cy="48" r="7" fill="#e1282f"/>
+  <circle cx="73" cy="48" r="7" fill="#e1282f"/>
+  <text x="96" y="61" fill="#111820" font-family="Inter, Arial, Helvetica, sans-serif" font-size="40" font-weight="900" letter-spacing="0">FREENOW</text>
+</svg>
