@@ -665,9 +665,61 @@ h1 {
   gap: 12px;
 }
 
+.freenow-wordmark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  width: fit-content;
+  min-height: 38px;
+  padding: 7px 10px 7px 12px;
+  border-radius: 8px;
+  background: #fff;
+  color: #111820;
+  font-weight: 950;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.freenow-wordmark::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #e1282f;
+  box-shadow:
+    12px 0 0 #e1282f,
+    24px 0 0 #e1282f;
+}
+
+.freenow-wordmark span {
+  color: #111820;
+  font-size: 0.98rem;
+  letter-spacing: 0;
+}
+
+.freenow-wordmark-compact {
+  min-height: 32px;
+  padding: 6px 8px 6px 10px;
+}
+
+.freenow-wordmark-compact::before {
+  width: 6px;
+  height: 6px;
+  margin-right: 4px;
+  box-shadow:
+    9px 0 0 #e1282f,
+    18px 0 0 #e1282f;
+}
+
+.freenow-wordmark-compact span {
+  font-size: 0.76rem;
+}
+
 .hero-freenow-badge {
   display: inline-grid;
-  grid-template-columns: 22px auto;
+  grid-template-columns: auto minmax(0, 1fr);
   column-gap: 10px;
   row-gap: 2px;
   align-items: center;
@@ -695,14 +747,14 @@ h1 {
   transform: translateY(-2px);
 }
 
-.hero-freenow-badge svg {
+.hero-freenow-badge .freenow-wordmark {
   grid-row: span 2;
-  width: 22px;
-  height: 22px;
-  color: var(--gold);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
-.hero-freenow-badge span {
+.hero-freenow-badge .hero-freenow-kicker {
   width: fit-content;
   min-height: 24px;
   display: inline-flex;
@@ -1391,28 +1443,183 @@ h1 {
   backdrop-filter: blur(18px);
 }
 
-.app-booking-mark {
+.app-partnership-lockup {
   display: grid;
-  gap: 4px;
-  width: max-content;
-  padding: 10px 13px;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.partner-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 76px;
+  min-width: 0;
+  padding: 14px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
+}
+
+.partner-brand-taxi {
   background: #fff;
   color: #131820;
+}
+
+.partner-brand-taxi img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+}
+
+.partner-brand-taxi span {
   font-weight: 950;
+  text-transform: uppercase;
   letter-spacing: 0;
   line-height: 1;
 }
 
+.partner-brand-taxi strong {
+  color: var(--gold-dark);
+}
+
+.partner-brand-freenow {
+  background:
+    linear-gradient(135deg, #fff, #f5f7fb);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.partner-brand-freenow .freenow-wordmark {
+  box-shadow: none;
+}
+
+.partnership-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(241, 195, 77, 0.36);
+  border-radius: 50%;
+  background: rgba(241, 195, 77, 0.14);
+  color: #fff3c5;
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.app-booking-mark {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  column-gap: 10px;
+  row-gap: 3px;
+  padding: 12px;
+  border: 1px solid rgba(241, 195, 77, 0.24);
+  border-radius: 8px;
+  background: rgba(241, 195, 77, 0.1);
+  color: #fff;
+}
+
+.app-booking-mark svg {
+  grid-row: span 2;
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+
 .app-booking-mark strong {
-  font-size: 1.12rem;
+  font-size: 0.92rem;
+  line-height: 1.1;
 }
 
 .app-booking-mark span {
+  color: #dbe5f1;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.freenow-app-preview {
+  position: relative;
+  display: grid;
+  gap: 11px;
+  padding: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.035)),
+    #111925;
+}
+
+.freenow-app-preview::before {
+  content: "";
+  position: absolute;
+  inset: -40% auto auto 54%;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: rgba(225, 40, 47, 0.18);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.freenow-phone-top,
+.freenow-route-row,
+.freenow-car-row {
+  position: relative;
+  z-index: 1;
+}
+
+.freenow-phone-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.freenow-phone-top > span:last-child {
+  color: #dce6f2;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.freenow-route-row,
+.freenow-car-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.065);
+}
+
+.freenow-route-row svg,
+.freenow-car-row svg {
+  width: 19px;
+  height: 19px;
   color: #e1282f;
-  font-size: 0.74rem;
-  text-transform: uppercase;
+}
+
+.freenow-route-row span,
+.freenow-car-row span {
+  color: #b9c6d8;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.freenow-car-row {
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+}
+
+.freenow-car-row strong {
+  color: #fff;
+  font-size: 0.94rem;
+  line-height: 1.1;
 }
 
 .app-booking-points {
@@ -3970,6 +4177,19 @@ tr:hover td {
 
   .app-booking-card {
     padding: 18px;
+  }
+
+  .app-partnership-lockup {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .partnership-plus {
+    justify-self: center;
+  }
+
+  .partner-brand {
+    min-height: 62px;
   }
 
   .app-booking-points {

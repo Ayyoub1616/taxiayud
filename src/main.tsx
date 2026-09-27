@@ -6034,6 +6034,15 @@ function CookieBanner({
   );
 }
 
+function FreenowWordmark({ compact = false }: { compact?: boolean }) {
+  return (
+    <span className={`freenow-wordmark${compact ? " freenow-wordmark-compact" : ""}`} aria-label="FREENOW">
+      <span>FREE</span>
+      <span>NOW</span>
+    </span>
+  );
+}
+
 function PaymentLogos({ language }: { language: LangCode }) {
   const [cash, card, bizum = "Bizum", applePay = "Apple Pay", googlePay = "Google Pay"] =
     COPY[language].paymentText.split(" · ");
@@ -7105,8 +7114,8 @@ function App() {
               href="#freenow"
               onClick={() => trackEvent("internal_route_click", { source: "hero_freenow_badge" })}
             >
-              <BadgeCheck aria-hidden="true" />
-              <span>{appBooking.heroKicker}</span>
+              <FreenowWordmark compact />
+              <span className="hero-freenow-kicker">{appBooking.heroKicker}</span>
               <strong>{appBooking.heroText}</strong>
             </a>
             <p className="eyebrow">
@@ -7312,9 +7321,37 @@ function App() {
             <small>{appBooking.note}</small>
           </div>
             <div className="app-booking-card">
-              <div className="app-booking-mark" aria-hidden="true">
-                <strong>FREENOW</strong>
-                <span>Colaborador</span>
+              <div className="app-partnership-lockup" aria-label="Taxi Ayud colaborador FREENOW en Calatayud">
+                <div className="partner-brand partner-brand-taxi">
+                  <img src="/assets/logo.webp" alt="" width="520" height="520" />
+                  <span>
+                    Taxi <strong>Ayud</strong>
+                  </span>
+                </div>
+                <span className="partnership-plus" aria-hidden="true">×</span>
+                <div className="partner-brand partner-brand-freenow">
+                  <FreenowWordmark />
+                </div>
+              </div>
+              <div className="app-booking-mark">
+                <BadgeCheck aria-hidden="true" />
+                <strong>Partnership local</strong>
+                <span>Taxi Ayud colaborador FREENOW en Calatayud</span>
+              </div>
+              <div className="freenow-app-preview" aria-hidden="true">
+                <div className="freenow-phone-top">
+                  <FreenowWordmark compact />
+                  <span>Calatayud</span>
+                </div>
+                <div className="freenow-route-row">
+                  <MapPin aria-hidden="true" />
+                  <span>Estación · hoteles · comarca</span>
+                </div>
+                <div className="freenow-car-row">
+                  <CarFront aria-hidden="true" />
+                  <strong>Taxi Ayud</strong>
+                  <span>Colaborador activo</span>
+                </div>
               </div>
             <div className="app-booking-points">
               {appBooking.points.map((point) => (
