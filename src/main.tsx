@@ -421,8 +421,8 @@ const BASE_COPY = {
         href: "/taxi-hoteles-calatayud/",
       },
       {
-        title: "También en FREENOW",
-        text: "Canal digital adicional para viajeros que ya usan la app y buscan taxi en Calatayud.",
+        title: "Colaborador FREENOW",
+        text: "Taxi Ayud también se puede encontrar desde la app FREENOW para viajeros en Calatayud.",
         href: "/taxi-freenow-calatayud/",
       },
     ],
@@ -498,9 +498,9 @@ const BASE_COPY = {
         detail: "Reserva con hora cerrada para llegar tranquilo, incluso en trayectos de madrugada o festivos.",
       },
       {
-        title: "Disponible en FREENOW",
-        text: "Canal adicional para pedir taxi desde la app, además de llamada directa y WhatsApp.",
-        detail: "Una opción cómoda para viajeros que ya utilizan FREENOW. La disponibilidad por app depende de la plataforma y del momento.",
+        title: "Colaborador FREENOW",
+        text: "Taxi Ayud incorporado a FREENOW para pedir taxi desde la app, además de llamada directa y WhatsApp.",
+        detail: "Una opción cómoda para viajeros que ya utilizan FREENOW y quieren moverse por Calatayud, estación, hoteles, balnearios o comarca.",
       },
       {
         title: "Rutas turísticas",
@@ -1962,88 +1962,136 @@ const touristSearchCopy: Record<LangCode, { eyebrow: string; title: string; text
 
 const appBookingCopy: Record<
   LangCode,
-  { eyebrow: string; title: string; text: string; points: string[]; primary: string; secondary: string; note: string }
+  {
+    eyebrow: string;
+    title: string;
+    text: string;
+    points: string[];
+    primary: string;
+    secondary: string;
+    appStore: string;
+    googlePlay: string;
+    note: string;
+    heroKicker: string;
+    heroText: string;
+  }
 > = {
   es: {
-    eyebrow: "Canal digital",
-    title: "Taxi Ayud también está en FREENOW",
-    text: "Si ya usas FREENOW, puedes buscar taxi desde la app como canal adicional. Para reservas con hora, carretera, estación, balnearios o rutas especiales, WhatsApp sigue siendo la forma más rápida de confirmar detalles.",
-    points: ["App para viajeros", "Reserva directa por WhatsApp", "Calatayud y comarca", "Disponibilidad a confirmar"],
+    eyebrow: "Colaborador FREENOW",
+    title: "Taxi Ayud ya es colaborador de FREENOW",
+    text: "También puedes encontrar Taxi Ayud desde la app FREENOW. Si vienes a Calatayud por turismo, estación, hotel, empresa o balneario, tienes app para pedir taxi y WhatsApp directo para confirmar cualquier detalle.",
+    points: ["Colaborador FREENOW", "App para viajeros", "Reserva directa por WhatsApp", "Calatayud y comarca"],
     primary: "Reservar directo",
     secondary: "Ver página FREENOW",
-    note: "FREENOW es un canal externo: la disponibilidad y condiciones dentro de la app dependen de la propia plataforma.",
+    appStore: "Descargar para iPhone",
+    googlePlay: "Descargar para Android",
+    note: "Si prefieres app, descarga FREENOW y busca taxi en Calatayud. Si necesitas hora exacta, carretera o ruta especial, escríbeme por WhatsApp para confirmarlo.",
+    heroKicker: "Colaborador FREENOW",
+    heroText: "Taxi Ayud también en la app",
   },
   en: {
-    eyebrow: "Digital channel",
-    title: "Taxi Ayud is also on FREENOW",
-    text: "If you already use FREENOW, you can look for a taxi in the app as an extra booking channel. For scheduled rides, roadside pick-ups, the station, spas or special routes, WhatsApp is still the fastest way to confirm details.",
-    points: ["Traveller app", "Direct WhatsApp booking", "Calatayud area", "Availability to confirm"],
+    eyebrow: "FREENOW collaborator",
+    title: "Taxi Ayud is now a FREENOW collaborator",
+    text: "You can also look for Taxi Ayud through the FREENOW app. If you are visiting Calatayud for tourism, station pick-ups, hotels, business or spas, you have the app option plus direct WhatsApp confirmation.",
+    points: ["FREENOW collaborator", "Traveller app", "Direct WhatsApp booking", "Calatayud area"],
     primary: "Book direct",
     secondary: "FREENOW page",
-    note: "FREENOW is an external channel: availability and in-app conditions depend on the platform.",
+    appStore: "Download for iPhone",
+    googlePlay: "Download for Android",
+    note: "If you prefer an app, download FREENOW and search for a taxi in Calatayud. For exact times, roadside pick-ups or special routes, WhatsApp is best for confirmation.",
+    heroKicker: "FREENOW collaborator",
+    heroText: "Taxi Ayud also in the app",
   },
   fr: {
-    eyebrow: "Canal numérique",
-    title: "Taxi Ayud est aussi sur FREENOW",
-    text: "Si vous utilisez déjà FREENOW, vous pouvez chercher un taxi depuis l'application. Pour les réservations horaires, route, gare, thermes ou trajets spéciaux, WhatsApp reste le moyen le plus rapide pour confirmer.",
-    points: ["App voyageurs", "Réservation WhatsApp", "Zone de Calatayud", "Disponibilité à confirmer"],
+    eyebrow: "Collaborateur FREENOW",
+    title: "Taxi Ayud est désormais collaborateur FREENOW",
+    text: "Vous pouvez aussi chercher Taxi Ayud depuis l'application FREENOW. Pour tourisme, gare, hôtels, affaires ou thermes à Calatayud, vous avez l'app et WhatsApp pour confirmer.",
+    points: ["Collaborateur FREENOW", "App voyageurs", "Réservation WhatsApp", "Zone de Calatayud"],
     primary: "Réserver direct",
     secondary: "Page FREENOW",
-    note: "FREENOW est un canal externe : disponibilité et conditions dans l'app dépendent de la plateforme.",
+    appStore: "Télécharger iPhone",
+    googlePlay: "Télécharger Android",
+    note: "Si vous préférez l'app, téléchargez FREENOW et cherchez un taxi à Calatayud. Pour horaires fixes ou trajets spéciaux, confirmez par WhatsApp.",
+    heroKicker: "Collaborateur FREENOW",
+    heroText: "Taxi Ayud aussi dans l'app",
   },
   ca: {
-    eyebrow: "Canal digital",
-    title: "Taxi Ayud també és a FREENOW",
-    text: "Si ja fas servir FREENOW, pots buscar taxi des de l'app com a canal addicional. Per a reserves amb hora, carretera, estació, balnearis o rutes especials, WhatsApp continua sent la via més ràpida.",
-    points: ["App per a viatgers", "Reserva per WhatsApp", "Calatayud i comarca", "Disponibilitat a confirmar"],
+    eyebrow: "Col·laborador FREENOW",
+    title: "Taxi Ayud ja és col·laborador de FREENOW",
+    text: "També pots trobar Taxi Ayud des de l'app FREENOW. Si vens a Calatayud per turisme, estació, hotel, empresa o balneari, tens app i WhatsApp directe.",
+    points: ["Col·laborador FREENOW", "App per a viatgers", "Reserva per WhatsApp", "Calatayud i comarca"],
     primary: "Reservar directe",
     secondary: "Pàgina FREENOW",
-    note: "FREENOW és un canal extern: disponibilitat i condicions dins de l'app depenen de la plataforma.",
+    appStore: "Descarregar iPhone",
+    googlePlay: "Descarregar Android",
+    note: "Si prefereixes app, descarrega FREENOW i busca taxi a Calatayud. Per a hores exactes o rutes especials, confirma per WhatsApp.",
+    heroKicker: "Col·laborador FREENOW",
+    heroText: "Taxi Ayud també a l'app",
   },
   de: {
-    eyebrow: "Digitaler Kanal",
-    title: "Taxi Ayud ist auch bei FREENOW",
-    text: "Wenn Sie FREENOW nutzen, können Sie dort zusätzlich ein Taxi suchen. Für feste Zeiten, Straßenabholung, Bahnhof, Thermalbäder oder besondere Strecken ist WhatsApp weiter der schnellste Weg.",
-    points: ["App für Reisende", "Direkt per WhatsApp", "Calatayud Region", "Verfügbarkeit bestätigen"],
+    eyebrow: "FREENOW Partner",
+    title: "Taxi Ayud ist jetzt FREENOW Partner",
+    text: "Sie können Taxi Ayud auch über die FREENOW App suchen. Für Calatayud, Bahnhof, Hotels, Geschäftsreisen, Thermalbäder und Ausflüge gibt es App und WhatsApp direkt.",
+    points: ["FREENOW Partner", "App für Reisende", "Direkt per WhatsApp", "Calatayud Region"],
     primary: "Direkt buchen",
     secondary: "FREENOW Seite",
-    note: "FREENOW ist ein externer Kanal: Verfügbarkeit und App-Bedingungen hängen von der Plattform ab.",
+    appStore: "Für iPhone laden",
+    googlePlay: "Für Android laden",
+    note: "Wenn Sie eine App bevorzugen, laden Sie FREENOW und suchen Sie ein Taxi in Calatayud. Für feste Zeiten oder Spezialrouten per WhatsApp bestätigen.",
+    heroKicker: "FREENOW Partner",
+    heroText: "Taxi Ayud auch in der App",
   },
   it: {
-    eyebrow: "Canale digitale",
-    title: "Taxi Ayud è anche su FREENOW",
-    text: "Se usi già FREENOW, puoi cercare un taxi dall'app come canale aggiuntivo. Per prenotazioni con orario, strada, stazione, terme o percorsi speciali, WhatsApp resta il modo più rapido.",
-    points: ["App per viaggiatori", "Prenotazione WhatsApp", "Zona di Calatayud", "Disponibilità da confermare"],
+    eyebrow: "Collaboratore FREENOW",
+    title: "Taxi Ayud è ora collaboratore FREENOW",
+    text: "Puoi trovare Taxi Ayud anche dall'app FREENOW. Per turismo, stazione, hotel, aziende o terme a Calatayud, hai app e WhatsApp diretto.",
+    points: ["Collaboratore FREENOW", "App per viaggiatori", "Prenotazione WhatsApp", "Zona di Calatayud"],
     primary: "Prenota diretto",
     secondary: "Pagina FREENOW",
-    note: "FREENOW è un canale esterno: disponibilità e condizioni nell'app dipendono dalla piattaforma.",
+    appStore: "Scarica per iPhone",
+    googlePlay: "Scarica per Android",
+    note: "Se preferisci l'app, scarica FREENOW e cerca taxi a Calatayud. Per orari precisi o tratte speciali, conferma via WhatsApp.",
+    heroKicker: "Collaboratore FREENOW",
+    heroText: "Taxi Ayud anche nell'app",
   },
   pt: {
-    eyebrow: "Canal digital",
-    title: "Taxi Ayud também está na FREENOW",
-    text: "Se já usa a FREENOW, pode procurar táxi na app como canal adicional. Para reservas com hora, estrada, estação, termas ou rotas especiais, o WhatsApp continua a ser o caminho mais rápido.",
-    points: ["App para viajantes", "Reserva por WhatsApp", "Calatayud e região", "Disponibilidade a confirmar"],
+    eyebrow: "Colaborador FREENOW",
+    title: "Taxi Ayud já é colaborador FREENOW",
+    text: "Também pode encontrar Taxi Ayud na app FREENOW. Para turismo, estação, hotéis, empresas ou termas em Calatayud, tem app e WhatsApp direto.",
+    points: ["Colaborador FREENOW", "App para viajantes", "Reserva por WhatsApp", "Calatayud e região"],
     primary: "Reservar direto",
     secondary: "Página FREENOW",
-    note: "A FREENOW é um canal externo: disponibilidade e condições na app dependem da plataforma.",
+    appStore: "Descarregar iPhone",
+    googlePlay: "Descarregar Android",
+    note: "Se prefere app, descarregue FREENOW e procure táxi em Calatayud. Para hora certa ou rotas especiais, confirme por WhatsApp.",
+    heroKicker: "Colaborador FREENOW",
+    heroText: "Taxi Ayud também na app",
   },
   nl: {
-    eyebrow: "Digitaal kanaal",
-    title: "Taxi Ayud staat ook op FREENOW",
-    text: "Gebruik je FREENOW al, dan kun je ook via de app naar een taxi zoeken. Voor vaste tijden, pech onderweg, station, kuuroorden of speciale routes blijft WhatsApp het snelst.",
-    points: ["App voor reizigers", "Direct via WhatsApp", "Regio Calatayud", "Beschikbaarheid bevestigen"],
+    eyebrow: "FREENOW partner",
+    title: "Taxi Ayud is nu FREENOW partner",
+    text: "Je kunt Taxi Ayud ook via de FREENOW app zoeken. Voor Calatayud, station, hotels, zakenritten, kuuroorden en uitstappen heb je app en direct WhatsApp-contact.",
+    points: ["FREENOW partner", "App voor reizigers", "Direct via WhatsApp", "Regio Calatayud"],
     primary: "Direct boeken",
     secondary: "FREENOW pagina",
-    note: "FREENOW is een extern kanaal: beschikbaarheid en app-voorwaarden hangen af van het platform.",
+    appStore: "Download voor iPhone",
+    googlePlay: "Download voor Android",
+    note: "Gebruik je liever een app, download FREENOW en zoek taxi in Calatayud. Voor vaste tijden of speciale routes bevestig je via WhatsApp.",
+    heroKicker: "FREENOW partner",
+    heroText: "Taxi Ayud ook in de app",
   },
   ar: {
-    eyebrow: "قناة رقمية",
-    title: "Taxi Ayud متاح أيضاً على FREENOW",
-    text: "إذا كنت تستخدم FREENOW يمكنك البحث عن تاكسي من التطبيق كخيار إضافي. للحجز بوقت محدد أو الطريق أو المحطة أو المنتجعات أو الرحلات الخاصة، واتساب هو الأسرع للتأكيد.",
-    points: ["تطبيق للمسافرين", "حجز مباشر بواتساب", "كالاتايود والمنطقة", "التوفر يحتاج تأكيد"],
+    eyebrow: "متعاون مع FREENOW",
+    title: "Taxi Ayud أصبح متعاوناً مع FREENOW",
+    text: "يمكنك أيضاً العثور على Taxi Ayud عبر تطبيق FREENOW. في كالاتايود لديك خيار التطبيق وواتساب مباشر لتأكيد التفاصيل.",
+    points: ["متعاون FREENOW", "تطبيق للمسافرين", "حجز مباشر بواتساب", "كالاتايود والمنطقة"],
     primary: "حجز مباشر",
     secondary: "صفحة FREENOW",
-    note: "FREENOW قناة خارجية: التوفر والشروط داخل التطبيق تعتمد على المنصة.",
+    appStore: "تحميل iPhone",
+    googlePlay: "تحميل Android",
+    note: "إذا كنت تفضل التطبيق، حمّل FREENOW وابحث عن تاكسي في كالاتايود. للحجز بوقت محدد أو الرحلات الخاصة، أكّد عبر واتساب.",
+    heroKicker: "متعاون FREENOW",
+    heroText: "Taxi Ayud أيضاً في التطبيق",
   },
 };
 
@@ -3233,6 +3281,10 @@ const GLOBAL_COPY: Record<LangCode, GlobalCopy> = {
 
 const SEO_PAGES = seoPagesData as SeoPage[];
 const HOME_SEO_PAGE = SEO_PAGES.find((page) => page.path === "/") ?? SEO_PAGES[0];
+const FREENOW_APP_LINKS = {
+  ios: "https://apps.apple.com/es/app/freenow-by-lyft-taxi-more/id357852748",
+  android: "https://play.google.com/store/apps/details?id=taxi.android.client&hl=es_ES",
+} as const;
 const DEFAULT_SEO_LINKS = [
   "/",
   "/taxi-cerca-de-mi-calatayud/",
@@ -7081,6 +7133,15 @@ function App() {
                 {t.call}
               </a>
             </div>
+            <a
+              className="hero-freenow-badge"
+              href="#freenow"
+              onClick={() => trackEvent("internal_route_click", { source: "hero_freenow_badge" })}
+            >
+              <BadgeCheck aria-hidden="true" />
+              <span>{appBooking.heroKicker}</span>
+              <strong>{appBooking.heroText}</strong>
+            </a>
             <dl className="hero-stats">
               {heroStatsLocalized.map((item) => (
                 <div key={item.label}>
@@ -7249,10 +7310,11 @@ function App() {
             <p>{appBooking.text}</p>
             <small>{appBooking.note}</small>
           </div>
-          <div className="app-booking-card">
-            <div className="app-booking-mark" aria-hidden="true">
-              FREE<span>NOW</span>
-            </div>
+            <div className="app-booking-card">
+              <div className="app-booking-mark" aria-hidden="true">
+                <strong>FREENOW</strong>
+                <span>Colaborador</span>
+              </div>
             <div className="app-booking-points">
               {appBooking.points.map((point) => (
                 <span key={point}>
@@ -7260,6 +7322,30 @@ function App() {
                   {point}
                 </span>
               ))}
+            </div>
+            <div className="app-download-actions" aria-label="Descargar FREENOW">
+              <a
+                className="store-button"
+                href={FREENOW_APP_LINKS.ios}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("external_app_download", { platform: "ios", source: "freenow_home_block" })}
+              >
+                <span className="store-os">iOS</span>
+                <strong>App Store</strong>
+                <small>{appBooking.appStore}</small>
+              </a>
+              <a
+                className="store-button"
+                href={FREENOW_APP_LINKS.android}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("external_app_download", { platform: "android", source: "freenow_home_block" })}
+              >
+                <span className="store-os">Android</span>
+                <strong>Google Play</strong>
+                <small>{appBooking.googlePlay}</small>
+              </a>
             </div>
             <div className="app-booking-actions">
               <a

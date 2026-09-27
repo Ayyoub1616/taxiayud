@@ -220,6 +220,26 @@ img {
   color: #151007;
 }
 
+.static-store-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.static-store-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+
 .static-seo-content article,
 .static-faq {
   padding: 18px;
@@ -606,6 +626,54 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.hero-freenow-badge {
+  display: inline-grid;
+  grid-template-columns: 22px auto;
+  column-gap: 10px;
+  row-gap: 2px;
+  align-items: center;
+  width: fit-content;
+  max-width: min(100%, 420px);
+  margin-top: 18px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.055)),
+    rgba(8, 12, 18, 0.64);
+  color: #fff;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(16px);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.hero-freenow-badge:hover {
+  border-color: rgba(241, 195, 77, 0.52);
+  transform: translateY(-2px);
+}
+
+.hero-freenow-badge svg {
+  grid-row: span 2;
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+
+.hero-freenow-badge span {
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.hero-freenow-badge strong {
+  color: #fff;
+  font-size: 0.98rem;
+  line-height: 1.1;
 }
 
 .btn {
@@ -1278,20 +1346,27 @@ h1 {
 }
 
 .app-booking-mark {
+  display: grid;
+  gap: 4px;
   width: max-content;
-  padding: 9px 12px;
+  padding: 10px 13px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
   background: #fff;
   color: #131820;
-  font-size: 1.05rem;
   font-weight: 950;
   letter-spacing: 0;
   line-height: 1;
 }
 
+.app-booking-mark strong {
+  font-size: 1.12rem;
+}
+
 .app-booking-mark span {
   color: #e1282f;
+  font-size: 0.74rem;
+  text-transform: uppercase;
 }
 
 .app-booking-points {
@@ -1319,6 +1394,64 @@ h1 {
   height: 16px;
   color: var(--gold);
   flex: 0 0 auto;
+}
+
+.app-download-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.store-button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  row-gap: 2px;
+  align-items: center;
+  min-height: 66px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
+    #0d131b;
+  color: #fff;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.store-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(241, 195, 77, 0.48);
+  background:
+    linear-gradient(180deg, rgba(241, 195, 77, 0.12), rgba(255, 255, 255, 0.04)),
+    #111a24;
+}
+
+.store-os {
+  grid-row: span 2;
+  min-width: 48px;
+  padding: 7px 8px;
+  border-radius: 7px;
+  background: #fff;
+  color: #111;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-align: center;
+}
+
+.store-button strong {
+  font-size: 0.95rem;
+  line-height: 1.05;
+}
+
+.store-button small {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .app-booking-actions {
@@ -3441,7 +3574,8 @@ tr:hover td {
       url("/assets/taxi-calatayud-landscape.webp") center top / cover no-repeat;
   }
 
-  .static-cta-row a {
+  .static-cta-row a,
+  .static-store-row a {
     width: 100%;
   }
 
@@ -4134,5 +4268,9 @@ tr:hover td {
 
   .hero-stats {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .app-download-actions {
+    grid-template-columns: 1fr;
   }
 }

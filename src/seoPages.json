@@ -577,23 +577,23 @@
   },
   {
     "path": "/taxi-freenow-calatayud/",
-    "title": "Taxi FREENOW Calatayud | Taxi Ayud también en app",
-    "description": "Taxi Ayud en Calatayud también disponible como canal digital en FREENOW, además de teléfono y WhatsApp. Consulta disponibilidad para Calatayud y comarca.",
+    "title": "Taxi FREENOW Calatayud | Taxi Ayud colaborador FREENOW",
+    "description": "Taxi Ayud es colaborador FREENOW en Calatayud. Descarga la app en iPhone o Android, pide taxi por FREENOW o confirma por WhatsApp.",
     "breadcrumb": "FREENOW",
     "navLabel": "FREENOW",
     "eyebrow": "Taxi por app en Calatayud",
-    "h1": "Taxi Ayud también disponible en FREENOW",
-    "intro": "Taxi Ayud suma FREENOW como canal digital adicional para viajeros que ya usan la app y necesitan taxi en Calatayud, estación, hoteles, pueblos de la comarca o rutas cercanas.",
-    "h2": "Pide taxi por app o confirma directo por WhatsApp",
-    "body": "FREENOW puede ser cómodo para turistas y viajeros de empresa que prefieren pedir taxi desde una aplicación. Para reservas con hora, recogidas en carretera, estación AVE, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto, lo más fiable es confirmar disponibilidad y detalles directamente por teléfono o WhatsApp.",
+    "h1": "Taxi Ayud colaborador FREENOW en Calatayud",
+    "intro": "Taxi Ayud ya es colaborador FREENOW en Calatayud. Puedes buscar taxi desde la app si viajas por la zona, llegas a la estación, estás en un hotel, visitas Monasterio de Piedra o necesitas moverte por la comarca.",
+    "h2": "Pide Taxi Ayud por FREENOW o confirma directo por WhatsApp",
+    "body": "FREENOW es una opción cómoda para turistas, viajeros de empresa y clientes que prefieren pedir taxi desde una app. Para reservas con hora, recogidas en carretera, estación AVE, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto, también puedes confirmar disponibilidad y detalles directamente por teléfono o WhatsApp.",
     "sections": [
       {
-        "heading": "Canal digital adicional",
-        "text": "Una opción más para encontrar Taxi Ayud si ya utilizas FREENOW durante tu viaje por Calatayud."
+        "heading": "Colaborador FREENOW",
+        "text": "Taxi Ayud incorpora FREENOW como canal visible para viajeros que buscan taxi por app en Calatayud y alrededores."
       },
       {
-        "heading": "Reserva directa recomendada",
-        "text": "WhatsApp permite enviar origen, destino, hora, pasajeros, equipaje y notas para confirmar el servicio sin malentendidos."
+        "heading": "Descarga FREENOW",
+        "text": "La app está disponible para iPhone en App Store y para Android en Google Play. Desde ahí puedes buscar taxi en la zona."
       },
       {
         "heading": "Calatayud y comarca",
@@ -603,15 +603,15 @@
     "faq": [
       {
         "question": "¿Puedo pedir Taxi Ayud desde FREENOW en Calatayud?",
-        "answer": "Si la app muestra disponibilidad, FREENOW funciona como canal digital adicional. Para confirmar un servicio concreto, puedes llamar o escribir por WhatsApp."
+        "answer": "Sí. Taxi Ayud es colaborador FREENOW. Puedes usar la app para buscar taxi en Calatayud y, si necesitas confirmar una reserva concreta, también puedes llamar o escribir por WhatsApp."
       },
       {
         "question": "¿Es mejor reservar por WhatsApp o por FREENOW?",
-        "answer": "Para una recogida inmediata puedes usar el canal que prefieras. Para horarios cerrados, estación, carretera, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto, WhatsApp permite revisar todos los detalles directamente."
+        "answer": "Para una recogida inmediata puedes usar FREENOW o WhatsApp. Para horarios cerrados, estación, carretera, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto, WhatsApp permite revisar todos los detalles directamente."
       },
       {
-        "question": "¿La disponibilidad en FREENOW está siempre garantizada?",
-        "answer": "No. FREENOW es una plataforma externa y la disponibilidad dentro de la app depende del momento, la zona y las condiciones de la propia plataforma."
+        "question": "¿Dónde descargo FREENOW?",
+        "answer": "Puedes descargar la app de FREENOW desde App Store si usas iPhone o desde Google Play si usas Android."
       },
       {
         "question": "¿FREENOW cambia las tarifas de Taxi Ayud?",

@@ -2,6 +2,10 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const siteUrl = "https://www.taxiayud.es";
+const freenowAppLinks = {
+  ios: "https://apps.apple.com/es/app/freenow-by-lyft-taxi-more/id357852748",
+  android: "https://play.google.com/store/apps/details?id=taxi.android.client&hl=es_ES",
+};
 const pages = JSON.parse(readFileSync("src/seoPages.json", "utf8"));
 const template = readFileSync("dist/index.html", "utf8");
 const buildDate = new Date().toISOString().slice(0, 10);
@@ -174,6 +178,7 @@ const businessGraph = {
     "Taxi estación Calatayud Monasterio de Piedra",
     "Taxi A-2 Valdeherrera Ateca Ariza",
     "Teléfono taxi Calatayud",
+    "Taxi Ayud colaborador FREENOW",
     "Taxi FREENOW Calatayud",
     "Taxi app Calatayud",
   ],
@@ -232,6 +237,8 @@ const businessGraph = {
     "taxi desde Calatayud",
     "taxi cerca de mi en Calatayud",
     "taxi FREENOW Calatayud",
+    "Taxi Ayud colaborador FREENOW",
+    "colaborador FREENOW Calatayud",
     "pedir taxi por app en Calatayud",
     "taxi app Calatayud",
     "taxi por avería en autovía cerca de Calatayud",
@@ -331,10 +338,10 @@ const businessGraph = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Taxi FREENOW Calatayud",
-          serviceType: "Canal digital adicional para pedir taxi",
+          name: "Taxi Ayud colaborador FREENOW Calatayud",
+          serviceType: "Colaborador FREENOW para pedir taxi por app",
           areaServed: "Calatayud y comarca de Calatayud",
-          description: "Taxi Ayud también puede aparecer como opción en FREENOW, además de reserva directa por teléfono y WhatsApp. La disponibilidad en app depende de la plataforma.",
+          description: "Taxi Ayud es colaborador FREENOW en Calatayud y también ofrece reserva directa por teléfono y WhatsApp.",
         },
       },
       {
@@ -544,6 +551,9 @@ function staticFallback(page) {
   const faq = faqItems
     ? `<section class="static-faq" id="faq"><h2>${escapeHtml(copy.faqHeading)}</h2>${faqItems}</section>`
     : "";
+  const freenowDownloads = page.path === "/" || page.path.includes("freenow")
+    ? `<p class="static-store-row"><a href="${freenowAppLinks.ios}">Descargar FREENOW para iPhone</a><a href="${freenowAppLinks.android}">Descargar FREENOW para Android</a></p>`
+    : "";
 
   const roadImage = page.path.includes("a2") || page.path.includes("autovia") || page.path.includes("averia-carretera");
   const imageSrc = roadImage ? "/assets/roadside-pickup-taxi.webp" : "/assets/taxi-calatayud-landscape.webp";
@@ -557,7 +567,7 @@ function staticFallback(page) {
   const imageHeight = roadImage ? "415" : "1013";
   const image = `<figure class="static-local-image"><img src="${imageSrc}" alt="${escapeHtml(imageAlt)}" width="${imageWidth}" height="${imageHeight}" loading="eager" decoding="async" fetchpriority="high" /><figcaption>${escapeHtml(imageCaption)}</figcaption></figure>`;
 
-  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${image}<p class="static-cta-row"><a href="tel:611861041">${escapeHtml(copy.call)}</a><a href="https://wa.me/34611861041">${escapeHtml(copy.whatsapp)}</a></p><article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>${escapeHtml(copy.serviceAreasHeading)}</h2><p>${escapeHtml(copy.serviceAreasText)}</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="${escapeHtml(copy.related)}">${links}</nav></main>`;
+  return `<main class="static-seo-content" aria-label="${escapeHtml(page.h1)}"><nav aria-label="Breadcrumb"><a href="/">Taxi Ayud</a> / <span>${escapeHtml(page.breadcrumb)}</span></nav><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${image}<p class="static-cta-row"><a href="tel:611861041">${escapeHtml(copy.call)}</a><a href="https://wa.me/34611861041">${escapeHtml(copy.whatsapp)}</a></p>${freenowDownloads}<article><h2>${escapeHtml(page.h2)}</h2><p>${escapeHtml(page.body)}</p>${sections}<section><h2>${escapeHtml(copy.serviceAreasHeading)}</h2><p>${escapeHtml(copy.serviceAreasText)}</p><ul>${serviceAreas}</ul></section></article>${faq}<nav aria-label="${escapeHtml(copy.related)}">${links}</nav></main>`;
 }
 
 function pageJsonLd(page) {

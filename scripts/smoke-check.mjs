@@ -47,6 +47,8 @@ addCheck("La portada declara x-default en la home", home.includes('hreflang="x-d
 addCheck("La portada enlaza la pagina de avería carretera", home.includes("/taxi-averia-carretera-calatayud/"));
 addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-estacion-calatayud-monasterio-de-piedra/"));
 addCheck("La portada enlaza la pagina FREENOW Calatayud", home.includes("/taxi-freenow-calatayud/"));
+addCheck("La portada incluye descarga FREENOW iPhone", home.includes("apps.apple.com/es/app/freenow-by-lyft-taxi-more/id357852748"));
+addCheck("La portada incluye descarga FREENOW Android", home.includes("play.google.com/store/apps/details?id=taxi.android.client"));
 addCheck(
   "Tarifas interurbanas 2026 usan constantes oficiales exactas",
   tariffConfig.includes("pricePerKm: 0.714") &&
@@ -63,7 +65,9 @@ addCheck(
 addCheck("La página taxi Calatayud tiene canonical propio", taxiCalatayud.includes('href="https://www.taxiayud.es/taxi-calatayud/"'));
 addCheck("La página inglesa declara idioma", english.includes('<html lang="en" dir="ltr">'));
 addCheck("La página inglesa tiene hreflang a francés", english.includes('hreflang="fr" href="https://www.taxiayud.es/fr/taxi-calatayud/"'));
-addCheck("La página FREENOW existe", freenow.includes("Taxi Ayud también disponible en FREENOW"));
+addCheck("La página FREENOW existe", freenow.includes("Taxi Ayud colaborador FREENOW en Calatayud"));
+addCheck("La página FREENOW enlaza App Store", freenow.includes("Descargar FREENOW para iPhone"));
+addCheck("La página FREENOW enlaza Google Play", freenow.includes("Descargar FREENOW para Android"));
 addCheck("La página A-2 existe para búsquedas de avería", road.includes("Taxi para pasajeros por avería"));
 addCheck("La página de avería carretera existe", roadGeneric.includes("Taxi para pasajeros por avería en carretera cerca de Calatayud"));
 addCheck("La página A-2 Valdeherrera Ateca Ariza existe", roadA2Valdeherrera.includes("Taxi A-2 Valdeherrera, Ateca y Ariza"));
