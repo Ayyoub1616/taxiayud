@@ -178,6 +178,7 @@ const businessGraph = {
     "Taxi estación Calatayud Monasterio de Piedra",
     "Taxi A-2 Valdeherrera Ateca Ariza",
     "Teléfono taxi Calatayud",
+    "FREENOW Calatayud",
     "Taxi Ayud colaborador FREENOW",
     "Taxi FREENOW Calatayud",
     "Taxi app Calatayud",
@@ -241,6 +242,7 @@ const businessGraph = {
     "taxi en Calatayud",
     "taxi desde Calatayud",
     "taxi cerca de mi en Calatayud",
+    "FREENOW Calatayud",
     "taxi FREENOW Calatayud",
     "Taxi Ayud colaborador FREENOW",
     "Taxi Ayud en FREENOW",
@@ -563,7 +565,7 @@ function staticFallback(page) {
     : "";
   const freenowPriority = page.path === "/" || page.path.includes("freenow");
   const freenowNews = freenowPriority
-    ? `<aside class="static-freenow-news"><span>Novedad FREENOW</span><strong>FREENOW x Taxi Ayud en Calatayud</strong><p>Taxi Ayud ya es colaborador FREENOW. También puedes pedir taxi desde la app FREENOW o confirmar por WhatsApp recogidas en estación, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.</p></aside>`
+    ? `<aside class="static-freenow-news"><span>Novedad FREENOW</span><strong>FREENOW Calatayud x Taxi Ayud</strong><p>Taxi Ayud ya es colaborador FREENOW en Calatayud. También puedes pedir taxi desde la app FREENOW o confirmar por WhatsApp recogidas en estación, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.</p></aside>`
     : "";
   const freenowDownloads = freenowPriority
     ? `<p class="static-store-row"><a href="${freenowAppLinks.ios}">Descargar FREENOW para iPhone</a><a href="${freenowAppLinks.android}">Descargar FREENOW para Android</a></p>`

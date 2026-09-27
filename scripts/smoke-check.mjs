@@ -67,8 +67,8 @@ addCheck(
 addCheck("La página taxi Calatayud tiene canonical propio", taxiCalatayud.includes('href="https://www.taxiayud.es/taxi-calatayud/"'));
 addCheck("La página inglesa declara idioma", english.includes('<html lang="en" dir="ltr">'));
 addCheck("La página inglesa tiene hreflang a francés", english.includes('hreflang="fr" href="https://www.taxiayud.es/fr/taxi-calatayud/"'));
-addCheck("La página FREENOW existe", freenow.includes("FREENOW × Taxi Ayud: taxi por app en Calatayud"));
-addCheck("La página FREENOW destaca el co-branding", freenow.includes("FREENOW x Taxi Ayud en Calatayud"));
+addCheck("La página FREENOW existe", freenow.includes("FREENOW Calatayud × Taxi Ayud"));
+addCheck("La página FREENOW destaca el co-branding", freenow.includes("FREENOW Calatayud x Taxi Ayud"));
 addCheck("La página FREENOW refuerza taxi por app", freenow.includes("Taxi Ayud es colaborador FREENOW en Calatayud"));
 addCheck("La página FREENOW enlaza App Store", freenow.includes("Descargar FREENOW para iPhone"));
 addCheck("La página FREENOW enlaza Google Play", freenow.includes("Descargar FREENOW para Android"));

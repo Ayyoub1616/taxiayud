@@ -1987,7 +1987,7 @@ const appBookingCopy: Record<
     text: "Taxi Ayud ya aparece como colaborador FREENOW en Calatayud. Si vienes por turismo, estación, hotel, empresa, balneario o comarca, tienes app para pedir taxi y WhatsApp directo para confirmar cualquier detalle.",
     points: ["Colaborador FREENOW", "App para viajeros", "Reserva directa por WhatsApp", "Calatayud y comarca"],
     primary: "Reservar directo",
-    secondary: "Ver página FREENOW",
+    secondary: "Abrir FREENOW",
     appStore: "Descargar para iPhone",
     googlePlay: "Descargar para Android",
     note: "Si prefieres app, descarga FREENOW y busca taxi en Calatayud. Si necesitas hora exacta, carretera o ruta especial, escríbeme por WhatsApp para confirmarlo.",
@@ -2005,7 +2005,7 @@ const appBookingCopy: Record<
     text: "You can also look for Taxi Ayud through the FREENOW app. If you are visiting Calatayud for tourism, station pick-ups, hotels, business or spas, you have the app option plus direct WhatsApp confirmation.",
     points: ["FREENOW collaborator", "Traveller app", "Direct WhatsApp booking", "Calatayud area"],
     primary: "Book direct",
-    secondary: "FREENOW page",
+    secondary: "Open FREENOW",
     appStore: "Download for iPhone",
     googlePlay: "Download for Android",
     note: "If you prefer an app, download FREENOW and search for a taxi in Calatayud. For exact times, roadside pick-ups or special routes, WhatsApp is best for confirmation.",
@@ -2023,7 +2023,7 @@ const appBookingCopy: Record<
     text: "Vous pouvez aussi chercher Taxi Ayud depuis l'application FREENOW. Pour tourisme, gare, hôtels, affaires ou thermes à Calatayud, vous avez l'app et WhatsApp pour confirmer.",
     points: ["Collaborateur FREENOW", "App voyageurs", "Réservation WhatsApp", "Zone de Calatayud"],
     primary: "Réserver direct",
-    secondary: "Page FREENOW",
+    secondary: "Ouvrir FREENOW",
     appStore: "Télécharger iPhone",
     googlePlay: "Télécharger Android",
     note: "Si vous préférez l'app, téléchargez FREENOW et cherchez un taxi à Calatayud. Pour horaires fixes ou trajets spéciaux, confirmez par WhatsApp.",
@@ -2041,7 +2041,7 @@ const appBookingCopy: Record<
     text: "També pots trobar Taxi Ayud des de l'app FREENOW. Si vens a Calatayud per turisme, estació, hotel, empresa o balneari, tens app i WhatsApp directe.",
     points: ["Col·laborador FREENOW", "App per a viatgers", "Reserva per WhatsApp", "Calatayud i comarca"],
     primary: "Reservar directe",
-    secondary: "Pàgina FREENOW",
+    secondary: "Obrir FREENOW",
     appStore: "Descarregar iPhone",
     googlePlay: "Descarregar Android",
     note: "Si prefereixes app, descarrega FREENOW i busca taxi a Calatayud. Per a hores exactes o rutes especials, confirma per WhatsApp.",
@@ -2059,7 +2059,7 @@ const appBookingCopy: Record<
     text: "Sie können Taxi Ayud auch über die FREENOW App suchen. Für Calatayud, Bahnhof, Hotels, Geschäftsreisen, Thermalbäder und Ausflüge gibt es App und WhatsApp direkt.",
     points: ["FREENOW Partner", "App für Reisende", "Direkt per WhatsApp", "Calatayud Region"],
     primary: "Direkt buchen",
-    secondary: "FREENOW Seite",
+    secondary: "FREENOW öffnen",
     appStore: "Für iPhone laden",
     googlePlay: "Für Android laden",
     note: "Wenn Sie eine App bevorzugen, laden Sie FREENOW und suchen Sie ein Taxi in Calatayud. Für feste Zeiten oder Spezialrouten per WhatsApp bestätigen.",
@@ -2077,7 +2077,7 @@ const appBookingCopy: Record<
     text: "Puoi trovare Taxi Ayud anche dall'app FREENOW. Per turismo, stazione, hotel, aziende o terme a Calatayud, hai app e WhatsApp diretto.",
     points: ["Collaboratore FREENOW", "App per viaggiatori", "Prenotazione WhatsApp", "Zona di Calatayud"],
     primary: "Prenota diretto",
-    secondary: "Pagina FREENOW",
+    secondary: "Apri FREENOW",
     appStore: "Scarica per iPhone",
     googlePlay: "Scarica per Android",
     note: "Se preferisci l'app, scarica FREENOW e cerca taxi a Calatayud. Per orari precisi o tratte speciali, conferma via WhatsApp.",
@@ -2095,7 +2095,7 @@ const appBookingCopy: Record<
     text: "Também pode encontrar Taxi Ayud na app FREENOW. Para turismo, estação, hotéis, empresas ou termas em Calatayud, tem app e WhatsApp direto.",
     points: ["Colaborador FREENOW", "App para viajantes", "Reserva por WhatsApp", "Calatayud e região"],
     primary: "Reservar direto",
-    secondary: "Página FREENOW",
+    secondary: "Abrir FREENOW",
     appStore: "Descarregar iPhone",
     googlePlay: "Descarregar Android",
     note: "Se prefere app, descarregue FREENOW e procure táxi em Calatayud. Para hora certa ou rotas especiais, confirme por WhatsApp.",
@@ -2113,7 +2113,7 @@ const appBookingCopy: Record<
     text: "Je kunt Taxi Ayud ook via de FREENOW app zoeken. Voor Calatayud, station, hotels, zakenritten, kuuroorden en uitstappen heb je app en direct WhatsApp-contact.",
     points: ["FREENOW partner", "App voor reizigers", "Direct via WhatsApp", "Regio Calatayud"],
     primary: "Direct boeken",
-    secondary: "FREENOW pagina",
+    secondary: "FREENOW openen",
     appStore: "Download voor iPhone",
     googlePlay: "Download voor Android",
     note: "Gebruik je liever een app, download FREENOW en zoek taxi in Calatayud. Voor vaste tijden of speciale routes bevestig je via WhatsApp.",
@@ -2131,7 +2131,7 @@ const appBookingCopy: Record<
     text: "يمكنك أيضاً العثور على Taxi Ayud عبر تطبيق FREENOW. في كالاتايود لديك خيار التطبيق وواتساب مباشر لتأكيد التفاصيل.",
     points: ["متعاون FREENOW", "تطبيق للمسافرين", "حجز مباشر بواتساب", "كالاتايود والمنطقة"],
     primary: "حجز مباشر",
-    secondary: "صفحة FREENOW",
+    secondary: "فتح FREENOW",
     appStore: "تحميل iPhone",
     googlePlay: "تحميل Android",
     note: "إذا كنت تفضل التطبيق، حمّل FREENOW وابحث عن تاكسي في كالاتايود. للحجز بوقت محدد أو الرحلات الخاصة، أكّد عبر واتساب.",
@@ -6087,8 +6087,87 @@ function CookieBanner({
 function FreenowWordmark({ compact = false }: { compact?: boolean }) {
   return (
     <span className={`freenow-wordmark${compact ? " freenow-wordmark-compact" : ""}`}>
-      <img src="/assets/freenow-logo.svg" alt="FREENOW" width="360" height="96" />
+      <img src="/assets/freenow-logo.svg" alt="FREENOW" width="460" height="136" />
     </span>
+  );
+}
+
+type AppBookingContent = (typeof appBookingCopy)[LangCode];
+
+function FreenowDownloadChooser({
+  language,
+  copy,
+  directUrl,
+  onClose,
+}: {
+  language: LangCode;
+  copy: AppBookingContent;
+  directUrl: string;
+  onClose: () => void;
+}) {
+  const roadNotice = ROAD_WHATSAPP_NOTICE[language];
+
+  return (
+    <div className="freenow-download-backdrop" role="presentation" onClick={onClose}>
+      <section
+        className="freenow-download-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={copy.secondary}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="freenow-download-top">
+          <FreenowWordmark />
+          <button type="button" className="freenow-download-close" onClick={onClose}>
+            {roadNotice.cancel}
+          </button>
+        </div>
+
+        <div className="freenow-download-copy">
+          <p className="eyebrow compact">{copy.eyebrow}</p>
+          <h2>{copy.secondary}</h2>
+          <p>{copy.note}</p>
+        </div>
+
+        <div className="freenow-download-options" aria-label="Descargar FREENOW">
+          <a
+            className="store-button"
+            href={FREENOW_APP_LINKS.ios}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackEvent("external_app_download", { platform: "ios", source: "freenow_download_modal" })}
+          >
+            <span className="store-os">iOS</span>
+            <strong>App Store</strong>
+            <small>{copy.appStore}</small>
+          </a>
+          <a
+            className="store-button"
+            href={FREENOW_APP_LINKS.android}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() =>
+              trackEvent("external_app_download", { platform: "android", source: "freenow_download_modal" })
+            }
+          >
+            <span className="store-os">Android</span>
+            <strong>Google Play</strong>
+            <small>{copy.googlePlay}</small>
+          </a>
+        </div>
+
+        <a
+          className="btn btn-whatsapp"
+          href={directUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => trackEvent("clic_whatsapp", { source: "freenow_download_modal" })}
+        >
+          <MessageCircle aria-hidden="true" />
+          {copy.primary}
+        </a>
+      </section>
+    </div>
   );
 }
 
@@ -6531,6 +6610,7 @@ function App() {
   const [selectedDestinationPoint, setSelectedDestinationPoint] =
     useState<AddressSuggestion | null>(null);
   const [pendingRoadWhatsappUrl, setPendingRoadWhatsappUrl] = useState("");
+  const [showFreenowChooser, setShowFreenowChooser] = useState(false);
   const [filter, setFilter] = useState("");
   const [tariffCategory, setTariffCategory] = useState<TariffCategory>("all");
   const [tariffLookupKey, setTariffLookupKey] = useState("ZARAGOZA");
@@ -7445,15 +7525,25 @@ function App() {
                 <MessageCircle aria-hidden="true" />
                 {appBooking.primary}
               </a>
-              <a
+              <button
+                type="button"
                 className="btn btn-secondary"
-                href="/taxi-freenow-calatayud/"
-                onClick={() => trackEvent("internal_route_click", { source: "freenow_home_block" })}
+                onClick={() => {
+                  setShowFreenowChooser(true);
+                  trackEvent("freenow_download_choice_open", { source: "freenow_home_block" });
+                }}
               >
                 <ArrowRight aria-hidden="true" />
                 {appBooking.secondary}
-              </a>
+              </button>
             </div>
+            <a
+              className="freenow-seo-link"
+              href="/taxi-freenow-calatayud/"
+              onClick={() => trackEvent("internal_route_click", { source: "freenow_seo_link" })}
+            >
+              FREENOW Calatayud · Taxi Ayud
+            </a>
           </div>
         </section>
 
@@ -8372,6 +8462,15 @@ function App() {
           language={language}
           onCancel={() => setPendingRoadWhatsappUrl("")}
           onConfirm={confirmRoadWhatsapp}
+        />
+      ) : null}
+
+      {showFreenowChooser ? (
+        <FreenowDownloadChooser
+          language={language}
+          copy={appBooking}
+          directUrl={directUrl}
+          onClose={() => setShowFreenowChooser(false)}
         />
       ) : null}
 

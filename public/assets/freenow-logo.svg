@@ -1,8 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="96" viewBox="0 0 360 96" role="img" aria-labelledby="title">
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="136" viewBox="0 0 460 136" role="img" aria-labelledby="title">
   <title id="title">FREENOW</title>
-  <rect width="360" height="96" rx="20" fill="#fff"/>
-  <circle cx="35" cy="48" r="7" fill="#e1282f"/>
-  <circle cx="54" cy="48" r="7" fill="#e1282f"/>
-  <circle cx="73" cy="48" r="7" fill="#e1282f"/>
-  <text x="96" y="61" fill="#111820" font-family="Inter, Arial, Helvetica, sans-serif" font-size="40" font-weight="900" letter-spacing="0">FREENOW</text>
+  <rect width="460" height="136" rx="18" fill="#ff0038"/>
+  <text x="34" y="87" fill="#fff" font-family="Inter, Arial, Helvetica, sans-serif" font-size="54" font-weight="500" letter-spacing="0">FREENOW</text>
+  <path d="M350 43 L391 83 L432 43" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M391 83 L391 110" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="square"/>
 </svg>
