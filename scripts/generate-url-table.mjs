@@ -17,6 +17,7 @@ const keywordByPath = {
   "/taxi-desde-calatayud/": "taxi desde Calatayud",
   "/servicios/": "servicios taxi Calatayud",
   "/reservar/": "reservar taxi Calatayud",
+  "/taxi-freenow-calatayud/": "taxi FREENOW Calatayud",
   "/tarifas/": "tarifas taxi Calatayud",
   "/vehiculo/": "Peugeot 408 Hybrid taxi Calatayud",
   "/taxi-estacion-ave-calatayud/": "taxi estación AVE Calatayud",
@@ -77,6 +78,7 @@ function intention(page) {
   if (page.path.includes("estacion")) return "Recogida en estacion AVE de Calatayud";
   if (page.path.includes("aeropuerto")) return "Traslado a aeropuerto de Zaragoza";
   if (page.path.includes("fiestas") || page.path.includes("san-roque")) return "Reservas para fiestas y eventos";
+  if (page.path.includes("freenow")) return "Taxi por app y canal digital adicional";
   if (page.path.includes("reservar")) return "Reserva y disponibilidad por WhatsApp";
   if (page.path.includes("tarifas")) return "Tarifas oficiales y presupuesto orientativo";
   if (page.path.includes("vehiculo")) return "Vehiculo, licencia, capacidad y metodos de pago";

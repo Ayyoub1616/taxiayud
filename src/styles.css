@@ -1153,7 +1153,7 @@ h1 {
 
 .local-route-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(174px, 1fr));
   gap: 10px;
 }
 
@@ -1200,6 +1200,131 @@ h1 {
   margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.app-booking-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.78fr);
+  gap: 26px;
+  align-items: center;
+  padding: 42px 40px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 14% 18%, rgba(20, 142, 255, 0.16), transparent 34%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 42%),
+    #070b12;
+}
+
+.app-booking-section::before {
+  content: "";
+  position: absolute;
+  inset: auto -8% -48% 34%;
+  height: 180px;
+  background: linear-gradient(90deg, transparent, rgba(241, 195, 77, 0.28), transparent);
+  transform: rotate(-5deg);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.app-booking-copy,
+.app-booking-card {
+  position: relative;
+  z-index: 1;
+}
+
+.app-booking-copy {
+  justify-self: end;
+  width: min(760px, 100%);
+}
+
+.app-booking-copy h2 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.app-booking-copy p {
+  max-width: 720px;
+  margin: 0;
+  color: #dbe5f1;
+  font-size: 1rem;
+  line-height: 1.64;
+}
+
+.app-booking-copy small {
+  display: block;
+  max-width: 700px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.app-booking-card {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035)),
+    rgba(7, 12, 20, 0.72);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.app-booking-mark {
+  width: max-content;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: #fff;
+  color: #131820;
+  font-size: 1.05rem;
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.app-booking-mark span {
+  color: #e1282f;
+}
+
+.app-booking-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.app-booking-points span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 9px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #eef5ff;
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.app-booking-points svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold);
+  flex: 0 0 auto;
+}
+
+.app-booking-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .tourist-search-section {
@@ -3235,6 +3360,7 @@ tr:hover td {
   .calc-layout,
   .region-band,
   .local-seo-section,
+  .app-booking-section,
   .tourist-search-section,
   .festival-section,
   .intent-layout,
@@ -3249,6 +3375,7 @@ tr:hover td {
   .hero-booking-card,
   .reviews-summary,
   .local-seo-section > div:first-child,
+  .app-booking-copy,
   .tourist-search-copy {
     justify-self: start;
   }
@@ -3651,8 +3778,21 @@ tr:hover td {
   .route-inputs,
   .calc-actions,
   .hero-card-actions,
+  .app-booking-actions,
   .road-quick-card,
   .review-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .app-booking-section {
+    padding: 36px 20px;
+  }
+
+  .app-booking-card {
+    padding: 18px;
+  }
+
+  .app-booking-points {
     grid-template-columns: 1fr;
   }
 

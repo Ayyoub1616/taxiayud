@@ -41,6 +41,7 @@ const localizedTaxiPaths = new Set(localizedTaxiAlternates.map((item) => item.pa
 const priorityStaticLinks = [
   "/",
   "/taxi-cerca-de-mi-calatayud/",
+  "/taxi-freenow-calatayud/",
   "/taxi-averia-carretera-calatayud/",
   "/taxi-pasajeros-averia-a2-calatayud/",
   "/taxi-a2-valdeherrera-ateca-ariza/",
@@ -173,6 +174,8 @@ const businessGraph = {
     "Taxi estación Calatayud Monasterio de Piedra",
     "Taxi A-2 Valdeherrera Ateca Ariza",
     "Teléfono taxi Calatayud",
+    "Taxi FREENOW Calatayud",
+    "Taxi app Calatayud",
   ],
   slogan: "Tu taxi de confianza en Calatayud",
   description:
@@ -207,6 +210,7 @@ const businessGraph = {
     "Aeropuerto de Zaragoza",
     "Estación Zaragoza-Delicias",
     "Aragón",
+    "FREENOW app",
     "Fiestas de San Roque Calatayud",
     "Fiestas patronales comarca de Calatayud",
   ],
@@ -227,6 +231,9 @@ const businessGraph = {
     "taxi en Calatayud",
     "taxi desde Calatayud",
     "taxi cerca de mi en Calatayud",
+    "taxi FREENOW Calatayud",
+    "pedir taxi por app en Calatayud",
+    "taxi app Calatayud",
     "taxi por avería en autovía cerca de Calatayud",
     "taxi por avería en carretera cerca de Calatayud",
     "taxi A-2 Calatayud",
@@ -324,6 +331,16 @@ const businessGraph = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
+          name: "Taxi FREENOW Calatayud",
+          serviceType: "Canal digital adicional para pedir taxi",
+          areaServed: "Calatayud y comarca de Calatayud",
+          description: "Taxi Ayud también puede aparecer como opción en FREENOW, además de reserva directa por teléfono y WhatsApp. La disponibilidad en app depende de la plataforma.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
           name: "Taxi a Monasterio de Piedra y Nuévalos",
           serviceType: "Traslado turístico",
           areaServed: "Comarca de Calatayud",
@@ -407,6 +424,9 @@ function isLocalizedTaxiPage(path) {
 }
 
 function serviceAreasForPage(page) {
+  if (page.path.includes("freenow")) {
+    return ["FREENOW app", "Calatayud", "Estación AVE de Calatayud", "Hoteles de Calatayud", "Pueblos de la comarca", "Monasterio de Piedra", "Balnearios"];
+  }
   if (page.path.includes("estacion-ave")) {
     return ["Estación AVE de Calatayud", "Plaza del Fuerte", "Hoteles de Calatayud", "Monasterio de Piedra", "Balnearios", "Pueblos de la comarca"];
   }

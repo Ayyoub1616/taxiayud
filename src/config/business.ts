@@ -22,6 +22,7 @@ export const BUSINESS_CONFIG = {
     accessibility: "Consultar necesidades concretas por WhatsApp",
   },
   paymentMethods: ["Efectivo", "Tarjeta", "Bizum", "Apple Pay", "Google Pay"],
+  bookingChannels: ["Teléfono", "WhatsApp", "Calculadora web", "FREENOW"],
   languages: ["es", "en", "fr", "ca", "de", "it", "pt", "nl", "ar"],
   serviceAreas: [
     "Calatayud",

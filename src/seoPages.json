@@ -576,6 +576,50 @@
     ]
   },
   {
+    "path": "/taxi-freenow-calatayud/",
+    "title": "Taxi FREENOW Calatayud | Taxi Ayud también en app",
+    "description": "Taxi Ayud en Calatayud también disponible como canal digital en FREENOW, además de teléfono y WhatsApp. Consulta disponibilidad para Calatayud y comarca.",
+    "breadcrumb": "FREENOW",
+    "navLabel": "FREENOW",
+    "eyebrow": "Taxi por app en Calatayud",
+    "h1": "Taxi Ayud también disponible en FREENOW",
+    "intro": "Taxi Ayud suma FREENOW como canal digital adicional para viajeros que ya usan la app y necesitan taxi en Calatayud, estación, hoteles, pueblos de la comarca o rutas cercanas.",
+    "h2": "Pide taxi por app o confirma directo por WhatsApp",
+    "body": "FREENOW puede ser cómodo para turistas y viajeros de empresa que prefieren pedir taxi desde una aplicación. Para reservas con hora, recogidas en carretera, estación AVE, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto, lo más fiable es confirmar disponibilidad y detalles directamente por teléfono o WhatsApp.",
+    "sections": [
+      {
+        "heading": "Canal digital adicional",
+        "text": "Una opción más para encontrar Taxi Ayud si ya utilizas FREENOW durante tu viaje por Calatayud."
+      },
+      {
+        "heading": "Reserva directa recomendada",
+        "text": "WhatsApp permite enviar origen, destino, hora, pasajeros, equipaje y notas para confirmar el servicio sin malentendidos."
+      },
+      {
+        "heading": "Calatayud y comarca",
+        "text": "Recogidas habituales en Calatayud, estación, hoteles, Monasterio de Piedra, balnearios, pueblos y carreteras cercanas."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Puedo pedir Taxi Ayud desde FREENOW en Calatayud?",
+        "answer": "Si la app muestra disponibilidad, FREENOW funciona como canal digital adicional. Para confirmar un servicio concreto, puedes llamar o escribir por WhatsApp."
+      },
+      {
+        "question": "¿Es mejor reservar por WhatsApp o por FREENOW?",
+        "answer": "Para una recogida inmediata puedes usar el canal que prefieras. Para horarios cerrados, estación, carretera, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto, WhatsApp permite revisar todos los detalles directamente."
+      },
+      {
+        "question": "¿La disponibilidad en FREENOW está siempre garantizada?",
+        "answer": "No. FREENOW es una plataforma externa y la disponibilidad dentro de la app depende del momento, la zona y las condiciones de la propia plataforma."
+      },
+      {
+        "question": "¿FREENOW cambia las tarifas de Taxi Ayud?",
+        "answer": "Los trayectos se atienden como taxi oficial. Si reservas por app, revisa las condiciones que muestre FREENOW. Si reservas directo, Taxi Ayud confirma precio orientativo y disponibilidad por teléfono o WhatsApp."
+      }
+    ]
+  },
+  {
     "path": "/tarifas/",
     "title": "Tarifas taxi Calatayud orientativas | Taxi Ayud",
     "description": "Consulta tarifas orientativas de taxi desde Calatayud a pueblos de la comarca, Monasterio de Piedra, balnearios, Zaragoza, aeropuerto y destinos frecuentes.",

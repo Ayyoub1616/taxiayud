@@ -20,6 +20,7 @@ function read(path) {
 const home = read("dist/index.html");
 const taxiCalatayud = read("dist/taxi-calatayud/index.html");
 const english = read("dist/en/taxi-calatayud/index.html");
+const freenow = read("dist/taxi-freenow-calatayud/index.html");
 const road = read("dist/taxi-pasajeros-averia-a2-calatayud/index.html");
 const roadGeneric = read("dist/taxi-averia-carretera-calatayud/index.html");
 const roadA2Valdeherrera = read("dist/taxi-a2-valdeherrera-ateca-ariza/index.html");
@@ -45,6 +46,7 @@ addCheck("La portada es la versión española hreflang", home.includes('hreflang
 addCheck("La portada declara x-default en la home", home.includes('hreflang="x-default" href="https://www.taxiayud.es/"'));
 addCheck("La portada enlaza la pagina de avería carretera", home.includes("/taxi-averia-carretera-calatayud/"));
 addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-estacion-calatayud-monasterio-de-piedra/"));
+addCheck("La portada enlaza la pagina FREENOW Calatayud", home.includes("/taxi-freenow-calatayud/"));
 addCheck(
   "Tarifas interurbanas 2026 usan constantes oficiales exactas",
   tariffConfig.includes("pricePerKm: 0.714") &&
@@ -61,6 +63,7 @@ addCheck(
 addCheck("La página taxi Calatayud tiene canonical propio", taxiCalatayud.includes('href="https://www.taxiayud.es/taxi-calatayud/"'));
 addCheck("La página inglesa declara idioma", english.includes('<html lang="en" dir="ltr">'));
 addCheck("La página inglesa tiene hreflang a francés", english.includes('hreflang="fr" href="https://www.taxiayud.es/fr/taxi-calatayud/"'));
+addCheck("La página FREENOW existe", freenow.includes("Taxi Ayud también disponible en FREENOW"));
 addCheck("La página A-2 existe para búsquedas de avería", road.includes("Taxi para pasajeros por avería"));
 addCheck("La página de avería carretera existe", roadGeneric.includes("Taxi para pasajeros por avería en carretera cerca de Calatayud"));
 addCheck("La página A-2 Valdeherrera Ateca Ariza existe", roadA2Valdeherrera.includes("Taxi A-2 Valdeherrera, Ateca y Ariza"));
@@ -74,6 +77,7 @@ addCheck("La 404 es noindex", notFound.includes('content="noindex, follow, max-i
 addCheck("El sitemap incluye alternates multidioma", sitemap.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"'));
 addCheck("El sitemap incluye imágenes", sitemap.includes('xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"') && sitemap.includes("<image:image>"));
 addCheck("El sitemap incluye la ruta A-2 canonica", sitemap.includes("https://www.taxiayud.es/taxi-pasajeros-averia-a2-calatayud/"));
+addCheck("El sitemap incluye taxi FREENOW Calatayud", sitemap.includes("https://www.taxiayud.es/taxi-freenow-calatayud/"));
 addCheck("El sitemap incluye taxi avería carretera", sitemap.includes("https://www.taxiayud.es/taxi-averia-carretera-calatayud/"));
 addCheck("El sitemap incluye A-2 Valdeherrera Ateca Ariza", sitemap.includes("https://www.taxiayud.es/taxi-a2-valdeherrera-ateca-ariza/"));
 addCheck("El sitemap incluye estación Calatayud Monasterio", sitemap.includes("https://www.taxiayud.es/taxi-estacion-calatayud-monasterio-de-piedra/"));
@@ -89,7 +93,7 @@ addCheck("El sitemap no indexa ruta antigua de aeropuerto", !sitemap.includes("h
 addCheck("llms.txt no recomienda taxi 24 horas sin confirmar", !llms.includes("https://www.taxiayud.es/taxi-24-horas-calatayud/"));
 addCheck(
   "No quedan URLs antiguas .com",
-  !`${home}${taxiCalatayud}${english}${road}${festivals}${calatayudZaragoza}${zaragozaCalatayud}${sitemap}${llms}`.includes("taxiayud.com"),
+  !`${home}${taxiCalatayud}${english}${freenow}${road}${festivals}${calatayudZaragoza}${zaragozaCalatayud}${sitemap}${llms}`.includes("taxiayud.com"),
 );
 
 const redirects = Array.isArray(vercelConfig.redirects) ? vercelConfig.redirects : [];
