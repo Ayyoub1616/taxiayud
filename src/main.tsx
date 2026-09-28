@@ -387,7 +387,7 @@ const BASE_COPY = {
     call: "Llamar",
     heroEyebrow: "Taxi oficial en Calatayud · Licencia 18",
     heroSubtitle:
-      "Taxi desde Calatayud para pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza, aeropuerto y estación. Novedad: también colaborador FREENOW.",
+      "Taxi desde Calatayud para pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza, aeropuerto y estación.",
     bookTitle: "Reserva directa, sin formularios largos",
     bookText:
       "Manda un mensaje directo si solo quieres hablar, consultar disponibilidad o pedir taxi ahora. La calculadora queda abajo para presupuestos orientativos.",
@@ -405,11 +405,11 @@ const BASE_COPY = {
     regionTitle: "Calatayud, pueblos de la comarca, balnearios y Zaragoza sin complicarte",
     regionText:
       "Servicio puntual, cómodo y discreto para moverte por Calatayud, Zaragoza y toda la comarca con maletas, familia o visitas turísticas.",
-    comfort: ["Conducción tranquila", "Maletero amplio", "Taxi oficial", "También en FREENOW"],
+    comfort: ["Conducción tranquila", "Maletero amplio", "Taxi oficial", "WhatsApp directo"],
     seoEyebrow: "Taxi local premium",
-    seoTitle: "Taxi Calatayud con WhatsApp, calculadora y FREENOW",
+    seoTitle: "Taxi Calatayud con WhatsApp, calculadora y rutas de comarca",
     seoText:
-      "Rutas frecuentes con recogida por ubicación en Calatayud, estación AVE, hoteles, pueblos de la comarca, A-2, N-II, N-234, Monasterio de Piedra, balnearios, Zaragoza y aeropuerto. Taxi Ayud también es colaborador FREENOW para viajeros que prefieren pedir taxi por app.",
+      "Rutas frecuentes con recogida por ubicación en Calatayud, estación AVE, hoteles, pueblos de la comarca, A-2, N-II, N-234, Monasterio de Piedra, balnearios, Zaragoza y aeropuerto. La reserva directa por teléfono o WhatsApp es la vía más rápida para confirmar disponibilidad.",
     seoRoutes: [
       {
         title: "Taxi cerca de mí en Calatayud",
@@ -432,8 +432,8 @@ const BASE_COPY = {
         href: "/taxi-hoteles-calatayud/",
       },
       {
-        title: "Colaborador FREENOW",
-        text: "Taxi Ayud también se puede encontrar desde la app FREENOW para viajeros en Calatayud.",
+        title: "FREENOW como alternativa",
+        text: "También puedes encontrar Taxi Ayud desde la app FREENOW si prefieres pedir taxi por aplicación.",
         href: "/taxi-freenow-calatayud/",
       },
     ],
@@ -509,9 +509,9 @@ const BASE_COPY = {
         detail: "Reserva con hora cerrada para llegar tranquilo, incluso en trayectos de madrugada o festivos.",
       },
       {
-        title: "Colaborador FREENOW",
-        text: "Taxi Ayud incorporado a FREENOW para pedir taxi desde la app, además de llamada directa y WhatsApp.",
-        detail: "Una opción cómoda para viajeros que ya utilizan FREENOW y quieren moverse por Calatayud, estación, hoteles, balnearios o comarca.",
+        title: "FREENOW como canal adicional",
+        text: "Taxi Ayud también está disponible en FREENOW, además de llamada directa y WhatsApp.",
+        detail: "Una opción cómoda para viajeros que ya utilizan FREENOW. Para horarios exactos, carretera o rutas especiales, confirma por WhatsApp.",
       },
       {
         title: "Rutas turísticas",
@@ -1993,19 +1993,19 @@ const appBookingCopy: Record<
   }
 > = {
   es: {
-    eyebrow: "Novedad · Colaborador FREENOW",
-    title: "FREENOW × Taxi Ayud: nueva colaboración en Calatayud",
-    text: "Taxi Ayud ya aparece como colaborador FREENOW en Calatayud. Si vienes por turismo, estación, hotel, empresa, balneario o comarca, tienes app para pedir taxi y WhatsApp directo para confirmar cualquier detalle.",
-    points: ["Colaborador FREENOW", "App para viajeros", "Reserva directa por WhatsApp", "Calatayud y comarca"],
+    eyebrow: "Canal adicional · FREENOW",
+    title: "Taxi Ayud también disponible en FREENOW",
+    text: "Si vienes por turismo, estación, hotel, empresa, balneario o comarca, puedes usar FREENOW como alternativa. Para reservas con hora, carretera o rutas especiales, WhatsApp y llamada siguen siendo la forma más directa.",
+    points: ["Canal adicional FREENOW", "App para viajeros", "Reserva directa por WhatsApp", "Calatayud y comarca"],
     primary: "Reservar directo",
     secondary: "Abrir FREENOW",
     appStore: "Descargar para iPhone",
     googlePlay: "Descargar para Android",
     note: "Si prefieres app, descarga FREENOW y busca taxi en Calatayud. Si necesitas hora exacta, carretera o ruta especial, escríbeme por WhatsApp para confirmarlo.",
-    heroKicker: "Novedad FREENOW",
-    heroText: "FREENOW × Taxi Ayud en Calatayud",
-    partnerTitle: "Colaboración destacada",
-    partnerText: "FREENOW × Taxi Ayud: colaborador en Calatayud",
+    heroKicker: "También en FREENOW",
+    heroText: "Canal adicional para pedir taxi por app",
+    partnerTitle: "Canal adicional",
+    partnerText: "Taxi Ayud colaborador FREENOW en Calatayud",
     previewPlace: "Calatayud",
     previewRoute: "Estación · hoteles · comarca",
     previewStatus: "Colaborador activo",
@@ -4525,82 +4525,82 @@ const festivalCopy: Record<
 > = {
   es: {
     eyebrow: "Fiestas y eventos en Calatayud",
-    title: "Taxi para San Roque Calatayud 2026",
+    title: "Taxi para fiestas y eventos en Calatayud",
     text:
-      "Del 13 al 16 de agosto de 2026 Calatayud celebra San Roque. Si vienes de fuera, llegas en tren, sales de un hotel o vas a pueblos y balnearios, reserva taxi con antelación para evitar esperas en horas punta.",
-    tags: ["San Roque 13-16 agosto", "Estación y hoteles", "Pueblos y balnearios"],
+      "En fiestas locales, conciertos, cenas y eventos con mucha demanda, reserva taxi con antelación si vienes de fuera, llegas en tren, sales de un hotel o vas a pueblos y balnearios.",
+    tags: ["Reservas con antelación", "Estación y hoteles", "Pueblos y balnearios"],
     primary: "Reservar para fiestas",
     secondary: "Calcular traslado",
   },
   en: {
     eyebrow: "Festivals and events in Calatayud",
-    title: "Taxi for San Roque Calatayud 2026",
+    title: "Taxi for festivals and events in Calatayud",
     text:
-      "From 13 to 16 August 2026, Calatayud celebrates San Roque. If you are visiting, arriving by train, staying at a hotel or travelling to villages and spas, book your taxi in advance to avoid peak-time waits.",
-    tags: ["San Roque 13-16 August", "Station and hotels", "Villages and spas"],
+      "For local festivals, concerts, dinners and busy events, book your taxi in advance if you are visiting, arriving by train, staying at a hotel or travelling to villages and spas.",
+    tags: ["Book in advance", "Station and hotels", "Villages and spas"],
     primary: "Book for festivals",
     secondary: "Calculate transfer",
   },
   fr: {
     eyebrow: "Fêtes et événements à Calatayud",
-    title: "Taxi pour San Roque Calatayud 2026",
+    title: "Taxi pour fêtes et événements à Calatayud",
     text:
-      "Du 13 au 16 août 2026, Calatayud célèbre San Roque. Si vous venez de l'extérieur, arrivez en train, séjournez à l'hôtel ou partez vers les villages et balnéaires, réservez le taxi à l'avance pour éviter l'attente.",
-    tags: ["San Roque 13-16 août", "Gare et hôtels", "Villages et balnéaires"],
+      "Pour les fêtes locales, concerts, dîners et événements avec forte demande, réservez le taxi à l'avance si vous arrivez en train, séjournez à l'hôtel ou partez vers les villages et balnéaires.",
+    tags: ["Réserver à l'avance", "Gare et hôtels", "Villages et balnéaires"],
     primary: "Réserver pour les fêtes",
     secondary: "Calculer le trajet",
   },
   ca: {
     eyebrow: "Festes i esdeveniments a Calatayud",
-    title: "Taxi per a San Roque Calatayud 2026",
+    title: "Taxi per a festes i esdeveniments a Calatayud",
     text:
-      "Del 13 al 16 d'agost de 2026 Calatayud celebra San Roque. Si vens de fora, arribes amb tren, surts d'un hotel o vas a pobles i balnearis, reserva taxi amb antelació per evitar esperes.",
-    tags: ["San Roque 13-16 agost", "Estació i hotels", "Pobles i balnearis"],
+      "En festes locals, concerts, sopars i esdeveniments amb molta demanda, reserva taxi amb antelació si arribes amb tren, surts d'un hotel o vas a pobles i balnearis.",
+    tags: ["Reserva amb antelació", "Estació i hotels", "Pobles i balnearis"],
     primary: "Reservar per festes",
     secondary: "Calcular trasllat",
   },
   de: {
     eyebrow: "Feste und Veranstaltungen in Calatayud",
-    title: "Taxi für San Roque Calatayud 2026",
+    title: "Taxi für Feste und Veranstaltungen in Calatayud",
     text:
-      "Vom 13. bis 16. August 2026 feiert Calatayud San Roque. Wenn Sie zu Besuch sind, mit dem Zug ankommen, im Hotel wohnen oder in Dörfer und Thermalorte fahren, buchen Sie das Taxi frühzeitig.",
-    tags: ["San Roque 13.-16. August", "Bahnhof und Hotels", "Dörfer und Thermalorte"],
+      "Bei lokalen Festen, Konzerten, Abendessen und stark nachgefragten Veranstaltungen empfiehlt sich eine frühe Taxibuchung, besonders bei Zug, Hotel, Dörfern oder Thermalorten.",
+    tags: ["Früh buchen", "Bahnhof und Hotels", "Dörfer und Thermalorte"],
     primary: "Für Feste buchen",
     secondary: "Transfer berechnen",
   },
   it: {
     eyebrow: "Feste ed eventi a Calatayud",
-    title: "Taxi per San Roque Calatayud 2026",
+    title: "Taxi per feste ed eventi a Calatayud",
     text:
-      "Dal 13 al 16 agosto 2026 Calatayud celebra San Roque. Se arrivi da fuori, in treno, da un hotel o devi andare verso paesi e terme, prenota il taxi in anticipo per evitare attese.",
-    tags: ["San Roque 13-16 agosto", "Stazione e hotel", "Paesi e terme"],
+      "Per feste locali, concerti, cene ed eventi con molta richiesta, prenota il taxi in anticipo se arrivi in treno, da un hotel o devi andare verso paesi e terme.",
+    tags: ["Prenota in anticipo", "Stazione e hotel", "Paesi e terme"],
     primary: "Prenota per le feste",
     secondary: "Calcola transfer",
   },
   pt: {
     eyebrow: "Festas e eventos em Calatayud",
-    title: "Táxi para San Roque Calatayud 2026",
+    title: "Táxi para festas e eventos em Calatayud",
     text:
-      "De 13 a 16 de agosto de 2026, Calatayud celebra San Roque. Se vem de fora, chega de comboio, sai de um hotel ou vai para aldeias e termas, reserve táxi com antecedência para evitar esperas.",
-    tags: ["San Roque 13-16 agosto", "Estação e hotéis", "Aldeias e termas"],
+      "Em festas locais, concertos, jantares e eventos com muita procura, reserve táxi com antecedência se chega de comboio, sai de um hotel ou vai para aldeias e termas.",
+    tags: ["Reservar com antecedência", "Estação e hotéis", "Aldeias e termas"],
     primary: "Reservar para festas",
     secondary: "Calcular transfer",
   },
   nl: {
     eyebrow: "Feesten en evenementen in Calatayud",
-    title: "Taxi voor San Roque Calatayud 2026",
+    title: "Taxi voor feesten en evenementen in Calatayud",
     text:
-      "Van 13 tot 16 augustus 2026 viert Calatayud San Roque. Komt u van buitenaf, met de trein, vanuit een hotel of reist u naar dorpen en kuuroorden, boek dan vooraf om wachttijden te vermijden.",
-    tags: ["San Roque 13-16 augustus", "Station en hotels", "Dorpen en kuuroorden"],
+      "Bij lokale feesten, concerten, diners en drukke evenementen is vooraf boeken verstandig, vooral als u met de trein komt, uit een hotel vertrekt of naar dorpen en kuuroorden reist.",
+    tags: ["Vooraf boeken", "Station en hotels", "Dorpen en kuuroorden"],
     primary: "Boeken voor feesten",
     secondary: "Transfer berekenen",
   },
   ar: {
     eyebrow: "المهرجانات والفعاليات في كالاتايود",
-    title: "تاكسي San Roque Calatayud 2026",
+    title: "تاكسي للمهرجانات والفعاليات في كالاتايود",
     text:
-      "من 13 إلى 16 أغسطس 2026 تحتفل كالاتايود بسان روكي. إذا كنت زائرا أو تصل بالقطار أو من فندق أو تريد الذهاب إلى القرى والمنتجعات، احجز التاكسي مسبقا لتجنب الانتظار.",
-    tags: ["San Roque 13-16 أغسطس", "المحطة والفنادق", "القرى والمنتجعات"],
+      "في المهرجانات والحفلات والعشاء والفعاليات المزدحمة، من الأفضل حجز التاكسي مسبقا خاصة إذا وصلت بالقطار أو من فندق أو إلى القرى والمنتجعات.",
+    tags: ["احجز مسبقا", "المحطة والفنادق", "القرى والمنتجعات"],
     primary: "الحجز لفترة المهرجان",
     secondary: "حساب الرحلة",
   },
@@ -7075,6 +7075,12 @@ function App() {
   const touristCopy = touristSearchCopy[language];
   const appBooking = appBookingCopy[language];
   const festival = festivalCopy[language];
+  const hasLiveGoogleReviewCount = reviews.source === "google-places";
+  const reviewCountLabel = hasLiveGoogleReviewCount ? reviews.count : t.viewGoogle;
+  const reviewTrustText = hasLiveGoogleReviewCount ? `${reviews.count} ${t.googleText}` : t.viewGoogle;
+  const reviewHeading = hasLiveGoogleReviewCount
+    ? `${reviews.rating} ${t.reviewsWith} ${reviews.count}`
+    : `${reviews.rating} ${t.googleRating}`;
   const showFestivalSection = isSeasonalCampaignVisible(currentSeoPage?.path);
   const destinationSearchValue = isRoadDestinationDraft(query) ? "" : query;
   const isRoadPickupContext = isRoadAssistanceNote(notes);
@@ -7670,11 +7676,11 @@ function App() {
           >
             {t.nav[0]}
           </a>
-          <a href="#freenow">FREENOW</a>
           <a href="#calculadora">{t.nav[1]}</a>
           <a href="#resenas">{t.nav[2]}</a>
           <a href="/servicios/">{t.nav[3]}</a>
           <a href="#tarifas">{t.nav[4]}</a>
+          <a href="#freenow">FREENOW</a>
         </nav>
         <div className="language-switcher">
           <Languages aria-hidden="true" />
@@ -7705,15 +7711,6 @@ function App() {
           <div className="hero-media" aria-hidden="true" />
           <div className="hero-car-layer" aria-hidden="true" />
           <div className="hero-content">
-            <a
-              className="hero-freenow-badge"
-              href="#freenow"
-              onClick={() => trackEvent("internal_route_click", { source: "hero_freenow_badge" })}
-            >
-              <FreenowWordmark compact />
-              <span className="hero-freenow-kicker">{appBooking.heroKicker}</span>
-              <strong>{appBooking.heroText}</strong>
-            </a>
             <p className="eyebrow">
               <BadgeCheck aria-hidden="true" />
               {currentSeoPage?.eyebrow ?? t.heroEyebrow}
@@ -7770,7 +7767,7 @@ function App() {
             <div className="rating-badge">
               <Star aria-hidden="true" />
               <strong>{reviews.rating}</strong>
-              <span>Google · {reviews.count}</span>
+              <span>Google · {reviewCountLabel}</span>
             </div>
             <h2>{t.bookTitle}</h2>
             <p>{t.bookText}</p>
@@ -7854,7 +7851,7 @@ function App() {
           <div>
             <Star aria-hidden="true" />
             <span>{reviews.rating} {t.googleRating}</span>
-            <p>{reviews.count} {t.googleText}</p>
+            <p>{reviewTrustText}</p>
           </div>
         </section>
 
@@ -8536,7 +8533,7 @@ function App() {
               <Star aria-hidden="true" />
               {t.reviewsEyebrow}
             </p>
-            <h2>{reviews.rating} {t.reviewsWith} {reviews.count}</h2>
+            <h2>{reviewHeading}</h2>
             <p>{t.reviewsText}</p>
             <div className="review-signals" aria-label={global.aria.reviewSignals}>
               {REVIEW_SIGNALS[language].map((signal) => (

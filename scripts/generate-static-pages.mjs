@@ -190,7 +190,7 @@ const businessGraph = {
   ],
   slogan: "Tu taxi de confianza en Calatayud",
   description:
-    "Taxi oficial en Calatayud y colaborador FREENOW para traslados a Monasterio de Piedra, Zaragoza, aeropuerto, estación, balnearios y pueblos de la comarca.",
+    "Taxi oficial en Calatayud para traslados a Monasterio de Piedra, Zaragoza, aeropuerto, estación, balnearios y pueblos de la comarca. FREENOW disponible como canal adicional.",
   telephone: "+34611861041",
   areaServed: [
     "Calatayud",
@@ -565,7 +565,7 @@ function staticFallback(page) {
     : "";
   const freenowPriority = page.path === "/" || page.path.includes("freenow");
   const freenowNews = freenowPriority
-    ? `<aside class="static-freenow-news"><span>Novedad FREENOW</span><strong>FREENOW Calatayud x Taxi Ayud</strong><p>Taxi Ayud ya es colaborador FREENOW en Calatayud. También puedes pedir taxi desde la app FREENOW o confirmar por WhatsApp recogidas en estación, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.</p></aside>`
+    ? `<aside class="static-freenow-news"><span>Canal adicional FREENOW</span><strong>Taxi Ayud colaborador FREENOW en Calatayud</strong><p>También puedes buscar Taxi Ayud desde la app FREENOW. Para reservas con hora, recogidas en carretera, estación, hoteles, pueblos, balnearios, Monasterio de Piedra, Zaragoza o aeropuerto, la confirmación directa por teléfono o WhatsApp sigue siendo la vía más rápida.</p></aside>`
     : "";
   const freenowDownloads = freenowPriority
     ? `<p class="static-store-row"><a href="${freenowAppLinks.ios}">Descargar FREENOW para iPhone</a><a href="${freenowAppLinks.android}">Descargar FREENOW para Android</a></p>`

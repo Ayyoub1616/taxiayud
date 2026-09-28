@@ -79,6 +79,11 @@
       "permanent": true
     },
     {
+      "source": "/taxi-averia-a2-calatayud/",
+      "destination": "/taxi-pasajeros-averia-a2-calatayud/",
+      "permanent": true
+    },
+    {
       "source": "/taxi-autovia-calatayud/",
       "destination": "/taxi-pasajeros-averia-a2-calatayud/",
       "permanent": true
@@ -96,6 +101,16 @@
     {
       "source": "/taxi-balnearios-jaraba-alhama/",
       "destination": "/taxi-calatayud-jaraba-balnearios/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-balnearios-calatayud/",
+      "destination": "/taxi-calatayud-jaraba-balnearios/",
+      "permanent": true
+    },
+    {
+      "source": "/taxi-comarca-calatayud/",
+      "destination": "/taxi-pueblos-comarca-calatayud/",
       "permanent": true
     },
     {

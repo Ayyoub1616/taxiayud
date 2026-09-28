@@ -23,6 +23,21 @@ const expected = [
     308,
     "old A-2 route to passenger breakdown route",
   ],
+  [
+    "https://www.taxiayud.es/taxi-averia-a2-calatayud/",
+    308,
+    "requested A-2 route to passenger breakdown route",
+  ],
+  [
+    "https://www.taxiayud.es/taxi-balnearios-calatayud/",
+    308,
+    "requested spas route to canonical spas route",
+  ],
+  [
+    "https://www.taxiayud.es/taxi-comarca-calatayud/",
+    308,
+    "requested comarca route to canonical villages route",
+  ],
 ];
 
 function isPermanent(status) {

@@ -47,7 +47,9 @@ addCheck("La portada declara x-default en la home", home.includes('hreflang="x-d
 addCheck("La portada enlaza la pagina de avería carretera", home.includes("/taxi-averia-carretera-calatayud/"));
 addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-estacion-calatayud-monasterio-de-piedra/"));
 addCheck("La portada enlaza la pagina FREENOW Calatayud", home.includes("/taxi-freenow-calatayud/"));
-addCheck("La portada destaca FREENOW como novedad", home.includes("Novedad FREENOW"));
+addCheck("La portada centra el title en Taxi Calatayud", home.includes("<title>Taxi Calatayud | Reserva por WhatsApp, AVE y comarca | Taxi Ayud</title>"));
+addCheck("La portada no pone FREENOW en el title principal", !home.includes("<title>FREENOW"));
+addCheck("La portada presenta FREENOW como canal adicional", home.includes("Canal adicional FREENOW"));
 addCheck("La portada indica colaboración FREENOW en Calatayud", home.includes("colaborador FREENOW en Calatayud"));
 addCheck("La portada incluye descarga FREENOW iPhone", home.includes("apps.apple.com/es/app/freenow-by-lyft-taxi-more/id357852748"));
 addCheck("La portada incluye descarga FREENOW Android", home.includes("play.google.com/store/apps/details?id=taxi.android.client"));
@@ -68,7 +70,7 @@ addCheck("La página taxi Calatayud tiene canonical propio", taxiCalatayud.inclu
 addCheck("La página inglesa declara idioma", english.includes('<html lang="en" dir="ltr">'));
 addCheck("La página inglesa tiene hreflang a francés", english.includes('hreflang="fr" href="https://www.taxiayud.es/fr/taxi-calatayud/"'));
 addCheck("La página FREENOW existe", freenow.includes("FREENOW Calatayud × Taxi Ayud"));
-addCheck("La página FREENOW destaca el co-branding", freenow.includes("FREENOW Calatayud x Taxi Ayud"));
+addCheck("La página FREENOW destaca la colaboración", freenow.includes("Taxi Ayud colaborador FREENOW en Calatayud"));
 addCheck("La página FREENOW refuerza taxi por app", freenow.includes("Taxi Ayud es colaborador FREENOW en Calatayud"));
 addCheck("La página FREENOW enlaza App Store", freenow.includes("Descargar FREENOW para iPhone"));
 addCheck("La página FREENOW enlaza Google Play", freenow.includes("Descargar FREENOW para Android"));
@@ -77,6 +79,7 @@ addCheck("La página de avería carretera existe", roadGeneric.includes("Taxi pa
 addCheck("La página A-2 Valdeherrera Ateca Ariza existe", roadA2Valdeherrera.includes("Taxi A-2 Valdeherrera, Ateca y Ariza"));
 addCheck("La página estación Monasterio existe", stationMonastery.includes("Taxi desde estación de Calatayud al Monasterio de Piedra"));
 addCheck("La página de fiestas existe para búsquedas de San Roque", festivals.includes("San Roque"));
+addCheck("La página de fiestas no presenta San Roque 2026 como actualidad", !festivals.includes("San Roque Calatayud 2026"));
 addCheck("La página Calatayud Zaragoza existe", calatayudZaragoza.includes("Taxi de Calatayud a Zaragoza"));
 addCheck("La página Zaragoza Calatayud existe", zaragozaCalatayud.includes("Taxi de Zaragoza a Calatayud"));
 addCheck("La página Calatayud Monasterio existe", monastery.includes("Taxi Calatayud-Monasterio de Piedra"));
@@ -134,6 +137,36 @@ addCheck(
     (item) =>
       item.source === "/taxi-aeropuerto-zaragoza/" &&
       item.destination === "/taxi-calatayud-aeropuerto-zaragoza/" &&
+      item.permanent === true,
+  ),
+);
+
+addCheck(
+  "La URL solicitada taxi averia A-2 redirige a la landing canonica",
+  redirects.some(
+    (item) =>
+      item.source === "/taxi-averia-a2-calatayud/" &&
+      item.destination === "/taxi-pasajeros-averia-a2-calatayud/" &&
+      item.permanent === true,
+  ),
+);
+
+addCheck(
+  "La URL solicitada taxi balnearios redirige a la landing canonica",
+  redirects.some(
+    (item) =>
+      item.source === "/taxi-balnearios-calatayud/" &&
+      item.destination === "/taxi-calatayud-jaraba-balnearios/" &&
+      item.permanent === true,
+  ),
+);
+
+addCheck(
+  "La URL solicitada taxi comarca redirige a la landing canonica",
+  redirects.some(
+    (item) =>
+      item.source === "/taxi-comarca-calatayud/" &&
+      item.destination === "/taxi-pueblos-comarca-calatayud/" &&
       item.permanent === true,
   ),
 );

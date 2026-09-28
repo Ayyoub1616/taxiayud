@@ -21,10 +21,11 @@
     "check": "pnpm build && pnpm test"
   },
   "dependencies": {
+    "postcss": "8.4.49",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "typescript": "^5.8.3",
-    "vite": "^8.1.5"
+    "vite": "5.4.21"
   },
   "devDependencies": {
     "@types/react": "^18.3.27",

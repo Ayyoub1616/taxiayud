@@ -31,7 +31,7 @@ export const RATES = {
 
 export const GOOGLE_REVIEWS = {
   rating: "5/5",
-  count: "10 reseñas",
+  count: "reseñas en Google",
   items: [
     {
       author: "Raquel C",
