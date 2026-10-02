@@ -7080,7 +7080,7 @@ function App() {
   const reviewTrustText = hasLiveGoogleReviewCount ? `${reviews.count} ${t.googleText}` : t.viewGoogle;
   const reviewHeading = hasLiveGoogleReviewCount
     ? `${reviews.rating} ${t.reviewsWith} ${reviews.count}`
-    : `${reviews.rating} ${t.googleRating}`;
+    : t.viewGoogle;
   const showFestivalSection = isSeasonalCampaignVisible(currentSeoPage?.path);
   const destinationSearchValue = isRoadDestinationDraft(query) ? "" : query;
   const isRoadPickupContext = isRoadAssistanceNote(notes);
@@ -7766,8 +7766,8 @@ function App() {
           <aside className="hero-booking-card" aria-label={global.aria.bookingCard}>
             <div className="rating-badge">
               <Star aria-hidden="true" />
-              <strong>{reviews.rating}</strong>
-              <span>Google · {reviewCountLabel}</span>
+              <strong>{hasLiveGoogleReviewCount ? reviews.rating : "Google"}</strong>
+              <span>{hasLiveGoogleReviewCount ? `Google · ${reviewCountLabel}` : t.viewGoogle}</span>
             </div>
             <h2>{t.bookTitle}</h2>
             <p>{t.bookText}</p>
@@ -7850,7 +7850,7 @@ function App() {
           </div>
           <div>
             <Star aria-hidden="true" />
-            <span>{reviews.rating} {t.googleRating}</span>
+            <span>{hasLiveGoogleReviewCount ? `${reviews.rating} ${t.googleRating}` : t.viewGoogle}</span>
             <p>{reviewTrustText}</p>
           </div>
         </section>
