@@ -7878,6 +7878,53 @@ function App() {
           </nav>
         </section>
 
+        <section className="freenow-premium" aria-label="Taxi Ayud disponible en FREENOW Calatayud" data-animate>
+          <div className="freenow-premium-content">
+            <div className="freenow-premium-kicker">
+              <BadgeCheck aria-hidden="true" />
+              <span>{language === "fr" ? "Une nouvelle façon de réserver" : language === "en" ? "A new way to book" : "Una nueva forma de reservar"}</span>
+              <FreenowWordmark compact />
+            </div>
+            <h2>
+              {language === "fr"
+                ? "Taxi Ayud, premier et seul taxi de la comarca de Calatayud disponible sur l'application FREENOW"
+                : language === "en"
+                  ? "Taxi Ayud, the first and only taxi from the Calatayud district available on the FREENOW app"
+                  : "Taxi Ayud, el primer y único taxi de la comarca de Calatayud disponible en la app FREENOW"}
+            </h2>
+            <p>
+              {language === "fr"
+                ? "Votre taxi local, désormais aussi sur une application de mobilité. Recherchez un trajet sur FREENOW selon la disponibilité affichée ou réservez directement par WhatsApp."
+                : language === "en"
+                  ? "Your local licensed taxi, now also on a mobility app. Search for a ride on FREENOW subject to availability, or book directly by WhatsApp."
+                  : "El taxi de siempre, ahora también en una app de movilidad. Busca tu trayecto en FREENOW según la disponibilidad mostrada o confirma directamente por WhatsApp."}
+            </p>
+            <div className="freenow-premium-actions">
+              <a className="btn btn-primary" href="/taxi-freenow-calatayud/" onClick={() => trackEvent("internal_route_click", { source: "freenow_premium" })}>
+                <ArrowRight aria-hidden="true" />
+                {language === "fr" ? "Découvrir Taxi Ayud sur FREENOW" : language === "en" ? "Discover Taxi Ayud on FREENOW" : "Conoce Taxi Ayud en FREENOW"}
+              </a>
+              <a className="btn btn-whatsapp" href={directUrl} target="_blank" rel="noreferrer" onClick={(event) => openDirectWhatsappForm(event, "freenow_premium")}>
+                <MessageCircle aria-hidden="true" />
+                {language === "fr" ? "Réserver directement" : language === "en" ? "Book directly" : "Reserva directa"}
+              </a>
+            </div>
+          </div>
+          <div className="freenow-premium-card">
+            <div className="freenow-premium-brand">
+              <FreenowWordmark />
+              <span aria-hidden="true">×</span>
+              <img src="/assets/logo.webp" alt="Taxi Ayud Calatayud" width="520" height="520" loading="lazy" decoding="async" />
+            </div>
+            <strong>{language === "fr" ? "Taxi local disponible sur FREENOW" : language === "en" ? "Local taxi available on FREENOW" : "Taxi local disponible en FREENOW"}</strong>
+            <p>{language === "fr" ? "Calatayud et comarca · Sous réserve de disponibilité sur l’application" : language === "en" ? "Calatayud and district · Subject to availability in the app" : "Calatayud y comarca · Sujeto a disponibilidad en la aplicación"}</p>
+            <div className="freenow-premium-stores">
+              <a href={FREENOW_APP_LINKS.ios} target="_blank" rel="noreferrer" onClick={() => trackEvent("external_app_download", { platform: "ios", source: "freenow_premium" })}>App Store <ArrowRight aria-hidden="true" /></a>
+              <a href={FREENOW_APP_LINKS.android} target="_blank" rel="noreferrer" onClick={() => trackEvent("external_app_download", { platform: "android", source: "freenow_premium" })}>Google Play <ArrowRight aria-hidden="true" /></a>
+            </div>
+          </div>
+        </section>
+
         <section className="local-seo-section" aria-label={global.aria.localSeo} data-animate>
           <div>
             <p className="eyebrow compact">
