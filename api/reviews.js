@@ -66,7 +66,8 @@ export default async function handler(request, response) {
         rating: typeof review?.rating === "number" ? review.rating : null,
         time: review?.relativePublishTimeDescription,
         publishTime: review?.publishTime,
-        url: review?.googleMapsUri || review?.authorAttribution?.uri || null,\n        authorPhoto: review?.authorAttribution?.photoUri || null,
+        url: review?.googleMapsUri || review?.authorAttribution?.uri || null,
+        authorPhoto: review?.authorAttribution?.photoUri || null,
       }))
       .filter((review) => review.text)
       .slice(0, 8);
