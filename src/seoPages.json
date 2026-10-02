@@ -117,8 +117,8 @@
   },
   {
     "path": "/en/taxi-calatayud/",
-    "title": "Taxi in Calatayud | Official local taxi | Taxi Ayud",
-    "description": "Official taxi in Calatayud for the train station, hotels, local villages, spas, Monasterio de Piedra, Zaragoza airport and road pick-ups.",
+    "title": "Calatayud Taxi | Train Station & Monasterio de Piedra | Taxi Ayud",
+    "description": "Book a licensed Calatayud taxi by phone or WhatsApp. Pick-ups at the AVE train station and hotels; trips to Monasterio de Piedra, thermal spas and Zaragoza.",
     "breadcrumb": "Taxi in Calatayud",
     "navLabel": "English",
     "eyebrow": "Official taxi in Calatayud",
@@ -138,6 +138,18 @@
       {
         "heading": "Zaragoza and airport",
         "text": "Door-to-door trips to Zaragoza, Zaragoza-Delicias station, hospitals and Zaragoza Airport."
+      },
+      {
+        "heading": "Arriving by AVE train?",
+        "text": "Arrange a taxi pick-up at Calatayud railway station. Send your train arrival time, destination, number of passengers and luggage by WhatsApp; the driver will confirm availability and the meeting point."
+      },
+      {
+        "heading": "Monasterio de Piedra day trips",
+        "text": "Ask for a transfer from Calatayud or the train station to Monasterio de Piedra and Nuévalos. You can also request a return journey in advance, subject to availability."
+      },
+      {
+        "heading": "Real Google reviews",
+        "text": "Read customer feedback about Taxi Ayud directly on its linked Google business profile before booking. Call or use WhatsApp to confirm your trip."
       }
     ],
     "faq": [
@@ -156,13 +168,25 @@
       {
         "question": "Can you pick up passengers after a road breakdown near Calatayud?",
         "answer": "Yes, as a passenger taxi service. For towing or mechanical assistance, contact your insurer or roadside assistance separately. For taxi availability, send your location by WhatsApp."
+      },
+      {
+        "question": "How do I arrange a taxi from Calatayud AVE train station?",
+        "answer": "Send your train arrival time, destination, passenger count and luggage details by WhatsApp or call Taxi Ayud. The pick-up point and availability will be confirmed directly."
+      },
+      {
+        "question": "Can I arrange a return taxi from Monasterio de Piedra?",
+        "answer": "You can request both outbound and return journeys in advance. Please confirm the return time and fare directly before travelling."
+      },
+      {
+        "question": "Can I pay by card?",
+        "answer": "Taxi Ayud lists card, cash and Bizum among its payment options. If you need a particular method, confirm it when booking."
       }
     ]
   },
   {
     "path": "/fr/taxi-calatayud/",
-    "title": "Taxi à Calatayud | Taxi officiel local | Taxi Ayud",
-    "description": "Taxi officiel à Calatayud pour gare, hôtels, villages, thermes, Monasterio de Piedra, Saragosse, aéroport et prise en charge sur route.",
+    "title": "Taxi Calatayud | Gare AVE & Monasterio de Piedra | Taxi Ayud",
+    "description": "Réservez un taxi à Calatayud par téléphone ou WhatsApp. Départ de la gare AVE ou de l'hôtel vers Monasterio de Piedra, les thermes, Saragosse et sa région.",
     "breadcrumb": "Taxi à Calatayud",
     "navLabel": "Français",
     "eyebrow": "Taxi officiel à Calatayud",
@@ -182,6 +206,18 @@
       {
         "heading": "Saragosse et aéroport",
         "text": "Trajets porte à porte vers Saragosse, gare Zaragoza-Delicias, hôpitaux et Aéroport de Saragosse."
+      },
+      {
+        "heading": "Vous arrivez en train AVE ?",
+        "text": "Organisez votre prise en charge à la gare de Calatayud. Envoyez par WhatsApp l'heure d'arrivée, la destination, le nombre de passagers et les bagages pour confirmer la disponibilité et le lieu du rendez-vous."
+      },
+      {
+        "heading": "Excursion au Monasterio de Piedra",
+        "text": "Demandez votre transfert depuis Calatayud ou sa gare vers le Monasterio de Piedra et Nuévalos. Le trajet retour peut également être demandé à l'avance, sous réserve de disponibilité."
+      },
+      {
+        "heading": "Avis authentiques sur Google",
+        "text": "Consultez les avis laissés par les clients sur la fiche Google de Taxi Ayud avant votre réservation. Appelez ou écrivez sur WhatsApp pour confirmer le trajet."
       }
     ],
     "faq": [
@@ -200,6 +236,18 @@
       {
         "question": "Pouvez-vous récupérer des passagers après une panne près de Calatayud ?",
         "answer": "Oui, comme service de taxi pour passagers. Pour dépanneuse ou assistance mécanique, contactez votre assurance séparément. Pour le taxi, envoyez votre position par WhatsApp."
+      },
+      {
+        "question": "Comment réserver un taxi à la gare AVE de Calatayud ?",
+        "answer": "Communiquez l'heure d'arrivée du train, votre destination, le nombre de passagers et les bagages par WhatsApp, ou appelez Taxi Ayud. Le point de rencontre et la disponibilité sont confirmés directement."
+      },
+      {
+        "question": "Puis-je réserver un aller-retour au Monasterio de Piedra ?",
+        "answer": "Oui, vous pouvez demander l'aller et le retour à l'avance. Confirmez l'horaire du retour et le tarif avant votre voyage."
+      },
+      {
+        "question": "Le paiement par carte est-il possible ?",
+        "answer": "Taxi Ayud indique accepter notamment la carte, les espèces et Bizum. Confirmez le mode de paiement souhaité lors de la réservation."
       }
     ]
   },
