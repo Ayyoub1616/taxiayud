@@ -7874,7 +7874,7 @@ function App() {
             <a href="/taxi-estacion-ave-calatayud/"><Route aria-hidden="true" /> {language === "fr" ? "Gare AVE" : language === "en" ? "AVE station" : "Estación AVE"}</a>
             <a href="/taxi-calatayud-monasterio-de-piedra/"><MapPin aria-hidden="true" /> Monasterio de Piedra</a>
             <a href="/taxi-calatayud-jaraba-balnearios/"><MapPin aria-hidden="true" /> {language === "fr" ? "Thermes" : language === "en" ? "Spas" : "Balnearios"}</a>
-            <a href="/taxi-freenow-calatayud/"><BadgeCheck aria-hidden="true" /> FREENOW</a>
+            <a href="/taxi-fiestas-calatayud/"><CalendarDays aria-hidden="true" /> {language === "fr" ? "Fêtes et événements" : language === "en" ? "Events & festivals" : "Fiestas y eventos"}</a>
           </nav>
         </section>
 
