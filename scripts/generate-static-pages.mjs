@@ -524,23 +524,8 @@ function staticFallback(page) {
     .slice(0, 14)
     .map((item) => `<a href="${item.path}">${escapeHtml(item.navLabel)}</a>`)
     .join(" ");
-  const serviceAreaTranslations = {
-    en: {
-      "Estación AVE de Calatayud": "Calatayud AVE train station",
-      "Hoteles de Calatayud": "Hotels in Calatayud",
-      "Pueblos de la comarca": "Nearby villages around Calatayud",
-      "Balnearios": "Thermal spas",
-    },
-    fr: {
-      "Estación AVE de Calatayud": "Gare AVE de Calatayud",
-      "Hoteles de Calatayud": "Hôtels à Calatayud",
-      "Pueblos de la comarca": "Villages proches de Calatayud",
-      "Balnearios": "Stations thermales",
-    },
-  };
-  const serviceAreaTranslationsForLang = serviceAreaTranslations[pageLang(page)] || {};
   const serviceAreas = serviceAreasForPage(page)
-    .map((area) => `<li>${escapeHtml(serviceAreaTranslationsForLang[area] || area)}</li>`);
+    .map((area) => `<li>${escapeHtml(area)}</li>`)
     .join("");
   const sections = page.sections
     .map(
