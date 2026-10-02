@@ -9,6 +9,7 @@ export const CONTACT = {
   whatsapp: BUSINESS_CONFIG.whatsapp,
   address: BUSINESS_CONFIG.publicAddress,
   googleProfile: BUSINESS_CONFIG.googleProfile,
+  googleReviewUrl: BUSINESS_CONFIG.googleReviewUrl,
   place: BUSINESS_CONFIG.publicPlace,
   license: BUSINESS_CONFIG.license,
 };
