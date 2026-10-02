@@ -32,7 +32,8 @@ export default async function handler(request, response) {
   }
 
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
+  // Google Place ID is public and verified against the connected Taxi Ayud business listing.
+  const placeId = process.env.GOOGLE_PLACE_ID || "ChIJDek_Q9WAkAcRQx8OFOaU1z4";
 
   if (!apiKey || !placeId) {
     response.status(200).json({ configured: false });
