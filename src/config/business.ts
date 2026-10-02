@@ -8,8 +8,8 @@ export const BUSINESS_CONFIG = {
   whatsapp: "34611861041",
   publicAddress: "Pl. del Fuerte, 50300 Calatayud, Zaragoza",
   publicPlace: "Calatayud, Zaragoza",
-  googleProfile: "https://share.google/QJyQ83oNHjkRqtciX",
-  googleReviewUrl: "https://share.google/vVhE9TRxVGqUYTwKp",
+  googleProfile: "https://maps.google.com/maps?cid=4528251666244181827",
+  googleReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJDek_Q9WAkAcRQx8OFOaU1z4",
   license: "Licencia municipal n.º 18",
   vehicle: {
     model: "Peugeot 408 Hybrid",
