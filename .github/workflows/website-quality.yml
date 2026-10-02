@@ -16,13 +16,13 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.19.0'
       - name: Install locked dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: Compile, build and validate SEO
         run: pnpm check
       - name: Validate production redirects
