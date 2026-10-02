@@ -21,7 +21,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.19.0'
-          cache: pnpm
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
       - name: Compile, build and validate SEO
