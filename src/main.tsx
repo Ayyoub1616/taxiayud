@@ -8461,6 +8461,16 @@ function App() {
               <Star aria-hidden="true" />
               {t.viewGoogle}
             </a>
+            <a
+              className="review-request-link"
+              href={CONTACT.googleReviewUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackEvent("review_click", { source: "leave_google_review" })}
+            >
+              <Star aria-hidden="true" />
+              {language === "en" ? "Share your experience on Google" : language === "fr" ? "Donnez votre avis sur Google" : language === "ca" ? "Deixa la teva ressenya a Google" : "Deja tu reseña en Google"}
+            </a>
           </div>
           <div className="reviews-stack">
             {reviews.items.slice(0, 1).map((review) => {
