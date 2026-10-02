@@ -7309,7 +7309,7 @@ function App() {
           setReviews({
             rating: data.rating,
             count: data.count,
-            items: pinnedReviewItems(data.items?.length ? data.items : GOOGLE_REVIEWS.items),
+            items: data.items?.length ? data.items : GOOGLE_REVIEWS.items,
             source: data.source,
           });
         }
