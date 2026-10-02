@@ -7864,23 +7864,18 @@ function App() {
           />
         ) : null}
 
-        <section className="region-band" aria-label={global.aria.region} data-animate>
-          <div className="region-copy">
-            <p className="eyebrow compact">
-              <MapPin aria-hidden="true" />
-              {t.regionEyebrow}
-            </p>
+        <section className="compact-service-band" id="freenow" aria-label={global.aria.region} data-animate>
+          <div className="compact-service-intro">
+            <p className="eyebrow compact"><BadgeCheck aria-hidden="true" />{t.regionEyebrow}</p>
             <h2>{t.regionTitle}</h2>
             <p>{t.regionText}</p>
           </div>
-          <div className="comfort-strip" aria-label={global.aria.comfort}>
-            {[CheckCircle2, Luggage, ShieldCheck, MessageCircle].map((Icon, index) => (
-              <div key={t.comfort[index]}>
-                <Icon aria-hidden="true" />
-                <span>{t.comfort[index]}</span>
-              </div>
-            ))}
-          </div>
+          <nav className="compact-service-links" aria-label={global.aria.quickContact}>
+            <a href="/taxi-estacion-ave-calatayud/"><Route aria-hidden="true" /> {language === "fr" ? "Gare AVE" : language === "en" ? "AVE station" : "Estación AVE"}</a>
+            <a href="/taxi-calatayud-monasterio-de-piedra/"><MapPin aria-hidden="true" /> Monasterio de Piedra</a>
+            <a href="/taxi-calatayud-jaraba-balnearios/"><MapPin aria-hidden="true" /> {language === "fr" ? "Thermes" : language === "en" ? "Spas" : "Balnearios"}</a>
+            <a href="/taxi-freenow-calatayud/"><BadgeCheck aria-hidden="true" /> FREENOW</a>
+          </nav>
         </section>
 
         <section className="local-seo-section" aria-label={global.aria.localSeo} data-animate>
@@ -7903,137 +7898,6 @@ function App() {
                 <MapPin aria-hidden="true" />
                 <h3>{route.title}</h3>
                 <p>{route.text}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section className="app-booking-section" id="freenow" aria-label="Taxi Ayud en FREENOW" data-animate>
-          <div className="app-booking-copy">
-            <p className="eyebrow compact">
-              <BadgeCheck aria-hidden="true" />
-              {appBooking.eyebrow}
-            </p>
-            <h2>{appBooking.title}</h2>
-            <p>{appBooking.text}</p>
-            <small>{appBooking.note}</small>
-          </div>
-            <div className="app-booking-card">
-              <div className="app-partnership-lockup" aria-label={appBooking.partnerText}>
-                <div className="partner-brand partner-brand-freenow">
-                  <FreenowWordmark />
-                </div>
-                <span className="partnership-plus" aria-hidden="true">×</span>
-                <div className="partner-brand partner-brand-taxi">
-                  <img src="/assets/logo.webp" alt="" width="520" height="520" />
-                  <span>
-                    Taxi <strong>Ayud</strong>
-                  </span>
-                </div>
-              </div>
-              <div className="app-booking-mark">
-                <BadgeCheck aria-hidden="true" />
-                <strong>{appBooking.partnerTitle}</strong>
-                <span>{appBooking.partnerText}</span>
-              </div>
-              <div className="freenow-app-preview" aria-hidden="true">
-                <div className="freenow-phone-top">
-                  <FreenowWordmark compact />
-                  <span>{appBooking.previewPlace}</span>
-                </div>
-                <div className="freenow-route-row">
-                  <MapPin aria-hidden="true" />
-                  <span>{appBooking.previewRoute}</span>
-                </div>
-                <div className="freenow-car-row">
-                  <CarFront aria-hidden="true" />
-                  <strong>Taxi Ayud</strong>
-                  <span>{appBooking.previewStatus}</span>
-                </div>
-              </div>
-            <div className="app-booking-points">
-              {appBooking.points.map((point) => (
-                <span key={point}>
-                  <CheckCircle2 aria-hidden="true" />
-                  {point}
-                </span>
-              ))}
-            </div>
-            <div className="app-download-actions" aria-label="Descargar FREENOW">
-              <a
-                className="store-button"
-                href={FREENOW_APP_LINKS.ios}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackEvent("external_app_download", { platform: "ios", source: "freenow_home_block" })}
-              >
-                <span className="store-os">iOS</span>
-                <strong>App Store</strong>
-                <small>{appBooking.appStore}</small>
-              </a>
-              <a
-                className="store-button"
-                href={FREENOW_APP_LINKS.android}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackEvent("external_app_download", { platform: "android", source: "freenow_home_block" })}
-              >
-                <span className="store-os">Android</span>
-                <strong>Google Play</strong>
-                <small>{appBooking.googlePlay}</small>
-              </a>
-            </div>
-            <div className="app-booking-actions">
-              <a
-                className="btn btn-whatsapp"
-                href={directUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={(event) => openDirectWhatsappForm(event, "freenow_home_block")}
-              >
-                <MessageCircle aria-hidden="true" />
-                {appBooking.primary}
-              </a>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => {
-                  setShowFreenowChooser(true);
-                  trackEvent("freenow_download_choice_open", { source: "freenow_home_block" });
-                }}
-              >
-                <ArrowRight aria-hidden="true" />
-                {appBooking.secondary}
-              </button>
-            </div>
-            <a
-              className="freenow-seo-link"
-              href="/taxi-freenow-calatayud/"
-              onClick={() => trackEvent("internal_route_click", { source: "freenow_seo_link" })}
-            >
-              FREENOW Calatayud · Taxi Ayud
-            </a>
-          </div>
-        </section>
-
-        <section className="tourist-search-section" aria-label={global.aria.tourist} data-animate>
-          <div className="tourist-search-copy">
-            <p className="eyebrow compact">
-              <Languages aria-hidden="true" />
-              {touristCopy.eyebrow}
-            </p>
-            <h2>{touristCopy.title}</h2>
-            <p>{touristCopy.text}</p>
-          </div>
-          <div className="tourist-search-grid">
-            {touristSearchPhrases[language].map((item, index) => (
-              <a
-                href={TOURIST_SEARCH_LINKS[index] ?? "/taxi-calatayud/"}
-                key={`${item.language}-${item.query}`}
-                onClick={() => trackEvent("internal_route_click", { source: "tourist_search_chip", index })}
-              >
-                <strong>{item.language}</strong>
-                {item.query}
               </a>
             ))}
           </div>
