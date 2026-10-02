@@ -59,14 +59,14 @@ export default async function handler(request, response) {
     const data = await googleResponse.json();
     const rating = ratingLabel(data.rating);
     const count = countLabel(data.userRatingCount);
-    const items = sortByNewest(data.reviews || [])
+    const items = sortByNewest(Array.isArray(data.reviews) ? data.reviews : [])
       .map((review) => ({
         author: review?.authorAttribution?.displayName || "Cliente de Google",
         text: reviewText(review),
-        rating: review?.rating || 5,
+        rating: typeof review?.rating === "number" ? review.rating : null,
         time: review?.relativePublishTimeDescription,
         publishTime: review?.publishTime,
-        url: review?.googleMapsUri || review?.authorAttribution?.uri,
+        url: review?.googleMapsUri || review?.authorAttribution?.uri || null,\n        authorPhoto: review?.authorAttribution?.photoUri || null,
       }))
       .filter((review) => review.text)
       .slice(0, 8);
