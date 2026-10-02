@@ -1502,15 +1502,19 @@
   {
     "path": "/taxi-fiestas-calatayud/",
     "title": "Taxi fiestas Calatayud | Eventos, hoteles y estación | Taxi Ayud",
-    "description": "Taxi para fiestas y eventos en Calatayud: estación, hoteles, pueblos de la comarca, balnearios y traslados nocturnos con reserva por WhatsApp.",
+    "description": "Taxi para fiestas, conciertos y eventos de Calatayud. Agenda cultural de octubre 2026, recogidas en hoteles, estación AVE y reservas de ida y vuelta por WhatsApp.",
     "breadcrumb": "Taxi fiestas Calatayud",
     "navLabel": "Taxi fiestas Calatayud",
     "eyebrow": "Fiestas y eventos en Calatayud",
     "h1": "Taxi para fiestas en Calatayud",
-    "intro": "Taxi Ayud atiende reservas de taxi para fiestas en Calatayud, hoteles, estación, restaurantes, pueblos de la comarca, balnearios y desplazamientos nocturnos.",
+    "intro": "Taxi Ayud atiende reservas para fiestas, conciertos y eventos de Calatayud, con recogidas en hoteles, estación AVE, restaurantes y pueblos de la comarca. Consulta disponibilidad y confirma con antelación tanto la ida como el regreso.",
     "h2": "Reserva taxi para conciertos, cenas y eventos",
     "body": "En días de fiestas, fines de semana y eventos con mucha demanda, lo recomendable es reservar con antelación por WhatsApp indicando hora, punto de recogida, destino, pasajeros y si necesitas vuelta programada.",
     "sections": [
+      {
+        "heading": "Próximos eventos confirmados · octubre 2026",
+        "text": "Según la agenda del Ayuntamiento de Calatayud, «La bola negra» está programada para los días 3 y 4 de octubre y el Festival de Música Barroca figura los días 16 y 23 de octubre de 2026. Para asistir o regresar, consulta tu taxi con antelación, indicando fecha, lugar de recogida y destino. Comprueba los horarios exactos en la agenda oficial: https://www.calatayud.es/cultura/agenda. Esta información se actualizará conforme cambie la programación."
+      },
       {
         "heading": "Fiestas de Calatayud",
         "text": "Traslados para visitantes, peñas, hoteles, estación, restaurantes y vueltas programadas durante fiestas locales y eventos con alta demanda."
@@ -1544,6 +1548,10 @@
       {
         "question": "¿El precio de la calculadora es definitivo en fiestas?",
         "answer": "No. Es orientativo. En fiestas, horarios nocturnos, esperas y disponibilidad se confirman directamente por teléfono o WhatsApp."
+      },
+      {
+        "question": "¿Puedo reservar taxi para el Festival de Música Barroca de Calatayud en octubre de 2026?",
+        "answer": "Sí, puedes consultar por WhatsApp un traslado para el 16 o el 23 de octubre, fechas anunciadas en la agenda cultural municipal. Indica si necesitas recogida en la estación AVE, en un hotel, en Calatayud o vuelta a un pueblo de la comarca. La disponibilidad se confirma directamente."
       }
     ]
   },
