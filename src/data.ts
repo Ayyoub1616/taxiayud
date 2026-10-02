@@ -29,44 +29,48 @@ export const RATES = {
   officialNotice: OFFICIAL_TARIFF_CONFIG.sourceLabel,
 };
 
+// These excerpts were checked against the connected Google Business Profile on 2026-10-02.
+// Never present this fallback as a live review count or invent new testimonials.
 export const GOOGLE_REVIEWS = {
-  rating: "5/5",
-  count: "reseñas en Google",
+  rating: "Google",
+  count: "Ver reseñas actuales",
   items: [
     {
+      author: "Iván Tomás",
+      text: "El servicio fue excelente: rapidez, educación y ubicación compartida en todo momento, lo que da mucha tranquilidad.",
+      time: "Reseña en Google",
+      rating: 5,
+    },
+    {
       author: "Raquel C",
-      text: "Ante la dificultad de encontrar taxi en Calatayud, una suerte dar con ellos. Los necesité dos veces y fui con el mismo taxista, muy amable y puntual. El taxi perfecto, muy limpio y cómodo. Totalmente recomendable.",
-      time: "Reseña destacada",
-      rating: 5,
-      url: "https://share.google/vVhE9TRxVGqUYTwKp",
-    },
-    {
-      author: "Darlene Cuevas",
-      text: "I can't recommend this taxi service highly enough! I was stranded at the Mercadona near the station...",
-      time: "Reseña reciente",
+      text: "El taxi perfecto, muy limpio y cómodo. Totalmente recomendable",
+      time: "Reseña en Google",
       rating: 5,
     },
     {
-      author: "VIRAL VIDEOS #1",
-      text: "Excelente servicio de taxi en Calatayud. Puntual, amable y muy profesional; el coche estaba limpio y el trayecto fue cómodo y seguro.",
-      time: "Hace una semana",
+      author: "Claudia “ItsaClaud”",
+      text: "Nice and reliable taxi service around Calatayud. Also very easy to book and communicate on WhatsApp!",
+      time: "Reseña en Google",
       rating: 5,
     },
     {
       author: "ImNotAlejandro W",
-      text: "Servicio premium, educación, puntualidad, el vehículo en excelente estado 10/10",
-      time: "Hace 2 semanas",
+      text: "Servicio premium, educación, puntualidad, el vehiculo en excelente estado 10/10",
+      time: "Reseña en Google",
       rating: 5,
     },
     {
       author: "hakim msellek",
       text: "Excelente servicio",
-      time: "Hace 2 semanas",
+      time: "Reseña en Google",
       rating: 5,
     },
-    { author: "Ady Adita", text: "El mejor taxi" },
-    { author: "Ronmel Manuel", text: "Excelente servicio" },
-    { author: "Jorge D", text: "Puntual y coche cómodo" },
+    {
+      author: "Darlene Cuevas",
+      text: "His kindness and willingness to help turned what had become a very stressful situation into a huge relief.",
+      time: "Reseña en Google",
+      rating: 5,
+    },
   ],
 };
 
