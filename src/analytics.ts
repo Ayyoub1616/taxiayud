@@ -64,10 +64,19 @@ function safeText(value: unknown) {
     .slice(0, 140);
 }
 
+// Record only a fixed, non-identifying campaign source. Do not store full URLs or query strings.
+function campaignSource() {
+  if (typeof window === "undefined") return "";
+  const source = new URLSearchParams(window.location.search).get("utm_source")?.toLowerCase();
+  if (source === "google_business_profile" || source === "google_business" || source === "gbp") return "google_business_profile";
+  return "";
+}
+
 function safeAdminParams(params: AnalyticsParams) {
   const clean: AnalyticsParams = {
     path: typeof window !== "undefined" ? window.location.pathname : "/",
     device: deviceCategory(),
+    ...(campaignSource() && !params.source ? { source: campaignSource() } : {}),
   };
 
   for (const [key, value] of Object.entries(params)) {
