@@ -7871,6 +7871,8 @@ function App() {
             <p>{t.regionText}</p>
           </div>
           <nav className="compact-service-links" aria-label={global.aria.quickContact}>
+            <a href="/reserva-traslado/"><TrainFront aria-hidden="true" /> {language === "fr" ? "Demande de transfert" : language === "en" ? "Transfer request" : "Solicitar traslado"}</a>
+            <a href="/eventos-comarca/"><CalendarDays aria-hidden="true" /> {language === "fr" ? "Agenda locale" : language === "en" ? "Local events" : "Agenda de la comarca"}</a>
             <a href="/taxi-estacion-ave-calatayud/"><Route aria-hidden="true" /> {language === "fr" ? "Gare AVE" : language === "en" ? "AVE station" : "Estación AVE"}</a>
             <a href="/taxi-calatayud-monasterio-de-piedra/"><MapPin aria-hidden="true" /> Monasterio de Piedra</a>
             <a href="/taxi-calatayud-jaraba-balnearios/"><MapPin aria-hidden="true" /> {language === "fr" ? "Thermes" : language === "en" ? "Spas" : "Balnearios"}</a>
