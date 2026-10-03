@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reservar taxi para tren, AVE o aeropuerto en Calatayud | Taxi Ayud</title>
+<meta name="description" content="Solicita recogida de taxi para la estación AVE de Calatayud, aeropuerto de Zaragoza o traslado local. Prepara tu reserva por WhatsApp.">
+<link rel="canonical" href="https://www.taxiayud.es/reserva-traslado/"><meta name="theme-color" content="#05070b">
+<style>body{margin:0;background:#080c12;color:#f7f7f7;font:16px system-ui,sans-serif}main{max-width:680px;margin:auto;padding:24px 18px 60px}a{color:#f2ca66}h1{font-size:clamp(28px,5vw,43px)}form{display:grid;gap:16px;background:#151d29;padding:22px;border-radius:18px}label{display:grid;gap:7px;font-weight:650}input,select,textarea{box-sizing:border-box;width:100%;padding:13px;border:1px solid #64748b;border-radius:8px;background:#fff;color:#172033;font:inherit}button{padding:16px;background:#24c468;color:#061b0e;border:0;border-radius:10px;font:inherit;font-weight:800;cursor:pointer}button:hover{filter:brightness(1.08)}small,p{line-height:1.55;color:#c5d1df}.links{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:20px}</style></head><body><main>
+<nav class="links"><a href="/">← Taxi Ayud</a><a href="tel:611861041">Llamar: 611 861 041</a><a href="/eventos-comarca/">Eventos de la comarca</a></nav>
+<h1>Solicita tu traslado en taxi</h1><p>Estación AVE de Calatayud, aeropuerto de Zaragoza, hoteles, pueblos y otros destinos. La solicitud se envía por WhatsApp y queda pendiente de confirmación de disponibilidad y precio.</p>
+<form id="booking">
+<label>Tipo de servicio<select name="service" required><option value="">Selecciona</option><option>Recogida estación AVE Calatayud</option><option>Recogida aeropuerto de Zaragoza</option><option>Traslado a estación o aeropuerto</option><option>Taxi por Calatayud y comarca</option><option>Otro traslado</option></select></label>
+<label>Origen<input name="origin" maxlength="120" required placeholder="Estación AVE Calatayud"></label>
+<label>Destino<input name="destination" maxlength="120" required placeholder="Hotel, pueblo o dirección"></label>
+<label>Fecha<input name="date" type="date" required></label>
+<label>Hora de recogida<input name="time" type="time" required></label>
+<label>Pasajeros (máximo 4)<select name="passengers" required><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+<label>Referencia opcional de tren o vuelo<input name="reference" maxlength="45" placeholder="Ej. AVE 03112 / IB1234"></label>
+<label>Equipaje y observaciones<textarea name="notes" rows="3" maxlength="350" placeholder="Maletas, silla infantil (consultar), punto de encuentro…"></textarea></label>
+<button type="submit">Preparar solicitud por WhatsApp</button>
+<small>No se efectúa una reserva automática. Al pulsar se abrirá WhatsApp con el mensaje preparado. No guardamos los datos de este formulario en la web.</small></form>
+<script>
+const form=document.getElementById('booking');const date=form.elements.date;const localDate=new Date();localDate.setMinutes(localDate.getMinutes()-localDate.getTimezoneOffset());date.min=localDate.toISOString().slice(0,10);
+form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const d=new FormData(form);if(d.get('date')<date.min){date.setCustomValidity('Selecciona una fecha válida.');date.reportValidity();date.setCustomValidity('');return;}const lines=['Hola Taxi Ayud, quisiera consultar disponibilidad para un traslado:','Servicio: '+d.get('service'),'Origen: '+d.get('origin'),'Destino: '+d.get('destination'),'Fecha: '+d.get('date'),'Hora: '+d.get('time'),'Pasajeros: '+d.get('passengers')];if(d.get('reference'))lines.push('Tren/vuelo: '+d.get('reference'));if(d.get('notes'))lines.push('Observaciones: '+d.get('notes'));lines.push('¿Podéis confirmar disponibilidad y precio?');location.href='https://wa.me/34611861041?text='+encodeURIComponent(lines.join('\n'));});
+</script></main></body></html>
