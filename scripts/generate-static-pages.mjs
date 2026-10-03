@@ -57,6 +57,8 @@ const priorityStaticLinks = [
   "/taxi-calatayud-aeropuerto-zaragoza/",
   "/telefono-taxi-calatayud/",
   "/reservar/",
+  "/reserva-traslado/",
+  "/eventos-comarca/",
   "/tarifas/",
 ];
 const staticCopy = {
@@ -677,7 +679,7 @@ ${sitemapImageTags(page)}
 }
 
 function writeSitemap() {
-  const entries = pages.map((page) => sitemapEntry(page, buildDate)).join("\n");
+  const entries = pages.map((page) => sitemapEntry(page, buildDate)).join("\n") + ["reserva-traslado", "eventos-comarca"].map((slug) => `\n  <url><loc>${siteUrl}/${slug}/</loc><lastmod>${buildDate}</lastmod></url>`).join("");
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
