@@ -66,17 +66,23 @@ function safeText(value: unknown) {
 
 // Record only a fixed, non-identifying campaign source. Do not store full URLs or query strings.
 function campaignSource() {
-  if (typeof window === "undefined") return "";
-  const source = new URLSearchParams(window.location.search).get("utm_source")?.toLowerCase();
-  if (source === "google_business_profile" || source === "google_business" || source === "gbp") return "google_business_profile";
-  return "";
+  if (typeof window === "undefined" || !adminConsentAccepted()) return "";
+  try {
+    const source = new URLSearchParams(window.location.search).get("utm_source")?.toLowerCase();
+    const recognized = ["google_business_profile", "google_business", "gbp"].includes(source || "");
+    if (recognized) window.sessionStorage.setItem("taxiayud-campaign-source", "google_business_profile");
+    return recognized ? "google_business_profile" :
+      window.sessionStorage.getItem("taxiayud-campaign-source") === "google_business_profile" ? "google_business_profile" : "";
+  } catch {
+    return "";
+  }
 }
 
 function safeAdminParams(params: AnalyticsParams) {
   const clean: AnalyticsParams = {
     path: typeof window !== "undefined" ? window.location.pathname : "/",
     device: deviceCategory(),
-    ...(campaignSource() && !params.source ? { source: campaignSource() } : {}),
+    ...(campaignSource() ? { source: campaignSource() } : {}),
   };
 
   for (const [key, value] of Object.entries(params)) {
@@ -125,7 +131,7 @@ function sendAdminEvent(name: string, params: AnalyticsParams = {}) {
 }
 
 export function initAnalytics() {
-  if (!analyticsEnabled || !measurementId || initialized || typeof window === "undefined") {
+  if (!analyticsEnabled || !measurementId || initialized || typeof window === "undefined" || !adminConsentAccepted()) {
     return;
   }
 
@@ -151,7 +157,7 @@ export function trackEvent(name: string, params: AnalyticsParams = {}) {
   const eventName = EVENT_ALIASES[name] ?? name;
   sendAdminEvent(eventName, params);
 
-  if (!analyticsEnabled || !measurementId || typeof window === "undefined") return;
+  if (!analyticsEnabled || !measurementId || typeof window === "undefined" || !adminConsentAccepted()) return;
 
   window.gtag?.("event", eventName, {
     ...params,
