@@ -7,6 +7,7 @@ const errors = [];
 const titles = new Map();
 const descriptions = new Map();
 const pageUrls = new Set(pages.map((page) => `${siteUrl}${page.path === "/" ? "/" : page.path}`));
+const newStandalonePages = ["/reserva-traslado/", "/eventos-comarca/"];
 const localizedTaxiPaths = new Set([
   "/",
   "/en/taxi-calatayud/",
@@ -129,8 +130,18 @@ for (const page of pages) {
 }
 
 const sitemapUrls = [...sitemap.matchAll(/<loc>([\s\S]*?)<\/loc>/g)].map((item) => item[1]);
-if (sitemapUrls.length !== pages.length) {
-  fail(`sitemap tiene ${sitemapUrls.length} URLs, se esperaban ${pages.length}`);
+for (const path of newStandalonePages) {
+  const htmlFile = pageFile(path);
+  if (!existsSync(htmlFile)) { fail(`Falta ${htmlFile}`); continue; }
+  const html = readFileSync(htmlFile, "utf8");
+  if (!html.includes(`<link rel="canonical" href="${siteUrl}${path}"`)) fail(`${path} canonical incorrecto`);
+  if (!/<meta name="description" content="[^"]+"/.test(html)) fail(`${path} sin meta description`);
+  if (!/<h1[ >]/.test(html)) fail(`${path} sin H1`);
+  if (!sitemap.includes(`<loc>${siteUrl}${path}</loc>`)) fail(`${path} no figura en sitemap`);
+}
+if (new Set(sitemapUrls).size !== sitemapUrls.length) fail("sitemap contiene URLs duplicadas");
+if (sitemapUrls.length !== pages.length + newStandalonePages.length) {
+  fail(`sitemap tiene ${sitemapUrls.length} URLs, se esperaban ${pages.length + newStandalonePages.length}`);
 }
 
 if (!existsSync("dist/404.html")) fail("Falta dist/404.html");
