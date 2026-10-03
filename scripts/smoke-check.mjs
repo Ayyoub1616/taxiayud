@@ -18,6 +18,9 @@ function read(path) {
 }
 
 const home = read("dist/index.html");
+const transferForm = read("dist/reserva-traslado/index.html");
+const eventAgenda = read("dist/eventos-comarca/index.html");
+const appSource = read("src/main.tsx");
 const taxiCalatayud = read("dist/taxi-calatayud/index.html");
 const english = read("dist/en/taxi-calatayud/index.html");
 const freenow = read("dist/taxi-freenow-calatayud/index.html");
@@ -38,6 +41,13 @@ const tariffData = read("src/data.ts");
 const vercelConfig = JSON.parse(read("vercel.json"));
 const homeH1Count = (home.match(/<h1[\s>]/g) || []).length;
 
+addCheck("La navegación interactiva enlaza reserva de traslado", appSource.includes('href="/reserva-traslado/"'));
+addCheck("La navegación interactiva enlaza la agenda", appSource.includes('href="/eventos-comarca/"'));
+addCheck("El formulario incluye ubicación GPS con permiso", transferForm.includes("getCurrentPosition"));
+addCheck("El formulario rechaza horas pasadas", transferForm.includes("selected.getTime()<Date.now()"));
+addCheck("El formulario no confirma automáticamente reservas", transferForm.includes("pendiente de confirmación"));
+addCheck("Los eventos enlazan al formulario con contexto", eventAgenda.includes("encodeURIComponent(event.title"));
+addCheck("La agenda escapa el texto externo", eventAgenda.includes("h.textContent=event.title"));
 addCheck("La portada contiene el teléfono principal", home.includes("611 861 041"));
 addCheck("La portada enlaza WhatsApp", home.includes("wa.me/34611861041"));
 addCheck("La portada incluye contenido SEO inicial", home.includes("static-seo-content"));
