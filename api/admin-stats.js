@@ -10,7 +10,7 @@ function redisConfig() {
 function requestToken(request) {
   const auth = request.headers?.authorization || request.headers?.Authorization || "";
   if (String(auth).toLowerCase().startsWith("bearer ")) return String(auth).slice(7).trim();
-  return String(request.query?.token || request.headers?.["x-admin-token"] || "").trim();
+  return String(request.headers?.["x-admin-token"] || "").trim();
 }
 
 function requireAdmin(request, response) {
@@ -113,6 +113,11 @@ function summarize(events) {
     topPages: countBy(pageEvents, (event) => event.params?.path),
     topRoutes: countBy(routeEvents, routeLabel),
     topSources: countBy(events, (event) => event.params?.source),
+    googleBusinessProfile: {
+      pageViews7d: pageEvents.filter((event) => eventTime(event) >= weekAgo && event.params?.source === "google_business_profile").length,
+      whatsappClicks7d: whatsappEvents.filter((event) => eventTime(event) >= weekAgo && event.params?.source === "google_business_profile").length,
+      callClicks7d: callEvents.filter((event) => eventTime(event) >= weekAgo && event.params?.source === "google_business_profile").length,
+    },
     topLanguages: countBy(events, (event) => event.params?.language),
     byType: countBy(events, (event) => event.type),
   };
