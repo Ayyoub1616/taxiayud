@@ -7,13 +7,13 @@
     "navLabel": "Taxi Calatayud",
     "eyebrow": "Taxi oficial en Calatayud · Licencia 18",
     "h1": "Taxi Calatayud y comarca",
-    "intro": "Si buscas taxi en Calatayud, taxi cerca de mí o traslado desde la comarca, Taxi Ayud ofrece recogidas en estación AVE, hoteles, pueblos, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.",
+    "intro": "Si buscas taxi en Calatayud, Taxi Ayud ofrece recogidas en la estación AVE para viajeros que llegan desde Madrid, Barcelona, Zaragoza y otras ciudades, así como traslados a hoteles, pueblos de la comarca, balnearios, Monasterio de Piedra, A-2 y aeropuerto, siempre según disponibilidad.",
     "h2": "Llama o reserva taxi por WhatsApp",
     "body": "La web está pensada para que puedas llamar, escribir por WhatsApp o consultar un precio orientativo antes de reservar. Para horarios exactos, viajes de madrugada, trenes, vuelos, averías en carretera o recogidas especiales, confirma disponibilidad directamente. FREENOW queda disponible como canal adicional si prefieres pedir taxi desde app.",
     "sections": [
       {
         "heading": "Recogidas en Calatayud",
-        "text": "Domicilios, hoteles, estación, Plaza del Fuerte y otros puntos de la ciudad."
+        "text": "Recogidas en domicilios, hoteles y estación AVE de Calatayud, también para visitantes que llegan en tren desde otras ciudades de España."
       },
       {
         "heading": "Traslados de comarca",
@@ -765,19 +765,19 @@
   },
   {
     "path": "/taxi-estacion-ave-calatayud/",
-    "title": "Taxi en estación AVE de Calatayud | Taxi Ayud",
-    "description": "Reserva taxi en la estación de Calatayud para hoteles, pueblos, Monasterio de Piedra, balnearios, Zaragoza y traslados con maletas.",
+    "title": "Taxi estación AVE Calatayud | Recogidas y reservas | Taxi Ayud",
+    "description": "Reserva taxi en la estación AVE de Calatayud si llegas desde Madrid, Barcelona, Zaragoza u otra ciudad. Recogidas a hoteles, Monasterio de Piedra y comarca.",
     "breadcrumb": "Estación AVE",
     "navLabel": "Estación AVE",
     "eyebrow": "Recogida en estación",
     "h1": "Taxi en la estación AVE de Calatayud",
-    "intro": "Reserva taxi para recogidas en la estación de tren de Calatayud y continúa hacia hoteles, pueblos de la comarca, Monasterio de Piedra, balnearios o Zaragoza.",
+    "intro": "¿Llegas en tren a Calatayud desde Madrid, Barcelona, Zaragoza u otra ciudad? Consulta una recogida en la estación AVE para ir a tu hotel, al centro de Calatayud, al Monasterio de Piedra, a balnearios o a municipios de la comarca. Confirma hora de llegada y disponibilidad por teléfono o WhatsApp.",
     "h2": "Recogidas puntuales para trenes y conexiones",
     "body": "Indica el tren, la hora prevista, número de pasajeros y equipaje. Si el trayecto es a un destino habitual, puedes consultar una tarifa orientativa antes de enviar el mensaje.",
     "sections": [
       {
         "heading": "Llegadas en tren",
-        "text": "Mensaje preparado con hora, origen, destino, pasajeros y notas como equipaje o retrasos."
+        "text": "Indica número de tren, hora prevista de llegada, equipaje y destino. Se confirma el punto de encuentro y la disponibilidad antes del viaje."
       },
       {
         "heading": "Conexión con pueblos",
