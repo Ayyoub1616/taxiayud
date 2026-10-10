@@ -121,6 +121,24 @@ if (!sitemap.includes('xmlns:image="http://www.google.com/schemas/sitemap-image/
 }
 if (!sitemap.includes("<image:image>")) fail("sitemap no incluye imágenes");
 
+const homePage = pages.find((page) => page.path === "/");
+const urbanTaxiPage = pages.find((page) => page.path === "/taxi-calatayud/");
+const freenowPage = pages.find((page) => page.path === "/taxi-freenow-calatayud/");
+const festivalPage = pages.find((page) => page.path === "/taxi-fiestas-calatayud/");
+
+if (!homePage?.h1.toLocaleLowerCase("es").includes("taxi en calatayud")) {
+  fail("La portada debe orientar el H1 a la búsqueda principal taxi en Calatayud");
+}
+if (urbanTaxiPage && urbanTaxiPage.h1 === homePage?.h1) {
+  fail("/taxi-calatayud/ debe diferenciarse de la portada para reducir solapamiento de intención");
+}
+if (/primer y único taxi de la comarca|first and only taxi/i.test(JSON.stringify(freenowPage ?? {}))) {
+  fail("La página FREENOW contiene una afirmación de exclusividad no verificada");
+}
+if (/agenda cultural de octubre 2026|Festival de Música Barroca de Calatayud en octubre de 2026/i.test(JSON.stringify(festivalPage ?? {}))) {
+  fail("La página de eventos contiene información temporal de octubre de 2026 que debe revisarse");
+}
+
 for (const page of pages) {
   const url = `${siteUrl}${page.path === "/" ? "/" : page.path}`;
   if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`sitemap no incluye ${url}`);

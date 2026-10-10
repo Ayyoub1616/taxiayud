@@ -57,9 +57,9 @@ addCheck("La portada declara x-default en la home", home.includes('hreflang="x-d
 addCheck("La portada enlaza la pagina de avería carretera", home.includes("/taxi-averia-carretera-calatayud/"));
 addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-estacion-calatayud-monasterio-de-piedra/"));
 addCheck("La portada enlaza la pagina FREENOW Calatayud", home.includes("/taxi-freenow-calatayud/"));
-addCheck("La portada centra el title en Taxi Calatayud", home.includes("<title>Taxi Calatayud | Reserva por WhatsApp, AVE y comarca | Taxi Ayud</title>"));
+addCheck("La portada centra el title en taxi en Calatayud", home.includes("<title>Taxi en Calatayud | Reserva por teléfono o WhatsApp | Taxi Ayud</title>"));
 addCheck("La portada no pone FREENOW en el title principal", !home.includes("<title>FREENOW"));
-addCheck("La portada presenta FREENOW como canal adicional", home.includes("Canal adicional FREENOW"));
+addCheck("La portada presenta FREENOW como canal adicional", home.includes("FREENOW queda disponible como canal adicional") || home.includes("FREENOW como canal adicional"));
 addCheck("La portada indica colaboración FREENOW en Calatayud", home.includes("colaborador FREENOW en Calatayud"));
 addCheck("La portada incluye descarga FREENOW iPhone", home.includes("apps.apple.com/es/app/freenow-by-lyft-taxi-more/id357852748"));
 addCheck("La portada incluye descarga FREENOW Android", home.includes("play.google.com/store/apps/details?id=taxi.android.client"));
@@ -79,9 +79,9 @@ addCheck(
 addCheck("La página taxi Calatayud tiene canonical propio", taxiCalatayud.includes('href="https://www.taxiayud.es/taxi-calatayud/"'));
 addCheck("La página inglesa declara idioma", english.includes('<html lang="en" dir="ltr">'));
 addCheck("La página inglesa tiene hreflang a francés", english.includes('hreflang="fr" href="https://www.taxiayud.es/fr/taxi-calatayud/"'));
-addCheck("La página FREENOW existe", freenow.includes("FREENOW en Calatayud: Taxi Ayud"));
-addCheck("La página FREENOW destaca la disponibilidad en la app", freenow.includes("primer y único taxi de la comarca"));
-addCheck("La página FREENOW refuerza taxi por app", freenow.includes("buscar un taxi local desde la aplicación"));
+addCheck("La página FREENOW existe", freenow.includes("Consulta Taxi Ayud en FREENOW en Calatayud"));
+addCheck("La página FREENOW no afirma exclusividad sin verificar", !freenow.includes("primer y único taxi de la comarca"));
+addCheck("La página FREENOW explica cómo consultar disponibilidad", freenow.includes("comprueba la disponibilidad") || freenow.includes("disponibilidad que muestra"));
 addCheck("La página FREENOW enlaza App Store", freenow.includes("Descargar FREENOW para iPhone"));
 addCheck("La página FREENOW enlaza Google Play", freenow.includes("Descargar FREENOW para Android"));
 addCheck("La página A-2 existe para búsquedas de avería", road.includes("Taxi para pasajeros por avería"));
