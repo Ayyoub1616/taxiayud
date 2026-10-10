@@ -407,7 +407,7 @@ const BASE_COPY = {
       "Servicio puntual, cómodo y discreto para moverte por Calatayud, Zaragoza y toda la comarca con maletas, familia o visitas turísticas.",
     comfort: ["Conducción tranquila", "Maletero amplio", "Taxi oficial", "WhatsApp directo"],
     seoEyebrow: "Taxi local premium",
-    seoTitle: "Taxi Calatayud con WhatsApp, calculadora y rutas de comarca",
+    seoTitle: "Taxi en Calatayud: reservas directas y traslados",
     seoText:
       "Rutas frecuentes con recogida por ubicación en Calatayud, estación AVE, hoteles, pueblos de la comarca, A-2, N-II, N-234, Monasterio de Piedra, balnearios, Zaragoza y aeropuerto. La reserva directa por teléfono o WhatsApp es la vía más rápida para confirmar disponibilidad.",
     seoRoutes: [
@@ -7891,8 +7891,8 @@ function App() {
               {language === "fr"
                 ? "Taxi Ayud, premier et seul taxi de la comarca de Calatayud disponible sur l'application FREENOW"
                 : language === "en"
-                  ? "Taxi Ayud, the first and only taxi from the Calatayud district available on the FREENOW app"
-                  : "Taxi Ayud, el primer y único taxi de la comarca de Calatayud disponible en la app FREENOW"}
+                  ? "Taxi Ayud is available to look up in FREENOW for journeys in Calatayud"
+                  : "Busca Taxi Ayud en FREENOW para consultar disponibilidad de viajes en Calatayud"}
             </h2>
             <p>
               {language === "fr"
