@@ -765,133 +765,129 @@
   },
   {
     "path": "/taxi-estacion-ave-calatayud/",
-    "title": "Taxi en estación AVE de Calatayud | Taxi Ayud",
-    "description": "Reserva taxi en la estación de Calatayud para hoteles, pueblos, Monasterio de Piedra, balnearios, Zaragoza y traslados con maletas.",
+    "title": "Taxi estación AVE Calatayud | Recogida con reserva | Taxi Ayud",
+    "description": "Organiza tu recogida en la estación AVE de Calatayud para hotel, domicilio, Monasterio de Piedra o la comarca. Indica tren, hora y destino por WhatsApp.",
     "breadcrumb": "Estación AVE",
     "navLabel": "Estación AVE",
     "eyebrow": "Recogida en estación",
     "h1": "Taxi en la estación AVE de Calatayud",
-    "intro": "Reserva taxi para recogidas en la estación de tren de Calatayud y continúa hacia hoteles, pueblos de la comarca, Monasterio de Piedra, balnearios o Zaragoza.",
+    "intro": "¿Llegas a Calatayud en tren? Contacta con Taxi Ayud e indica la hora prevista de llegada, el número de pasajeros, el equipaje y el destino. La recogida queda sujeta a confirmación directa.",
     "h2": "Recogidas puntuales para trenes y conexiones",
-    "body": "Indica el tren, la hora prevista, número de pasajeros y equipaje. Si el trayecto es a un destino habitual, puedes consultar una tarifa orientativa antes de enviar el mensaje.",
+    "body": "Para coordinar el encuentro, envía por teléfono o WhatsApp la hora del tren y el destino final. Si el tren cambia de horario, avisa cuando puedas. Para continuar hacia Nuévalos, Monasterio de Piedra, balnearios, hoteles o pueblos de la comarca, solicita también la vuelta con antelación si la necesitas.",
     "sections": [
       {
-        "heading": "Llegadas en tren",
-        "text": "Mensaje preparado con hora, origen, destino, pasajeros y notas como equipaje o retrasos."
+        "heading": "Recogida al llegar en tren",
+        "text": "Indica la hora prevista de llegada y el punto de encuentro que te resulte más cómodo; confirma los detalles directamente antes del viaje."
       },
       {
-        "heading": "Conexión con pueblos",
-        "text": "Traslados desde la estación hacia municipios de la comarca y alojamientos rurales."
+        "heading": "Conexión con hotel o destino turístico",
+        "text": "Puedes consultar traslados desde la estación a alojamientos, Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón y otros destinos."
       },
       {
-        "heading": "Turismo desde la estación",
-        "text": "Opción cómoda para visitar Monasterio de Piedra, Nuévalos o balnearios sin coche propio."
+        "heading": "Viaje de ida y vuelta",
+        "text": "Si necesitas regresar a la estación o volver otro día, comunícalo en la primera consulta para revisar disponibilidad."
       }
     ],
     "faq": [
       {
-        "question": "¿Qué datos conviene enviar para una recogida en estación?",
-        "answer": "Hora, tren si lo sabes, destino, pasajeros, equipaje y teléfono de contacto por WhatsApp."
+        "question": "¿Qué información debo enviar para una recogida en la estación?",
+        "answer": "Indica la hora prevista del tren, el número de pasajeros, el equipaje, el destino y un teléfono de contacto. Taxi Ayud confirmará la disponibilidad y los detalles del encuentro."
       },
       {
-        "question": "¿Puedo reservar vuelta a la estación?",
-        "answer": "Sí. Es mejor indicar la hora de regreso o pedir confirmación de disponibilidad."
+        "question": "¿Puedo ir desde la estación al Monasterio de Piedra o a un balneario?",
+        "answer": "Puedes consultar el traslado desde la estación a Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, hoteles y otros destinos. Confirma previamente la disponibilidad y el precio orientativo."
+      },
+      {
+        "question": "¿Puedo reservar también la vuelta?",
+        "answer": "Sí, puedes solicitar ida y vuelta en el mismo mensaje. La hora de regreso debe confirmarse según disponibilidad."
       }
     ]
   },
   {
     "path": "/taxi-calatayud-monasterio-de-piedra/",
     "title": "Taxi Calatayud-Monasterio de Piedra | Taxi Ayud",
-    "description": "Traslado en taxi desde Calatayud y estación AVE al Monasterio de Piedra y Nuévalos. Consulta disponibilidad, equipaje y precio orientativo por WhatsApp.",
+    "description": "Taxi desde Calatayud, la estación AVE o un alojamiento hasta el Monasterio de Piedra y Nuévalos. Consulta precio orientativo y vuelta por WhatsApp.",
     "breadcrumb": "Calatayud Monasterio de Piedra",
     "navLabel": "Monasterio",
     "eyebrow": "Ruta turística desde Calatayud",
     "h1": "Taxi Calatayud-Monasterio de Piedra",
-    "intro": "Traslado directo desde Calatayud, estación AVE, hoteles o alojamientos al Monasterio de Piedra y Nuévalos para visitas de día, estancias y vueltas programadas.",
+    "intro": "Organiza el traslado desde Calatayud, la estación AVE o tu alojamiento hasta el Monasterio de Piedra y Nuévalos. Indica el horario de visita, pasajeros y equipaje para consultar disponibilidad.",
     "h2": "Taxi para visitar el Monasterio de Piedra desde Calatayud",
-    "body": "Puedes pedir ida, vuelta o ida y vuelta programada. Indica hora de tren o recogida, pasajeros, equipaje y si quieres que la vuelta quede coordinada. Los tiempos y precios son orientativos y se confirman por WhatsApp o llamada.",
+    "body": "Si planeas visitar el Monasterio de Piedra, contacta antes del día del viaje y confirma la hora de recogida y el punto de llegada. Si necesitas regresar a Calatayud o a la estación, pide la vuelta en la misma consulta para comprobar si se puede coordinar.",
     "sections": [
       {
-        "heading": "Recogidas habituales",
-        "text": "Estación AVE de Calatayud, hoteles, domicilios, Plaza del Fuerte y alojamientos cercanos."
+        "heading": "Salida desde Calatayud o la estación AVE",
+        "text": "Indica si sales de tu domicilio, un hotel o la estación, y comparte la hora prevista y el destino."
       },
       {
-        "heading": "Llegada a Nuévalos",
-        "text": "Traslado hasta el entorno del Monasterio de Piedra, hoteles próximos o puntos acordados en Nuévalos."
+        "heading": "Visita a Monasterio de Piedra y Nuévalos",
+        "text": "Consulta el traslado para tu visita o estancia. La hora de espera y cualquier regreso deben acordarse directamente."
       },
       {
-        "heading": "Ida y vuelta",
-        "text": "Para visitas de día completo conviene dejar la vuelta cerrada o consultar disponibilidad antes de finalizar la visita."
+        "heading": "Reserva de vuelta",
+        "text": "Si necesitas volver el mismo día o conectar con un tren, comunícalo al solicitar el viaje; la disponibilidad se confirma previamente."
       },
       {
-        "heading": "Equipaje y visitas turísticas",
-        "text": "Vehículo Peugeot 408 Hybrid para hasta 4 pasajeros y equipaje habitual; si llevas maletas grandes, avisa por WhatsApp."
+        "heading": "Precio orientativo",
+        "text": "Puedes consultar un presupuesto antes de confirmar. El importe final depende de los detalles del servicio que se acuerden."
       }
     ],
     "faq": [
       {
-        "question": "¿Cuánto cuesta el taxi de Calatayud al Monasterio de Piedra?",
-        "answer": "La web puede mostrar un presupuesto orientativo desde Calatayud. El importe final y la disponibilidad se confirman por WhatsApp o llamada según horario, ruta, espera y suplementos oficiales."
+        "question": "¿Puedo ir desde la estación AVE de Calatayud al Monasterio de Piedra?",
+        "answer": "Puedes solicitar ese traslado. Indica la hora del tren, el número de pasajeros, el equipaje y si necesitas también el regreso."
       },
       {
-        "question": "¿Puedo reservar ida y vuelta al Monasterio de Piedra?",
-        "answer": "Sí. Puedes reservar recogida en Calatayud y vuelta desde el Monasterio de Piedra o Nuévalos. Indica horarios aproximados, pasajeros y equipaje por WhatsApp."
+        "question": "¿Puedo reservar la vuelta desde el Monasterio de Piedra?",
+        "answer": "Sí, puedes pedirla al contactar. La hora y la disponibilidad de regreso deben confirmarse antes de organizar la visita."
       },
       {
-        "question": "¿Recogéis en la estación AVE de Calatayud?",
-        "answer": "Sí. Si llegas en tren, envía hora de llegada, número de tren si lo tienes, pasajeros y destino exacto para confirmar disponibilidad."
-      },
-      {
-        "question": "¿Conviene reservar con antelación?",
-        "answer": "Sí. En fines de semana, festivos y temporada turística conviene reservar con antelación para coordinar recogida y vuelta."
+        "question": "¿La calculadora muestra un precio cerrado?",
+        "answer": "No. El resultado es orientativo; confirma por teléfono o WhatsApp la ruta y las condiciones del viaje."
       }
     ]
   },
   {
     "path": "/taxi-calatayud-jaraba-balnearios/",
     "title": "Taxi Calatayud Jaraba balnearios | Taxi Ayud",
-    "description": "Taxi desde Calatayud a Jaraba y balnearios para tratamientos, hoteles, equipaje y vueltas programadas. Consulta disponibilidad y precio orientativo.",
+    "description": "Taxi desde Calatayud a los balnearios de Jaraba y Alhama de Aragón para estancias, tratamientos y equipaje. Consulta ida y vuelta por WhatsApp.",
     "breadcrumb": "Calatayud Jaraba balnearios",
     "navLabel": "Jaraba balnearios",
     "eyebrow": "Balnearios de Jaraba",
     "h1": "Taxi Calatayud Jaraba balnearios",
-    "intro": "Traslados desde Calatayud, estación AVE, hoteles o domicilios a Jaraba y sus balnearios para estancias, tratamientos, visitas y regresos programados.",
+    "intro": "Si tienes una estancia o tratamiento en Jaraba o Alhama de Aragón, consulta el traslado desde Calatayud, la estación AVE o tu alojamiento. Indica la hora, los pasajeros y el equipaje.",
     "h2": "Traslado cómodo a balnearios de Jaraba",
-    "body": "Indica balneario o alojamiento, hora de recogida, pasajeros, equipaje y si necesitas vuelta. Para tratamientos o citas conviene reservar con margen y confirmar disponibilidad por WhatsApp.",
+    "body": "Para organizar el viaje, comparte el destino concreto, la fecha y la hora de llegada deseada. Si necesitas recogida al terminar el tratamiento o volver otro día, indícalo para consultar la disponibilidad. Los horarios y el presupuesto se confirman directamente.",
     "sections": [
       {
-        "heading": "Recogida en Calatayud",
-        "text": "Estación AVE, hoteles, domicilios y puntos acordados en Calatayud."
+        "heading": "Traslado a Jaraba y sus balnearios",
+        "text": "Indica el nombre del alojamiento o balneario y la hora a la que necesitas llegar."
       },
       {
-        "heading": "Destino Jaraba",
-        "text": "Balnearios, hoteles, alojamientos y puntos concretos de Jaraba."
+        "heading": "Alhama de Aragón y alojamientos termales",
+        "text": "Consulta recogidas en Calatayud, estación, hotel o domicilio para llegar a Alhama de Aragón."
       },
       {
-        "heading": "Maletas y estancias",
-        "text": "Vehículo amplio para equipaje habitual. Si llevas maletas grandes o material especial, avisa antes de reservar."
+        "heading": "Regreso y equipaje",
+        "text": "Si necesitas vuelta programada o viajas con maletas, incluye esos detalles en la consulta inicial."
       },
       {
-        "heading": "Regreso programado",
-        "text": "Posibilidad de dejar preparada la vuelta a Calatayud, estación, hotel o domicilio."
+        "heading": "Presupuesto antes de confirmar",
+        "text": "Puedes pedir una orientación de precio; el importe y la disponibilidad se confirman por teléfono o WhatsApp."
       }
     ],
     "faq": [
       {
-        "question": "¿Puedo pedir taxi desde la estación de Calatayud a Jaraba?",
-        "answer": "Sí. Envía hora de llegada, pasajeros, equipaje y balneario o alojamiento de destino para confirmar disponibilidad."
+        "question": "¿Puedo reservar un taxi a Jaraba para una estancia termal?",
+        "answer": "Sí, consulta el traslado e indica el balneario o alojamiento, la fecha, la hora y el equipaje."
       },
       {
-        "question": "¿Se puede reservar taxi para tratamientos en balneario?",
-        "answer": "Sí. Indica hora de cita, punto de recogida y si necesitas regreso. La disponibilidad se confirma directamente."
+        "question": "¿Hacéis traslados a Alhama de Aragón?",
+        "answer": "Puedes consultar traslados desde Calatayud, la estación AVE o tu alojamiento a Alhama de Aragón. La disponibilidad se confirma directamente."
       },
       {
-        "question": "¿Hay espacio para maletas?",
-        "answer": "El Peugeot 408 Hybrid tiene maletero amplio para equipaje habitual. Para equipaje voluminoso, consulta por WhatsApp."
-      },
-      {
-        "question": "¿El precio mostrado es definitivo?",
-        "answer": "No. Es un presupuesto orientativo sujeto a horario, ruta, espera, suplementos oficiales y confirmación directa."
+        "question": "¿Puedo dejar organizada la vuelta?",
+        "answer": "Puedes solicitarla en el mismo mensaje. La hora y la disponibilidad deben confirmarse antes de dar por cerrada la reserva."
       }
     ]
   },
@@ -946,44 +942,40 @@
   {
     "path": "/taxi-calatayud-zaragoza/",
     "title": "Taxi Calatayud Zaragoza | Delicias, hospitales y centro",
-    "description": "Taxi de Calatayud a Zaragoza para estación Delicias, hospitales, centro, hoteles y conexiones. Reserva por WhatsApp con horario, pasajeros y equipaje.",
+    "description": "Taxi desde Calatayud a Zaragoza para estación Delicias, aeropuerto, hospitales, hoteles y direcciones concretas. Reserva anticipada por WhatsApp.",
     "breadcrumb": "Taxi Calatayud Zaragoza",
     "navLabel": "Calatayud Zaragoza",
     "eyebrow": "Traslado interurbano a Zaragoza",
     "h1": "Taxi de Calatayud a Zaragoza",
-    "intro": "Traslado en taxi desde Calatayud a Zaragoza para estación Delicias, hospitales, centro, hoteles, citas y viajes programados con recogida puerta a puerta.",
+    "intro": "Solicita un traslado desde Calatayud a Zaragoza indicando la dirección de destino, fecha, hora, pasajeros y equipaje. Puedes consultar viajes a la estación Zaragoza-Delicias, aeropuerto, hospitales, hoteles y otros puntos de la ciudad.",
     "h2": "Reserva taxi desde Calatayud hacia Zaragoza",
-    "body": "Indica origen, destino exacto en Zaragoza, fecha, hora, pasajeros, maletas y si necesitas ida y vuelta. El precio se confirma directamente según ruta, horario, espera y suplementos oficiales.",
+    "body": "Para evitar confusiones, indica la dirección exacta o el nombre del lugar de destino y si tienes que llegar a una hora concreta. Si necesitas una vuelta desde Zaragoza a Calatayud, solicita ambos trayectos y confirma la disponibilidad y el presupuesto directamente.",
     "sections": [
       {
-        "heading": "Zaragoza Delicias y centro",
-        "text": "Traslados a estación Zaragoza-Delicias, centro, hoteles, universidades, zonas de trabajo y domicilios."
+        "heading": "Estación Zaragoza-Delicias y aeropuerto",
+        "text": "Indica el tren o vuelo y la hora a la que necesitas llegar; reserva con antelación y confirma el horario."
       },
       {
-        "heading": "Hospitales y citas",
-        "text": "Servicio útil para consultas médicas, visitas hospitalarias o gestiones con hora concreta en Zaragoza."
+        "heading": "Hospitales, hoteles y direcciones concretas",
+        "text": "Comparte el nombre o la dirección exacta para preparar la consulta del traslado puerta a puerta."
       },
       {
-        "heading": "Viaje programado",
-        "text": "Para trenes, citas o recogidas con equipaje, conviene reservar por WhatsApp con antelación."
+        "heading": "Viaje de vuelta",
+        "text": "Si necesitas regresar a Calatayud, indícalo en el primer mensaje para consultar la disponibilidad de ambos trayectos."
       }
     ],
     "faq": [
       {
-        "question": "¿Puedo reservar taxi de Calatayud a Zaragoza?",
-        "answer": "Sí. Envía por WhatsApp origen, destino exacto en Zaragoza, fecha, hora, pasajeros y equipaje para confirmar disponibilidad y precio orientativo."
+        "question": "¿Puedo reservar un taxi de Calatayud a Zaragoza-Delicias?",
+        "answer": "Sí. Indica la hora a la que necesitas llegar a la estación, la dirección de recogida, los pasajeros y el equipaje."
       },
       {
-        "question": "¿Recoge en domicilio, hotel o estación de Calatayud?",
-        "answer": "Sí. Puedes indicar una dirección, hotel, estación de Calatayud o compartir ubicación para preparar la recogida."
+        "question": "¿Se puede viajar al aeropuerto de Zaragoza?",
+        "answer": "Puedes consultar el traslado desde Calatayud al aeropuerto. Facilita la hora del vuelo y confirma previamente el horario de recogida."
       },
       {
-        "question": "¿Se puede pedir ida y vuelta a Zaragoza?",
-        "answer": "Sí. Indica si necesitas espera o vuelta programada para calcular un presupuesto orientativo y confirmar la disponibilidad."
-      },
-      {
-        "question": "¿El precio de Calatayud a Zaragoza es cerrado?",
-        "answer": "No. La web puede orientar, pero el importe final se confirma directamente según horario, ruta final, espera, equipaje y suplementos oficiales."
+        "question": "¿Puedo solicitar ida y vuelta?",
+        "answer": "Sí. Envía las dos fechas y horas previstas. La disponibilidad y el presupuesto se confirmarán directamente."
       }
     ]
   },
@@ -1034,44 +1026,40 @@
   {
     "path": "/taxi-pueblos-comarca-calatayud/",
     "title": "Taxi para pueblos de la comarca de Calatayud",
-    "description": "Taxi desde Calatayud a pueblos cercanos como Ateca, Maluenda, Ariza, Daroca, Cetina, Miedes, Nuévalos, Jaraba y más destinos.",
+    "description": "Taxi desde Calatayud a pueblos de la comarca, como Ateca, Ariza, Maluenda, Nuévalos y Jaraba. Consulta recogidas y regresos por WhatsApp.",
     "breadcrumb": "Pueblos de la comarca",
     "navLabel": "Pueblos",
     "eyebrow": "Comarca de Calatayud",
     "h1": "Taxi para pueblos de la comarca de Calatayud",
-    "intro": "Servicio de taxi desde Calatayud hacia pueblos de la comarca y destinos habituales para vecinos, visitantes, alojamientos rurales, balnearios y conexiones con tren.",
+    "intro": "Consulta un traslado desde Calatayud a tu pueblo o entre localidades de la comarca. Indica el origen exacto, el destino, la fecha, la hora y el número de pasajeros para confirmar disponibilidad.",
     "h2": "Traslados entre Calatayud y pueblos cercanos",
-    "body": "La tabla de tarifas permite consultar muchos destinos habituales sin convertir la página en un listado interminable. Para destinos concretos o recogidas especiales, confirma por WhatsApp.",
+    "body": "Para recogidas rurales o viajes concertados, facilita una dirección o punto de encuentro claro. Si el regreso es importante o necesitas varias paradas, inclúyelo en el primer mensaje para recibir una orientación más útil y confirmar el servicio.",
     "sections": [
       {
-        "heading": "Pueblos habituales",
-        "text": "Ateca, Maluenda, Ariza, Cetina, Miedes, Nuévalos, Jaraba, Alhama de Aragón y más."
+        "heading": "Pueblos y localidades de la comarca",
+        "text": "Puedes consultar viajes a Ateca, Ariza, Maluenda, Nuévalos, Jaraba, Alhama de Aragón, Cetina, Daroca y otras localidades."
       },
       {
-        "heading": "Recogidas flexibles",
-        "text": "Domicilio, estación, hotel, alojamiento rural, balneario o punto acordado."
+        "heading": "Recogidas en domicilios y alojamientos",
+        "text": "Envía la dirección, el nombre del alojamiento o una ubicación compartida para identificar el punto de recogida."
       },
       {
-        "heading": "Tabla compacta",
-        "text": "Busca tu destino en el desplegable o abre la tabla completa solo cuando la necesites."
+        "heading": "Regresos y varias paradas",
+        "text": "Si necesitas volver a Calatayud o enlazar varios destinos, explica el recorrido previsto al pedir el presupuesto."
       }
     ],
     "faq": [
       {
-        "question": "¿Puedo pedir taxi a un pueblo que no aparece en la tabla?",
-        "answer": "Sí. Escribe el pueblo o dirección completa por WhatsApp y Taxi Ayud confirma disponibilidad y precio orientativo."
+        "question": "¿Podéis recogerme en un pueblo de la comarca?",
+        "answer": "Puedes consultar recogidas en localidades cercanas a Calatayud. Indica la dirección o ubicación exacta, el destino y la hora."
       },
       {
-        "question": "¿Qué pueblos de la comarca tienen servicio habitual?",
-        "answer": "Se atienden destinos como Ateca, Ariza, Maluenda, Cetina, Miedes, Jaraba, Alhama de Aragón, Nuévalos, Munébrega, Ibdes y otros pueblos cercanos."
+        "question": "¿Puedo organizar el regreso a Calatayud?",
+        "answer": "Sí. Solicita la ida y la vuelta en el mismo mensaje para comprobar la disponibilidad de ambos trayectos."
       },
       {
-        "question": "¿Puedo reservar desde un pueblo hacia la estación de Calatayud?",
-        "answer": "Sí. Indica pueblo, dirección, hora del tren, pasajeros y equipaje. Para horarios ajustados, reserva con antelación por WhatsApp."
-      },
-      {
-        "question": "¿La calculadora funciona para rutas entre pueblos?",
-        "answer": "Puede estimar muchas rutas, pero si una ruta no calcula bien, envíala por WhatsApp y se confirma de forma directa."
+        "question": "¿Cómo se calcula el precio de un viaje rural?",
+        "answer": "Puedes consultar un presupuesto orientativo. El importe final se confirma directamente según el recorrido y las condiciones acordadas."
       }
     ]
   },
@@ -1178,36 +1166,40 @@
   {
     "path": "/taxi-hoteles-calatayud/",
     "title": "Taxi para hoteles en Calatayud y comarca | Taxi Ayud",
-    "description": "Taxi para hoteles, casas rurales y alojamientos de Calatayud, Monasterio de Piedra, Nuévalos, Jaraba, Alhama y pueblos cercanos.",
+    "description": "Traslados en taxi desde hoteles, apartamentos y casas rurales de Calatayud y la comarca. Indica alojamiento, destino, hora y equipaje para confirmar.",
     "breadcrumb": "Hoteles y alojamientos",
     "navLabel": "Hoteles",
     "eyebrow": "Recogidas en alojamientos",
     "h1": "Taxi para hoteles en Calatayud y comarca",
-    "intro": "Servicio de taxi para viajeros alojados en hoteles, hostales, apartamentos turísticos, casas rurales, balnearios y alojamientos cercanos a Calatayud.",
+    "intro": "Si te alojas en un hotel, apartamento turístico, casa rural o balneario de Calatayud y alrededores, puedes consultar una recogida o un traslado concertado por teléfono o WhatsApp.",
     "h2": "Recogidas cómodas para huéspedes y turistas",
-    "body": "Indica el nombre del alojamiento, dirección, hora, pasajeros, equipaje y destino. Es útil para llegar desde la estación, visitar Monasterio de Piedra o conectar con balnearios y Zaragoza.",
+    "body": "Para facilitar la coordinación, envía el nombre del alojamiento o su ubicación, el destino, la fecha, la hora y el número de pasajeros. Si necesitas varias paradas o una vuelta programada, indícalo en el primer mensaje para confirmar el servicio y el presupuesto.",
     "sections": [
       {
-        "heading": "Hoteles de Calatayud",
-        "text": "Recogidas en alojamientos del centro, estación, restaurantes y puntos de interés de la ciudad."
+        "heading": "Recogidas en alojamientos",
+        "text": "Comparte el nombre o la ubicación del hotel, apartamento, casa rural o balneario para identificar el punto de recogida."
       },
       {
-        "heading": "Casas rurales",
-        "text": "Servicio hacia pueblos de la comarca, alojamientos rurales y rutas turísticas con reserva previa."
+        "heading": "Excursiones y destinos de la comarca",
+        "text": "Consulta traslados a Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón, pueblos cercanos y Zaragoza."
       },
       {
-        "heading": "Turismo sin coche",
-        "text": "Traslados a Monasterio de Piedra, Nuévalos, Jaraba, Alhama de Aragón y otros destinos habituales."
+        "heading": "Equipaje y horarios",
+        "text": "Indica cuántas personas viajan, si lleváis maletas y la hora que necesitáis. La disponibilidad se confirma antes del viaje."
       }
     ],
     "faq": [
       {
-        "question": "¿Puedo reservar taxi desde un hotel de Calatayud?",
-        "answer": "Sí. Envía nombre del hotel, hora de recogida, destino, pasajeros y equipaje."
+        "question": "¿Puedo pedir que me recojan en mi hotel?",
+        "answer": "Sí. Envía por WhatsApp el nombre del alojamiento o comparte su ubicación, junto con la hora, el destino y el número de pasajeros."
       },
       {
-        "question": "¿Se hacen traslados para turistas al Monasterio de Piedra?",
-        "answer": "Sí. Puedes reservar ida, vuelta o consultar disponibilidad para una visita programada."
+        "question": "¿Se puede organizar una excursión desde el alojamiento?",
+        "answer": "Puedes consultar un traslado a Monasterio de Piedra, balnearios, pueblos de la comarca o Zaragoza. Confirma de antemano la disponibilidad, la espera y si necesitas regreso."
+      },
+      {
+        "question": "¿El precio se confirma automáticamente al reservar?",
+        "answer": "No. La web ofrece una orientación; Taxi Ayud debe confirmar la disponibilidad y las condiciones del trayecto directamente."
       }
     ]
   },
