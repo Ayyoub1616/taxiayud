@@ -59,7 +59,7 @@ addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-
 addCheck("La portada enlaza la pagina FREENOW Calatayud", home.includes("/taxi-freenow-calatayud/"));
 addCheck("La portada centra el title en taxi en Calatayud", home.includes("<title>Taxi en Calatayud | Reserva por teléfono o WhatsApp | Taxi Ayud</title>"));
 addCheck("La portada no pone FREENOW en el title principal", !home.includes("<title>FREENOW"));
-addCheck("La portada presenta FREENOW como canal adicional", home.includes("Canal adicional FREENOW"));
+addCheck("La portada presenta FREENOW como canal adicional", home.includes("FREENOW queda disponible como canal adicional") || home.includes("FREENOW como canal adicional"));
 addCheck("La portada indica colaboración FREENOW en Calatayud", home.includes("colaborador FREENOW en Calatayud"));
 addCheck("La portada incluye descarga FREENOW iPhone", home.includes("apps.apple.com/es/app/freenow-by-lyft-taxi-more/id357852748"));
 addCheck("La portada incluye descarga FREENOW Android", home.includes("play.google.com/store/apps/details?id=taxi.android.client"));
