@@ -44,6 +44,7 @@ const localizedTaxiAlternates = [
 const localizedTaxiPaths = new Set(localizedTaxiAlternates.map((item) => item.path));
 const priorityStaticLinks = [
   "/",
+  "/taxi-calatayud-zaragoza/",
   "/taxi-cerca-de-mi-calatayud/",
   "/taxi-freenow-calatayud/",
   "/taxi-averia-carretera-calatayud/",
@@ -69,7 +70,7 @@ const staticCopy = {
     serviceAreasText:
       "Taxi oficial con recogidas en Calatayud, hoteles, estación, balnearios, pueblos de la comarca y destinos turísticos cercanos.",
     imageAlt: "Taxi Ayud Calatayud Peugeot 408 Hybrid blanco en la comarca de Calatayud",
-    imageCaption: "Taxi oficial en Calatayud para estación AVE, comarca, balnearios, Monasterio de Piedra, A-2, Zaragoza y aeropuerto.",
+    imageCaption: "Taxi oficial con salida desde Calatayud hacia Zaragoza, Madrid, aeropuertos y otros destinos.",
     faqHeading: "Preguntas frecuentes",
     related: "Rutas relacionadas",
   },
@@ -171,7 +172,7 @@ const businessGraph = {
   alternateName: ["Taxi Ayud Calatayud", "Taxi Calatayud Ayud"],
   slogan: "Tu taxi de confianza en Calatayud",
   description:
-    "Taxi oficial en Calatayud para traslados a Monasterio de Piedra, Zaragoza, aeropuerto, estación, balnearios y pueblos de la comarca. FREENOW disponible como canal adicional.",
+    "Taxi oficial con origen en Calatayud para traslados interurbanos a Zaragoza, Madrid, aeropuertos y estaciones con reserva anticipada. FREENOW como canal adicional.",
   telephone: "+34611861041",
   areaServed: [
     "Calatayud",
@@ -207,7 +208,7 @@ const businessGraph = {
     "Recogidas en estación AVE de Calatayud",
     "Traslados a Monasterio de Piedra y Nuévalos",
     "Traslados a balnearios de Jaraba y Alhama de Aragón",
-    "Traslados a Zaragoza y aeropuerto",
+    "Traslados desde Calatayud a Zaragoza, Madrid y aeropuertos",
     "Recogida de pasajeros por avería en carretera",
     "Solicitud de taxi mediante FREENOW",
     "Reservas de taxi por teléfono y WhatsApp",
