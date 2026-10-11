@@ -31,8 +31,6 @@ const ALLOWED_PARAM_KEYS = new Set([
   "provider",
   "approximate",
   "base_adjusted",
-  "origin",
-  "destination",
   "km",
   "passengers",
   "status",
@@ -83,6 +81,7 @@ function safeText(value) {
 
 function safeParams(params = {}) {
   const clean = {};
+  if (!params || typeof params !== "object" || Array.isArray(params)) return clean;
 
   for (const [key, value] of Object.entries(params || {})) {
     if (!ALLOWED_PARAM_KEYS.has(key) || value === undefined || value === null) continue;
@@ -111,6 +110,26 @@ export default async function handler(request, response) {
     return;
   }
 
+  // Public analytics endpoint: reject cross-site writes and oversized payloads.
+  const origin = request.headers?.origin;
+  if (origin) {
+    try {
+      const parsed = new URL(origin);
+      if (parsed.protocol !== "https:" || !["www.taxiayud.es", "taxiayud.es"].includes(parsed.hostname)) {
+        response.status(403).json({ ok: false, message: "Origen no permitido." });
+        return;
+      }
+    } catch {
+      response.status(403).json({ ok: false, message: "Origen no permitido." });
+      return;
+    }
+  }
+  const contentLength = Number(request.headers?.["content-length"] || 0);
+  if (contentLength > 4096 || JSON.stringify(request.body || {}).length > 4096) {
+    response.status(413).json({ ok: false, message: "Solicitud demasiado grande." });
+    return;
+  }
+  response.setHeader("Cache-Control", "no-store");
   const type = safeEventName(request.body?.type);
   if (!type) {
     response.status(400).json({ ok: false, message: "Evento no valido." });
