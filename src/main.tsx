@@ -387,7 +387,7 @@ const BASE_COPY = {
     call: "Llamar",
     heroEyebrow: "Taxi oficial en Calatayud · Licencia 18",
     heroSubtitle:
-      "Taxi desde Calatayud para pueblos de la comarca, balnearios, Monasterio de Piedra, Zaragoza, aeropuerto y estación.",
+      "Traslados con salida desde Calatayud hacia Zaragoza, Madrid, aeropuertos, estaciones y otros destinos. Reserva anticipada por WhatsApp.",
     bookTitle: "Reserva directa, sin formularios largos",
     bookText:
       "Manda un mensaje directo si solo quieres hablar, consultar disponibilidad o pedir taxi ahora. La calculadora queda abajo para presupuestos orientativos.",
@@ -402,19 +402,19 @@ const BASE_COPY = {
     googleText: "públicas en el perfil de empresa",
     googleRating: "en Google",
     regionEyebrow: "Comarca de Calatayud",
-    regionTitle: "Calatayud, pueblos de la comarca, balnearios y Zaragoza sin complicarte",
+    regionTitle: "Desde Calatayud a Zaragoza, Madrid y otros destinos",
     regionText:
-      "Servicio puntual, cómodo y discreto para moverte por Calatayud, Zaragoza y toda la comarca con maletas, familia o visitas turísticas.",
+      "Viajes interurbanos con origen en Calatayud para aeropuerto, estaciones, hospitales, empresas y desplazamientos particulares. Reserva anticipada y confirma disponibilidad.",
     comfort: ["Conducción tranquila", "Maletero amplio", "Taxi oficial", "WhatsApp directo"],
-    seoEyebrow: "Taxi local premium",
-    seoTitle: "Taxi Calatayud con WhatsApp, calculadora y rutas de comarca",
+    seoEyebrow: "Traslados interurbanos desde Calatayud",
+    seoTitle: "Taxi Calatayud a Zaragoza, Madrid y aeropuertos",
     seoText:
-      "Rutas frecuentes con recogida por ubicación en Calatayud, estación AVE, hoteles, pueblos de la comarca, A-2, N-II, N-234, Monasterio de Piedra, balnearios, Zaragoza y aeropuerto. La reserva directa por teléfono o WhatsApp es la vía más rápida para confirmar disponibilidad.",
+      "Viajes con salida desde Calatayud hacia Zaragoza, Madrid, aeropuertos y estaciones, con reserva anticipada por teléfono o WhatsApp. Los servicios con origen en otros municipios están sujetos a la normativa aplicable.",
     seoRoutes: [
       {
-        title: "Taxi cerca de mí en Calatayud",
-        text: "Recogida por ubicación, domicilio, estación, Plaza del Fuerte, hoteles y alojamientos.",
-        href: "/taxi-cerca-de-mi-calatayud/",
+        title: "Calatayud a Zaragoza y aeropuerto",
+        text: "Viajes programados desde Calatayud a Zaragoza, Delicias y aeropuerto.",
+        href: "/taxi-calatayud-zaragoza/",
       },
       {
         title: "Estación-Monasterio de Piedra",
@@ -484,9 +484,9 @@ const BASE_COPY = {
     moreReviews: "Ver más reseñas",
     viewGoogle: "Ver más reseñas en Google",
     servicesEyebrow: "Servicios",
-    servicesTitle: "Pueblos, balnearios y Zaragoza desde Calatayud",
+    servicesTitle: "Viajes desde Calatayud a Zaragoza, Madrid y aeropuertos",
     servicesText:
-      "Servicio cómodo para moverte por la comarca: pueblos cercanos, balnearios, estación, Zaragoza, aeropuerto, citas médicas y viajes programados.",
+      "Prioridad a viajes programados desde Calatayud a Zaragoza, Madrid, aeropuertos, estaciones, hospitales y otros destinos; también servicios locales y turísticos.",
     serviceItems: [
       {
         title: "Monasterio de Piedra",
@@ -500,12 +500,12 @@ const BASE_COPY = {
       },
       {
         title: "Zaragoza y aeropuerto",
-        text: "Estación Delicias, Aeropuerto de Zaragoza, hospitales, centro y cualquier punto de la ciudad.",
+        text: "Desde Calatayud hasta Zaragoza-Delicias, Aeropuerto de Zaragoza, hospitales y otros destinos de la ciudad.",
         detail: "Viaje puerta a puerta para trenes, vuelos, citas médicas, gestiones o compras sin transbordos.",
       },
       {
         title: "Estaciones y tren",
-        text: "Conexiones con la estación de Calatayud, Delicias y otros puntos de recogida.",
+        text: "Traslados desde Calatayud hacia Zaragoza-Delicias y otras estaciones. Las recogidas fuera de Calatayud dependen de la normativa aplicable.",
         detail: "Reserva con hora cerrada para llegar tranquilo, incluso en trayectos de madrugada o festivos.",
       },
       {
