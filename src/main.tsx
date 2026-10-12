@@ -5118,8 +5118,8 @@ function currentHour() {
   return new Date().toTimeString().slice(0, 5);
 }
 
-function isSeasonalCampaignVisible(path?: string | null) {
-  if (path && seasonalCampaign.visibleOnPaths.has(path)) return true;
+function isSeasonalCampaignVisible(_path?: string | null) {
+  // Keep dated campaigns hidden after their end date, including on event landing pages.
   const today = new Date().toISOString().slice(0, 10);
   return today >= seasonalCampaign.start && today <= seasonalCampaign.end;
 }
