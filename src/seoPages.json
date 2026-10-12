@@ -625,19 +625,19 @@
   },
   {
     "path": "/taxi-freenow-calatayud/",
-    "title": "FREENOW Calatayud | Taxi Ayud disponible en la app",
-    "description": "¿Buscas FREENOW en Calatayud? Taxi Ayud, primer y único taxi de la comarca incorporado a la aplicación. Consulta disponibilidad, descarga la app o reserva por WhatsApp.",
+    "title": "FREENOW en Calatayud | Consulta Taxi Ayud en la app",
+    "description": "Consulta Taxi Ayud en FREENOW para solicitar taxi en Calatayud, según disponibilidad en la app. También puedes contactar por teléfono o WhatsApp.",
     "breadcrumb": "FREENOW",
     "navLabel": "FREENOW",
     "eyebrow": "Taxi Ayud · Disponible en la app FREENOW",
-    "h1": "FREENOW en Calatayud: Taxi Ayud, primer y único taxi de la comarca en la app",
+    "h1": "FREENOW en Calatayud: consulta Taxi Ayud en la aplicación",
     "intro": "Taxi Ayud es el primer y único taxista de la comarca de Calatayud incorporado a FREENOW, según información del propio negocio. Ya puedes buscar un taxi local desde la aplicación, sujeto a la disponibilidad mostrada. También puedes reservar directamente por teléfono o WhatsApp.",
     "h2": "Descarga FREENOW o reserva Taxi Ayud directamente",
     "body": "Si buscas la app FREENOW en Calatayud, Taxi Ayud te ofrece una alternativa para solicitar un taxi oficial desde el móvil. En la app, selecciona tu recogida y revisa la disponibilidad del momento. Para recogidas con horario, estación AVE, hoteles, Monasterio de Piedra, Jaraba, pueblos y traslados a Zaragoza, puedes contactar también por WhatsApp. Estar disponible en la plataforma no implica disponibilidad permanente ni una reserva garantizada.",
     "sections": [
       {
-        "heading": "Primer taxi de la comarca incorporado a FREENOW",
-        "text": "Taxi Ayud presenta su incorporación a la app de movilidad FREENOW como el primer y único taxi de la comarca de Calatayud disponible en la plataforma, según información del titular del negocio. Una opción adicional para residentes, turistas y viajeros."
+        "heading": "Taxi Ayud en FREENOW",
+        "text": "Taxi Ayud comunica su incorporación a FREENOW para ofrecer otra vía de solicitud de taxi en Calatayud. La disponibilidad y los vehículos mostrados dependen de la aplicación."
       },
       {
         "heading": "Cómo pedir un taxi en FREENOW Calatayud",
@@ -651,7 +651,7 @@
     "faq": [
       {
         "question": "¿Hay FREENOW en Calatayud?",
-        "answer": "Taxi Ayud indica ser el primer y único taxista de la comarca incorporado a FREENOW. Abre la app e introduce tu ubicación en Calatayud para consultar si el vehículo está disponible en ese momento."
+        "answer": "Taxi Ayud comunica su incorporación a FREENOW. Abre la aplicación e introduce tu ubicación en Calatayud para consultar la disponibilidad actual."
       },
       {
         "question": "¿Puedo reservar a Taxi Ayud por FREENOW en Calatayud?",
@@ -660,10 +660,6 @@
       {
         "question": "¿Dónde descargo la app FREENOW para Calatayud?",
         "answer": "FREENOW se descarga desde la App Store de Apple o Google Play para Android. Después indica Calatayud como punto de recogida y consulta la disponibilidad."
-      },
-      {
-        "question": "¿Taxi Ayud es el único taxi de Calatayud en FREENOW?",
-        "answer": "Según informa el titular de Taxi Ayud en octubre de 2026, es el primer y único taxista de la comarca incorporado a la aplicación. La disponibilidad y los vehículos que se muestran pueden cambiar."
       },
       {
         "question": "¿Puedo reservar sin FREENOW?",
@@ -847,7 +843,7 @@
     "navLabel": "Jaraba balnearios",
     "eyebrow": "Balnearios de Jaraba",
     "h1": "Taxi Calatayud Jaraba balnearios",
-    "intro": "Traslados desde Calatayud, estación AVE, hoteles o domicilios a Jaraba y sus balnearios para estancias, tratamientos, visitas y regresos programados.",
+    "intro": "Organiza un traslado con salida desde Calatayud o su estación hacia un balneario o alojamiento de Jaraba. Si tienes una cita o tratamiento, indica la hora de entrada y el tiempo necesario para llegar con margen.",
     "h2": "Traslado cómodo a balnearios de Jaraba",
     "body": "Indica balneario o alojamiento, hora de recogida, pasajeros, equipaje y si necesitas vuelta. Para tratamientos o citas conviene reservar con margen y confirmar disponibilidad por WhatsApp.",
     "sections": [
@@ -857,7 +853,7 @@
       },
       {
         "heading": "Destino Jaraba",
-        "text": "Balnearios, hoteles, alojamientos y puntos concretos de Jaraba."
+        "text": "Indica el nombre y dirección del balneario o alojamiento en Jaraba. Confirma el punto de llegada para evitar confusiones entre establecimientos."
       },
       {
         "heading": "Maletas y estancias",
@@ -981,26 +977,34 @@
   },
   {
     "path": "/taxi-zaragoza-calatayud/",
-    "title": "Taxi Calatayud Zaragoza | Información de regreso y reserva",
-    "description": "Información sobre traslados Calatayud–Zaragoza y viajes de regreso concertados. El servicio habitual se inicia en Calatayud; consulta condiciones.",
+    "title": "Taxi Calatayud–Zaragoza ida y vuelta | Taxi Ayud",
+    "description": "Organiza desde Calatayud un viaje a Zaragoza con regreso concertado. Consulta horarios, esperas, disponibilidad y condiciones legales del servicio.",
     "breadcrumb": "Taxi Zaragoza Calatayud",
     "navLabel": "Zaragoza Calatayud",
     "eyebrow": "Vuelta hacia Calatayud y comarca",
-    "h1": "Traslados Calatayud–Zaragoza y regreso concertado",
-    "intro": "Taxi Ayud organiza viajes con salida desde Calatayud hacia Zaragoza. Si necesitas un regreso, consulta con antelación las condiciones y la disponibilidad conforme a la normativa aplicable.",
+    "h1": "Taxi de Calatayud a Zaragoza con regreso concertado",
+    "intro": "Si vas desde Calatayud a Zaragoza y necesitas volver, consulta la posibilidad de organizar ambos trayectos dentro de un mismo servicio concertado y conforme a la normativa aplicable.",
     "h2": "Consulta la disponibilidad del viaje de regreso",
-    "body": "No se ofrecen recogidas independientes en Zaragoza como servicio habitual. Para trayectos con origen en Calatayud, solicita presupuesto y confirmación por WhatsApp.",
+    "body": "Indica punto de salida en Calatayud, destino en Zaragoza, fecha, hora de ida, hora estimada de regreso, pasajeros y equipaje. Confirma antes de reservar las condiciones legales, la espera y el presupuesto. No se ofrecen recogidas independientes en Zaragoza como servicio habitual.",
     "sections": [
       {
-        "heading": "Viaje desde Calatayud",
-        "text": "Reserva tu salida desde Calatayud hacia Zaragoza, Delicias, aeropuerto u otros destinos."
+        "heading": "Ida desde Calatayud",
+        "text": "Programa la salida desde un domicilio, hotel o la estación de Calatayud hacia Zaragoza, Delicias, hospitales o un destino concreto."
       },
       {
-        "heading": "Regreso previamente acordado",
-        "text": "Si necesitas regresar, consulta las condiciones del servicio y su viabilidad legal antes de reservar."
+        "heading": "Regreso del mismo servicio",
+        "text": "Si necesitas volver, indica la hora aproximada y consulta si es viable coordinar la espera o el regreso dentro del servicio contratado, conforme a la normativa."
+      },
+      {
+        "heading": "Información para presupuestar",
+        "text": "Facilita horarios, destino exacto, pasajeros, equipaje y tiempo de espera previsto. El importe se confirma antes de contratar."
       }
     ],
     "faq": [
+      {
+        "question": "¿Se puede concertar ida y vuelta entre Calatayud y Zaragoza?",
+        "answer": "Puedes consultar la posibilidad de un servicio de ida y vuelta con origen en Calatayud. Se confirmarán disponibilidad, condiciones y viabilidad legal."
+      },
       {
         "question": "¿Puedo pedir una recogida independiente en Zaragoza?",
         "answer": "Taxi Ayud no anuncia recogidas independientes en Zaragoza como servicio habitual. Consulta únicamente los servicios legalmente permitidos."
@@ -1195,9 +1199,9 @@
     "navLabel": "Nuévalos",
     "eyebrow": "Nuévalos y Monasterio",
     "h1": "Taxi a Nuévalos y Monasterio de Piedra",
-    "intro": "Traslado en taxi desde Calatayud a Nuévalos, Monasterio de Piedra, hoteles y alojamientos próximos para visitas turísticas o recogidas concertadas.",
+    "intro": "Traslado con salida desde Calatayud hacia Nuévalos, alojamientos y el entorno del Monasterio de Piedra. Esta página está pensada para quienes necesitan llegar a un alojamiento o acordar un regreso desde la zona.",
     "h2": "Conexión directa desde estación, hotel o domicilio",
-    "body": "Es una ruta habitual para viajeros que llegan a Calatayud en tren y quieren visitar el Monasterio de Piedra sin coche. Puedes pedir ida, vuelta o recogida a una hora concreta.",
+    "body": "Si tu destino es un hotel o alojamiento en Nuévalos, facilita su nombre y dirección. Para visitas al Monasterio de Piedra, acuerda de antemano el punto de encuentro y consulta si es viable programar el regreso, sujeto a disponibilidad y normativa.",
     "sections": [
       {
         "heading": "Desde estación de Calatayud",
@@ -1478,7 +1482,7 @@
   {
     "path": "/taxi-fiestas-calatayud/",
     "title": "Taxi fiestas Calatayud | Eventos, hoteles y estación | Taxi Ayud",
-    "description": "Taxi para fiestas, conciertos y eventos de Calatayud. Agenda cultural de octubre 2026, recogidas en hoteles, estación AVE y reservas de ida y vuelta por WhatsApp.",
+    "description": "Información sobre taxi para fiestas y eventos de Calatayud. Consulta disponibilidad y reservas según las fechas de servicio.",
     "breadcrumb": "Taxi fiestas Calatayud",
     "navLabel": "Taxi fiestas Calatayud",
     "eyebrow": "Fiestas y eventos en Calatayud",
@@ -1487,10 +1491,6 @@
     "h2": "Reserva taxi para conciertos, cenas y eventos",
     "body": "En días de fiestas, fines de semana y eventos con mucha demanda, lo recomendable es reservar con antelación por WhatsApp indicando hora, punto de recogida, destino, pasajeros y si necesitas vuelta programada.",
     "sections": [
-      {
-        "heading": "Próximos eventos confirmados · octubre 2026",
-        "text": "Según la agenda del Ayuntamiento de Calatayud, «La bola negra» está programada para los días 3 y 4 de octubre y el Festival de Música Barroca figura los días 16 y 23 de octubre de 2026. Para asistir o regresar, consulta tu taxi con antelación, indicando fecha, lugar de recogida y destino. Comprueba los horarios exactos en la agenda oficial: https://www.calatayud.es/cultura/agenda. Esta información se actualizará conforme cambie la programación."
-      },
       {
         "heading": "Fiestas de Calatayud",
         "text": "Traslados para visitantes, peñas, hoteles, estación, restaurantes y vueltas programadas durante fiestas locales y eventos con alta demanda."
@@ -1524,10 +1524,6 @@
       {
         "question": "¿El precio de la calculadora es definitivo en fiestas?",
         "answer": "No. Es orientativo. En fiestas, horarios nocturnos, esperas y disponibilidad se confirman directamente por teléfono o WhatsApp."
-      },
-      {
-        "question": "¿Puedo reservar taxi para el Festival de Música Barroca de Calatayud en octubre de 2026?",
-        "answer": "Sí, puedes consultar por WhatsApp un traslado para el 16 o el 23 de octubre, fechas anunciadas en la agenda cultural municipal. Indica si necesitas recogida en la estación AVE, en un hotel, en Calatayud o vuelta a un pueblo de la comarca. La disponibilidad se confirma directamente."
       }
     ]
   },
