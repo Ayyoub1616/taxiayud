@@ -5052,3 +5052,28 @@ tr:hover td {
   .compact-service-links a:hover { transform: none; }
   .btn::after { transition: none; }
 }
+
+
+/* October 2026: improve mobile booking usability without introducing new widgets. */
+@media (max-width: 700px) {
+  .mobile-action-bar {
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+  .mobile-action-bar a {
+    min-height: 48px;
+    touch-action: manipulation;
+  }
+  .floating-whatsapp {
+    display: none;
+  }
+  .quick-booking-form input,
+  .quick-booking-form select {
+    font-size: 16px;
+  }
+}
+.mobile-action-bar a:focus-visible,
+.floating-whatsapp:focus-visible,
+.review-request-link:focus-visible {
+  outline: 3px solid #f1c34d;
+  outline-offset: 3px;
+}
