@@ -933,45 +933,53 @@
   },
   {
     "path": "/taxi-calatayud-zaragoza/",
-    "title": "Taxi Calatayud Zaragoza | Delicias, hospitales y centro",
-    "description": "Taxi de Calatayud a Zaragoza para estación Delicias, hospitales, centro, hoteles y conexiones. Reserva por WhatsApp con horario, pasajeros y equipaje.",
-    "breadcrumb": "Taxi Calatayud Zaragoza",
-    "navLabel": "Calatayud Zaragoza",
-    "eyebrow": "Traslado interurbano a Zaragoza",
-    "h1": "Taxi de Calatayud a Zaragoza",
-    "intro": "Traslado en taxi desde Calatayud a Zaragoza para estación Delicias, hospitales, centro, hoteles, citas y viajes programados con recogida puerta a puerta.",
-    "h2": "Reserva taxi desde Calatayud hacia Zaragoza",
-    "body": "Indica origen, destino exacto en Zaragoza, fecha, hora, pasajeros, maletas y si necesitas ida y vuelta. El precio se confirma directamente según ruta, horario, espera y suplementos oficiales.",
+    "title": "Taxi de Calatayud a Zaragoza | Precio orientativo y reserva | Taxi Ayud",
+    "description": "¿Cuánto cuesta un taxi de Calatayud a Zaragoza? Consulta tarifa orientativa y reserva un traslado a Delicias, aeropuerto, hospitales o centro. Taxi Ayud 611 861 041.",
+    "breadcrumb": "Taxi de Calatayud a Zaragoza",
+    "navLabel": "Taxi Calatayud a Zaragoza",
+    "eyebrow": "Taxi oficial · Ruta Calatayud–Zaragoza",
+    "h1": "Taxi de Calatayud a Zaragoza: reserva y precio orientativo",
+    "intro": "¿Buscas un taxi de Calatayud a Zaragoza? Taxi Ayud realiza traslados con recogida en Calatayud, estación AVE, hoteles y domicilios, y llegada a Zaragoza-Delicias, centro, hospitales, aeropuerto o la dirección que necesites. Solicita disponibilidad y presupuesto por teléfono o WhatsApp.",
+    "h2": "Reserva tu taxi de Calatayud a Zaragoza",
+    "body": "Indícanos dónde te recogemos en Calatayud, destino exacto en Zaragoza, día, hora, número de pasajeros y equipaje. Si tienes tren, vuelo o cita médica, facilita la hora de llegada necesaria. La ruta es de aproximadamente 90 km según el recorrido; el importe puede variar por el destino exacto, horario, ruta, tiempos de espera y suplementos oficiales. El precio de la calculadora es orientativo y se confirma antes del servicio.",
     "sections": [
       {
-        "heading": "Zaragoza Delicias y centro",
-        "text": "Traslados a estación Zaragoza-Delicias, centro, hoteles, universidades, zonas de trabajo y domicilios."
+        "heading": "¿Cuánto cuesta un taxi de Calatayud a Zaragoza?",
+        "text": "Puedes consultar la estimación en la calculadora de Taxi Ayud o solicitar un presupuesto personalizado por WhatsApp. El importe depende del recorrido real, la tarifa aplicable, el horario, los suplementos y las esperas que correspondan. No se garantiza un precio fijo universal para todos los destinos de Zaragoza."
       },
       {
-        "heading": "Hospitales y citas",
-        "text": "Servicio útil para consultas médicas, visitas hospitalarias o gestiones con hora concreta en Zaragoza."
+        "heading": "Taxi de Calatayud a Zaragoza-Delicias y estación de tren",
+        "text": "Traslados programados desde domicilios, hoteles o la estación de Calatayud hasta Zaragoza-Delicias. Indica la hora de salida de tu tren para concretar con tiempo la recogida."
       },
       {
-        "heading": "Viaje programado",
-        "text": "Para trenes, citas o recogidas con equipaje, conviene reservar por WhatsApp con antelación."
+        "heading": "Taxi a hospitales, centro y aeropuerto de Zaragoza",
+        "text": "Viajes desde Calatayud a hospitales, consultas, hoteles, centro de Zaragoza y aeropuerto. Indica la dirección exacta y la hora a la que necesitas llegar."
+      },
+      {
+        "heading": "Reservas de ida y vuelta",
+        "text": "Puedes solicitar un viaje de ida y vuelta, recogida a una hora acordada o espera, siempre sujeto a disponibilidad y confirmación del presupuesto."
       }
     ],
     "faq": [
       {
-        "question": "¿Puedo reservar taxi de Calatayud a Zaragoza?",
-        "answer": "Sí. Envía por WhatsApp origen, destino exacto en Zaragoza, fecha, hora, pasajeros y equipaje para confirmar disponibilidad y precio orientativo."
+        "question": "¿Cuánto cuesta un taxi de Calatayud a Zaragoza?",
+        "answer": "Depende de la dirección exacta, el horario, el trayecto y los suplementos aplicables. Consulta la calculadora orientativa de la web y solicita un presupuesto antes del viaje en el 611 861 041 o por WhatsApp."
       },
       {
-        "question": "¿Recoge en domicilio, hotel o estación de Calatayud?",
-        "answer": "Sí. Puedes indicar una dirección, hotel, estación de Calatayud o compartir ubicación para preparar la recogida."
+        "question": "¿Cuántos kilómetros hay de Calatayud a Zaragoza?",
+        "answer": "La distancia habitual por carretera es de alrededor de 90 km; cambia según las direcciones concretas de origen y destino."
       },
       {
-        "question": "¿Se puede pedir ida y vuelta a Zaragoza?",
-        "answer": "Sí. Indica si necesitas espera o vuelta programada para calcular un presupuesto orientativo y confirmar la disponibilidad."
+        "question": "¿Puedo reservar taxi de Calatayud a Zaragoza-Delicias o al aeropuerto?",
+        "answer": "Sí, puedes consultar disponibilidad para Zaragoza-Delicias, el aeropuerto y otros puntos de Zaragoza. Facilita la hora de tu tren o vuelo para coordinar la recogida."
       },
       {
-        "question": "¿El precio de Calatayud a Zaragoza es cerrado?",
-        "answer": "No. La web puede orientar, pero el importe final se confirma directamente según horario, ruta final, espera, equipaje y suplementos oficiales."
+        "question": "¿Me recoge en Plaza del Fuerte, en la estación AVE o en mi domicilio?",
+        "answer": "Puedes proponer una recogida en la parada de Plaza del Fuerte, estación de Calatayud, hotel o domicilio. Confirma el punto concreto directamente con Taxi Ayud."
+      },
+      {
+        "question": "¿Se puede reservar ida y vuelta o una hora determinada?",
+        "answer": "Sí, puedes solicitar viajes programados, ida y vuelta y esperas, siempre sujetos a disponibilidad y condiciones confirmadas."
       }
     ]
   },
