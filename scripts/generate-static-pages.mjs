@@ -670,17 +670,16 @@ function replaceMeta(html, page) {
     );
 }
 
-function sitemapEntry(page, lastmod) {
+function sitemapEntry(page) {
   return `  <url>
     <loc>${absoluteUrl(page.path)}</loc>
 ${sitemapAlternateTags(page)}
 ${sitemapImageTags(page)}
-    <lastmod>${lastmod}</lastmod>
   </url>`;
 }
 
 function writeSitemap() {
-  const entries = pages.map((page) => sitemapEntry(page, buildDate)).join("\n") + ["reserva-traslado", "eventos-comarca"].map((slug) => `\n  <url><loc>${siteUrl}/${slug}/</loc><lastmod>${buildDate}</lastmod></url>`).join("");
+  const entries = pages.map((page) => sitemapEntry(page)).join("\n") + ["reserva-traslado", "eventos-comarca"].map((slug) => `\n  <url><loc>${siteUrl}/${slug}/</loc></url>`).join("");
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
