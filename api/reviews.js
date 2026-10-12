@@ -20,7 +20,7 @@ function sortByNewest(reviews) {
     const second = Date.parse(a?.publishTime || "");
 
     if (Number.isNaN(first) || Number.isNaN(second)) return 0;
-    return first - second;
+    return second - first;
   });
 }
 
