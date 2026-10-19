@@ -57,7 +57,7 @@ addCheck("La portada declara x-default en la home", home.includes('hreflang="x-d
 addCheck("La portada enlaza la pagina de avería carretera", home.includes("/taxi-averia-carretera-calatayud/"));
 addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-estacion-calatayud-monasterio-de-piedra/"));
 addCheck("La portada enlaza la pagina FREENOW Calatayud", home.includes("/taxi-freenow-calatayud/"));
-addCheck("La portada centra el title en Taxi en Calatayud", home.includes("<title>Taxi en Calatayud | Reservas 611 861 041 | Taxi Ayud</title>"));
+addCheck("La portada posiciona taxi desde Calatayud y rutas interurbanas", /<title>[^<]*Taxi Calatayud[^<]*Zaragoza[^<]*Madrid[^<]*aeropuertos[^<]*Taxi Ayud<\/title>/i.test(home));
 addCheck("La portada no pone FREENOW en el title principal", !home.includes("<title>FREENOW"));
 addCheck("La portada presenta FREENOW como canal adicional", home.includes("Canal adicional FREENOW"));
 addCheck("La portada indica colaboración FREENOW en Calatayud", home.includes("colaborador FREENOW en Calatayud"));
