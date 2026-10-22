@@ -1,13 +1,13 @@
 [
   {
     "path": "/",
-    "title": "Taxi en Calatayud | Reservas 611 861 041 | Taxi Ayud",
-    "description": "¿Buscas taxi en Calatayud? Taxi Ayud: recogidas en la ciudad y estación AVE, viajes a Zaragoza, Monasterio de Piedra y comarca. Llama o reserva por WhatsApp.",
+    "title": "Taxi en Calatayud | Zaragoza, Madrid y aeropuertos | Taxi Ayud",
+    "description": "Taxi en Calatayud. Reserva traslados con salida hacia Zaragoza, Madrid, Barajas y aeropuerto de Zaragoza. Recogida en estación AVE, hotel o domicilio.",
     "breadcrumb": "Inicio",
     "navLabel": "Taxi Calatayud",
     "eyebrow": "Taxi oficial en Calatayud · Licencia 18",
     "h1": "Taxi en Calatayud: reservas y traslados con Taxi Ayud",
-    "intro": "¿Necesitas un taxi en Calatayud? Reserva recogidas en la ciudad, estación AVE, hoteles o domicilios. También puedes consultar traslados con salida desde Calatayud hacia Zaragoza, aeropuertos, Monasterio de Piedra y pueblos de la comarca. Confirma disponibilidad y presupuesto por teléfono o WhatsApp.",
+    "intro": "¿Buscas taxi en Calatayud? Taxi Ayud ofrece recogidas en la ciudad, estación AVE, hoteles y domicilios, y traslados con salida desde Calatayud hacia Zaragoza, Madrid, Madrid-Barajas, aeropuerto de Zaragoza y otros destinos. Consulta disponibilidad, condiciones y presupuesto por teléfono o WhatsApp.",
     "h2": "Reserva anticipada de traslados desde Calatayud",
     "body": "Indica lugar de salida en Calatayud, destino, fecha, hora, número de viajeros y equipaje. Te confirmamos disponibilidad y condiciones antes del viaje. Los presupuestos de la calculadora son orientativos. También ofrecemos servicios urbanos y turísticos desde Calatayud; las recogidas en otros municipios dependen de la normativa aplicable.",
     "sections": [
@@ -17,7 +17,7 @@
       },
       {
         "heading": "Calatayud a Madrid",
-        "text": "Traslados de larga distancia con salida desde Calatayud hacia Madrid y el aeropuerto Adolfo Suárez Madrid-Barajas. Solicita disponibilidad y presupuesto personalizado."
+        "text": "Traslados con salida desde Calatayud hacia Madrid capital o el aeropuerto Adolfo Suárez Madrid-Barajas. Indica la terminal de tu vuelo, la hora a la que necesitas llegar y el equipaje para preparar tu presupuesto."
       },
       {
         "heading": "Estaciones y aeropuertos",
@@ -509,13 +509,13 @@
   },
   {
     "path": "/taxi-desde-calatayud/",
-    "title": "Taxi desde Calatayud | Traslados comarca y Zaragoza",
-    "description": "Taxi desde Calatayud a pueblos de la comarca, estación AVE, Monasterio de Piedra, balnearios, Zaragoza, aeropuerto, hoteles y citas.",
+    "title": "Taxi desde Calatayud | Zaragoza, Madrid y aeropuerto | Taxi Ayud",
+    "description": "Reserva un taxi con salida desde Calatayud a Zaragoza, Madrid, Barajas, aeropuerto de Zaragoza, estación Delicias y otros destinos. Consulta disponibilidad.",
     "breadcrumb": "Taxi desde Calatayud",
     "navLabel": "Desde Calatayud",
     "eyebrow": "Salidas desde Calatayud",
     "h1": "Taxi desde Calatayud",
-    "intro": "Reserva taxi desde Calatayud para viajes a pueblos de la comarca, estación AVE, Monasterio de Piedra, balnearios, Zaragoza, aeropuerto, hoteles, hospitales y direcciones concretas.",
+    "intro": "Reserva taxi con salida desde Calatayud hacia Zaragoza, Madrid, Barajas, aeropuertos, estaciones, Monasterio de Piedra, balnearios y pueblos de la comarca. Confirma por teléfono o WhatsApp el punto de recogida, el destino y el presupuesto.",
     "h2": "Traslados puerta a puerta desde Calatayud",
     "body": "Esta página agrupa los trayectos más buscados por quienes salen desde Calatayud: turismo, trenes, vuelos, citas médicas, alojamientos rurales, balnearios y viajes interurbanos.",
     "sections": [
@@ -530,6 +530,10 @@
       {
         "heading": "Zaragoza y aeropuerto",
         "text": "Servicio directo desde Calatayud a Zaragoza-Delicias, Aeropuerto de Zaragoza, hospitales, hoteles y direcciones concretas."
+      },
+      {
+        "heading": "Madrid y aeropuerto de Barajas",
+        "text": "Solicita un traslado desde Calatayud a Madrid o al aeropuerto Adolfo Suárez Madrid-Barajas. Si tienes vuelo, facilita el número, la terminal y la hora a la que necesitas llegar. El servicio se concierta con presupuesto y disponibilidad confirmados."
       }
     ],
     "faq": [
@@ -885,15 +889,15 @@
   },
   {
     "path": "/taxi-calatayud-aeropuerto-zaragoza/",
-    "title": "Taxi Calatayud Aeropuerto de Zaragoza | Taxi Ayud",
-    "description": "Taxi desde Calatayud al Aeropuerto de Zaragoza, estación Zaragoza-Delicias, hospitales y direcciones de Zaragoza. Reserva por WhatsApp con equipaje y horario.",
+    "title": "Taxi Calatayud al Aeropuerto de Zaragoza | Reserva | Taxi Ayud",
+    "description": "Taxi desde Calatayud al Aeropuerto de Zaragoza. Reserva la recogida en domicilio, hotel o estación AVE. Indica vuelo, equipaje y horario por WhatsApp.",
     "breadcrumb": "Calatayud Aeropuerto Zaragoza",
     "navLabel": "Aeropuerto",
     "eyebrow": "Zaragoza y aeropuerto",
     "h1": "Taxi Calatayud Aeropuerto de Zaragoza",
-    "intro": "Traslado puerta a puerta desde Calatayud al Aeropuerto de Zaragoza, Zaragoza-Delicias, hospitales, hoteles y direcciones concretas de la ciudad.",
+    "intro": "¿Tienes un vuelo desde el Aeropuerto de Zaragoza? Consulta traslado en taxi con salida desde Calatayud y recogida en domicilio, hotel o estación AVE. Para reservar, indica fecha, hora de vuelo, pasajeros, equipaje y hora a la que necesitas estar en el aeropuerto.",
     "h2": "Conexión directa desde Calatayud al aeropuerto",
-    "body": "Para vuelos, trenes o citas, envía hora de salida deseada, pasajeros, equipaje y destino. El precio mostrado es orientativo y la reserva queda confirmada solo por WhatsApp o llamada.",
+    "body": "Indica la dirección exacta de salida en Calatayud, la fecha del vuelo y la antelación con la que necesitas llegar a la terminal. Confirma con Taxi Ayud la hora de recogida recomendada, disponibilidad, ruta y presupuesto. La estimación de la web no confirma automáticamente una reserva.",
     "sections": [
       {
         "heading": "Salidas desde Calatayud",
@@ -908,8 +912,12 @@
         "text": "También se pueden consultar traslados a estación Delicias, hospitales, hoteles y direcciones de Zaragoza."
       },
       {
-        "heading": "Vuelta desde Zaragoza",
-        "text": "Puedes solicitar recogida de vuelta desde aeropuerto, estación, hotel u otra dirección, siempre con disponibilidad confirmada."
+        "heading": "Regreso concertado y condiciones",
+        "text": "Si deseas organizar también el regreso, consúltalo al reservar el trayecto con salida desde Calatayud. Las recogidas independientes en Zaragoza no se anuncian como servicio habitual y deben ajustarse a la normativa aplicable."
+      },
+      {
+        "heading": "Qué enviar para organizar el traslado",
+        "text": "Comparte ubicación de recogida en Calatayud, fecha y hora de vuelo, número de pasajeros, bultos de equipaje y teléfono de contacto. La hora de recogida y el precio se confirman antes del servicio."
       }
     ],
     "faq": [
@@ -980,6 +988,62 @@
       {
         "question": "¿Se puede reservar ida y vuelta o una hora determinada?",
         "answer": "Sí, puedes solicitar viajes programados, ida y vuelta y esperas, siempre sujetos a disponibilidad y condiciones confirmadas."
+      }
+    ]
+  },
+  {
+    "path": "/taxi-calatayud-madrid/",
+    "title": "Taxi Calatayud a Madrid y Barajas | Reserva | Taxi Ayud",
+    "description": "Taxi con salida desde Calatayud a Madrid y aeropuerto de Barajas. Recogida en estación AVE, hotel o domicilio. Consulta disponibilidad y presupuesto.",
+    "breadcrumb": "Taxi de Calatayud a Madrid",
+    "navLabel": "Taxi Calatayud a Madrid",
+    "eyebrow": "Traslado interurbano desde Calatayud",
+    "h1": "Taxi de Calatayud a Madrid y aeropuerto de Barajas",
+    "intro": "¿Necesitas viajar de Calatayud a Madrid o al Aeropuerto Adolfo Suárez Madrid-Barajas? Taxi Ayud permite consultar traslados programados con origen en Calatayud, desde domicilio, hotel o estación AVE. Solicita por teléfono o WhatsApp disponibilidad y presupuesto para el destino exacto.",
+    "h2": "Reserva un traslado desde Calatayud hacia Madrid",
+    "body": "Indica dirección de salida en Calatayud, destino exacto en Madrid, fecha, hora de recogida, número de pasajeros y equipaje. Si vas a Madrid-Barajas, facilita también terminal, hora de salida del vuelo y tiempo de antelación necesario. El servicio, el precio y los posibles suplementos están sujetos a confirmación antes de reservar.",
+    "sections": [
+      {
+        "heading": "Calatayud a Madrid capital",
+        "text": "Traslado directo desde Calatayud a una dirección concreta de Madrid: hotel, estación, hospital, empresa o domicilio. Indica el punto de llegada y la hora a la que necesitas estar allí para acordar la salida."
+      },
+      {
+        "heading": "Calatayud al aeropuerto Madrid-Barajas",
+        "text": "Para vuelos desde el aeropuerto Adolfo Suárez Madrid-Barajas, comparte terminal prevista (T1, T2, T3 o T4), hora de vuelo y equipaje. Acuerda la recogida en Calatayud con margen para el desplazamiento y los trámites aeroportuarios."
+      },
+      {
+        "heading": "Recogidas en estación AVE, hoteles o domicilio de Calatayud",
+        "text": "Puedes consultar la salida desde la estación de Calatayud, un hotel, empresa o domicilio del municipio. Confirma el punto exacto por WhatsApp para coordinar la recogida."
+      },
+      {
+        "heading": "Presupuesto y confirmación",
+        "text": "El importe depende de la ruta real, horario, tarifa aplicable, esperas y suplementos legales que puedan corresponder. Solicita presupuesto antes de confirmar; las estimaciones automáticas no sustituyen la reserva directa."
+      },
+      {
+        "heading": "Ida y regreso concertado",
+        "text": "Si necesitas regresar tras la llegada a Madrid, consulta al solicitar el viaje si es viable organizar el servicio de ida y vuelta. No se anuncian recogidas independientes en Madrid como servicio habitual."
+      }
+    ],
+    "faq": [
+      {
+        "question": "¿Se puede reservar taxi desde Calatayud al aeropuerto de Madrid-Barajas?",
+        "answer": "Puedes solicitar un traslado desde Calatayud a Barajas sujeto a disponibilidad y confirmación. Indica terminal, fecha del vuelo, pasajeros y equipaje."
+      },
+      {
+        "question": "¿Cuánto cuesta ir en taxi de Calatayud a Madrid?",
+        "answer": "El precio depende de la dirección exacta, horario, recorrido, esperas y suplementos aplicables. Solicita un presupuesto personalizado por teléfono o WhatsApp antes de reservar."
+      },
+      {
+        "question": "¿Me podéis recoger en la estación AVE de Calatayud?",
+        "answer": "Puedes proponer la recogida en la estación AVE, hotel o domicilio de Calatayud. Confirma lugar y hora concreta en la reserva."
+      },
+      {
+        "question": "¿Qué datos necesito para un traslado a Barajas?",
+        "answer": "Comparte fecha, terminal, número y horario de vuelo, antelación que necesitas, punto de salida en Calatayud, pasajeros y equipaje."
+      },
+      {
+        "question": "¿Puedo reservar un taxi solo para que me recoja en Madrid?",
+        "answer": "Taxi Ayud se centra en los trayectos con salida desde Calatayud. No anuncia recogidas independientes en Madrid como servicio habitual; cualquier regreso debe consultarse y ajustarse a la normativa aplicable."
       }
     ]
   },
