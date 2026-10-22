@@ -30,6 +30,7 @@ const roadA2Valdeherrera = read("dist/taxi-a2-valdeherrera-ateca-ariza/index.htm
 const festivals = read("dist/taxi-fiestas-calatayud/index.html");
 const stationMonastery = read("dist/taxi-estacion-calatayud-monasterio-de-piedra/index.html");
 const calatayudZaragoza = read("dist/taxi-calatayud-zaragoza/index.html");
+const calatayudMadrid = read("dist/taxi-calatayud-madrid/index.html");
 const zaragozaCalatayud = read("dist/taxi-zaragoza-calatayud/index.html");
 const monastery = read("dist/taxi-calatayud-monasterio-de-piedra/index.html");
 const airport = read("dist/taxi-calatayud-aeropuerto-zaragoza/index.html");
@@ -57,7 +58,8 @@ addCheck("La portada declara x-default en la home", home.includes('hreflang="x-d
 addCheck("La portada enlaza la pagina de avería carretera", home.includes("/taxi-averia-carretera-calatayud/"));
 addCheck("La portada enlaza la ruta estación Monasterio", home.includes("/taxi-estacion-calatayud-monasterio-de-piedra/"));
 addCheck("La portada enlaza la pagina FREENOW Calatayud", home.includes("/taxi-freenow-calatayud/"));
-addCheck("La portada posiciona taxi desde Calatayud y rutas interurbanas", /<title>[^<]*Taxi Calatayud[^<]*Zaragoza[^<]*Madrid[^<]*aeropuertos[^<]*Taxi Ayud<\/title>/i.test(home));
+addCheck("La portada prioriza taxi en Calatayud y trayectos interurbanos", /<title>[^<]*Taxi en Calatayud[^<]*Zaragoza[^<]*Madrid[^<]*aeropuertos[^<]*Taxi Ayud<\/title>/i.test(home));
+addCheck("La portada enlaza la ruta Calatayud-Madrid", home.includes("/taxi-calatayud-madrid/"));
 addCheck("La portada no pone FREENOW en el title principal", !home.includes("<title>FREENOW"));
 addCheck("La portada presenta FREENOW como canal adicional", home.includes("Canal adicional FREENOW"));
 addCheck("La portada indica colaboración FREENOW en Calatayud", home.includes("colaborador FREENOW en Calatayud"));
@@ -91,6 +93,9 @@ addCheck("La página estación Monasterio existe", stationMonastery.includes("Ta
 addCheck("La página de fiestas existe para búsquedas de San Roque", festivals.includes("San Roque"));
 addCheck("La página de fiestas no presenta San Roque 2026 como actualidad", !festivals.includes("San Roque Calatayud 2026"));
 addCheck("La página Calatayud Zaragoza existe", calatayudZaragoza.includes("Taxi de Calatayud a Zaragoza"));
+addCheck("La página Calatayud Madrid existe", calatayudMadrid.includes("Taxi de Calatayud a Madrid y aeropuerto de Barajas"));
+addCheck("La página Madrid limita las recogidas al origen autorizado", calatayudMadrid.includes("No se anuncian recogidas independientes en Madrid"));
+addCheck("La página Madrid mantiene la llamada y WhatsApp", calatayudMadrid.includes("tel:611861041") && calatayudMadrid.includes("wa.me/34611861041"));
 addCheck("La página Zaragoza Calatayud existe", zaragozaCalatayud.includes("Taxi de Zaragoza a Calatayud"));
 addCheck("La página Calatayud Monasterio existe", monastery.includes("Taxi Calatayud-Monasterio de Piedra"));
 addCheck("La página Calatayud Aeropuerto existe", airport.includes("Taxi Calatayud Aeropuerto de Zaragoza"));
@@ -104,6 +109,7 @@ addCheck("El sitemap incluye A-2 Valdeherrera Ateca Ariza", sitemap.includes("ht
 addCheck("El sitemap incluye estación Calatayud Monasterio", sitemap.includes("https://www.taxiayud.es/taxi-estacion-calatayud-monasterio-de-piedra/"));
 addCheck("El sitemap incluye taxi fiestas Calatayud", sitemap.includes("https://www.taxiayud.es/taxi-fiestas-calatayud/"));
 addCheck("El sitemap incluye taxi Calatayud Zaragoza", sitemap.includes("https://www.taxiayud.es/taxi-calatayud-zaragoza/"));
+addCheck("El sitemap incluye taxi Calatayud Madrid", sitemap.includes("https://www.taxiayud.es/taxi-calatayud-madrid/"));
 addCheck("El sitemap incluye taxi Calatayud Monasterio", sitemap.includes("https://www.taxiayud.es/taxi-calatayud-monasterio-de-piedra/"));
 addCheck("El sitemap incluye taxi Calatayud Aeropuerto", sitemap.includes("https://www.taxiayud.es/taxi-calatayud-aeropuerto-zaragoza/"));
 addCheck("El sitemap no indexa taxi 24 horas sin confirmar", !sitemap.includes("https://www.taxiayud.es/taxi-24-horas-calatayud/"));
