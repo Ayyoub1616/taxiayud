@@ -8,7 +8,6 @@ const freenowAppLinks = {
 };
 const pages = JSON.parse(readFileSync("src/seoPages.json", "utf8"));
 const template = readFileSync("dist/index.html", "utf8");
-const buildDate = new Date().toISOString().slice(0, 10);
 const htmlLangByPrefix = {
   "/en/": "en",
   "/fr/": "fr",
@@ -45,6 +44,8 @@ const localizedTaxiPaths = new Set(localizedTaxiAlternates.map((item) => item.pa
 const priorityStaticLinks = [
   "/",
   "/taxi-calatayud-zaragoza/",
+  "/taxi-calatayud-madrid/",
+  "/taxi-calatayud-aeropuerto-zaragoza/",
   "/taxi-cerca-de-mi-calatayud/",
   "/taxi-freenow-calatayud/",
   "/taxi-averia-carretera-calatayud/",
@@ -335,6 +336,16 @@ const businessGraph = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
+          name: "Taxi desde Calatayud a Madrid y Barajas",
+          serviceType: "Traslados interurbanos desde Calatayud",
+          areaServed: "Madrid y aeropuerto Adolfo Suárez Madrid-Barajas",
+          description: "Servicio con salida desde Calatayud, sujeto a disponibilidad y presupuesto confirmado.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
           name: "Taxi para fiestas en Calatayud y San Roque",
           serviceType: "Traslados para fiestas, eventos y vueltas programadas",
           areaServed: "Calatayud, San Roque Calatayud, estación, hoteles y pueblos de la comarca",
@@ -401,6 +412,9 @@ function serviceAreasForPage(page) {
   }
   if (page.path.includes("pueblos") || page.path.includes("ariza") || page.path.includes("ateca")) {
     return ["Ateca", "Ariza", "Maluenda", "Terrer", "Munébrega", "Ibdes", "Jaraba", "Alhama de Aragón", "Nuévalos", "Paracuellos de Jiloca"];
+  }
+  if (page.path === "/taxi-calatayud-madrid/") {
+    return ["Calatayud", "Estación AVE de Calatayud", "Hoteles y domicilios de Calatayud"];
   }
   if (page.path.includes("fiestas") || page.path.includes("san-roque")) {
     return ["San Roque Calatayud", "Hoteles de Calatayud", "Estación de Calatayud", "Pueblos de la comarca", "Restaurantes y eventos"];
@@ -472,7 +486,10 @@ function uniquePagesByPath(items) {
 }
 
 function staticFallback(page) {
-  const copy = pageStaticCopy(page);
+  const baseCopy = pageStaticCopy(page);
+  const copy = page.path === "/taxi-calatayud-madrid/"
+    ? { ...baseCopy, serviceAreasHeading: "Puntos de salida en Calatayud", serviceAreasText: "Esta ruta comienza en Calatayud. La dirección exacta de recogida se acuerda durante la reserva; Madrid y Barajas son destinos del traslado." }
+    : baseCopy;
   const prioritizedPages = priorityStaticLinks.map((path) => pages.find((item) => item.path === path));
   const links = uniquePagesByPath([...prioritizedPages, ...pages])
     .filter(
@@ -535,7 +552,9 @@ function pageJsonLd(page) {
     description: page.description,
     inLanguage: lang,
     provider: { "@id": `${siteUrl}/#taxi-ayud` },
-    areaServed: [
+    areaServed: page.path === "/taxi-calatayud-madrid/"
+      ? ["Calatayud", "Madrid", "Aeropuerto Adolfo Suárez Madrid-Barajas"]
+      : [
       "Calatayud",
       "Comarca de Calatayud",
       "A-2 Calatayud",
@@ -581,7 +600,6 @@ function pageJsonLd(page) {
         name: page.title,
         description: page.description,
         inLanguage: lang,
-        dateModified: buildDate,
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${siteUrl}/#taxi-ayud` },
         mainEntity: { "@id": `${pageUrl}#service` },
