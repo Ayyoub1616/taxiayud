@@ -417,6 +417,11 @@ const BASE_COPY = {
         href: "/taxi-calatayud-zaragoza/",
       },
       {
+        title: "Calatayud a Madrid y Barajas",
+        text: "Traslado con salida desde Calatayud hacia Madrid o el aeropuerto Madrid-Barajas, con reserva previa.",
+        href: "/taxi-calatayud-madrid/",
+      },
+      {
         title: "Estación-Monasterio de Piedra",
         text: "Traslado directo desde estación AVE de Calatayud a Nuévalos con vuelta programada.",
         href: "/taxi-estacion-calatayud-monasterio-de-piedra/",
@@ -3616,6 +3621,7 @@ const DEFAULT_SEO_LINKS = [
   "/taxi-calatayud-monasterio-de-piedra/",
   "/taxi-calatayud-jaraba-balnearios/",
   "/taxi-calatayud-zaragoza/",
+  "/taxi-calatayud-madrid/",
   "/taxi-zaragoza-calatayud/",
   "/reservar/",
   "/tarifas/",
